@@ -121,7 +121,9 @@ class WikimediaLinkIssueDetector:
 
         # IDEA links from buildings to parish are wrong - but from religious admin are OK https://www.wikidata.org/wiki/Q11808149
 
-        wikidata_id = wikimedia_connection.get_wikidata_object_id_from_article(tags.get('wikipedia'), self.forced_refresh)
+        language_code = wikimedia_connection.get_text_after_first_colon(tags.get('wikipedia'))
+        article_name = tags.get(tags.get('wikipedia'))
+        wikidata_id = wikimedia_connection.get_wikidata_object_id_from_article(language_code, article_name, self.forced_refresh)
 
         #wikipedia tag is not malformed
         #wikipedia and wikidata tags are not conflicting
