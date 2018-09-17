@@ -1,11 +1,12 @@
 import unittest
-import wikimedia_link_issue_reporter
+import wikibrain.wikipedia_knowledge
+import wikibrain.wikimedia_link_issue_reporter
 import wikimedia_connection.wikimedia_connection as wikimedia_connection
 import osm_handling_config.global_config as osm_handling_config
 
 class Tests(unittest.TestCase):
     def issue_reporter(self):
-        return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
+        return wikibrain.wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
 
     def test_complain_function(self):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
