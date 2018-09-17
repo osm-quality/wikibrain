@@ -4,7 +4,6 @@ Stores knowledge and data necessary to properly use links from OpenStreetMap to 
 
 ```nosetests3``` or ```python3 -m unittest```
 
-
 # Publishing new version
 
 - run tests (see section above)
