@@ -158,10 +158,7 @@ class WikimediaLinkIssueDetector:
             'Q857182': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Biedronka'},
             'Q487494': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Tesco'},
             'Q685967': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Kaufland'},
-
-            # reverted, as soon as overpass catches up may be uncommented
-            #'Q151954': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Lidl'}, also a mechanical edit https://www.openstreetmap.org/node/4119521789/history
-
+            'Q151954': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Lidl'},
             'Q125054': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Aldi'},
             'Q610492': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Spar'},
             'Q537781': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Billa'},
@@ -180,10 +177,9 @@ class WikimediaLinkIssueDetector:
             'Q701338': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'C&A'},
 
             'Q1160928': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'mBank'},
-            #mechanical edit was discussed
-            #'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank'}, - see below https://www.openstreetmap.org/changeset/49170492
-            #Q631047': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'HDFC Bank'}, - see below, the same issue
-            'Q2003777': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Canara Bank'}, # retagged some, asked question on edit introducing them
+            #'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank'} #mechanical edit was discussed - manual repair is necessary
+            'Q631047': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'HDFC Bank'},
+            'Q2003777': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Canara Bank'},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
