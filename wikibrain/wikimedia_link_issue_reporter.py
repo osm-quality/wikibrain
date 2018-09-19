@@ -469,6 +469,7 @@ class WikimediaLinkIssueDetector:
             if present_wikidata_id == wikidata_id_from_redirect:
                 message = (base_message + ", because wikipedia tag points to a redirect that should be followed (" +
                           self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +")")
+                message += " article redirects from " + language_code + ":" + article_name + " to " + language_code + ":" + title_after_possible_redirects
                 new_wikipedia_link = language_code+":"+title_after_possible_redirects
                 return ErrorReport(
                     error_id = "wikipedia wikidata mismatch - follow wikipedia redirect",
