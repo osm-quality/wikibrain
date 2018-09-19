@@ -467,7 +467,7 @@ class WikimediaLinkIssueDetector:
         if is_article_redirected:
             wikidata_id_from_redirect = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
             if present_wikidata_id == wikidata_id_from_redirect:
-                message = (base_message + ", because wikidata tag points to a redirect that should be followed (" +
+                message = (base_message + ", because wikipedia tag points to a redirect that should be followed (" +
                           self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +")")
                 new_wikipedia_link = language_code+":"+title_after_possible_redirects
                 return ErrorReport(
