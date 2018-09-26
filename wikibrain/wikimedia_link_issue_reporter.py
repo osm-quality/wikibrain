@@ -434,10 +434,20 @@ class WikimediaLinkIssueDetector:
         return list(set(links))
 
     def get_wikidata_id_after_redirect(self, wikidata_id):
-        return wikimedia_connection.get_data_from_wikidata_by_id(wikidata_id)['entities'][wikidata_id]['id']
+        try:
+            return wikimedia_connection.get_data_from_wikidata_by_id(wikidata_id)['entities'][wikidata_id]['id']
+        except KeyError as e:
+            print(e)
+            print("requested <" + str(wikidata_id) + ">)")
+            raise e
 
     def get_article_name_after_redirect(self, language_code, article_name):
-        return wikimedia_connection.get_from_wikipedia_api(language_code, "", article_name)['title']
+        try:
+            return wikimedia_connection.get_from_wikipedia_api(language_code, "", article_name)['title']
+        except KeyError as e:
+            print(e)
+            print("requested <" + str(language_code) + ", <" + str(article_name) + ">)")
+            raise e
 
     def check_for_wikipedia_wikidata_collision(self, present_wikidata_id, language_code, article_name):
         if present_wikidata_id == None:
