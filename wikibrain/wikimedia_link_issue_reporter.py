@@ -164,6 +164,7 @@ class WikimediaLinkIssueDetector:
             'Q537781': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Billa'},
             'Q610492': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Spar'},
             'Q12047031': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Prisma'},
+            'Q483551': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Walmart', 'allowed_tags': {'name': 'Walmart Supercenter'}},
 
             'Q1941209': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Mlekpol'},
 
@@ -180,10 +181,19 @@ class WikimediaLinkIssueDetector:
             'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank', 'allowed_tags': {'name:en': 'Axis Bank'}},
             'Q631047': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'HDFC Bank', 'allowed_tags': {'short_name': 'HDFC'}},
             'Q2003777': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Canara Bank'},
+            'Q2005310': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'UCO Bank', 'allowed_tags': {'name:en': 'UCO Bank'}},
+            'Q2003237': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'United Bank of India', 'allowed_tags': {'short_name': 'UBI', 'name:en': 'United Bank of India'}},
+            'Q2040394': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Yes Bank', 'allowed_tags': {'name:en': 'Yes Bank'}},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
             'Q7072824': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Opet'},
+
+            'Q244457': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Subway'},
+            'Q752941': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Taco Bell'},
+
+            'Q1591889': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Walgreens'},
+            'Q2078880': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'CVS'},
         }
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
