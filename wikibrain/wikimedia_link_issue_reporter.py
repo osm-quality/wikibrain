@@ -184,6 +184,7 @@ class WikimediaLinkIssueDetector:
             'Q2005310': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'UCO Bank', 'allowed_tags': {'name:en': 'UCO Bank'}},
             'Q2003237': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'United Bank of India', 'allowed_tags': {'short_name': 'UBI', 'name:en': 'United Bank of India'}},
             'Q2040394': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Yes Bank', 'allowed_tags': {'name:en': 'Yes Bank'}},
+            'Q487907': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank of America'},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
@@ -191,9 +192,11 @@ class WikimediaLinkIssueDetector:
 
             'Q244457': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Subway'},
             'Q752941': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Taco Bell'},
+            'Q465751': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chipotle Mexican Grill'},
 
             'Q1591889': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Walgreens'},
             'Q2078880': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'CVS'},
+            'Q3433273': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Rite Aid'},
         }
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
