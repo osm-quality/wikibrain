@@ -8,6 +8,9 @@ class Tests(unittest.TestCase):
     def issue_reporter(self):
         return wikibrain.wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
 
+    def test_malformed_wikidata_crash(self):
+        self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': 'Q81927)', 'wikipedia': 'en:Oslo'}))
+
     def test_complain_function(self):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         self.issue_reporter().complain_in_stdout_if_wikidata_entry_not_of_known_safe_type('Q824359', "explanation")
