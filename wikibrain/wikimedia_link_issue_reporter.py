@@ -153,6 +153,8 @@ class WikimediaLinkIssueDetector:
             'Q889624': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Leroy Merlin'},
             'Q10541151': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Jula'},
 
+            'Q54078': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'IKEA'},
+
             'Q552652': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Netto'},
             'Q11694239': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Dino'},
             'Q857182': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Biedronka'},
@@ -165,6 +167,8 @@ class WikimediaLinkIssueDetector:
             'Q610492': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Spar'},
             'Q12047031': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Prisma'},
             'Q483551': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Walmart', 'allowed_tags': {'name': 'Walmart Supercenter'}},
+
+            'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
 
             'Q1941209': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Mlekpol'},
 
@@ -185,6 +189,9 @@ class WikimediaLinkIssueDetector:
             'Q2003237': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'United Bank of India', 'allowed_tags': {'short_name': 'UBI', 'name:en': 'United Bank of India'}},
             'Q2040394': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Yes Bank', 'allowed_tags': {'name:en': 'Yes Bank'}},
             'Q487907': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank of America'},
+            'Q2040404': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Kotak Mahindra Bank', 'allowed_tags': {'name:en': 'Kotak Mahindra Bank'}},
+            'Q2040323': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'IndusInd Bank', 'allowed_tags': {'name:en': 'IndusInd Bank'}},
+            'Q2018840': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Allahabad Bank', 'allowed_tags': {'name:en': 'Allahabad Bank'}},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
@@ -193,6 +200,7 @@ class WikimediaLinkIssueDetector:
             'Q244457': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Subway'},
             'Q752941': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Taco Bell'},
             'Q465751': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chipotle Mexican Grill'},
+            'Q1043486': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Carl\'s Jr.'},
 
             'Q1591889': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Walgreens'},
             'Q2078880': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'CVS'},
