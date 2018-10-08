@@ -84,6 +84,10 @@ class WikimediaLinkIssueDetector:
             if something_reportable != None:
                 return something_reportable
 
+            something_reportable = self.check_is_wikidata_page_existing(tags.get("wikidata"))
+            if something_reportable != None:
+                return something_reportable
+
         if tags.get("wikipedia") != None:
             language_code = wikimedia_connection.get_language_code_from_link(tags.get("wikipedia"))
             article_name = wikimedia_connection.get_article_name_from_link(tags.get("wikipedia"))
@@ -271,6 +275,16 @@ class WikimediaLinkIssueDetector:
                             )
         else:
             return None
+
+    def check_is_wikidata_page_existing(self, wikidata_id):
+        wikidata_data = wikimedia_connection.get_data_from_wikidata_by_id(wikidata_id)
+        if 'error' not in wikidata_data:
+            return False
+        if wikidata_data['error']['code'] == 'no-such-entity':
+            return True
+        else:
+            raise NotImplementedError("unhandled error" + str(wikidata_data))
+
 
     def check_is_wikipedia_page_existing(self, language_code, article_name):
         page_according_to_wikidata = wikimedia_connection.get_interwiki_article_name(language_code, article_name, language_code, self.forced_refresh)
