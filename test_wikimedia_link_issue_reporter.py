@@ -8,6 +8,12 @@ class Tests(unittest.TestCase):
     def issue_reporter(self):
         return wikibrain.wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
 
+    def test_empty_wikidata_is_malformed(self):
+        self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': '', 'wikipedia': 'en:Oslo'}))
+
+    def test_nonexisting_wikidata_is_not_malformed(self):
+        self.assertEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikipedia': 'en:Oslo'}))
+
     def test_malformed_wikidata_crash(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': 'Q81927)', 'wikipedia': 'en:Oslo'}))
 

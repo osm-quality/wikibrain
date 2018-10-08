@@ -79,16 +79,17 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
+        if tags.get("wikidata") != None:
+            something_reportable = self.check_is_wikidata_link_clearly_malformed(tags.get("wikidata"))
+            if something_reportable != None:
+                return something_reportable
+
         if tags.get("wikipedia") != None:
             language_code = wikimedia_connection.get_language_code_from_link(tags.get("wikipedia"))
             article_name = wikimedia_connection.get_article_name_from_link(tags.get("wikipedia"))
             wikidata_id = wikimedia_connection.get_wikidata_object_id_from_link(tags.get("wikipedia"))
 
             something_reportable = self.check_is_wikipedia_link_clearly_malformed(tags.get("wikipedia"))
-            if something_reportable != None:
-                return something_reportable
-
-            something_reportable = self.check_is_wikidata_link_clearly_malformed(tags.get("wikidata"))
             if something_reportable != None:
                 return something_reportable
 
@@ -556,6 +557,10 @@ class WikimediaLinkIssueDetector:
         return False
 
     def is_wikidata_tag_clearly_broken(self, link):
+        if link == None:
+            return True
+        if len(link) < 2:
+            return True
         if link[0] != "Q":
             return True
         if re.search("^\d+\Z",link[1:]) == None:
