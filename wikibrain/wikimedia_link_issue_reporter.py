@@ -13,7 +13,7 @@ class ErrorReport:
         self.current_wikipedia_target = None #TODO - eliminate, start from wikipedia validator using this data
         self.desired_wikipedia_target = desired_wikipedia_target  #TODO - eliminate, start from wikipedia validator using this data
         self.prerequisite = prerequisite
-        self.extra_data = extra_data # TODO - probably eliminate, it was probably mostly replaced by proposed_tagging_changes field
+        self.extra_data = extra_data # TODO - replace by more specific
         self.proposed_tagging_changes = proposed_tagging_changes
 
     def bind_to_element(self, element):
