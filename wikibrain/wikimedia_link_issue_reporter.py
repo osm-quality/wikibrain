@@ -300,6 +300,7 @@ class WikimediaLinkIssueDetector:
                     error_message = message,
                     prerequisite = {'wikipedia': language_code+":"+article_name},
                     desired_wikipedia_target = proposed_new_target,
+                    proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": proposed_new_target}}],
                     )
 
     def wikidata_data_quality_warning(self):
@@ -412,11 +413,13 @@ class WikimediaLinkIssueDetector:
                 prerequisite = prerequisite,
                 )
         elif tags.get('wikipedia') == None:
+            new_wikipedia = self.get_best_interwiki_link_by_id(normalized)
             return ErrorReport(
                 error_id = "wikipedia tag from wikipedia tag in an outdated form",
                 error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "), wikipedia tag may be added",
                 prerequisite = prerequisite,
-                desired_wikipedia_target = self.get_best_interwiki_link_by_id(normalized),
+                desired_wikipedia_target = new_wikipedia,
+                proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": new_wikipedia}}],
                 )
         else:
             return ErrorReport(
@@ -442,6 +445,7 @@ class WikimediaLinkIssueDetector:
                 error_message = "without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article, article language is not surprising",
                 desired_wikipedia_target = link,
                 prerequisite = {'wikipedia': None, 'wikidata': present_wikidata_id},
+                proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
                 )
         else:
             return ErrorReport(
@@ -449,6 +453,7 @@ class WikimediaLinkIssueDetector:
                 error_message = "without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article",
                 desired_wikipedia_target = link,
                 prerequisite = {'wikipedia': None, 'wikidata': present_wikidata_id},
+                proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
                 )
 
     def wikipedia_candidates_based_on_old_style_wikipedia_keys(self, tags, wikipedia_type_keys):
@@ -525,6 +530,7 @@ class WikimediaLinkIssueDetector:
                     error_message = message,
                     desired_wikipedia_target = new_wikipedia_link,
                     prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
+                    proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia_link}}],
                     )
         message = (base_message + " (" +
                    self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +
@@ -614,6 +620,7 @@ class WikimediaLinkIssueDetector:
                 error_id = "wikipedia tag unexpected language",
                 error_message = error_message,
                 desired_wikipedia_target = good_link,
+                proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": good_link}}],
                 prerequisite = prerequisite,
                 )
         else:
