@@ -68,11 +68,6 @@ class WikimediaLinkIssueDetector:
         return None
 
     def critical_structural_issue_report(self, object_type, tags):
-        if tags.get("wikidata") != None:
-            something_reportable = self.check_is_wikidata_page_existing(tags.get("wikidata"))
-            if something_reportable != None:
-                return something_reportable
-
         #TODO - is it OK?
         #if tags.get("wikipedia").find("#") != -1:
         #    return "link to section (\"only provide links to articles which are 'about the feature'\" - http://wiki.openstreetmap.org/wiki/Key:wikipedia):"
@@ -277,16 +272,6 @@ class WikimediaLinkIssueDetector:
                             )
         else:
             return None
-
-    def check_is_wikidata_page_existing(self, wikidata_id):
-        wikidata_data = wikimedia_connection.get_data_from_wikidata_by_id(wikidata_id)
-        if 'error' not in wikidata_data:
-            return False
-        if wikidata_data['error']['code'] == 'no-such-entity':
-            return True
-        else:
-            raise NotImplementedError("unhandled error" + str(wikidata_data))
-
 
     def check_is_wikipedia_page_existing(self, language_code, article_name):
         page_according_to_wikidata = wikimedia_connection.get_interwiki_article_name(language_code, article_name, language_code, self.forced_refresh)
