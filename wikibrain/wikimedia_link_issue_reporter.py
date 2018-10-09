@@ -6,14 +6,15 @@ import yaml
 from wikibrain import wikipedia_knowledge
 
 class ErrorReport:
-    def __init__(self, error_message=None, desired_wikipedia_target=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None):
+    def __init__(self, error_message=None, desired_wikipedia_target=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
         self.error_id = error_id
         self.error_message = error_message
         self.debug_log = debug_log
-        self.current_wikipedia_target = None
-        self.desired_wikipedia_target = desired_wikipedia_target
+        self.current_wikipedia_target = None #TODO - eliminate, start from wikipedia validator using this data
+        self.desired_wikipedia_target = desired_wikipedia_target  #TODO - eliminate, start from wikipedia validator using this data
         self.prerequisite = prerequisite
-        self.extra_data = extra_data
+        self.extra_data = extra_data # TODO - probably eliminate, it was probably mostly replaced by proposed_tagging_changes field
+        self.proposed_tagging_changes = proposed_tagging_changes
 
     def bind_to_element(self, element):
         self.current_wikipedia_target = element.get_tag_value("wikipedia") # TODO - save all tags #TODO - how to handle multiple?
@@ -26,8 +27,9 @@ class ErrorReport:
             error_message = self.error_message,
             debug_log = self.debug_log,
             osm_object_url = self.osm_object_url,
-            current_wikipedia_target = self.current_wikipedia_target, #TODO - make it generic (use extra_data)
-            desired_wikipedia_target = self.desired_wikipedia_target, #TODO - make it generic (use extra_data)
+            current_wikipedia_target = self.current_wikipedia_target, #TODO - eliminate, start from wikipedia validator using this data
+            desired_wikipedia_target = self.desired_wikipedia_target, #TODO - eliminate, start from wikipedia validator using this data
+            proposed_tagging_changes = self.proposed_tagging_changes,
             extra_data = self.extra_data,
             prerequisite = self.prerequisite,
             location = self.location,
