@@ -431,10 +431,14 @@ class WikimediaLinkIssueDetector:
                 proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": new_wikipedia}}],
                 )
         else:
+            from_tags = {}
+            for key in wikipedia_type_keys:
+                from_tags[key] = tags.get(key)
             return ErrorReport(
                 error_id = "wikipedia tag in an outdated form for removal",
                 error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "), with wikipedia and wikidata tag present and may be safely removed",
                 prerequisite = prerequisite,
+                proposed_tagging_changes = [{"from": from_tags, "to": {}}],
                 )
 
     def get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(self, present_wikidata_id):
