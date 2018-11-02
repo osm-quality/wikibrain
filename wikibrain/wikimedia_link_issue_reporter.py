@@ -175,6 +175,7 @@ class WikimediaLinkIssueDetector:
             'Q483551': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Walmart', 'allowed_tags': {'name': 'Walmart Supercenter'}},
 
             'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
+            'Q1508234': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Safeway'},
 
             'Q1941209': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Mlekpol'},
 
@@ -198,21 +199,27 @@ class WikimediaLinkIssueDetector:
             'Q2040404': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Kotak Mahindra Bank', 'allowed_tags': {'name:en': 'Kotak Mahindra Bank'}},
             'Q2040323': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'IndusInd Bank', 'allowed_tags': {'name:en': 'IndusInd Bank'}},
             'Q2018840': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Allahabad Bank', 'allowed_tags': {'name:en': 'Allahabad Bank'}},
+            'Q3595747': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Dena Bank', 'allowed_tags': {'name:en': 'Dena Bank'}},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
             'Q7072824': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Opet'},
+            'Q3335043': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Naftal'},
 
             'Q244457': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Subway'},
             'Q752941': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Taco Bell'},
             'Q465751': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chipotle Mexican Grill'},
             'Q1043486': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Carl\'s Jr.'},
+            'Q550258': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Wendy\'s'},
 
+            'Q7130852': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Panera Bread'},
             'Q191615': {'prefix': 'brand:', 'expected_tags': {'cuisine': 'pizza'}, 'name': 'Pizza Hut'},
 
             'Q1591889': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Walgreens'},
             'Q2078880': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'CVS'},
             'Q3433273': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Rite Aid'},
+
+            'Q7090329': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}},
         }
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
