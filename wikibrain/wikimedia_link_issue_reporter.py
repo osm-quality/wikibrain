@@ -158,8 +158,11 @@ class WikimediaLinkIssueDetector:
         return {
             'Q889624': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Leroy Merlin'},
             'Q10541151': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Jula'},
+            'Q864407': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Home Depot', 'allowed_tags': {'name': 'The Home Depot'}},
 
             'Q54078': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'IKEA'},
+
+            'Q919641': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Verizon Wireless'},
 
             'Q552652': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Netto'},
             'Q11694239': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Dino'},
@@ -188,6 +191,8 @@ class WikimediaLinkIssueDetector:
             'Q188326': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'H&M'},
             'Q701338': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'C&A'},
 
+            'Q1046951': {'prefix': 'brand:', 'expected_tags': {'shop': 'department_store'}, 'name': 'Target'},
+
             'Q1160928': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'mBank'},
             'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank', 'allowed_tags': {'name:en': 'Axis Bank'}},
             'Q631047': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'HDFC Bank', 'allowed_tags': {'short_name': 'HDFC'}},
@@ -200,6 +205,12 @@ class WikimediaLinkIssueDetector:
             'Q2040323': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'IndusInd Bank', 'allowed_tags': {'name:en': 'IndusInd Bank'}},
             'Q2018840': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Allahabad Bank', 'allowed_tags': {'name:en': 'Allahabad Bank'}},
             'Q3595747': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Dena Bank', 'allowed_tags': {'name:en': 'Dena Bank'}},
+            'Q6373724': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Karur Vysya Bank', 'allowed_tags': {'name:en': 'Karur Vysya Bank', 'short_name': 'KVB'}},
+            'Q2004078': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Union Bank of India', 'allowed_tags': {'name:en': 'Union Bank of India', 'short_name': 'UBI'}},
+            'Q367008': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Oriental Bank of Commerce', 'allowed_tags': {'name:en': 'Oriental Bank of Commerce', 'short_name': 'OBC'}},
+            'Q2003302': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Punjab & Sind Bank', 'allowed_tags': {'name:en': 'Punjab & Sind Bank'}},
+            'Q2004304': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank of Maharashtra', 'allowed_tags': {'name:en': 'Bank of Maharashtra'}},
+            'Q739084': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'U.S. Bank'},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
@@ -211,6 +222,11 @@ class WikimediaLinkIssueDetector:
             'Q465751': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chipotle Mexican Grill'},
             'Q1043486': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Carl\'s Jr.'},
             'Q550258': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Wendy\'s'},
+            'Q839466': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Domino\'s Pizza'},
+            'Q1689380': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Jimmy John\'s'},
+            'Q491516': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chick-fil-A'},
+
+            'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Denny\'s'},
 
             'Q7130852': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Panera Bread'},
             'Q191615': {'prefix': 'brand:', 'expected_tags': {'cuisine': 'pizza'}, 'name': 'Pizza Hut'},
@@ -220,6 +236,8 @@ class WikimediaLinkIssueDetector:
             'Q3433273': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Rite Aid'},
 
             'Q7090329': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}},
+
+            'Q140957': {'prefix': 'species:', 'expected_tags': {'species': 'Dipterocarpus alatus', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
         }
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
