@@ -3,6 +3,8 @@ class WikipediaKnowledge:
     def all_wikipedia_language_codes_order_by_importance():
         # list from https://meta.wikimedia.org/wiki/List_of_Wikipedias as of 2017-10-07
         # ordered by article count except some for extreme bot spam
+        # should use https://stackoverflow.com/questions/33608751/retrieve-a-list-of-all-wikipedia-languages-programmatically
+        # probably via wikipedia connection library
         return ['en', 'de', 'fr', 'nl', 'ru', 'it', 'es', 'pl',
                 'vi', 'ja', 'pt', 'zh', 'uk', 'fa', 'ca', 'ar', 'no', 'sh', 'fi',
                 'hu', 'id', 'ko', 'cs', 'ro', 'sr', 'ms', 'tr', 'eu', 'eo', 'bg',
