@@ -225,6 +225,8 @@ class WikimediaLinkIssueDetector:
             'Q839466': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Domino\'s Pizza'},
             'Q1689380': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Jimmy John\'s'},
             'Q491516': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chick-fil-A'},
+            'Q175106': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Tim Hortons'},
+            'Q38076': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'McDonald\'s'},
 
             'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Denny\'s'},
 
