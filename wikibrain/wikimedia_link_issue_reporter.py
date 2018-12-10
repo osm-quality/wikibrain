@@ -158,6 +158,7 @@ class WikimediaLinkIssueDetector:
         return {
             'Q889624': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Leroy Merlin'},
             'Q10541151': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Jula'},
+            'Q1373493': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Lowe\'s'},
             'Q864407': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Home Depot', 'allowed_tags': {'name': 'The Home Depot'}},
 
             'Q54078': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'IKEA'},
@@ -216,6 +217,7 @@ class WikimediaLinkIssueDetector:
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
             'Q7072824': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Opet'},
             'Q3335043': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Naftal'},
+            'Q3240764': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
 
             'Q244457': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Subway'},
             'Q752941': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Taco Bell'},
@@ -227,6 +229,7 @@ class WikimediaLinkIssueDetector:
             'Q491516': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chick-fil-A'},
             'Q175106': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Tim Hortons'},
             'Q38076': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'McDonald\'s'},
+            'Q7561808': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Sonic Drive-In'},
 
             'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Denny\'s'},
 
