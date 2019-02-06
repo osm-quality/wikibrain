@@ -157,6 +157,9 @@ class WikimediaLinkIssueDetector:
     def wikidata_connection_blacklist(self):
         return {
             'Q668687': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'United States Postal Service'},
+            'Q373724': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}},
+            'Q3181430': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}},
+
             'Q889624': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Leroy Merlin'},
             'Q10541151': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Jula'},
             'Q1373493': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Lowe\'s'},
@@ -226,6 +229,12 @@ class WikimediaLinkIssueDetector:
             'Q1740314': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'KeyBank'},
             'Q744149': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Wells Fargo'},
             'Q524629': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Chase Bank'},
+            'Q5266685': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'DCB Bank'},
+            'Q6479935': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Lakshmi Vilas Bank'},
+            'Q3633485': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'IDBI Bank'},
+            'Q2007090': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Central Bank of India'},
+            'Q499707': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'BNP Paribas'},
+            'Q4854101': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco Mercantil'},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
@@ -248,6 +257,9 @@ class WikimediaLinkIssueDetector:
             'Q1141226': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Dairy Queen'},
             'Q1538507': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Jack in the Box'},
             'Q524757': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'KFC'},
+            'Q1205312': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'In-N-Out Burger'},
+            'Q4998570': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Burgerville'},
+            'Q1358690': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Panda Express'},
 
             'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Denny\'s'},
             'Q1185675': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'IHOP'},
@@ -266,9 +278,14 @@ class WikimediaLinkIssueDetector:
 
             'Q5600598': {'prefix': 'operator:', 'expected_tags': {}},
 
+            'Q8034539': {'prefix': 'operator:', 'expected_tags': {'office': 'government', 'name': 'WorkSafeBC'}},
+
             'Q2989971': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
 
             'Q140957': {'prefix': 'species:', 'expected_tags': {'species': 'Dipterocarpus alatus', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
+            'Q2601238': {'prefix': 'species:', 'expected_tags': {'species': 'Carya ovata', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q957447': {'prefix': 'species:', 'expected_tags': {'species': 'Polyalthia longifolia', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
+
         }
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
