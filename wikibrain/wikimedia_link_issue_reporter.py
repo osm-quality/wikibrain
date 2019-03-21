@@ -115,6 +115,9 @@ class WikimediaLinkIssueDetector:
 
         old_style_wikipedia_tags = self.get_old_style_wikipedia_keys(tags)
 
+        if tags.get("wikipedia") != None:
+            return None
+
         if tags.get('wikidata') != None and old_style_wikipedia_tags == []:
             return self.get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(tags.get('wikidata'))
 
