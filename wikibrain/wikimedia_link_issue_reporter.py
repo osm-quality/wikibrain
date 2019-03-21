@@ -157,11 +157,17 @@ class WikimediaLinkIssueDetector:
 
         return None
 
+    def wikidata_connection_blacklisted_and_unfixable(self):
+        return [
+            'Q1456883',
+        ]
+
     def wikidata_connection_blacklist(self):
         return {
             'Q668687': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'United States Postal Service'},
             'Q373724': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}},
             'Q3181430': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}},
+            'Q1502763': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}},
 
             'Q889624': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Leroy Merlin'},
             'Q10541151': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Jula'},
@@ -238,6 +244,8 @@ class WikimediaLinkIssueDetector:
             'Q2007090': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Central Bank of India'},
             'Q499707': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'BNP Paribas'},
             'Q4854101': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco Mercantil'},
+            'Q2931752': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'CNEP'},
+            'Q11710978': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Idea Bank'},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
