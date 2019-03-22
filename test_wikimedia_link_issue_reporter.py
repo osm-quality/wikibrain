@@ -63,5 +63,19 @@ class Tests(unittest.TestCase):
         tags = {key: 'Kościół Najświętszego Serca Pana Jezusa'}
         self.assertNotEqual (None, self.issue_reporter().check_is_invalid_old_style_wikipedia_tag_present(tags, tags))
 
+    def test_presence_of_fields_in_wikidata_connection_blacklist(self):
+        blacklist = self.issue_reporter().wikidata_connection_blacklist()
+        for key in blacklist:
+            self.assertEqual("Q", key[0])
+            print(key)
+            try:
+                blacklist[key]["prefix"]
+                blacklist[key]["expected_tags"]
+            except KeyError:
+                print(key)
+                print(blacklist[key])
+                assert False
+
+
 if __name__ == '__main__':
     unittest.main()
