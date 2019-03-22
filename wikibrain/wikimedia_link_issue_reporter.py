@@ -19,7 +19,10 @@ class ErrorReport:
     def bind_to_element(self, element):
         self.current_wikipedia_target = element.get_tag_value("wikipedia") # TODO - save all tags #TODO - how to handle multiple?
         self.osm_object_url = element.get_link()
-        self.location = (element.get_coords().lat, element.get_coords().lon)
+        if element.get_coords() == None:
+            self.location = (None, None)
+        else:
+            self.location = (element.get_coords().lat, element.get_coords().lon)
 
     def yaml_output(self, filepath):
         data = dict(
