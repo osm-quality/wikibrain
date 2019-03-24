@@ -91,7 +91,6 @@ class WikimediaLinkIssueDetector:
         if tags.get("wikipedia") != None:
             language_code = wikimedia_connection.get_language_code_from_link(tags.get("wikipedia"))
             article_name = wikimedia_connection.get_article_name_from_link(tags.get("wikipedia"))
-            wikidata_id = wikimedia_connection.get_wikidata_object_id_from_link(tags.get("wikipedia"))
 
             something_reportable = self.check_is_wikipedia_link_clearly_malformed(tags.get("wikipedia"))
             if something_reportable != None:
@@ -483,7 +482,6 @@ class WikimediaLinkIssueDetector:
 
     def convert_old_style_wikipedia_tags(self, wikipedia_type_keys, tags):
         links = self.wikipedia_candidates_based_on_old_style_wikipedia_keys(tags, wikipedia_type_keys)
-        normalized_link_form = None
 
         if tags.get('wikipedia') != None:
             links.append(tags.get('wikipedia'))
@@ -734,7 +732,6 @@ class WikimediaLinkIssueDetector:
         linked_object = "wikidata entry (" + wikidata_id + ")"
         if link != None:
             article_name = wikimedia_connection.get_article_name_from_link(link)
-            article = "(" + article_name + ")"
 
         special_prefix_text = ""
         if special_prefix != None:
@@ -850,7 +847,7 @@ class WikimediaLinkIssueDetector:
             return {'what': 'a restaurant chain', 'replacement': 'brand:'}
         #some local banks may fit - see https://www.openstreetmap.org/node/2598972915
         #if type_id == 'Q22687':
-            return {'what': 'a bank', 'replacement': 'brand:'}
+        #    return {'what': 'a bank', 'replacement': 'brand:'}
         if type_id == 'Q507619':
             return {'what': 'a chain store', 'replacement': 'brand:'}
         # appears in constraints of coordinate property in Wikidata but not applicable to OSM
