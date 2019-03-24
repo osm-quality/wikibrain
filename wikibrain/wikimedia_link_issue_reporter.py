@@ -661,7 +661,7 @@ class WikimediaLinkIssueDetector:
             return True
         if link[0] != "Q":
             return True
-        if re.search("^\d+\Z",link[1:]) == None:
+        if re.search(r"^\d+\Z",link[1:]) == None:
             return True
         return False
 
