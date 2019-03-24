@@ -2,6 +2,7 @@ import unittest
 import wikibrain.wikipedia_knowledge
 import wikibrain.wikimedia_link_issue_reporter
 import wikimedia_connection.wikimedia_connection as wikimedia_connection
+import wikimedia_connection.wikidata_processing as wikidata_processing
 import osm_handling_config.global_config as osm_handling_config
 
 class Tests(unittest.TestCase):
@@ -75,6 +76,29 @@ class Tests(unittest.TestCase):
                 print(key)
                 print(blacklist[key])
                 assert False
+
+    def ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary(self, wikidata_id):
+        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+        primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id)
+        if primary_linkability_status == None:
+            print("**********************")
+            print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
+            print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id))
+            self.issue_reporter().complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(wikidata_id, "tests")
+            self.issue_reporter().dump_base_types_of_object_in_stdout(wikidata_id, "tests")
+        self.assertNotEqual (None, primary_linkability_status)
+
+    def test_that_sheep_is_reported_as_an_animal(self):
+        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q7368')
+
+    def test_that_goat_is_reported_as_an_animal(self):
+        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q2934')
+
+    def test_that_horse_is_reported_as_an_animal(self):
+        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q726')
+
+    def test_that_llama_is_reported_as_an_animal(self):
+        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q42569')
 
 
 if __name__ == '__main__':

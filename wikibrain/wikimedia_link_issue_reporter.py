@@ -299,7 +299,25 @@ class WikimediaLinkIssueDetector:
             'Q2601238': {'prefix': 'species:', 'expected_tags': {'species': 'Carya ovata', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
             'Q957447': {'prefix': 'species:', 'expected_tags': {'species': 'Polyalthia longifolia', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
             'Q7378': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q7368': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q2934': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q7378': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q79803': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q121439': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q58903': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q787': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q25882': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q255503': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q242851': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q25348': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q780': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q848706': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q780': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q149017': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q42569': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q726': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         }
+
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
         if wikidata_id == None:
@@ -826,7 +844,7 @@ class WikimediaLinkIssueDetector:
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
         if type_id == 'Q5':
             return {'what': 'a human', 'replacement': 'name:'}
-        if type_id == 'Q18786396' or type_id == 'Q16521':
+        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q729']:
             return {'what': 'an animal or plant', 'replacement': None}
         #valid for example for museums, parishes
         #if type_id == 'Q43229':
