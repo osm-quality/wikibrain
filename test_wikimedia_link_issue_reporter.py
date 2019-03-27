@@ -120,6 +120,5 @@ class Tests(unittest.TestCase):
     def test_that_llama_is_reported_as_an_animal(self):
         self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q42569')
 
-
 if __name__ == '__main__':
     unittest.main()

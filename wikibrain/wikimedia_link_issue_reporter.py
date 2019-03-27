@@ -358,6 +358,20 @@ class WikimediaLinkIssueDetector:
             'Q41960': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q182573': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q869140': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q80952': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q25438': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q148628': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q61865': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q516612': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q2169710': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q25402': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q184751': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q41181': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q168976': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q643101': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q3736439': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q269896': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            # http://overpass-turbo.eu/s/Hpv to detect more invalid data in OSM for addition to this list
         }
 
 
@@ -886,7 +900,7 @@ class WikimediaLinkIssueDetector:
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
         if type_id == 'Q5':
             return {'what': 'a human', 'replacement': 'name:'}
-        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q729']:
+        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q729', 'Q5113']:
             return {'what': 'an animal or plant', 'replacement': None}
         #valid for example for museums, parishes
         #if type_id == 'Q43229':
