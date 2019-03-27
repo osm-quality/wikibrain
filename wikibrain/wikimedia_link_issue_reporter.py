@@ -316,6 +316,48 @@ class WikimediaLinkIssueDetector:
             'Q149017': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q42569': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q726': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q79794': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q69581': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q34706': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q35694': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q25432': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q14334': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q42699': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q25384': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q165974': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q170177': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q25769': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q190516': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q191781': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q179863': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q232906': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q27452479': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q80174': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q199427': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q177856': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q26423': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q131564': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q220248': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q4388': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q33609': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q7966': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q40994': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q285648': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q137528': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q775569': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q132922': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q767508': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q124410': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q741524': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q36341': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q130933': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q1061964': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q280590': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q640161': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q628239': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q41960': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q182573': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q869140': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         }
 
 
@@ -984,6 +1026,13 @@ class WikimediaLinkIssueDetector:
             if self.is_wikidata_type_id_recognised_as_OK(type_id):
                 return None
         self.dump_base_types_of_object_in_stdout(wikidata_id, description_of_source)
+
+    def output_debug_about_wikidata_item(self, wikidata_id):
+        print("**********************")
+        print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
+        print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id))
+        self.complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(wikidata_id, "tests")
+        self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
 
     def dump_base_types_of_object_in_stdout(self, wikidata_id, description_of_source):
         print("----------------")
