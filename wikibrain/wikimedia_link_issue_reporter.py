@@ -64,7 +64,9 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.freely_reorderable_issue_reports(element, tags)
+        object_description = self.describe_osm_object(element)
+        location = (element.get_coords().lat, element.get_coords().lon)
+        something_reportable = self.freely_reorderable_issue_reports(object_description, location, tags)
         if something_reportable != None:
             return something_reportable
 
@@ -125,7 +127,7 @@ class WikimediaLinkIssueDetector:
 
         return None
 
-    def freely_reorderable_issue_reports(self, element, tags):
+    def freely_reorderable_issue_reports(self, object_description, location, tags):
         # do not handle bare wikidata (IDEA: hadle also this case)
         if tags.get('wikipedia') == None:
             return None
@@ -143,13 +145,11 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.get_problem_based_on_wikidata_and_osm_element(element, wikidata_id)
+        something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id)
         if something_reportable != None:
             return something_reportable
 
-        language_code = wikimedia_connection.get_language_code_from_link(tags.get('wikipedia'))
-        article_name = wikimedia_connection.get_article_name_from_link(tags.get('wikipedia'))
-        something_reportable = self.get_wikipedia_language_issues(self.describe_osm_object(element), element, language_code, article_name, wikidata_id)
+        something_reportable = self.get_wikipedia_language_issues(object_description, tags)
         if something_reportable != None:
             return something_reportable
 
@@ -821,7 +821,10 @@ class WikimediaLinkIssueDetector:
             return True
         return False
 
-    def get_wikipedia_language_issues(self, object_description, element, language_code, article_name, wikidata_id):
+    def get_wikipedia_language_issues(self, object_description, tags):
+        language_code = wikimedia_connection.get_language_code_from_link(tags.get('wikipedia'))
+        article_name = wikimedia_connection.get_article_name_from_link(tags.get('wikipedia'))
+        wikidata_id = tags.get('wikidata')
         # complains when Wikipedia page is not in the preferred language,
         # in cases when it is possible
         if self.expected_language_code is None:
@@ -829,7 +832,7 @@ class WikimediaLinkIssueDetector:
         if self.expected_language_code == language_code:
             return None
         prerequisite = {'wikipedia': language_code+":"+article_name}
-        reason = self.why_object_is_allowed_to_have_foreign_language_label(element, wikidata_id)
+        reason = self.why_object_is_allowed_to_have_foreign_language_label(object_description, wikidata_id)
         if reason != None:
             if self.additional_debug:
                 print(object_description + " is allowed to have foreign wikipedia link, because " + reason)
@@ -1022,7 +1025,7 @@ class WikimediaLinkIssueDetector:
                     prerequisite = {'wikidata': wikidata_id},
                     )
 
-    def get_problem_based_on_wikidata_and_osm_element(self, element, wikidata_id):
+    def get_problem_based_on_wikidata_and_osm_element(self, object_description, location, wikidata_id):
         if wikidata_id == None:
             # instance data not present in wikidata
             # not fixable easily as imports from OSM to Wikidata are against rules
@@ -1030,9 +1033,7 @@ class WikimediaLinkIssueDetector:
             # also, this problem is easy to find on Wikidata itself so it is not useful to report it
             return None
 
-        description = self.describe_osm_object(element)
-        location = (element.get_coords().lat, element.get_coords().lon)
-        return self.get_problem_based_on_wikidata(wikidata_id, description, location)
+        return self.get_problem_based_on_wikidata(wikidata_id, object_description, location)
 
     def get_problem_based_on_wikidata(self, wikidata_id, description, location):
         return self.get_problem_based_on_base_types(wikidata_id, description, location)
@@ -1190,7 +1191,7 @@ class WikimediaLinkIssueDetector:
 
     # unknown data, known to be completely inside -> not allowed, returns None
     # known to be outside or on border -> allowed, returns reason
-    def why_object_is_allowed_to_have_foreign_language_label(self, element, wikidata_id):
+    def why_object_is_allowed_to_have_foreign_language_label(self, object_description, wikidata_id):
         if wikidata_id == None:
             return "no wikidata entry exists"
 
@@ -1210,7 +1211,7 @@ class WikimediaLinkIssueDetector:
             if country_name == None:
                 return "it is at least partially in country without known name on Wikidata (country_id=" + country_id + ")"
             if country_id == 'Q7318':
-                print(self.describe_osm_object(element) + " is tagged on wikidata as location in no longer existing " + country_name)
+                print(object_description + " is tagged on wikidata as location in no longer existing " + country_name)
                 return None
             return "it is at least partially in " + country_name
         return None
