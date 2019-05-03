@@ -52,7 +52,15 @@ class WikimediaLinkIssueDetector:
     def get_problem_for_given_element(self, element):
         tags = element.get_tag_dictionary()
         object_type = element.get_element().tag
+        location = (element.get_coords().lat, element.get_coords().lon)
+        object_description = self.describe_osm_object(element)
+        return self.get_the_most_important_problem_generic(tags, location, object_type, object_description)
 
+    def get_problem_for_given_tags(self, tags, object_type, object_description):
+        location = None
+        return self.get_the_most_important_problem_generic(tags, location, object_type, object_description)
+
+    def get_the_most_important_problem_generic(self, tags, location, object_type, object_description):
         if self.object_should_be_deleted_not_repaired(object_type, tags):
             return None
 
@@ -64,8 +72,6 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        object_description = self.describe_osm_object(element)
-        location = (element.get_coords().lat, element.get_coords().lon)
         something_reportable = self.freely_reorderable_issue_reports(object_description, location, tags)
         if something_reportable != None:
             return something_reportable
