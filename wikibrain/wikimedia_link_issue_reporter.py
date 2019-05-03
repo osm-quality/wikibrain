@@ -1061,9 +1061,10 @@ class WikimediaLinkIssueDetector:
         if secondary_tag_error != None:
             return secondary_tag_error
 
-        secondary_tag_error = self.headquaters_location_indicate_invalid_connection(location, wikidata_id)
-        if secondary_tag_error != None:
-            return secondary_tag_error
+        if location != None:
+            secondary_tag_error = self.headquaters_location_indicate_invalid_connection(location, wikidata_id)
+            if secondary_tag_error != None:
+                return secondary_tag_error
 
     def get_location_of_this_headquaters(self, headquarters):
         try:
