@@ -149,7 +149,7 @@ class WikimediaLinkIssueDetector:
 
         language_code = wikimedia_connection.get_language_code_from_link(tags.get('wikipedia'))
         article_name = wikimedia_connection.get_article_name_from_link(tags.get('wikipedia'))
-        something_reportable = self.get_wikipedia_language_issues(element, language_code, article_name, wikidata_id)
+        something_reportable = self.get_wikipedia_language_issues(self.describe_osm_object(element), element, language_code, article_name, wikidata_id)
         if something_reportable != None:
             return something_reportable
 
@@ -821,7 +821,7 @@ class WikimediaLinkIssueDetector:
             return True
         return False
 
-    def get_wikipedia_language_issues(self, element, language_code, article_name, wikidata_id):
+    def get_wikipedia_language_issues(self, object_description, element, language_code, article_name, wikidata_id):
         # complains when Wikipedia page is not in the preferred language,
         # in cases when it is possible
         if self.expected_language_code is None:
@@ -832,7 +832,7 @@ class WikimediaLinkIssueDetector:
         reason = self.why_object_is_allowed_to_have_foreign_language_label(element, wikidata_id)
         if reason != None:
             if self.additional_debug:
-                print(self.describe_osm_object(element) + " is allowed to have foreign wikipedia link, because " + reason)
+                print(object_description + " is allowed to have foreign wikipedia link, because " + reason)
             return None
         correct_article = wikimedia_connection.get_interwiki_article_name(language_code, article_name, self.expected_language_code, self.forced_refresh)
         if correct_article != None:
