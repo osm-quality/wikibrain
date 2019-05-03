@@ -15,6 +15,8 @@ class ErrorReport:
         self.prerequisite = prerequisite
         self.extra_data = extra_data # TODO - replace by more specific
         self.proposed_tagging_changes = proposed_tagging_changes
+        self.osm_object_url = None
+        self.location = None
 
     def bind_to_element(self, element):
         self.current_wikipedia_target = element.get_tag_value("wikipedia") # TODO - save all tags #TODO - how to handle multiple?
@@ -24,8 +26,8 @@ class ErrorReport:
         else:
             self.location = (element.get_coords().lat, element.get_coords().lon)
 
-    def yaml_output(self, filepath):
-        data = dict(
+    def data(self):
+        return dict(
             error_id = self.error_id,
             error_message = self.error_message,
             debug_log = self.debug_log,
@@ -37,8 +39,9 @@ class ErrorReport:
             prerequisite = self.prerequisite,
             location = self.location,
         )
+    def yaml_output(self, filepath):
         with open(filepath, 'a') as outfile:
-            yaml.dump([data], outfile, default_flow_style=False)
+            yaml.dump([self.data()], outfile, default_flow_style=False)
 
 class WikimediaLinkIssueDetector:
     def __init__(self, forced_refresh=False, expected_language_code=None, languages_ordered_by_preference=[], additional_debug=False, allow_requesting_edits_outside_osm=False, allow_false_positives=False):
