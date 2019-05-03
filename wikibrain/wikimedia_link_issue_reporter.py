@@ -60,7 +60,7 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.add_wikipedia_and_wikidata_based_on_each_other(element, tags)
+        something_reportable = self.add_wikipedia_and_wikidata_based_on_each_other(tags)
         if something_reportable != None:
             return something_reportable
 
@@ -107,11 +107,11 @@ class WikimediaLinkIssueDetector:
 
         return None
 
-    def add_wikipedia_and_wikidata_based_on_each_other(self, element, tags):
+    def add_wikipedia_and_wikidata_based_on_each_other(self, tags):
         wikidata_id = None
         if tags.get("wikipedia") != None:
             wikidata_id = wikimedia_connection.get_wikidata_object_id_from_link(tags.get("wikipedia"))
-        something_reportable = self.check_is_wikidata_tag_is_misssing(element, tags.get('wikidata'), wikidata_id)
+        something_reportable = self.check_is_wikidata_tag_is_misssing(tags.get('wikipedia'), tags.get('wikidata'), wikidata_id)
         if something_reportable != None:
             return something_reportable
 
@@ -465,12 +465,12 @@ class WikimediaLinkIssueDetector:
         else:
             return None
 
-    def check_is_wikidata_tag_is_misssing(self, element, present_wikidata_id, wikidata_id):
+    def check_is_wikidata_tag_is_misssing(self, wikipedia, present_wikidata_id, wikidata_id):
         if present_wikidata_id == None and wikidata_id != None:
             return ErrorReport(
                             error_id = "wikidata from wikipedia tag",
                             error_message = wikidata_id + " may be added as wikidata tag based on wikipedia tag",
-                            prerequisite = {'wikipedia': element.get_tag_value("wikipedia"), 'wikidata': None}
+                            prerequisite = {'wikipedia': wikipedia, 'wikidata': None}
                             )
         else:
             return None
