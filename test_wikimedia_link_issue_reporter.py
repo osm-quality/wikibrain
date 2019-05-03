@@ -130,5 +130,39 @@ class Tests(unittest.TestCase):
         self.assertNotEqual ('wikidata from wikipedia tag', problem.data()['error_id'])
         self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
 
+    def test_that_linking_to_human_is_reported_from_reordeable_issues(self):
+        tags = {"wikipedia": "en:Stanislav Petrov"}
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+
+    def test_that_linking_to_human_is_reported_from_reordeable_issues_specified_as_wikidata(self):
+        tags = {"wikidata": "Q52412"}
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+
+    def test_that_linking_to_human_is_reported_based_on_wikidata(self):
+        wikidata_id = "Q52412"
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+
+    def test_effective_wikipedia(self):
+        tags = {"wikidata": "Q52412"}
+        wikipedia = self.issue_reporter().get_effective_wikipedia_tag(tags)
+        self.assertEqual("en:Stanislav Petrov", wikipedia)
+
+    def test_effective_wikidata(self):
+        tags = {"wikipedia": "en:Stanislav Petrov"}
+        wikidata = self.issue_reporter().get_effective_wikidata_tag(tags)
+        self.assertEqual("Q52412", wikidata)
+
 if __name__ == '__main__':
     unittest.main()

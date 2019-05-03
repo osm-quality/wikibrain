@@ -71,11 +71,11 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.add_wikipedia_and_wikidata_based_on_each_other(tags)
+        something_reportable = self.freely_reorderable_issue_reports(object_description, location, tags)
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.freely_reorderable_issue_reports(object_description, location, tags)
+        something_reportable = self.add_wikipedia_and_wikidata_based_on_each_other(tags)
         if something_reportable != None:
             return something_reportable
 
@@ -136,21 +136,25 @@ class WikimediaLinkIssueDetector:
 
         return None
 
+    def get_effective_wikipedia_tag(self, tags):
+        wikipedia = tags.get('wikipedia')
+        if wikipedia != None:
+            return wikipedia
+        return self.get_best_interwiki_link_by_id(tags.get('wikidata'))
+
+    def get_effective_wikidata_tag(self, tags):
+        wikidata_id = tags.get('wikidata')
+        if wikidata_id != None:
+            return wikidata_id
+        return wikimedia_connection.get_wikidata_object_id_from_link(tags.get("wikipedia"))
+
     def freely_reorderable_issue_reports(self, object_description, location, tags):
-        # do not handle bare wikidata (IDEA: hadle also this case)
-        if tags.get('wikipedia') == None:
-            return None
+        wikipedia = self.get_effective_wikipedia_tag(tags)
+        wikidata_id = self.get_effective_wikidata_tag(tags)
 
         # IDEA links from buildings to parish are wrong - but from religious admin are OK https://www.wikidata.org/wiki/Q11808149
 
-        language_code = wikimedia_connection.get_text_after_first_colon(tags.get('wikipedia'))
-        article_name = tags.get(tags.get('wikipedia'))
-        wikidata_id = wikimedia_connection.get_wikidata_object_id_from_article(language_code, article_name, self.forced_refresh)
-
-        #wikipedia tag is not malformed
-        #wikipedia and wikidata tags are not conflicting
-
-        something_reportable = self.get_problem_based_on_wikidata_blacklist(wikidata_id, tags.get('wikidata'), tags.get('wikipedia'))
+        something_reportable = self.get_problem_based_on_wikidata_blacklist(wikidata_id, wikidata_id, wikipedia)
         if something_reportable != None:
             return something_reportable
 
@@ -158,11 +162,11 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.get_wikipedia_language_issues(object_description, tags)
+        something_reportable = self.get_wikipedia_language_issues(object_description, tags, wikipedia, wikidata_id)
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.check_is_object_is_existing(tags.get('wikidata'))
+        something_reportable = self.check_is_object_is_existing(wikidata_id)
         if something_reportable != None:
             return something_reportable
 
@@ -512,7 +516,8 @@ class WikimediaLinkIssueDetector:
             return self.report_failed_wikipedia_page_link(language_code, article_name, wikidata_id)
 
     def get_best_interwiki_link_by_id(self, wikidata_id):
-        for potential_language_code in self.languages_ordered_by_preference:
+        all_languages = wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance()
+        for potential_language_code in (self.languages_ordered_by_preference + all_languages):
             potential_article_name = wikimedia_connection.get_interwiki_article_name_by_id(wikidata_id, potential_language_code, self.forced_refresh)
             if potential_article_name != None:
                 return potential_language_code + ':' + potential_article_name
@@ -830,10 +835,7 @@ class WikimediaLinkIssueDetector:
             return True
         return False
 
-    def get_wikipedia_language_issues(self, object_description, tags):
-        language_code = wikimedia_connection.get_language_code_from_link(tags.get('wikipedia'))
-        article_name = wikimedia_connection.get_article_name_from_link(tags.get('wikipedia'))
-        wikidata_id = tags.get('wikidata')
+    def get_wikipedia_language_issues(self, object_description, tags, wikipedia, wikidata_id):
         # complains when Wikipedia page is not in the preferred language,
         # in cases when it is possible
         if self.expected_language_code is None:
