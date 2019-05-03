@@ -196,6 +196,9 @@ class WikimediaLinkIssueDetector:
             'Q610492': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Spar'},
             'Q12047031': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Prisma'},
             'Q483551': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Walmart', 'allowed_tags': {'name': 'Walmart Supercenter'}},
+            'Q701755': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Edeka'},
+            'Q701755': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Treff 3000'},
+            'Q2181426': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Leader Price'},
 
             'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
             'Q1508234': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Safeway'},
@@ -252,13 +255,24 @@ class WikimediaLinkIssueDetector:
             'Q2003476': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Andhra Bank', 'allowed_tags': {'name:en': 'Andhra Bank'}},
             'Q2003387': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Corporation Bank', 'allowed_tags': {'name:en': 'Corporation Bank'}},
             'Q2003789': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Indian Bank', 'allowed_tags': {'name:en': 'Indian Bank'}},
+            'Q270363': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Société Générale'},
+            'Q2003611': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Indian Overseas Bank'},
+            'Q41680844': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Volksbank'},
+            'Q2004439': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank of India'},
+            'Q205012': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Sberbank'},
+            'Q2003797': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank of Baroda'},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
             'Q7072824': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Opet'},
             'Q3335043': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Naftal'},
             'Q3240764': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
+            'Q1273376': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Station Service E. Leclerc'},
+            'Q2498318': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Cosmo'},
+
             'Q4826087': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_parts'}, 'name': 'AutoZone'},
+
+            'Q1035997': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Carglass'},
 
             'Q244457': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Subway'},
             'Q752941': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Taco Bell'},
@@ -278,6 +292,7 @@ class WikimediaLinkIssueDetector:
             'Q4998570': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Burgerville'},
             'Q1358690': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Panda Express'},
             'Q1204169': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'モスバーガー', 'allowed_tags': {'name:en': 'MOS BURGER', 'name:ja': 'モスバーガー', 'name:ja_rm': 'Mosu Bāgā'}},
+            'Q286494': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Quick'},
 
             'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Denny\'s'},
             'Q1185675': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'IHOP'},
@@ -288,6 +303,8 @@ class WikimediaLinkIssueDetector:
             'Q1591889': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Walgreens'},
             'Q2078880': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'CVS'},
             'Q3433273': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Rite Aid'},
+            'Q20015002': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Farmahorro'},
+            'Q7974785': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Watsons'},
 
             'Q7090329': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}},
             'Q1075788': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}},
