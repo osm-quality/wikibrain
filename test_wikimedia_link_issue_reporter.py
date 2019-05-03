@@ -120,5 +120,15 @@ class Tests(unittest.TestCase):
     def test_that_llama_is_reported_as_an_animal(self):
         self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q42569')
 
+    def test_that_linking_to_human_is_reported_before_missing_wikipedia_tag(self):
+        tags = {"wikipedia": "en:Stanislav Petrov"}
+        location = None
+        object_type = 'way'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+        self.assertNotEqual ('wikidata from wikipedia tag', problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+
 if __name__ == '__main__':
     unittest.main()
