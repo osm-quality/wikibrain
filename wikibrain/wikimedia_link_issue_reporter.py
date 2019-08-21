@@ -234,6 +234,22 @@ class WikimediaLinkIssueDetector:
             'Q1046951': {'prefix': 'brand:', 'expected_tags': {'shop': 'department_store'}, 'name': 'Target'},
             'Q5135229': {'prefix': 'brand:', 'expected_tags': {'shop': 'department_store'}, 'name': 'Falabella'},
 
+            'Q3033947': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Dollarama'},
+            'Q2634111': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Action'},
+            'Q1434528': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Poundland'},
+            'Q4836931': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'B&M Bargains'},
+            'Q7235675': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Poundstretcher'},
+            'Q20732498': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Miniso'},
+            'Q5433101': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Family Dollar'},
+            'Q5289230': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Dollar Tree'},
+            'Q5888229': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Home Bargains'},
+            'Q1364603': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'TEDi'},
+            'Q145168': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Dollar General'},
+
+            'Q3007154': {'prefix': 'brand:', 'expected_tags': {'shop': 'books'}, 'name': 'Cultura'},
+            'Q3045978': {'prefix': 'brand:', 'expected_tags': {'shop': 'books'}, 'name': 'Empik'},
+            'Q795454': {'prefix': 'brand:', 'expected_tags': {'shop': 'books'}, 'name': 'Barnes & Noble'},
+
             'Q2040264': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'City Union Bank'},
             'Q1160928': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'mBank'},
             'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank', 'allowed_tags': {'name:en': 'Axis Bank'}},
@@ -261,7 +277,7 @@ class WikimediaLinkIssueDetector:
             'Q3633485': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'IDBI Bank'},
             'Q2007090': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Central Bank of India'},
             'Q499707': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'BNP Paribas'},
-            'Q4854101': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco Mercantil'},
+            #'Q4854101': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco Mercantil'}, - wrong, byt I run into a political trouble see https://www.openstreetmap.org/changeset/73453689
             'Q2931752': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'CNEP'},
             'Q11710978': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Idea Bank'},
             'Q2044983': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Federal Bank', 'allowed_tags': {'name:en': 'Federal Bank'}},
@@ -286,7 +302,14 @@ class WikimediaLinkIssueDetector:
             'Q4826087': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_parts'}, 'name': 'AutoZone'},
 
             'Q1035997': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Carglass'},
-
+            'Q53268': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Toyota'},
+            'Q6686': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Renault'},
+            'Q3070922': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Feu Vert'},
+            'Q6499202': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Sears Auto Center'},
+            'Q234021': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Bosch Car Service'},
+            'Q6746': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Citroën'},
+            'Q620875': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Goodyear'},
+            
             'Q244457': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Subway'},
             'Q752941': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Taco Bell'},
             'Q465751': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chipotle Mexican Grill'},
@@ -321,6 +344,15 @@ class WikimediaLinkIssueDetector:
 
             'Q7090329': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}},
             'Q1075788': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}},
+            'Q2717882': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Holiday Inn'},
+            'Q5964551': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Première Classe'},
+            'Q5890701': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Homewood Suites'},
+            'Q5032010': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Candlewood Suites'},
+            'Q1502859': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Ramada'},
+            'Q5880423': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Holiday Inn Express & Suites'},
+            'Q5646230': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Hampton'},
+            'Q2746220': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Crowne Plaza'},
+            'Q1162859': {'prefix': 'brand:', 'expected_tags': {'tourism': 'hotel'}, 'name': 'Hilton Garden Inn'},
 
             'Q2188884': {'prefix': 'brand:', 'expected_tags': {'tourism': 'motel'}, 'name': 'Motel 6'},
 
