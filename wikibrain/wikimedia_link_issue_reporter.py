@@ -151,6 +151,8 @@ class WikimediaLinkIssueDetector:
     def freely_reorderable_issue_reports(self, object_description, location, tags):
         wikipedia = self.get_effective_wikipedia_tag(tags)
         wikidata_id = self.get_effective_wikidata_tag(tags)
+        # Note that wikipedia may be None - maybe there is just a Wikidata entry!
+        # Note that wikidata_id may be None - maybe it was not created yet! 
 
         # IDEA links from buildings to parish are wrong - but from religious admin are OK https://www.wikidata.org/wiki/Q11808149
 
@@ -1009,6 +1011,10 @@ class WikimediaLinkIssueDetector:
     def get_wikipedia_language_issues(self, object_description, tags, wikipedia, wikidata_id):
         # complains when Wikipedia page is not in the preferred language,
         # in cases when it is possible
+        if wikipedia == None:
+            return # there may be just a Wikidata entry, without a Wikipedia article
+        article_name = wikimedia_connection.get_article_name_from_link(wikipedia)
+        language_code = wikimedia_connection.get_language_code_from_link(wikipedia)
         if self.expected_language_code is None:
             return None
         if self.expected_language_code == language_code:
