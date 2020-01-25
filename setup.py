@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="wikibrain",
-    version="0.0.2",
+    version="0.0.3",
     author="Mateusz Konieczny",
     author_email="matkoniecz@gmail.com",
     description="Stores knowledge and data necessary to properly use links from OpenStreetMap to Wikipedia, Wikidata and other Wikimedia projects.",
