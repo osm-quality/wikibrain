@@ -8,7 +8,7 @@ class Tests(unittest.TestCase):
         change = {}
         apply_changes(tags, change)
 
-    def test_siplest_applying_changes(self):
+    def test_simplest_applying_changes(self):
         tags = {'wikipedia': 'en:Walmart Market'}
         change = [{'to': {'wikipedia': 'en:Walmart'}, 'from': {'wikipedia': 'en:Walmart Market'}}]
         tags = apply_changes(tags, change)
