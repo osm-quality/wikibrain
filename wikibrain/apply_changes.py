@@ -10,5 +10,6 @@ def apply_changes(tags, tagging_changes):
         for added in change["to"]:
             if tags.get(added) != None:
                 raise PrerequisiteFailedError()
-            tags[added] = change["to"][added]
+            if change["to"][added] != None:
+                tags[added] = change["to"][added]
     return tags

@@ -22,6 +22,11 @@ class Tests(unittest.TestCase):
         tags = apply_changes({'key': 'value'}, change)
         self.assertEqual({}, tags)
 
+    def test_from_values_are_deleted_on_specifying_none(self):
+        change = [{'from': {'key': 'value'}, 'to': {'key': None}}]
+        tags = apply_changes({'key': 'value'}, change)
+        self.assertEqual({}, tags)
+
     def test_keys_may_be_changed(self):
         change = [{'from': {'key': 'value'}, 'to': {'new_key': 'qweert'}}]
         tags = apply_changes({'key': 'value'}, change)
