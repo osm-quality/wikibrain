@@ -1469,7 +1469,7 @@ class WikimediaLinkIssueDetector:
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
         if type_id == 'Q5':
             return {'what': 'a human', 'replacement': 'name:'}
-        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q729', 'Q5113']:
+        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q729', 'Q5113', 'Q38829', 'Q55983715']:
             return {'what': 'an animal or plant', 'replacement': None}
         #valid for example for museums, parishes
         #if type_id == 'Q43229':
