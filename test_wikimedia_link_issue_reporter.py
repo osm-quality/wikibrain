@@ -97,6 +97,7 @@ class Tests(unittest.TestCase):
                 break
             if is_animal != True:
                 print(wikidata_id, " not recognized as an animal!")
+                print("fix wikimedia_link_issue_reporter or fix wikidata and flush cache (wikimedia-connection-cache/wikidata_by_id/<wikidata_id>.wikidata_entity.txt)")
                 self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
                 assert False
         self.assertNotEqual(count, 0)
