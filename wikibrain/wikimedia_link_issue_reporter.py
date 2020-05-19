@@ -146,7 +146,10 @@ class WikimediaLinkIssueDetector:
         wikidata_id = tags.get('wikidata')
         if wikidata_id != None:
             return wikidata_id
-        return wikimedia_connection.get_wikidata_object_id_from_link(tags.get("wikipedia"))
+        wikipedia = tags.get('wikipedia')
+        if wikipedia != None:
+            return wikimedia_connection.get_wikidata_object_id_from_link(tags.get("wikipedia"))
+        return None
 
     def freely_reorderable_issue_reports(self, object_description, location, tags):
         wikipedia = self.get_effective_wikipedia_tag(tags)
