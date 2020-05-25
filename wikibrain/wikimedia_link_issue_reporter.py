@@ -598,7 +598,7 @@ class WikimediaLinkIssueDetector:
             'Q795504': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'BBBank'},
             'Q4304446': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Мособлбанк'},
             'Q2882083': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'BCI'},
-            'Q806950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque de France'},
+            #'Q806950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque de France'}, # some are quite tricky
             'Q4086829': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Бинбанк'},
             'Q2666775': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'בנק הפועלים'},
             'Q1442804': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Union Bank'},
@@ -920,7 +920,8 @@ class WikimediaLinkIssueDetector:
             'Q7643261': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Superdrug'},
             'Q4394431': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Ригла'},
 
-            'Q477222': {'prefix': 'brand:', 'expected_tags': {'shop': 'hearing_aids'}, 'name': 'Amplifon'},
+            # local mapper disagrees, hibernated for now
+            #'Q477222': {'prefix': 'brand:', 'expected_tags': {'shop': 'hearing_aids'}, 'name': 'Amplifon'},
 
             'Q2553262': {'prefix': 'brand:', 'expected_tags': {'healthcare': 'counselling'}, 'name': 'Planned Parenthood'},
 
@@ -983,7 +984,8 @@ class WikimediaLinkIssueDetector:
             'Q3083531': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Groupama'},
             'Q1151671': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'DAK'},
             'Q17183481': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Grange Insurance'},
-            'Q835141': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'AOK'},
+            #weird school case
+            #'Q835141': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'AOK'},
             'Q2645636': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Allstate'},
             'Q160054': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'AXA'},
             'Q544532': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Mapfre'},
