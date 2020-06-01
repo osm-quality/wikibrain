@@ -35,5 +35,20 @@ class Tests(unittest.TestCase):
     def test_demand_explicit_key_change(self):
         self.assertRaises(PrerequisiteFailedError, apply_changes, {'key': 'value'}, [{'from': {}, 'to': {'key': 'value'}}])
 
+    def test_keys_may_be_added(self):
+        change = [{'from': {}, 'to': {'new_key': 'qweert'}}]
+        tags = apply_changes({'key': 'value'}, change)
+        self.assertEqual({'key': 'value', 'new_key': 'qweert'}, tags)
+
+    def test_keys_may_be_added_to_empty_object(self):
+        change = [{'from': {}, 'to': {'new_key': 'qweert'}}]
+        tags = apply_changes({}, change)
+        self.assertEqual({'new_key': 'qweert'}, tags)
+
+    def test_keys_may_be_added_previous_state_specified_by_none(self):
+        change = [{'from': {'new_key': None}, 'to': {'new_key': 'qweert'}}]
+        tags = apply_changes({'key': 'value'}, change)
+        self.assertEqual({'key': 'value', 'new_key': 'qweert'}, tags)
+
 if __name__ == '__main__':
     unittest.main()

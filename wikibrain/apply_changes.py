@@ -4,9 +4,13 @@ class PrerequisiteFailedError(Exception):
 def apply_changes(tags, tagging_changes):
     for change in tagging_changes:
         for removed in change["from"]:
-            if tags.get(removed) != change["from"][removed]:
-                raise PrerequisiteFailedError()
-            del tags[removed]
+            if change["from"][removed] != None:
+                if tags.get(removed) != change["from"][removed]:
+                    raise PrerequisiteFailedError()
+                del tags[removed]
+            else:
+                if removed in tags:
+                    raise PrerequisiteFailedError()
         for added in change["to"]:
             if tags.get(added) != None:
                 raise PrerequisiteFailedError()
