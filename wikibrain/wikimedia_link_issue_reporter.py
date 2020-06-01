@@ -1800,7 +1800,7 @@ class WikimediaLinkIssueDetector:
             if type_id == 'Q13406463':
                 error_message = "article linked in wikipedia tag is a list, so it is very unlikely to be correct"
                 return ErrorReport(
-                    error_id = "link to an unlinkable article",
+                    error_id = "link to a list",
                     error_message = error_message,
                     prerequisite = {'wikidata': wikidata_id},
                     )
