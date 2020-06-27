@@ -111,10 +111,12 @@ class WikimediaLinkIssueDetector:
             if something_reportable != None:
                 return something_reportable
 
-            #early to ensure that passing later wikidata_id of article is not going to be confusing
-            something_reportable = self.check_for_wikipedia_wikidata_collision(tags.get("wikidata"), language_code, article_name)
-            if something_reportable != None:
-                return something_reportable
+            # early to ensure that passing later wikidata_id of article is not going to be confusing
+            if tags.get("wikidata") != None: # in case of completely missing wikidata tag it is not a critical issue and will be solved 
+                                             # by add_wikipedia_and_wikidata_based_on_each_other
+                something_reportable = self.check_for_wikipedia_wikidata_collision(tags.get("wikidata"), language_code, article_name)
+                if something_reportable != None:
+                    return something_reportable
 
         return None
 
