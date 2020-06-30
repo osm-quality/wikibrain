@@ -165,5 +165,10 @@ class Tests(unittest.TestCase):
         wikidata = self.issue_reporter().get_effective_wikidata_tag(tags)
         self.assertEqual("Q52412", wikidata)
 
+    def test_576_in_future(self):
+        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+        self.assertEqual(self.issue_reporter().check_is_object_is_existing('Q650270'), None)
+        
+
 if __name__ == '__main__':
     unittest.main()
