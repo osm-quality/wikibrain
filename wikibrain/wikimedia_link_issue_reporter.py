@@ -1902,7 +1902,7 @@ class WikimediaLinkIssueDetector:
             return None
         location_from_wikidata = wikimedia_connection.get_location_from_wikidata(wikidata_id)
         # recommended by https://stackoverflow.com/a/43211266/4130619
-        return geopy.distance.vincenty(coords_given, location_from_wikidata).km
+        return geopy.distance.distance(coords_given, location_from_wikidata).km
 
     def get_distance_description_between_location_and_wikidata_id(self, location, wikidata_id):
         if location == (None, None):
