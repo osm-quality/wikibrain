@@ -226,6 +226,7 @@ class WikimediaLinkIssueDetector:
             'Q843453': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'Posti'},
             'Q1275135': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'ΕΛΤΑ'},
             'Q6584353': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'ヤマト運輸'},
+            'Q2470783': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'Укрпошта'},
 
             'Q474379': {'prefix': 'brand:', 'expected_tags': {'shop': 'copyshop'}, 'name': 'FedEx Office'},
 
@@ -247,6 +248,8 @@ class WikimediaLinkIssueDetector:
 
             'Q679750': {'prefix': 'brand:', 'expected_tags': {'shop': 'hardware'}, 'name': 'Würth'},
 
+            'Q3196672': {'prefix': 'brand:', 'expected_tags': {'shop': 'tool_hire'}, 'name': 'Kiloutou'},
+
             'Q54078': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'IKEA'},
             'Q4805437': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Ashley Furniture HomeStore'},
             'Q1991755': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Casa'},
@@ -257,6 +260,7 @@ class WikimediaLinkIssueDetector:
             'Q7313497': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Rent-A-Center'},
             'Q10801453': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'ニトリ'},
             'Q541134': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Conforama'},
+            'Q5178707': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Courts'},
 
             'Q18629057': {'prefix': 'brand:', 'expected_tags': {'shop': 'bed'}, 'name': 'Matratzen Concord'},
 
@@ -287,12 +291,16 @@ class WikimediaLinkIssueDetector:
             'Q65310': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Евросеть'},
             'Q65371': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Связной'},
             'Q5322556': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'ワイモバイル'},
+            'Q160120': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Huawei'},
+            'Q402880': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Билайн'},
 
             'Q815694': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'Bell'},
             'Q1368919': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'МТС'},
             'Q1640639': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'TMpoint'},
             'Q1477012': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'Ростелеком'},
             'Q1505321': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'Укртелеком'},
+            'Q402880': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': 'Beeline'},
+            'Q402880': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': 'Билайн'},
 
             'Q533415': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Best Buy'},
             'Q2921695': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Boulanger'},
@@ -307,6 +315,9 @@ class WikimediaLinkIssueDetector:
             'Q7737217': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'The Good Guys'},
             'Q6322472': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'ケーズデンキ'},
             'Q1096390': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'ヤマダ電機'},
+            'Q2439098': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Darty'},
+            'Q6558800': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'М.Видео'},
+            'Q55632855': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Senheng'},
 
             'Q7330409': {'prefix': 'brand:', 'expected_tags': {'shop': 'hifi'}, 'name': 'Richer Sounds'},
 
@@ -413,6 +424,8 @@ class WikimediaLinkIssueDetector:
             'Q3108542': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '西友'},
             'Q706247': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '頂好'},
             'Q706247': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '頂好超市'},
+            'Q1613639': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Kiwi'},
+            'Q2719231': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Monoprix'},
 
             'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
             'Q1508234': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Safeway'},
@@ -436,6 +449,10 @@ class WikimediaLinkIssueDetector:
             'Q22101966': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Patisserie Valerie'},
             'Q30891188': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Шоколадница'},
             'Q11322732': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'ドトールコーヒーショップ'},
+            'Q16540032': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Café Martínez'},
+            'Q7085308': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'OldTown White Coffee'},
+            'Q95722097': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Tealive'},
+            'Q60875376': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': '喜茶'},
 
             'Q4979810': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': "Bruster's Ice Cream"},
             'Q17020087': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'Marble Slab Creamery'},
@@ -446,6 +463,7 @@ class WikimediaLinkIssueDetector:
             'Q11307696': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'シャトレーゼ'},
 
             'Q80335': {'prefix': 'brand:', 'expected_tags': {'shop': 'chocolate'}, 'name': 'Leonidas'},
+            'Q152822': {'prefix': 'brand:', 'expected_tags': {'shop': 'chocolate'}, 'name': 'Lindt'},
 
             'Q2453627': {'prefix': 'brand:', 'expected_tags': {'shop': 'beverages'}, 'name': 'Trinkgut'},
 
@@ -467,12 +485,17 @@ class WikimediaLinkIssueDetector:
             'Q11345131': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'ヤマザキショップ'},
             'Q11350960': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'ローソンストア100'},
             'Q24866804': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'ローソン・スリーエフ'},
+            'Q10891564': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': '全家便利商店'},
+            'Q17147574': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'myNEWS.com'},
+            'Q66480830': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'uSmile 昆仑好客'},
+            'Q16141064': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'サンクス'},
 
             'Q798298': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Backwerk'},
             'Q42825993': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Bäckerei Fuchs'},
             'Q1192443': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Der Beck'},
 
             'Q316004': {'prefix': 'brand:', 'expected_tags': {'shop': 'chemist'}, 'name': 'Rossmann'},
+            'Q1958759': {'prefix': 'brand:', 'expected_tags': {'shop': 'chemist'}, 'name': 'Müller'},
 
             'Q202210': {'prefix': 'brand:', 'expected_tags': {'shop': 'video_games'}, 'name': 'GameStop'},
             'Q3312221': {'prefix': 'brand:', 'expected_tags': {'shop': 'video_games'}, 'name': 'Micromania'},
@@ -572,6 +595,8 @@ class WikimediaLinkIssueDetector:
             'Q1783759': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Kookaï'},
             'Q3574548': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Zadig & Voltaire'},
             'Q11340456': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'マックハウス'},
+            'Q2102562': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'POLO'},
+            'Q2021416': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Volcom'},
 
             'Q1095857': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Clarks'},
             'Q664543': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Deichmann'},
@@ -818,6 +843,11 @@ class WikimediaLinkIssueDetector:
             'Q15283673': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '농협'},
             'Q484047': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '하나은행'},
             'Q1182932': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Degussa'},
+            'Q2883410': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'BNA'},
+            'Q2883376': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco Nación'},
+            'Q2883376': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco de la Nación'},
+            'Q666694': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'CIBC'},
+            'Q706533': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '臺灣銀行'},
             #'Q806950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque de France'}, # some are quite tricky
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
@@ -827,6 +857,9 @@ class WikimediaLinkIssueDetector:
             'Q3240764': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
             'Q1273376': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Station Service E. Leclerc'},
             'Q2498318': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Cosmo'},
+            'Q2789310': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'OKQ8'},
+            'Q12072939': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'WOG'},
+            'Q66480830': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'uSmile 昆仑好'},
             'Q1615684': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Hess'},
             'Q1776022': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Statoil'},
             'Q680776': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Сургутнефтегаз'},
@@ -927,6 +960,8 @@ class WikimediaLinkIssueDetector:
 
            'Q1069924': {'prefix': 'brand:', 'expected_tags': {'amenity': 'car_sharing'}, 'name': 'Zipcar'},
 
+            'Q215657': {'prefix': 'brand:', 'expected_tags': {'shop': 'motorcycle'}, 'name': 'KTM'},
+
             'Q2463547': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vehicle_inspection'}, 'name': 'TÜV Nord'},
             'Q632391': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vehicle_inspection'}, 'name': 'TÜV Rheinland'},
             
@@ -948,6 +983,7 @@ class WikimediaLinkIssueDetector:
             'Q3209556': {'prefix': 'brand:', 'expected_tags': {'shop': 'toys'}, 'name': 'La Grande Récré'},
             'Q16663879': {'prefix': 'brand:', 'expected_tags': {'shop': 'toys'}, 'name': 'Maxi Toys'},
             'Q16643324': {'prefix': 'brand:', 'expected_tags': {'shop': 'toys'}, 'name': 'Детский мир'},
+            'Q3382507': {'prefix': 'brand:', 'expected_tags': {'shop': 'toys'}, 'name': 'PicWic'},
 
             'Q5038192': {'prefix': 'brand:', 'expected_tags': {'shop': 'gift'}, 'name': 'Card Factory'},
             'Q5134299': {'prefix': 'brand:', 'expected_tags': {'shop': 'gift'}, 'name': 'Clintons'},
@@ -962,6 +998,7 @@ class WikimediaLinkIssueDetector:
             'Q1849187': {'prefix': 'brand:', 'expected_tags': {'shop': 'alcohol'}, 'name': 'Alko'},
             'Q13639185': {'prefix': 'brand:', 'expected_tags': {'shop': 'alcohol'}, 'name': 'Gall & Gall'},
             'Q3340012': {'prefix': 'brand:', 'expected_tags': {'shop': 'alcohol'}, 'name': 'Nicolas'},
+            'Q24933790': {'prefix': 'brand:', 'expected_tags': {'shop': 'alcohol'}, 'name': 'Красное & Белое'},
 
             'Q20639040': {'prefix': 'brand:', 'expected_tags': {'shop': 'tobacco'}, 'name': 'Nemzeti Dohánybolt'},
 
@@ -1043,6 +1080,7 @@ class WikimediaLinkIssueDetector:
             'Q582245': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Febo'},
             'Q1912172': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Max'},
             'Q7722411': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'The Chicken Rice Shop'},
+            'Q7444079': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Secret Recipe'},
 
             'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Denny\'s'},
             'Q1185675': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'IHOP'},
@@ -1057,6 +1095,7 @@ class WikimediaLinkIssueDetector:
             'Q5563393': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Giordano's Pizzeria"},
             'Q23019759': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Guzman y Gomez'},
             'Q918151': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Hard Rock Cafe'},
+            'Q7801833': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Tijuana Flats'},
             'Q1025921': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Hooters'},
             'Q17020829': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "McAlister's Deli"},
             'Q3472954': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Nando's"},
@@ -1121,6 +1160,8 @@ class WikimediaLinkIssueDetector:
             'Q579524': {'prefix': 'brand:', 'expected_tags': {'shop': 'erotic'}, 'name': 'Ann Summers'},
 
             'Q10846977': {'prefix': 'brand:', 'expected_tags': {'leisure': 'adult_gaming_centre'}, 'name': 'ダイナム'},
+            'Q11295831': {'prefix': 'brand:', 'expected_tags': {'leisure': 'adult_gaming_centre'}, 'name': 'ガイア'},
+            'Q1905948': {'prefix': 'brand:', 'expected_tags': {'leisure': 'adult_gaming_centre'}, 'name': 'マルハン'},
 
             'Q5598967': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'Great Clips'},
             'Q5452622': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'First Choice Haircutters'},
@@ -1218,7 +1259,9 @@ class WikimediaLinkIssueDetector:
             'Q1435638': {'prefix': 'brand:', 'expected_tags': {'office': 'estate_agent'}, 'name': 'Foncia'},
             'Q3356080': {'prefix': 'brand:', 'expected_tags': {'office': 'estate_agent'}, 'name': 'Orpi'},
             'Q965845': {'prefix': 'brand:', 'expected_tags': {'office': 'estate_agent'}, 'name': 'RE/MAX'},
+            'Q738853': {'prefix': 'brand:', 'expected_tags': {'office': 'estate_agent'}, 'name': 'Coldwell Banker'},
             
+            'Q8901192': {'prefix': 'brand:', 'expected_tags': {'office': 'employment_agency'}, 'name': 'Pôle Emploi'},
             'Q353494': {'prefix': 'brand:', 'expected_tags': {'office': 'employment_agency'}, 'name': 'Adecco'},
             'Q1472539': {'prefix': 'brand:', 'expected_tags': {'office': 'employment_agency'}, 'name': 'Manpower'},
             'Q267840': {'prefix': 'brand:', 'expected_tags': {'office': 'employment_agency'}, 'name': 'Randstad'},
@@ -1235,6 +1278,7 @@ class WikimediaLinkIssueDetector:
             'Q16974764': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vending_machine'}, 'name': 'Amazonロッカー'},
             'Q65681213': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vending_machine'}, 'name': 'Blue Rhino'},
             'Q1766703': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vending_machine', 'vending': 'parcel_pickup;parcel_mail_in'}, 'name': 'DHL Packstation'},
+            'Q3182097': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vending_machine', 'vending': 'parcel_pickup;parcel_mail_in'}, 'name': 'Paczkomat InPost'},
             'Q898568': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vending_machine'}, 'name': 'JT'},
             'Q2365235': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vending_machine'}, 'name': 'Ozon Box'},
             'Q1185060': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vending_machine'}, 'name': 'UCC'},
@@ -1420,6 +1464,10 @@ class WikimediaLinkIssueDetector:
             'Q856009': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q902876': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q224151': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q838924': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q81056': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q824974': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
+            'Q200724': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         }
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
