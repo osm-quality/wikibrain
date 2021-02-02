@@ -1299,6 +1299,7 @@ class WikimediaLinkIssueDetector:
             'Q714180': {'prefix': 'species:', 'expected_tags': {'species': 'Ficus microcarpa', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
             'Q161105': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus orientalis', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
             'Q163025': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q692162': {'prefix': 'species:', 'expected_tags': {'species:en': 'California Bay Leaf', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
 
             'Q7378': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q7368': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
