@@ -2131,7 +2131,7 @@ class WikimediaLinkIssueDetector:
         for option in headquarters_location_data:
             location_from_wikidata = self.get_location_of_this_headquaters(option)
             if location_from_wikidata != (None, None):
-                if geopy.distance.vincenty(location, location_from_wikidata).km > 20:
+                if geopy.distance.geodesic(location, location_from_wikidata).km > 20:
                     return self.get_should_use_subject_error('a company that is not linkable from a single location', 'brand:', wikidata_id)
 
         return None
