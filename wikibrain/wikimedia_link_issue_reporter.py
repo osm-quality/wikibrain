@@ -1702,7 +1702,9 @@ class WikimediaLinkIssueDetector:
         if link == None:
             return None
         language_code = wikimedia_connection.get_language_code_from_link(link)
-        if language_code in self.languages_ordered_by_preference:
+        if language_code in ["ceb"]:
+            return None # not a real Wikipedia
+        elif language_code == self.expected_language_code:
             return ErrorReport(
                 error_id = "wikipedia from wikidata tag",
                 error_message = "without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article, article language is not surprising",
