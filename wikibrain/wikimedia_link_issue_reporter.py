@@ -1551,7 +1551,7 @@ class WikimediaLinkIssueDetector:
         return None
 
     def report_failed_wikipedia_page_link(self, language_code, article_name, wikidata_id):
-        message = "Wikipedia article linked from OSM object using wikipedia tag is missing. Typically article was moved and wikipedia tag should be edited to point to the new one. Sometimes article was deleted and no longer exists so wikipedia tag should be deleted."
+        message = "Wikipedia article linked from OSM object using wikipedia tag is missing. Often article was moved without leaving redirect and wikipedia tag should be edited to point to the new one. Article may be deleted and no longer existing, or link was never valid. In such cases wikipedia tag should be deleted."
         proposed_new_target = self.get_best_interwiki_link_by_id(wikidata_id)
         if proposed_new_target != None:
             message += " wikidata tag present on element points to an existing article"
@@ -1797,7 +1797,7 @@ class WikimediaLinkIssueDetector:
                     )
         message = (base_message + " (" +
                    self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +
-                   " wikidata from article)")
+                   " wikidata id assigned to linked Wikipedia article)")
         if maybe_redirected_wikidata_id != present_wikidata_id:
             message += " Note that this OSM object has wikidata tag links a redirect ("
             message += present_wikidata_id  + " to " + maybe_redirected_wikidata_id + ")."
