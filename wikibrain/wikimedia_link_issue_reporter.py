@@ -182,6 +182,7 @@ class WikimediaLinkIssueDetector:
     def wikidata_connection_blacklisted_and_unfixable(self):
         return [
             'Q1456883',
+            'Q3591778', # dew pond
         ]
 
     def wikidata_connection_blacklist(self):
@@ -1290,16 +1291,22 @@ class WikimediaLinkIssueDetector:
             'Q2989971': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
             'Q2989977': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
 
-            'Q140957': {'prefix': 'species:', 'expected_tags': {'species': 'Dipterocarpus alatus', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
-            'Q2601238': {'prefix': 'species:', 'expected_tags': {'species': 'Carya ovata', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-            'Q957447': {'prefix': 'species:', 'expected_tags': {'species': 'Polyalthia longifolia', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
-            'Q157756': {'prefix': 'species:', 'expected_tags': {'species': 'Hibiscus syriacus', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-            'Q163981': {'prefix': 'species:', 'expected_tags': {'species': 'Tilia americana', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-            'Q2710065': {'prefix': 'species:', 'expected_tags': {'species': 'Embothrium coccineum', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-            'Q714180': {'prefix': 'species:', 'expected_tags': {'species': 'Ficus microcarpa', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
-            'Q161105': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus orientalis', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-            'Q163025': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus', 'natural': 'tree', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-            'Q692162': {'prefix': 'species:', 'expected_tags': {'species:en': 'California Bay Leaf', 'natural': 'tree', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
+            'Q140957': {'prefix': 'species:', 'expected_tags': {'species': 'Dipterocarpus alatus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
+            'Q2601238': {'prefix': 'species:', 'expected_tags': {'species': 'Carya ovata', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q957447': {'prefix': 'species:', 'expected_tags': {'species': 'Polyalthia longifolia', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
+            'Q157756': {'prefix': 'species:', 'expected_tags': {'species': 'Hibiscus syriacus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q163981': {'prefix': 'species:', 'expected_tags': {'species': 'Tilia americana', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q2710065': {'prefix': 'species:', 'expected_tags': {'species': 'Embothrium coccineum', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q714180': {'prefix': 'species:', 'expected_tags': {'species': 'Ficus microcarpa', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
+            'Q161105': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus orientalis', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q163025': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q157739': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q692162': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'California Bay Leaf', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
+            'Q3266951': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q158301': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
+            'Q161253': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
+            'Q25243': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'name:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+            'Q131113': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
 
             'Q7378': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
             'Q7368': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
