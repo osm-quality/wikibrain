@@ -678,6 +678,8 @@ class WikimediaLinkIssueDetector:
             'Q2141800': {'prefix': 'brand:', 'expected_tags': {'shop': 'travel_agency'}, 'name': 'Thomas Cook'},
             'Q4548': {'prefix': 'brand:', 'expected_tags': {'shop': 'travel_agency'}, 'name': 'Turkish Airlines'},
             
+            'Q2438391': {'prefix': 'brand:', 'expected_tags': {'leisure': 'amusement_arcade'}, 'name': "Chuck E. Cheese's"},
+
             'Q2040264': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'City Union Bank'},
             'Q1160928': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'mBank'},
             'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank', 'allowed_tags': {'name:en': 'Axis Bank'}},
@@ -1091,7 +1093,6 @@ class WikimediaLinkIssueDetector:
             'Q509255': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Buffalo Wild Wings'},
             'Q5017108': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Cafe Rio'},
             'Q5017261': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Café Rouge'},
-            'Q2438391': {'prefix': 'brand:', 'expected_tags': {'leisure': 'amusement_arcade'}, 'name': "Chuck E. Cheese's"},
             'Q1240741': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Donatos Pizza'},
             'Q5563393': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Giordano's Pizzeria"},
             'Q23019759': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Guzman y Gomez'},
