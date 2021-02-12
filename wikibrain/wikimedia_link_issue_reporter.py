@@ -183,6 +183,7 @@ class WikimediaLinkIssueDetector:
         return [
             'Q1456883',
             'Q3591778', # dew pond
+            'Q17172602', # monumental cross
         ]
 
     def wikidata_connection_blacklist(self):
@@ -454,9 +455,15 @@ class WikimediaLinkIssueDetector:
             'Q7085308': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'OldTown White Coffee'},
             'Q95722097': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Tealive'},
             'Q60875376': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': '喜茶'},
+            'Q80229': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'AMT Coffee'},
+            'Q1025505': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Cafe Extrablatt'},
+            'Q5119230': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Cibo Espresso'},
+            'Q66023886': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Kung Fu Tea'},
+            'Q11302679': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'コメダ珈琲店'},
 
             'Q4979810': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': "Bruster's Ice Cream"},
             'Q17020087': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'Marble Slab Creamery'},
+            'Q24439154': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'Naturals'},
 
             'Q15178238': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Adyar Ananda Bhavan'},
             'Q17123688': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Hussel'},
@@ -490,6 +497,12 @@ class WikimediaLinkIssueDetector:
             'Q17147574': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'myNEWS.com'},
             'Q66480830': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'uSmile 昆仑好客'},
             'Q16141064': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'サンクス'},
+            'Q1191685': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'FamilyMart'},
+            'Q5422131': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'Mini Extra'},
+            'Q16999069': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'Nisa'},
+            'Q16999069': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'Nisa Local'},
+            'Q1191685': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'ファミリーマート'},
+            'Q1191685': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': '全家'},
 
             'Q798298': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Backwerk'},
             'Q42825993': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Bäckerei Fuchs'},
@@ -851,7 +864,42 @@ class WikimediaLinkIssueDetector:
             'Q2883376': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco de la Nación'},
             'Q666694': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'CIBC'},
             'Q706533': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '臺灣銀行'},
+            'Q100233006': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco Provincia de Neuquén'},
+            'Q19882235': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bandhan Bank'},
+            'Q56653727': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque populaire Grand Ouest'},
+            'Q821855': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Berliner Volksbank'},
+            'Q3649971': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Caja Rural'},
+            'Q3006190': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Crédit coopératif'},
+            'Q5053244': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'CSB Bank'},
+            'Q5384668': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Equity Bank'},
+            'Q3532080': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'HNB'},
+            'Q22031467': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'IDFC First Bank'},
+            'Q2423252': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Itaú'},
+            'Q1541079': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Komerční banka'},
+            'Q20429441': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Moldindconbank'},
+            'Q4044440': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Moldova Agroindbank'},
+            'Q2042423': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'OCBC Bank'},
+            'Q7237158': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Poštová banka'},
+            'Q13120398': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'RBL Bank'},
+            'Q3532083': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Seylan Bank'},
+            'Q1555572': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Steiermärkische Sparkasse'},
+            'Q4059103': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Ак Барс Банк'},
+            'Q4407652': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Банк Санкт-Петербург'},
+            'Q4081940': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Белинвестбанк'},
+            'Q4126657': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Восточный'},
+            'Q18408334': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Идея Банк'},
+            'Q4304175': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Московский кредитный банк'},
+            'Q1518238': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'البنك الأهلي التجاري'},
+            'Q2693351': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'البنك الأول'},
+            'Q4120111': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'مصرف الإنماء'},
+            'Q1761176': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'مصرف الراجحي'},
+            'Q5100191': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '中國信託商業銀行'},
+            'Q11469601': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '山梨中央銀行'},
+            'Q3118744': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '广发银行'},
             #'Q806950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque de France'}, # some are quite tricky
+
+            'Q5141641': {'prefix': 'brand:', 'expected_tags': {'amenity': 'payment_terminal'}, 'name': 'Coinstar'},
+            'Q4047736': {'prefix': 'brand:', 'expected_tags': {'amenity': 'payment_terminal'}, 'name': 'Qiwi'},
 
             'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
             'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
@@ -918,6 +966,10 @@ class WikimediaLinkIssueDetector:
             'Q5373644': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Emo'},
             'Q11528048': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'ゼネラル'},
             'Q277115': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': '昭和シェル'},
+            'Q7178908': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Applegreen'},
+            'Q92553521': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Haan'},
+            'Q20432218': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Tirex Petrol'},
+            'Q698024': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': '台灣中油'},
 
             'Q11257202': {'prefix': 'brand:', 'expected_tags': {'shop': 'bicycle'}, 'name': 'サイクルベースあさひ'},
 
@@ -941,7 +993,7 @@ class WikimediaLinkIssueDetector:
             'Q3060668': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Euromaster'},
             'Q79239635': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'F1 Autocentre'},
             'Q10580079': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Mekonomen'},
-            'Q3312613': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Midas'},
+             #'Q3312613': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Midas'},
             'Q3317698': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Norauto'},
             'Q3492969': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Speedy'},
             
@@ -1084,6 +1136,18 @@ class WikimediaLinkIssueDetector:
             'Q1912172': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Max'},
             'Q7722411': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'The Chicken Rice Shop'},
             'Q7444079': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Secret Recipe'},
+            'Q62267228': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': "Angel's Burger"},
+            'Q5096233': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chicken Cottage'},
+            'Q4164819': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Chicken Licken'},
+            'Q5430935': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Fairwood'},
+            'Q17054442': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': "Haldiram's"},
+            'Q6689122': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Louisiana Famous Fried Chicken'},
+            'Q2639128': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'New York Pizza'},
+            'Q911973': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Peppes Pizza'},
+            'Q24439129': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': "Sam's Chicken"},
+            'Q8072671': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': "Zippy's"},
+            'Q15939607': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '华莱士'},
+            'Q17005286': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '老曾记'},
 
             'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Denny\'s'},
             'Q1185675': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'IHOP'},
@@ -1121,6 +1185,15 @@ class WikimediaLinkIssueDetector:
             'Q11253593': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '夢庵'},
             'Q11518589': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '木曽路'},
             'Q11620063': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '華屋与兵衛'},
+            'Q699142': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Din Tai Fung'},
+            'Q3230326': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '3 Brasseurs'},
+            'Q64358371': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Ninety Nine Restaurant & Pub'},
+            'Q7858255': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Twin Peaks'},
+            'Q8072671': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Zippy's"},
+            'Q10865579': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '三商巧福'},
+            'Q10865579': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '三商巧福'},
+            'Q11172707': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '鮮芋仙'},
+            'Q699142': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '鼎泰豐'},
 
             'Q11620063': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pub'}, 'name': '華屋与兵衛'},
 
@@ -1252,6 +1325,10 @@ class WikimediaLinkIssueDetector:
             'Q6120481': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Santa Lucía'},
             'Q1412465': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Württembergische'},
             'Q174081': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': '明治安田生命'},
+            'Q541909': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Ergo'},
+            'Q3095058': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Gan'},
+            'Q1798429': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'LVM'},
+            'Q1022419': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Uniqa'},
             #weird school case
             #'Q835141': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'AOK'},
 
