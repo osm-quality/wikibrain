@@ -1,3 +1,4 @@
 import wikibrain.wikipedia_knowledge
+import wikibrain.wikidata_knowledge
 import wikibrain.wikimedia_link_issue_reporter
 import wikibrain.apply_changes

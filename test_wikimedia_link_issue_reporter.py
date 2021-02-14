@@ -1,6 +1,8 @@
 import unittest
 import wikibrain.wikipedia_knowledge
+import wikibrain.wikidata_knowledge
 import wikibrain.wikimedia_link_issue_reporter
+import wikibrain
 import wikimedia_connection.wikimedia_connection as wikimedia_connection
 import wikimedia_connection.wikidata_processing as wikidata_processing
 import osm_handling_config.global_config as osm_handling_config
@@ -64,8 +66,8 @@ class Tests(unittest.TestCase):
         tags = {key: 'Kościół Najświętszego Serca Pana Jezusa'}
         self.assertNotEqual (None, self.issue_reporter().check_is_invalid_old_style_wikipedia_tag_present(tags, tags))
 
-    def test_presence_of_fields_in_wikidata_connection_blacklist(self):
-        blacklist = self.issue_reporter().wikidata_connection_blacklist()
+    def test_presence_of_fields_in_blacklist_of_unlinkable_entries(self):
+        blacklist = wikibrain.wikidata_knowledge.blacklist_of_unlinkable_entries()
         for key in blacklist:
             self.assertEqual("Q", key[0])
             print(key)
@@ -79,7 +81,7 @@ class Tests(unittest.TestCase):
 
     def test_that_relinkable_as_animals_target_species(self):
         self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q42569')
-        blacklist = self.issue_reporter().wikidata_connection_blacklist()
+        blacklist = wikibrain.wikidata_knowledge.blacklist_of_unlinkable_entries()
         count = 0
         for wikidata_id in blacklist:
             if blacklist[wikidata_id]['prefix'] != "species:":
