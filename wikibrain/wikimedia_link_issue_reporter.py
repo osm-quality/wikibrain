@@ -1728,17 +1728,24 @@ class WikimediaLinkIssueDetector:
                 return True
         return False
 
-    def normalized_id(self, links, wikidata_id):
+    def normalized_id_with_conflicts_list(self, links, wikidata_id):
         normalized_link_form = wikidata_id #may be None
+        conflict_list = []
         for link in links:
             if link == None:
-                return None
-            id_from_link = wikimedia_connection.get_wikidata_object_id_from_link(link, self.forced_refresh)
-            if normalized_link_form == None:
-                normalized_link_form = id_from_link
-            if normalized_link_form != id_from_link:
-                return None
-        return normalized_link_form
+                conflict_list.append("one of links has value None")
+            else:
+                id_from_link = wikimedia_connection.get_wikidata_object_id_from_link(link, self.forced_refresh)
+                if normalized_link_form == None:
+                    normalized_link_form = id_from_link
+                if normalized_link_form != id_from_link:
+                    text_link_description = None
+                    if id_from_link == None:
+                        text_link_description = "no link"
+                    else:
+                        text_link_description = "link " + id_from_link
+                    conflict_list.append(link + " gives " + text_link_description + " conflicting with another link " + normalized_link_form)
+        return normalized_link_form, conflict_list
 
     def convert_old_style_wikipedia_tags(self, wikipedia_type_keys, tags):
         links = self.wikipedia_candidates_based_on_old_style_wikipedia_keys(tags, wikipedia_type_keys)
@@ -1752,11 +1759,11 @@ class WikimediaLinkIssueDetector:
         for key in wikipedia_type_keys:
             prerequisite[key] = tags.get(key)
 
-        normalized = self.normalized_id(links, tags.get('wikidata'))
-        if normalized == None:
+        normalized, conflicts = self.normalized_id_with_conflicts_list(links, tags.get('wikidata'))
+        if conflicts != []:
             return ErrorReport(
                 error_id = "wikipedia tag in outdated form and there is mismatch between links",
-                error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "). Mismatch between different links happened and requires human judgment to solve.",
+                error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + ", with following conflicts: " + str(conflicts) + "). Mismatch between different links happened and requires human judgment to solve.",
                 prerequisite = prerequisite,
                 )
         elif tags.get('wikipedia') == None:
