@@ -2276,10 +2276,21 @@ class WikimediaLinkIssueDetector:
 
     def describe_unexpected_wikidata_type(self, type_id):
         # print entire inheritance set
-        too_abstract = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
+        too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
+
+        # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
+        too_abstract_or_wikidata_bugs.append("Q12377751")
+
+        # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
+        # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
+        too_abstract_or_wikidata_bugs.append('Q17362920')
+
+        # "Commons gallery" - it detects Wikidata mistakes for no benefit. Ignoring it silently is preferable 
+        too_abstract_or_wikidata_bugs.append('Q21167233')
+
         show_debug = True
         callback = self.callback_reporting_banned_categories
-        parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, too_abstract, show_debug, callback)
+        parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, too_abstract_or_wikidata_bugs, show_debug, callback)
         #for parent_category in parent_categories:
         #    print("if type_id == '" + parent_category + "':")
         #    print(wikidata_processing.wikidata_description(parent_category))
