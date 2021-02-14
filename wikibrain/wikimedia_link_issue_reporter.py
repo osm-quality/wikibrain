@@ -1819,17 +1819,27 @@ class WikimediaLinkIssueDetector:
     def wikipedia_candidates_based_on_old_style_wikipedia_keys(self, tags, wikipedia_type_keys):
         links = []
         for key in wikipedia_type_keys:
-            language_code = wikimedia_connection.get_text_after_first_colon(key)
+            language_code = wikimedia_connection.get_text_after_first_colon(key) # wikipedia:pl -> pl
             article_name = tags.get(key)
+            article_link_from_old_style_tag = language_code + ":" + article_name
+            if ":" in article_name:
+                potential_already_present_prefix_length = len(language_code) + 1
+                if language_code + ":" == article_name[:potential_already_present_prefix_length]:
+                    # cases like https://www.openstreetmap.org/node/1735170302
+                    # wikipedia:de = de:Troszyn (Mieszkowice)
+                    # note double de
+                    article_link_from_old_style_tag = article_name
+                    language_code = wikimedia_connection.get_text_before_first_colon(article_name)
+                    article_name = wikimedia_connection.get_text_after_first_colon(article_name)
 
             wikidata_id = wikimedia_connection.get_wikidata_object_id_from_article(language_code, article_name)
             if wikidata_id == None:
-                links.append(language_code + ":" + article_name)
+                links.append(article_link_from_old_style_tag)
                 continue
 
             link = self.get_best_interwiki_link_by_id(wikidata_id)
             if link == None:
-                links.append(language_code + ":" + article_name)
+                links.append(article_link_from_old_style_tag)
                 continue
 
             links.append(link)
