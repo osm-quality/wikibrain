@@ -935,6 +935,12 @@ class WikimediaLinkIssueDetector:
         # "Commons gallery" - it detects Wikidata mistakes for no benefit. Ignoring it silently is preferable 
         too_abstract_or_wikidata_bugs.append('Q21167233')
 
+        # religious art mess
+        # maybe it can be resolved, see following
+        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#How_to_prevent_Maria_column_from_being_classified_as_a_process?
+        too_abstract_or_wikidata_bugs.append('Q2864737')
+        return too_abstract_or_wikidata_bugs
+
     def describe_unexpected_wikidata_type(self, type_id):
         # print entire inheritance set
 
