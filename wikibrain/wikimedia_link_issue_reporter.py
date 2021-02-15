@@ -731,7 +731,7 @@ class WikimediaLinkIssueDetector:
             return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id)
 
     def get_error_report_if_type_unlinkable_as_primary(self, wikidata_id):
-        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id):
+        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entried_in_wikidata_ontology()):
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
             if potential_failure != None:
                 return self.get_should_use_subject_error(potential_failure['what'], potential_failure['replacement'], wikidata_id)
@@ -777,7 +777,7 @@ class WikimediaLinkIssueDetector:
         return None
 
     def get_error_report_if_wikipedia_target_is_of_unusable_type(self, location, wikidata_id):
-        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id):
+        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entried_in_wikidata_ontology()):
             if type_id == 'Q4167410':
                 # TODO note that pageprops may be a better source that should be used
                 # it does not require wikidata entry
@@ -875,7 +875,7 @@ class WikimediaLinkIssueDetector:
         return None
 
     def complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(self, wikidata_id, description_of_source):
-        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id):
+        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entried_in_wikidata_ontology()):
             if self.is_wikidata_type_id_recognised_as_OK(type_id):
                 return None
         self.dump_base_types_of_object_in_stdout(wikidata_id, description_of_source)
@@ -883,7 +883,7 @@ class WikimediaLinkIssueDetector:
     def output_debug_about_wikidata_item(self, wikidata_id):
         print("**********************")
         print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
-        print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id))
+        print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id), self.ignored_entried_in_wikidata_ontology())
         self.complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(wikidata_id, "tests")
         self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
 
@@ -905,8 +905,7 @@ class WikimediaLinkIssueDetector:
             return "banned as it is " + ban_reson['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
         return ""
 
-    def describe_unexpected_wikidata_type(self, type_id):
-        # print entire inheritance set
+    def ignored_entried_in_wikidata_ontology(self):
         too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
 
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
@@ -919,9 +918,12 @@ class WikimediaLinkIssueDetector:
         # "Commons gallery" - it detects Wikidata mistakes for no benefit. Ignoring it silently is preferable 
         too_abstract_or_wikidata_bugs.append('Q21167233')
 
+    def describe_unexpected_wikidata_type(self, type_id):
+        # print entire inheritance set
+
         show_debug = True
         callback = self.callback_reporting_banned_categories
-        parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, too_abstract_or_wikidata_bugs, show_debug, callback)
+        parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.ignored_entried_in_wikidata_ontology(), show_debug, callback)
         #for parent_category in parent_categories:
         #    print("if type_id == '" + parent_category + "':")
         #    print(wikidata_processing.wikidata_description(parent_category))
