@@ -367,15 +367,32 @@ class WikimediaLinkIssueDetector:
                 conflict_list.append("one of links has value None")
             else:
                 id_from_link = wikimedia_connection.get_wikidata_object_id_from_link(link, self.forced_refresh)
-                if normalized_link_form == None:
+
+                if normalized_link_form == None and id_from_link != None:
                     normalized_link_form = id_from_link
-                if normalized_link_form != id_from_link:
-                    text_link_description = None
-                    if id_from_link == None:
-                        text_link_description = "no link"
-                    else:
-                        text_link_description = "link " + id_from_link
-                    conflict_list.append(link + " gives " + text_link_description + " conflicting with another link " + normalized_link_form)
+                    continue
+                if normalized_link_form == id_from_link and id_from_link != None:
+                    continue
+
+                language_code = wikimedia_connection.get_language_code_from_link(link)
+                article_name = wikimedia_connection.get_article_name_from_link(link)
+                title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
+                is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
+                if is_article_redirected:
+                    id_from_link = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
+
+                if normalized_link_form == None and id_from_link != None:
+                    normalized_link_form = id_from_link
+                    continue
+                if normalized_link_form == id_from_link and id_from_link != None:
+                    continue
+
+                text_link_description = None
+                if id_from_link == None:
+                    text_link_description = "no link"
+                else:
+                    text_link_description = "link " + id_from_link
+                conflict_list.append(link + " gives " + text_link_description + " conflicting with another link " + normalized_link_form)
         return normalized_link_form, conflict_list
 
     def convert_old_style_wikipedia_tags(self, wikipedia_type_keys, tags):
