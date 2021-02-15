@@ -745,7 +745,7 @@ class WikimediaLinkIssueDetector:
         if wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P247') != None:
             return self.get_should_use_subject_error('a spacecraft', 'name:', wikidata_id)
         if wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P279') != None:
-            return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id)
+            return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id) 
 
     def get_error_report_if_type_unlinkable_as_primary(self, wikidata_id):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entried_in_wikidata_ontology()):
@@ -876,7 +876,7 @@ class WikimediaLinkIssueDetector:
         except KeyError:
             pass
         return (None, None)
-
+    
     def headquaters_location_indicate_invalid_connection(self, location, wikidata_id):
         if location == (None, None):
             return None
