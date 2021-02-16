@@ -131,7 +131,7 @@ class Tests(unittest.TestCase):
         problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
         self.assertNotEqual (None, problem)
         self.assertNotEqual ('wikidata from wikipedia tag', problem.data()['error_id'])
-        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
 
     def test_that_linking_to_human_is_reported_from_reordeable_issues(self):
         tags = {"wikipedia": "en:Stanislav Petrov"}
@@ -139,7 +139,7 @@ class Tests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
 
     def test_that_linking_to_human_is_reported_from_reordeable_issues_specified_as_wikidata(self):
         tags = {"wikidata": "Q52412"}
@@ -147,7 +147,7 @@ class Tests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
 
     def test_that_linking_to_human_is_reported_based_on_wikidata(self):
         wikidata_id = "Q52412"
@@ -155,7 +155,7 @@ class Tests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.issue_reporter().get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("should use a secondary wikipedia tag", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
 
     def test_effective_wikipedia(self):
         tags = {"wikidata": "Q52412"}

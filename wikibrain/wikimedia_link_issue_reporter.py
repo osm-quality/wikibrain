@@ -677,7 +677,7 @@ class WikimediaLinkIssueDetector:
 
     def get_should_use_subject_error(self, type, special_prefix, wikidata_id):
         return ErrorReport(
-            error_id = "should use a secondary wikipedia tag",
+            error_id = "should use a secondary wikipedia tag - linking to " + type,
             error_message = self.should_use_subject_message(type, special_prefix, wikidata_id),
             prerequisite = {'wikidata': wikidata_id},
             )
