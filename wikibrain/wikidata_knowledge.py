@@ -1242,8 +1242,9 @@ def blacklist_of_unlinkable_entries():
         'Q3266951': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q158301': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
         'Q161253': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
-        'Q25243': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'name:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+        'Q25243': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q131113': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
+        'Q161364': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'Red maple', 'species': 'Acer rubrum', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
 
         'Q7378': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q7368': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
