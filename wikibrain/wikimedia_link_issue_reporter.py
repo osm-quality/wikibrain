@@ -18,8 +18,10 @@ class ErrorReport:
         self.proposed_tagging_changes = proposed_tagging_changes
         self.osm_object_url = None
         self.location = None
+        self.tags = None
 
     def bind_to_element(self, element):
+        self.tags = element.get_tag_dictionary()
         self.current_wikipedia_target = element.get_tag_value("wikipedia") # TODO - save all tags #TODO - how to handle multiple?
         self.osm_object_url = element.get_link()
         if element.get_coords() == None:
@@ -39,6 +41,7 @@ class ErrorReport:
             extra_data = self.extra_data,
             prerequisite = self.prerequisite,
             location = self.location,
+            tags = self.tags,
         )
     def yaml_output(self, filepath):
         with open(filepath, 'a') as outfile:
