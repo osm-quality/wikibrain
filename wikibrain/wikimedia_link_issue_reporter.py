@@ -792,9 +792,9 @@ class WikimediaLinkIssueDetector:
         if type_id == 'Q202444':
             return {'what': 'a given name', 'replacement': 'name:'}
         if type_id == 'Q29048322':
-            return {'what': ' vehicle model', 'replacement': 'subject:'}
+            return {'what': 'a vehicle model', 'replacement': 'subject:'}
         if type_id == 'Q21502408':
-            return {'what': 'a mandatory constraint', 'replacement': None}
+            return {'what': 'a wikidata mandatory constraint', 'replacement': None}
         return None
 
     def get_error_report_if_wikipedia_target_is_of_unusable_type(self, location, wikidata_id):
