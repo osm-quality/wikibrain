@@ -943,6 +943,13 @@ class WikimediaLinkIssueDetector:
         # maybe it can be resolved, see following
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#How_to_prevent_Maria_column_from_being_classified_as_a_process?
         too_abstract_or_wikidata_bugs.append('Q2864737')
+
+        too_abstract_or_wikidata_bugs.append('Q47848') # concrete objects are marked as subclass of 
+        # sacred architecture (architectural practices used in places of worship) [https://www.wikidata.org/wiki/Q47848]
+        # as result I need to skip it, see for example https://www.wikidata.org/wiki/Q775129
+        too_abstract_or_wikidata_bugs.append('Q2860334') # exactly the same ("church architecture")
+        
+
         return too_abstract_or_wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, type_id):
