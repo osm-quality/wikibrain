@@ -758,6 +758,7 @@ class WikimediaLinkIssueDetector:
         return None
 
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
+        # TODO - also generate_webpage file must be updated
         if type_id == 'Q5':
             return {'what': 'a human', 'replacement': 'name:'}
         if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q729', 'Q5113', 'Q38829', 'Q55983715']:
