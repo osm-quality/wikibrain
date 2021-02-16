@@ -82,6 +82,11 @@ def blacklist_of_unlinkable_entries():
         'Q10801453': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'ニトリ'},
         'Q541134': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Conforama'},
         'Q5178707': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Courts'},
+        'Q2877537': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'But'},
+        'Q5182604': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Crate & Barrel'},
+        'Q7316207': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Restoration Hardware'},
+
+        'Q90565231': {'prefix': 'brand:', 'expected_tags': {'shop': 'curtain'}, 'name': 'Heytens'},
 
         'Q18629057': {'prefix': 'brand:', 'expected_tags': {'shop': 'bed'}, 'name': 'Matratzen Concord'},
 
@@ -114,6 +119,10 @@ def blacklist_of_unlinkable_entries():
         'Q5322556': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'ワイモバイル'},
         'Q160120': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Huawei'},
         'Q402880': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Билайн'},
+        'Q1136203': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Cosmote'},
+        'Q1936895': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'lifecell'},
+        'Q7202998': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Play'},
+        'Q7205598': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Plus'},
 
         'Q815694': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'Bell'},
         'Q1368919': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'МТС'},
@@ -247,6 +256,21 @@ def blacklist_of_unlinkable_entries():
         'Q706247': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '頂好超市'},
         'Q1613639': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Kiwi'},
         'Q2719231': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Monoprix'},
+        'Q4943949': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Booths'},
+        'Q5104860': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Choppies'},
+        'Q1129774': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Coop'},
+        'Q15229319': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Coop'},
+        'Q5203035': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'D&W Fresh Market'},
+        'Q457503': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Globus'},
+        'Q15820339': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Interspar'},
+        'Q6398037': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Key Food'},
+        'Q1618877': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Konsum'},
+        'Q1754510': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Migros Jet'},
+        'Q17146520': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Natural Grocers'},
+        'Q6955519': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'NTUC Fairprice'},
+        'Q4523181': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Shufersal'},
+        'Q1424735': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Thomas Philipps Sonderposten'},
+        'Q688825': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': "Trader Joe's"},
 
         'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
         'Q1508234': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Safeway'},
@@ -430,6 +454,13 @@ def blacklist_of_unlinkable_entries():
         'Q11340456': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'マックハウス'},
         'Q2102562': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'POLO'},
         'Q2021416': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Volcom'},
+        'Q404391': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Aigle'},
+        'Q2990868': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Comptoir des Cotonniers'},
+        'Q600986': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Escada'},
+        'Q1493667': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Gant'},
+        'Q2990868': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Morgan'},
+        'Q3064071': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Renner'},
+        'Q6668462': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Riachuelo'},
 
         'Q1095857': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Clarks'},
         'Q664543': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Deichmann'},
@@ -483,6 +514,7 @@ def blacklist_of_unlinkable_entries():
         'Q5455836': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Five Below'},
         'Q3209040': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': "La Foir'Fouille"},
         'Q65079443': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'OneBelow'},
+        'Q866991': {'prefix': 'brand:', 'expected_tags': {'shop': 'variety_store'}, 'name': 'Daiso Japan'},
 
         'Q3007154': {'prefix': 'brand:', 'expected_tags': {'shop': 'books'}, 'name': 'Cultura'},
         'Q3045978': {'prefix': 'brand:', 'expected_tags': {'shop': 'books'}, 'name': 'Empik'},
@@ -512,6 +544,9 @@ def blacklist_of_unlinkable_entries():
         
         'Q2438391': {'prefix': 'brand:', 'expected_tags': {'leisure': 'amusement_arcade'}, 'name': "Chuck E. Cheese's"},
 
+        'Q4854069': {'prefix': 'brand:', 'expected_tags': {'amenity': 'atm'}, 'name': 'Branco24Horas'},
+        'Q5412010': {'prefix': 'brand:', 'expected_tags': {'amenity': 'atm'}, 'name': 'Euronet'},
+            
         'Q2040264': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'City Union Bank'},
         'Q1160928': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'mBank'},
         'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank', 'allowed_tags': {'name:en': 'Axis Bank'}},
@@ -833,6 +868,7 @@ def blacklist_of_unlinkable_entries():
         'Q11086838': {'prefix': 'brand:', 'expected_tags': {'amenity': 'car_rental'}, 'name': '日産レンタカー'},
 
         'Q1069924': {'prefix': 'brand:', 'expected_tags': {'amenity': 'car_sharing'}, 'name': 'Zipcar'},
+        'Q1028155': {'prefix': 'brand:', 'expected_tags': {'amenity': 'car_sharing'}, 'name': 'cambio CarSharing'},
 
         'Q215657': {'prefix': 'brand:', 'expected_tags': {'shop': 'motorcycle'}, 'name': 'KTM'},
 
@@ -1046,6 +1082,10 @@ def blacklist_of_unlinkable_entries():
         'Q11318826': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'ツルハドラッグ'},
         'Q7820097': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'トモズ'},
         'Q8014776': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'マツモトキヨシ'},
+        'Q2926589': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Brunet'},
+        'Q17047215': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Vitusapotek'},
+        'Q11295397': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'カワチ薬品'},
+        'Q11323075': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'ドラッグイレブン'},
         # local mapper disagrees, hibernated for now
         #'Q477222': {'prefix': 'brand:', 'expected_tags': {'shop': 'hearing_aids'}, 'name': 'Amplifon'},
 
