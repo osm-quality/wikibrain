@@ -895,6 +895,9 @@ class WikimediaLinkIssueDetector:
         if location == (None, None):
             return None
         headquarters_location_data = wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P159')
+        area_of_object = wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P2046')
+        if area_of_object != None:
+            return None # for example administrative boundaries such as https://www.wikidata.org/wiki/Q1364786
         if headquarters_location_data == None:
             return None
         for option in headquarters_location_data:
