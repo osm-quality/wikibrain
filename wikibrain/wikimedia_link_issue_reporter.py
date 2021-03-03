@@ -402,7 +402,7 @@ class WikimediaLinkIssueDetector:
                     text_link_description = "no link"
                 else:
                     text_link_description = "link " + id_from_link
-                conflict_list.append(link + " gives " + text_link_description + " conflicting with another link " + normalized_link_form)
+                conflict_list.append(link + " gives " + text_link_description + " conflicting with another link " + str(normalized_link_form))
         return normalized_link_form, conflict_list
 
     def convert_old_style_wikipedia_tags(self, wikipedia_type_keys, tags):
