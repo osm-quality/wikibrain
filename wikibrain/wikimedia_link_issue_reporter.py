@@ -7,9 +7,10 @@ from wikibrain import wikipedia_knowledge
 from wikibrain import wikidata_knowledge
 
 class ErrorReport:
-    def __init__(self, error_message=None, desired_wikipedia_target=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
+    def __init__(self, error_message=None, error_general_intructions=None, desired_wikipedia_target=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
         self.error_id = error_id
         self.error_message = error_message
+        self.error_general_intructions = error_general_intructions
         self.debug_log = debug_log
         self.current_wikipedia_target = None #TODO - eliminate, start from wikipedia validator using this data
         self.desired_wikipedia_target = desired_wikipedia_target  #TODO - eliminate, start from wikipedia validator using this data
@@ -33,6 +34,7 @@ class ErrorReport:
         return dict(
             error_id = self.error_id,
             error_message = self.error_message,
+            error_general_intructions = self.error_general_intructions,
             debug_log = self.debug_log,
             osm_object_url = self.osm_object_url,
             current_wikipedia_target = self.current_wikipedia_target, #TODO - eliminate, start from wikipedia validator using this data
@@ -270,15 +272,17 @@ class WikimediaLinkIssueDetector:
         return None
 
     def report_failed_wikipedia_page_link(self, language_code, article_name, wikidata_id):
-        message = ""
-        message += "Wikipedia article linked from OSM object using wikipedia tag is missing.\n"
-        message += "Often article was moved without leaving redirect and wikipedia tag should be edited to point to the new one.\n"
-        message += "Article may be deleted and no longer existing, or link was never valid. In such cases wikipedia tag should be deleted."
+        error_general_intructions = ""
+        error_general_intructions += "Wikipedia article linked from OSM object using wikipedia tag is missing.\n"
+        error_general_intructions += "Often article was moved without leaving redirect and wikipedia tag should be edited to point to the new one.\n"
+        error_general_intructions += "Article may be deleted and no longer existing, or link was never valid. In such cases wikipedia tag should be deleted."
         proposed_new_target = self.get_best_interwiki_link_by_id(wikidata_id)
+        message = ""
         if proposed_new_target != None:
             message += " wikidata tag present on element points to an existing article"
         return ErrorReport(
                     error_id = "wikipedia tag links to 404",
+                    error_general_intructions = error_general_intructions,
                     error_message = message,
                     prerequisite = {'wikipedia': language_code+":"+article_name},
                     desired_wikipedia_target = proposed_new_target,
@@ -293,9 +297,11 @@ class WikimediaLinkIssueDetector:
             return None
         no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
         if no_longer_existing != None:
-            message = "Wikidata claims that this object no longer exists. Historical, no longer existing object must not be mapped in OSM - so it means that either Wikidata is mistaken or wikipedia/wikidata tag is wrong or OSM has an outdated object." + " " + self.wikidata_data_quality_warning()
+            error_general_intructions = "Wikidata claims that this object no longer exists. Historical, no longer existing object must not be mapped in OSM - so it means that either Wikidata is mistaken or wikipedia/wikidata tag is wrong or OSM has an outdated object." + " " + self.wikidata_data_quality_warning()
+            message = ""
             return ErrorReport(
                             error_id = "no longer existing object",
+                            error_general_intructions = error_general_intructions,
                             error_message = message,
                             prerequisite = {'wikidata': present_wikidata_id}
                             )
@@ -527,12 +533,14 @@ class WikimediaLinkIssueDetector:
             return None
 
         base_message = "wikidata and wikipedia tags link to a different objects"
-        message = base_message + ", because wikidata tag points to a redirect that should be followed (" + self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +")"
+        common_message = base_message + ", because wikidata tag points to a redirect that should be followed"
+        message = self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article)
         maybe_redirected_wikidata_id = self.get_wikidata_id_after_redirect(present_wikidata_id)
         if maybe_redirected_wikidata_id != present_wikidata_id:
             if maybe_redirected_wikidata_id == wikidata_id_from_article:
                 return ErrorReport(
                     error_id = "wikipedia wikidata mismatch - follow wikidata redirect",
+                    error_general_intructions = common_message,
                     error_message = message,
                     prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
                     )
@@ -542,12 +550,13 @@ class WikimediaLinkIssueDetector:
         if is_article_redirected:
             wikidata_id_from_redirect = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
             if present_wikidata_id == wikidata_id_from_redirect:
-                message = (base_message + ", because wikipedia tag points to a redirect that should be followed (" +
-                          self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +")")
+                common_message = base_message + ", because wikipedia tag points to a redirect that should be followed"
+                message = self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article)
                 message += " article redirects from " + language_code + ":" + article_name + " to " + language_code + ":" + title_after_possible_redirects
                 new_wikipedia_link = language_code+":"+title_after_possible_redirects
                 return ErrorReport(
                     error_id = "wikipedia wikidata mismatch - follow wikipedia redirect",
+                    error_general_intructions = common_message,
                     error_message = message,
                     desired_wikipedia_target = new_wikipedia_link,
                     prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
