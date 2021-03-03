@@ -180,9 +180,12 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        something_reportable = self.check_is_object_is_existing(wikidata_id)
-        if something_reportable != None:
-            return something_reportable
+        # TODO - check disabled
+        # requires resolving https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#Tagging_ruins/remains_left_after_object
+        # extra support for one more parameter required
+        #something_reportable = self.check_is_object_is_existing(wikidata_id)
+        #if something_reportable != None:
+        #    return something_reportable
 
         return None
 
