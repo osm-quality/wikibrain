@@ -8,6 +8,7 @@ from wikibrain import wikidata_knowledge
 
 class ErrorReport:
     def __init__(self, error_message=None, error_general_intructions=None, desired_wikipedia_target=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
+        # to include something in serialization - modify data function
         self.error_id = error_id
         self.error_message = error_message
         self.error_general_intructions = error_general_intructions
