@@ -1019,6 +1019,17 @@ class WikimediaLinkIssueDetector:
             return ['Q183']
         if language_code == "cz":
             return ['Q213']
+        if language_code == "ro":
+            return ['Q218']
+        if language_code == "fa": # persian = farsi
+            iran = 'Q794'
+            afghanistan = 'Q889'
+            tajikistan = 'Q863'
+            return [iran, afghanistan, tajikistan]
+        if language_code == "nl":
+            netherlands = 'Q55'
+            belgium = 'Q31' # one of three official
+            return [netherlands, belgium]
         if language_code == "en":
             new_zealand = 'Q664'
             usa = 'Q30'
