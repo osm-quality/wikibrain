@@ -1022,8 +1022,13 @@ class WikimediaLinkIssueDetector:
             return ['Q183']
         if language_code == "cz":
             return ['Q213']
-        if language_code == "ro":
+        if language_code == "ro": # romanian
             return ['Q218']
+        if language_code == "sr": # Serbian (if I made mistake here please do not assume that I have some specific position in inis regional conflict)
+            serbia = 'Q403'
+            montenegro = 'Q236'
+            bosnia_and_herzegovina = 'Q225'
+            return [serbia, montenegro, bosnia_and_herzegovina]
         if language_code == "fa": # persian = farsi
             iran = 'Q794'
             afghanistan = 'Q889'
