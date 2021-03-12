@@ -723,6 +723,8 @@ class WikimediaLinkIssueDetector:
             return None
         location_from_wikidata = wikimedia_connection.get_location_from_wikidata(wikidata_id)
         # recommended by https://stackoverflow.com/a/43211266/4130619
+        # documentation on https://github.com/geopy/geopy#measuring-distance
+        # geopy.distance.distance((latititude, longitude), (latititude, longitude))
         return geopy.distance.distance(coords_given, location_from_wikidata).km
 
     def get_distance_description_between_location_and_wikidata_id(self, location, wikidata_id):
