@@ -1024,6 +1024,12 @@ class WikimediaLinkIssueDetector:
             return ['Q183']
         if language_code == "cz":
             return ['Q213']
+        if language_code == "tr": # turkish
+            return ['Q43']
+        if language_code == "bg":
+            return ['Q219'] # Bulgaria
+        if language_code == "uk": # ukrainian
+            return ['Q212']
         if language_code == "ro": # romanian
             return ['Q218']
         if language_code == "sr": # Serbian (if I made mistake here please do not assume that I have some specific position in inis regional conflict)
