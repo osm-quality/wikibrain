@@ -270,9 +270,10 @@ class WikimediaLinkIssueDetector:
     def get_best_interwiki_link_by_id(self, wikidata_id):
         all_languages = wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance()
         for potential_language_code in (self.languages_ordered_by_preference + all_languages):
-            potential_article_name = wikimedia_connection.get_interwiki_article_name_by_id(wikidata_id, potential_language_code, self.forced_refresh)
-            if potential_article_name != None:
-                return potential_language_code + ':' + potential_article_name
+            if potential_language_code != None:
+                potential_article_name = wikimedia_connection.get_interwiki_article_name_by_id(wikidata_id, potential_language_code, self.forced_refresh)
+                if potential_article_name != None:
+                    return potential_language_code + ':' + potential_article_name
         return None
 
     def report_failed_wikipedia_page_link(self, language_code, article_name, wikidata_id):
