@@ -1228,6 +1228,9 @@ def blacklist_of_unlinkable_entries():
         'Q2989971': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
         'Q2989977': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
 
+        'Q163025': {'prefix': 'genus:', 'expected_tags': {'genus': 'Platanus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+        'Q131113': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus': 'Ulmuss', 'genus:pl': 'Wiąz'}},
+
         'Q140957': {'prefix': 'species:', 'expected_tags': {'species': 'Dipterocarpus alatus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
         'Q2601238': {'prefix': 'species:', 'expected_tags': {'species': 'Carya ovata', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q957447': {'prefix': 'species:', 'expected_tags': {'species': 'Polyalthia longifolia', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
@@ -1236,14 +1239,12 @@ def blacklist_of_unlinkable_entries():
         'Q2710065': {'prefix': 'species:', 'expected_tags': {'species': 'Embothrium coccineum', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q714180': {'prefix': 'species:', 'expected_tags': {'species': 'Ficus microcarpa', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
         'Q161105': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus orientalis', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-        'Q163025': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-        'Q157739': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+        'Q157739': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Platanus occidentalis', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q692162': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'California Bay Leaf', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
         'Q3266951': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-        'Q158301': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
-        'Q161253': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
+        'Q158301': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Acer saccharinum'}},
+        'Q161253': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Quercus palustris', 'name:pl': 'Dąb błotny'}},
         'Q25243': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-        'Q131113': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}},
         'Q161364': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'Red maple', 'species': 'Acer rubrum', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
 
         'Q7378': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
