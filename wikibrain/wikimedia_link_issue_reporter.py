@@ -1025,6 +1025,11 @@ class WikimediaLinkIssueDetector:
             return ['Q183']
         if language_code == "cz":
             return ['Q213']
+        if language_code == "it":
+            vatican = 'Q237'
+            san_marino = 'Q238'
+            italy = 'Q38'
+            return [vatican, san_marino, italy]
         if language_code == "tr": # turkish
             return ['Q43']
         if language_code == "bg":
