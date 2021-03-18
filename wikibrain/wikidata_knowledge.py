@@ -1247,8 +1247,10 @@ def blacklist_of_unlinkable_entries():
         'Q25243': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q161364': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'Red maple', 'species': 'Acer rubrum', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
 
+        # reviewed animals
+        'Q7368': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal', 'name:en': 'Sheep'}},
+
         'Q7378': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
-        'Q7368': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q327028': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q26838': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q131567': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
