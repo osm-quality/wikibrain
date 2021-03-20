@@ -988,6 +988,8 @@ class WikimediaLinkIssueDetector:
         # as result I need to skip it, see for example https://www.wikidata.org/wiki/Q775129
         too_abstract_or_wikidata_bugs.append('Q2860334') # exactly the same ("church architecture")
         
+        too_abstract_or_wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
+        too_abstract_or_wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
 
         return too_abstract_or_wikidata_bugs
 
