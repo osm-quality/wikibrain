@@ -160,6 +160,26 @@ class WikimediaLinkIssueDetector:
             return wikimedia_connection.get_wikidata_object_id_from_link(tags.get("wikipedia"))
         return None
 
+    def replace_prerequisites_to_match_actual_tags(self, something_reportable, tags):
+        """
+        hack necessary in some cases :(
+        
+        object may have no wikidata tag at all, but it may be calculated from wikipedia tag
+        in such case report may be made about wikidata_id indicating a clear issue, such as link to a disambig page
+
+        in such case using reprequisite with wikidata=QXXXXX is wrong as object has no such tag,
+        it is necessary to replace it by an actual source
+
+        in this case function blindly assumes that wikipedia is a good replacement
+
+        TODO: replace this monstrous hack
+        """
+        if 'wikidata' in something_reportable.prerequisite:
+            if 'wikidata' not in tags and 'wikipedia' in tags:
+                something_reportable.prerequisite.pop('wikidata')
+                something_reportable.prerequisite['wikipedia'] = tags['wikipedia']
+        return something_reportable
+
     def freely_reorderable_issue_reports(self, object_description, location, tags):
         wikipedia = self.get_effective_wikipedia_tag(tags)
         wikidata_id = self.get_effective_wikidata_tag(tags)
@@ -170,11 +190,11 @@ class WikimediaLinkIssueDetector:
 
         something_reportable = self.get_problem_based_on_wikidata_blacklist(wikidata_id, wikidata_id, wikipedia)
         if something_reportable != None:
-            return something_reportable
+            return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
         something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id)
         if something_reportable != None:
-            return something_reportable
+            return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
         something_reportable = self.get_wikipedia_language_issues(object_description, tags, wikipedia, wikidata_id)
         if something_reportable != None:
