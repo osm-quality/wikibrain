@@ -70,13 +70,13 @@ class Tests(unittest.TestCase):
         blacklist = wikibrain.wikidata_knowledge.blacklist_of_unlinkable_entries()
         for key in blacklist:
             self.assertEqual("Q", key[0])
-            print(key)
+            #print(key)
             try:
                 blacklist[key]["prefix"]
                 blacklist[key]["expected_tags"]
             except KeyError:
-                print(key)
-                print(blacklist[key])
+                print(key, "test_presence_of_fields_in_blacklist_of_unlinkable_entries")
+                print(blacklist[key], "test_presence_of_fields_in_blacklist_of_unlinkable_entries")
                 assert False
 
     def test_that_relinkable_as_animals_target_species(self):
