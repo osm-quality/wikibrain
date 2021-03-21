@@ -88,7 +88,7 @@ class Tests(unittest.TestCase):
                 continue
             count+=1
             is_animal = False
-            for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.issue_reporter().ignored_entried_in_wikidata_ontology()):
+            for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.issue_reporter().ignored_entries_in_wikidata_ontology()):
                 potential_failure = self.issue_reporter().get_reason_why_type_makes_object_invalid_primary_link(type_id)
                 if potential_failure == None:
                     continue
