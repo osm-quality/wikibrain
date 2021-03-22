@@ -707,7 +707,7 @@ class WikimediaLinkIssueDetector:
         message = "linked " + linked_object + " is about """ + type + \
         ", so it is very unlikely to be correct \n\
         subject:wikipedia=* " + special_prefix_text + " tag would be probably better \
-        (see https://wiki.openstreetmap.org/wiki/Key:wikipedia#Secondary_Wikipedia_links ) \n\
+        (see https://wiki.openstreetmap.org/wiki/Key:wikipedia#Secondary_Wikipedia_links for full list of what else may be applicable) \n\
         in case of change remember to remove wikidata tag if it is present \n\
         object categorised by Wikidata - wrong classification may be caused by wrong data on Wikidata"
         return message
