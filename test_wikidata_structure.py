@@ -6,7 +6,7 @@ import osm_handling_config.global_config as osm_handling_config
 class WikidataTests(unittest.TestCase):
     def is_unlinkable_check(self, type_id):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_error_report_if_type_unlinkable_as_primary(type_id)
+        return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
 
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)

@@ -105,8 +105,9 @@ class Tests(unittest.TestCase):
         self.assertNotEqual(count, 0)
 
     def ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary(self, wikidata_id):
+        passed_tags = {}
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id)
+        primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
         if primary_linkability_status == None:
             self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
         self.assertNotEqual (None, primary_linkability_status)
@@ -153,7 +154,8 @@ class Tests(unittest.TestCase):
         wikidata_id = "Q52412"
         location = None
         object_description = "fake test object"
-        problem = self.issue_reporter().get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id)
+        tags = {}
+        problem = self.issue_reporter().get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id, tags)
         self.assertNotEqual (None, problem)
         self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
 
@@ -171,6 +173,22 @@ class Tests(unittest.TestCase):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         self.assertEqual(self.issue_reporter().check_is_object_is_existing('Q650270'), None)
         
+    def test_that_indian_teritory_is_considered_as_linkable_by_passing_tags(self):
+        wikidata_id = 'Q1516298'
+        passed_tags = {}
+        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+        primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
+        if primary_linkability_status == None:
+            self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
+        self.assertNotEqual (None, primary_linkability_status)
+
+        wikidata_id = 'Q1516298'
+        passed_tags = {'boundary': 'aboriginal_lands'}
+        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+        primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
+        if primary_linkability_status != None:
+            self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
+        self.assertEqual (None, primary_linkability_status)
 
 if __name__ == '__main__':
     unittest.main()

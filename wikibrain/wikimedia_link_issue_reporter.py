@@ -177,7 +177,7 @@ class WikimediaLinkIssueDetector:
             return None
 
         if tags.get('wikidata') != None and old_style_wikipedia_tags == []:
-            return self.get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(tags.get('wikidata'))
+            return self.get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(tags.get('wikidata'), tags)
 
         return None
 
@@ -217,22 +217,22 @@ class WikimediaLinkIssueDetector:
         return something_reportable
 
     def freely_reorderable_issue_reports(self, object_description, location, tags):
-        wikipedia = self.get_effective_wikipedia_tag(tags)
-        wikidata_id = self.get_effective_wikidata_tag(tags)
+        effective_wikipedia = self.get_effective_wikipedia_tag(tags)
+        effective_wikidata_id = self.get_effective_wikidata_tag(tags)
         # Note that wikipedia may be None - maybe there is just a Wikidata entry!
-        # Note that wikidata_id may be None - maybe it was not created yet! 
+        # Note that effective_wikidata_id may be None - maybe it was not created yet! 
 
         # IDEA links from buildings to parish are wrong - but from religious admin are OK https://www.wikidata.org/wiki/Q11808149
 
-        something_reportable = self.get_problem_based_on_wikidata_blacklist(wikidata_id, wikidata_id, wikipedia)
+        something_reportable = self.get_problem_based_on_wikidata_blacklist(effective_wikidata_id, tags.get('wikidata'), effective_wikipedia)
         if something_reportable != None:
             return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
-        something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id)
+        something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, effective_wikidata_id, tags)
         if something_reportable != None:
             return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
-        something_reportable = self.get_wikipedia_language_issues(object_description, tags, wikipedia, wikidata_id)
+        something_reportable = self.get_wikipedia_language_issues(object_description, tags, effective_wikipedia, effective_wikidata_id)
         if something_reportable != None:
             return something_reportable
 
@@ -504,10 +504,10 @@ class WikimediaLinkIssueDetector:
                 proposed_tagging_changes = [{"from": from_tags, "to": {}}],
                 )
 
-    def get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(self, present_wikidata_id):
+    def get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(self, present_wikidata_id, tags):
         location = (None, None)
         description = "object with wikidata=" + present_wikidata_id
-        problem_indicated_by_wikidata = self.get_problem_based_on_wikidata(present_wikidata_id, description, location)
+        problem_indicated_by_wikidata = self.get_problem_based_on_wikidata(present_wikidata_id, tags, description, location)
         if problem_indicated_by_wikidata:
             return problem_indicated_by_wikidata
 
@@ -806,13 +806,13 @@ class WikimediaLinkIssueDetector:
             returned += link['title'] + distance_description + "\n"
         return returned
 
-    def get_error_report_if_secondary_wikipedia_tag_should_be_used(self, wikidata_id):
+    def get_error_report_if_secondary_wikipedia_tag_should_be_used(self, effective_wikidata_id, tags):
         # contains ideas based partially on constraints in https://www.wikidata.org/wiki/Property:P625
-        class_error = self.get_error_report_if_type_unlinkable_as_primary(wikidata_id)
+        class_error = self.get_error_report_if_type_unlinkable_as_primary(effective_wikidata_id, tags)
         if class_error != None:
             return class_error
 
-        property_error = self.get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(wikidata_id)
+        property_error = self.get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(effective_wikidata_id)
         if property_error != None:
             return property_error
 
@@ -822,11 +822,14 @@ class WikimediaLinkIssueDetector:
         if wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P279') != None:
             return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id) 
 
-    def get_error_report_if_type_unlinkable_as_primary(self, wikidata_id):
-        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()):
+    def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
+        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology()):
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
             if potential_failure != None:
-                return self.get_should_use_subject_error(potential_failure['what'], potential_failure['replacement'], wikidata_id)
+                if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
+                    pass # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
+                else:
+                    return self.get_should_use_subject_error(potential_failure['what'], potential_failure['replacement'], effective_wikidata_id)
         return None
 
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
@@ -898,44 +901,45 @@ class WikimediaLinkIssueDetector:
                     prerequisite = {'wikidata': wikidata_id},
                     )
 
-    def get_problem_based_on_wikidata_and_osm_element(self, object_description, location, wikidata_id):
-        if wikidata_id == None:
+    def get_problem_based_on_wikidata_and_osm_element(self, object_description, location, effective_wikidata_id, tags):
+        if effective_wikidata_id == None:
             # instance data not present in wikidata
             # not fixable easily as imports from OSM to Wikidata are against rules
             # as OSM data is protected by ODBL, and Wikidata is on CC0 license
             # also, this problem is easy to find on Wikidata itself so it is not useful to report it
             return None
 
-        return self.get_problem_based_on_wikidata(wikidata_id, object_description, location)
+        return self.get_problem_based_on_wikidata(effective_wikidata_id, tags, object_description, location)
 
-    def get_problem_based_on_wikidata(self, wikidata_id, description, location):
-        return self.get_problem_based_on_base_types(wikidata_id, description, location)
+    def get_problem_based_on_wikidata(self, effective_wikidata_id, tags, description, location):
+        return self.get_problem_based_on_base_types(effective_wikidata_id, tags, description, location)
 
-    def get_problem_based_on_base_types(self, wikidata_id, description, location):
-        base_type_ids = wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id)
+    def get_problem_based_on_base_types(self, effective_wikidata_id, tags, description, location):
+        base_type_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id)
         if base_type_ids == None:
             return None
 
-        base_type_problem = self.get_problem_based_on_wikidata_base_types(location, wikidata_id)
+        base_type_problem = self.get_problem_based_on_wikidata_base_types(location, effective_wikidata_id, tags)
         if base_type_problem != None:
             return base_type_problem
 
         if self.additional_debug:
             # TODO, IDEA - run with this parameter enable to start catching more issues
-            self.complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(wikidata_id, description)
+            # for Wikidata lovers
+            self.complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(effective_wikidata_id, description)
 
 
-    def get_problem_based_on_wikidata_base_types(self, location, wikidata_id):
-        unusable_wikipedia_article = self.get_error_report_if_wikipedia_target_is_of_unusable_type(location, wikidata_id)
+    def get_problem_based_on_wikidata_base_types(self, location, effective_wikidata_id, tags):
+        unusable_wikipedia_article = self.get_error_report_if_wikipedia_target_is_of_unusable_type(location, effective_wikidata_id)
         if unusable_wikipedia_article != None:
             return unusable_wikipedia_article
 
-        secondary_tag_error = self.get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id)
+        secondary_tag_error = self.get_error_report_if_secondary_wikipedia_tag_should_be_used(effective_wikidata_id, tags)
         if secondary_tag_error != None:
             return secondary_tag_error
 
         if location != None:
-            secondary_tag_error = self.headquaters_location_indicate_invalid_connection(location, wikidata_id)
+            secondary_tag_error = self.headquaters_location_indicate_invalid_connection(location, effective_wikidata_id)
             if secondary_tag_error != None:
                 return secondary_tag_error
 
