@@ -446,10 +446,16 @@ class WikimediaLinkIssueDetector:
 
                 language_code = wikimedia_connection.get_language_code_from_link(link)
                 article_name = wikimedia_connection.get_article_name_from_link(link)
-                title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
-                is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
-                if is_article_redirected:
-                    id_from_link = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
+                try:
+                    title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
+                    is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
+                    if is_article_redirected:
+                        id_from_link = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
+                except wikimedia_connection.TitleViolatesKnownLimits:
+                    pass # redirected link is invalied and not reported as noexsiting - typically due to "feature" of special handling invalid ling with lang: prefixes 
+                         # for example asking about en:name article on Polish-language will return info whethere "name" article exists on enwiki!
+                         # as result special check and throwing this exception is done on invalid ones
+                         # and in case of link leading nowhere nothing special needs to be done and it can be silently swallowed
 
                 if normalized_link_form == None and id_from_link != None:
                     normalized_link_form = id_from_link
