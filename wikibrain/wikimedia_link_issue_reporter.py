@@ -73,6 +73,10 @@ class WikimediaLinkIssueDetector:
     def get_the_most_important_problem_generic(self, tags, location, object_type, object_description):
         if self.object_should_be_deleted_not_repaired(object_type, tags):
             return None
+        
+        something_reportable = self.use_special_properties_allowing_to_ignore_wikipedia_tags(tags)
+        if something_reportable != None:
+            return something_reportable
 
         something_reportable = self.critical_structural_issue_report(object_type, tags)
         if something_reportable != None:
@@ -86,6 +90,38 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
+        return None
+
+    def use_special_properties_allowing_to_ignore_wikipedia_tags(self, tags):
+        if tags.get("wikidata") != None:
+            if tags.get("teryt:simc") != None:
+                wikidata_simc_object = wikimedia_connection.get_property_from_wikidata(tags.get("wikidata"), 'P4046')
+                if wikidata_simc_object == None:
+                    return None
+                wikidata_simc = wikidata_simc_object[0]['mainsnak']['datavalue']['value']
+                if wikidata_simc != tags.get("teryt:simc"):
+                    message = "mismatching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") where " + str(wikidata_simc) + " is declared and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
+                    return ErrorReport(
+                                    error_id = "mismatching teryt:simc codes in wikidata and in osm element",
+                                    error_message = message,
+                                    prerequisite = {'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc")},
+                                    )
+                wikipedia_expected = self.get_best_interwiki_link_by_id(tags.get("wikidata"))
+                if tags.get("wikipedia") != wikipedia_expected:
+                    if wikipedia_expected != None:
+                        message = "new wikipedia tag <" + wikipedia_expected + " proposed based on matching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
+                        return ErrorReport(
+                                        error_id = "wikipedia needs to be updated based on wikidata code and teryt:simc identifier",
+                                        error_message = message,
+                                        prerequisite = {'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc"), 'wikipedia': tags.get("wikipedia"), },
+                                        )
+                    else:
+                        message = " it seems that wikipedia tag should be removed given matching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
+                        return ErrorReport(
+                                        error_id = "wikipedia tag needs to be removed based on wikidata code and teryt:simc identifier",
+                                        error_message = message,
+                                        prerequisite = {'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc"), 'wikipedia': tags.get("wikipedia"), },
+                                        )
         return None
 
     def critical_structural_issue_report(self, object_type, tags):
