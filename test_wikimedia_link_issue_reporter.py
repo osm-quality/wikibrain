@@ -124,6 +124,9 @@ class Tests(unittest.TestCase):
     def test_that_llama_is_reported_as_an_animal(self):
         self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q42569')
 
+    def test_that_generic_and_general_lighthouse_article_is_not_linkable_on_specific_objects(self):
+        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q39715')
+
     def test_that_linking_to_human_is_reported_before_missing_wikipedia_tag(self):
         tags = {"wikipedia": "en:Stanislav Petrov"}
         location = None

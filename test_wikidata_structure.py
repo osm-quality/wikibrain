@@ -195,6 +195,9 @@ class WikidataTests(unittest.TestCase):
     def test_museum_as_valid_primary_link(self):
         self.assert_linkability('Q731126')
 
+    def test_mural_as_valid_primary_link(self):
+        self.assert_linkability('Q29351056')
+
     def test_community_garden_as_valid_primary_link(self):
         self.assert_linkability('Q49493599')
 
