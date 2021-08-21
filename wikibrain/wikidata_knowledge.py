@@ -1365,7 +1365,9 @@ def blacklist_of_unlinkable_entries():
         'Q21755': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
         'Q5452918': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}}, # infraorder of mammals: "higher primates": New World monkeys, Old World monkeys and apes, including humans
 
-        'Q127849': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'name:pl': 'Lipa'}},
+        # https://bs.wikipedia.org/wiki/Razgovor:Lipa_(biljka) - duplicate reported
+        'Q127849': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Lipa', 'genus:bs': 'Lipa'}},
+        'Q45417383': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Lipa', 'genus:bs': 'Lipa'}},
 
         'Q140957': {'prefix': 'species:', 'expected_tags': {'species': 'Dipterocarpus alatus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
         'Q2601238': {'prefix': 'species:', 'expected_tags': {'species': 'Carya ovata', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
@@ -1380,7 +1382,9 @@ def blacklist_of_unlinkable_entries():
         'Q3266951': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q158301': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Acer saccharinum'}},
         'Q161253': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Quercus palustris', 'name:pl': 'Dąb błotny'}},
-        'Q25243': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+        'Q25243': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+        'Q128887': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Jesion', 'genus:en': 'Ash', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+        'Q18674606': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jabłoń domowa', 'species': 'Malus domestic', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q161364': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'Red maple', 'species': 'Acer rubrum', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q156907': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jesion wyniosły', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
 
