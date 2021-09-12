@@ -97,6 +97,11 @@ def blacklist_of_unlinkable_entries():
         'Q5182604': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Crate & Barrel'},
         'Q7316207': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Restoration Hardware'},
         'Q17053453': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Nick Scali'},
+        'Q9141928': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Agata Meble'},
+        'Q1957803': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'HARDECK'},
+        'Q1431315': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Ostermann'},
+        'Q1477785': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Poltrona Frau'},
+        'Q1337963': {'prefix': 'brand:', 'expected_tags': {'shop': 'furniture'}, 'name': 'Segmüller'},
 
         'Q90565231': {'prefix': 'brand:', 'expected_tags': {'shop': 'curtain'}, 'name': 'Heytens'},
 
@@ -122,6 +127,8 @@ def blacklist_of_unlinkable_entries():
         'Q8048733': {'prefix': 'brand:', 'expected_tags': {'shop': 'candles'}, 'name': 'Yankee Candle'},
 
         'Q2241604': {'prefix': 'brand:', 'expected_tags': {'shop': 'jewelry'}, 'name': 'Pandora'},
+        'Q6354854': {'prefix': 'brand:', 'expected_tags': {'shop': 'jewelry'}, 'name': 'Kalyan Jewellers'},
+        'Q60748883': {'prefix': 'brand:', 'expected_tags': {'shop': 'jewelry'}, 'name': 'Malabar Gold and Diamonds'},
 
         'Q919641': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Verizon Wireless'},
         'Q118046': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Carphone Warehouse'},
@@ -143,6 +150,8 @@ def blacklist_of_unlinkable_entries():
         'Q1936895': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'lifecell'},
         'Q7202998': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Play'},
         'Q7205598': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Plus'},
+        'Q8064381': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Zagg'},
+        'Q1720713': {'prefix': 'brand:', 'expected_tags': {'shop': 'mobile_phone'}, 'name': 'Мегафон'},
 
         'Q815694': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'Bell'},
         'Q1368919': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'МТС'},
@@ -176,6 +185,11 @@ def blacklist_of_unlinkable_entries():
         'Q4992516': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Coolblue'},
         'Q4903531': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'ビックカメラ'},
         'Q701925': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'ベスト電器'},
+        'Q10786832': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Alza'},
+        'Q6419332': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Kjell & Company'},
+        'Q41187': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Sony'},
+        'Q6559269': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Teknosa'},
+        'Q7929200': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Vijay Sales'},
 
         'Q7330409': {'prefix': 'brand:', 'expected_tags': {'shop': 'hifi'}, 'name': 'Richer Sounds'},
 
@@ -302,6 +316,18 @@ def blacklist_of_unlinkable_entries():
         'Q868980': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Coop Szuper'},
         'Q7501242': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Shoprite'},
         'Q58617964': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '盒马鲜生'},
+        'Q54312551': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': "Bio C' Bon"},
+        'Q217599': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Carrefour'},
+        'Q12361460': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Coop'},
+        'Q3696429': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Crai'},
+        'Q5203271': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'DMart'},
+        'Q1522721': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Giant Eagle'},
+        'Q3114675': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Grand Frais'},
+        'Q1718009': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'K+K'},
+        'Q3841263': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'MD'},
+        'Q7336696': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Ritchies'},
+        'Q735562': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Soriana'},
+        'Q4054103': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'АТБ-маркет'},
 
         'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
         'Q1508234': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Safeway'},
@@ -338,6 +364,9 @@ def blacklist_of_unlinkable_entries():
         'Q4979810': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': "Bruster's Ice Cream"},
         'Q17020087': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'Marble Slab Creamery'},
         'Q24439154': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'Naturals'},
+        'Q584601': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'Baskin-Robbins'},
+        'Q17118857': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'La Michoacana'},
+        'Q584601': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'サーティワンアイスクリーム'},
 
         'Q4207246': {'prefix': 'brand:', 'expected_tags': {'shop': 'herbalist'}, 'name': 'Eu Yan Seng'},
  
@@ -345,6 +374,9 @@ def blacklist_of_unlinkable_entries():
         'Q17123688': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Hussel'},
         'Q61742027': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Красный пищевик'},
         'Q11307696': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'シャトレーゼ'},
+        'Q315068': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Bahlsen Outlet'},
+        'Q566814': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Storck Welt Outlet'},
+        'Q1290252': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Viba'},
 
         'Q80335': {'prefix': 'brand:', 'expected_tags': {'shop': 'chocolate'}, 'name': 'Leonidas'},
         'Q152822': {'prefix': 'brand:', 'expected_tags': {'shop': 'chocolate'}, 'name': 'Lindt'},
@@ -380,6 +412,10 @@ def blacklist_of_unlinkable_entries():
         'Q1191685': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'ファミリーマート'},
         'Q1191685': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': '全家'},
         'Q1143685': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'Cumberland Farms'},
+        'Q2940190': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'Carrefour Express'},
+        'Q1557223': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'Lawson'},
+        'Q11892046': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'Sale'},
+        'Q1557223': {'prefix': 'brand:', 'expected_tags': {'shop': 'convenience'}, 'name': 'ローソン'},
 
         'Q798298': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Backwerk'},
         'Q42825993': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Bäckerei Fuchs'},
@@ -387,6 +423,11 @@ def blacklist_of_unlinkable_entries():
         'Q16997024': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Insomnia Cookies'},
         'Q12323572': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Lagkagehuset'},
         'Q21061591': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Poundbakery'},
+        'Q1561751': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Bäckerei Junge'},
+        'Q2882405': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Banette'},
+        'Q15110332': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Emil Reimann'},
+        'Q15116031': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Kaisers Gute Backstube'},
+        'Q28549952': {'prefix': 'brand:', 'expected_tags': {'shop': 'bakery'}, 'name': 'Pappert'},
 
         'Q316004': {'prefix': 'brand:', 'expected_tags': {'shop': 'chemist'}, 'name': 'Rossmann'},
         'Q1958759': {'prefix': 'brand:', 'expected_tags': {'shop': 'chemist'}, 'name': 'Müller'},
@@ -506,6 +547,19 @@ def blacklist_of_unlinkable_entries():
         'Q6668462': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Riachuelo'},
         'Q4896542': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Best & Less'},
         'Q3228558': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Le Temps des Cerises'},
+        'Q1291650': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'das macht SiNN'},
+        'Q938773': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'DKNY'},
+        'Q1371030': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'ETERNA'},
+        'Q635484': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Giorgio Armani'},
+        'Q5647768': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Hanesbrands'},
+        'Q1911924': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Mavi'},
+        'Q19296579': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Modepark Röther'},
+        'Q1548951': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Moncler'},
+        'Q2042514': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'OVS'},
+        'Q7310506': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Reitmans'},
+        'Q3938666': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Roberto Cavalli'},
+        'Q649646': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Valentino'},
+        'Q696376': {'prefix': 'brand:', 'expected_tags': {'shop': 'clothes'}, 'name': 'Versace'},
 
         'Q1095857': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Clarks'},
         'Q664543': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Deichmann'},
@@ -515,6 +569,10 @@ def blacklist_of_unlinkable_entries():
         'Q3946053': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Salvatore Ferragamo'},
         'Q2800720': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Siemes Schuhcenter'},
         'Q688082': {'prefix': 'brand:', 'expected_tags': {'shop': 'shoes'}, 'name': 'Bata'},
+
+        'Q1869471': {'prefix': 'brand:', 'expected_tags': {'shop': 'fashion_accessories'}, 'name': 'Longchamp'},
+        'Q142691': {'prefix': 'brand:', 'expected_tags': {'shop': 'fashion_accessories'}, 'name': 'Montblanc'},
+        'Q1534581': {'prefix': 'brand:', 'expected_tags': {'shop': 'fashion_accessories'}, 'name': 'Porsche Design'},
 
         'Q2817899': {'prefix': 'brand:', 'expected_tags': {'shop': 'dry_cleaning'}, 'name': '5àsec'},
         'Q11579995': {'prefix': 'brand:', 'expected_tags': {'shop': 'dry_cleaning'}, 'name': '白洋舎'},
@@ -584,6 +642,7 @@ def blacklist_of_unlinkable_entries():
         
         'Q5874938': {'prefix': 'brand:', 'expected_tags': {'shop': 'craft'}, 'name': 'Hobby Lobby'},
         'Q22026341': {'prefix': 'brand:', 'expected_tags': {'shop': 'craft'}, 'name': 'Woodcraft'},
+        'Q890317': {'prefix': 'brand:', 'expected_tags': {'shop': 'craft'}, 'name': 'Boesner'},
 
         'Q7179258': {'prefix': 'brand:', 'expected_tags': {'shop': 'pet'}, 'name': 'Pets at Home'},
         'Q875796': {'prefix': 'brand:', 'expected_tags': {'shop': 'pet'}, 'name': 'Fressnapf'},
@@ -809,6 +868,24 @@ def blacklist_of_unlinkable_entries():
         'Q9165001': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank BPS'},
         'Q5648633': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Hanmi Bank'},
         'Q2859329': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'البنك العربي لتونس'},
+        'Q9598744': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'ABANCA'},
+        'Q806205': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banco di Sardegna'},
+        'Q4855964': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank Rakyat'},
+        'Q2607251': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'İşbank'},
+        'Q13674094': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Kerala Gramin Bank'},
+        'Q3312': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Piraeus Bank'},
+        'Q3046561': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Public Bank'},
+        'Q735261': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'RBC'},
+        'Q2044973': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'South Indian Bank'},
+        'Q1340361': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'State Bank of India'},
+        'Q7862447': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'TEB'},
+        'Q3312': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Τράπεζα Πειραιώς'},
+        'Q4397742': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'РГС Банк'},
+        'Q4855962': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'بانک پاسارگاد'},
+        'Q1527826': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'ธนาคารทหารไทย'},
+        'Q11281447': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'りそな銀行'},
+        'Q1071712': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '千葉銀行'},
+        'Q11673248': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '高雄銀行'},
         #'Q806950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque de France'}, # some are quite tricky
 
         'Q5141641': {'prefix': 'brand:', 'expected_tags': {'amenity': 'payment_terminal'}, 'name': 'Coinstar'},
@@ -901,6 +978,8 @@ def blacklist_of_unlinkable_entries():
         'Q1129847': {'prefix': 'brand:', 'expected_tags': {'shop': 'tyres'}, 'name': 'Cooper Tire & Rubber Company'},
         'Q163241': {'prefix': 'brand:', 'expected_tags': {'shop': 'tyres'}, 'name': 'Continental AG'},
         'Q1673875': {'prefix': 'brand:', 'expected_tags': {'shop': 'tyres'}, 'name': 'Vergölst'},
+        'Q179433': {'prefix': 'brand:', 'expected_tags': {'shop': 'tyres'}, 'name': 'Bridgestone'},
+        'Q19840890': {'prefix': 'brand:', 'expected_tags': {'shop': 'tyres'}, 'name': 'reifen.com'},
 
         'Q1035997': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Carglass'},
         'Q53268': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Toyota'},
@@ -930,6 +1009,8 @@ def blacklist_of_unlinkable_entries():
         'Q29714': {'prefix': 'brand:', 'expected_tags': {'shop': 'car'}, 'name': 'Infiniti'},
         'Q36008': {'prefix': 'brand:', 'expected_tags': {'shop': 'car'}, 'name': 'Mercedes-Benz'},
         'Q59187': {'prefix': 'brand:', 'expected_tags': {'shop': 'car'}, 'name': 'Vauxhall'},
+        'Q29803': {'prefix': 'brand:', 'expected_tags': {'shop': 'car'}, 'name': 'Isuzu'},
+        'Q35962': {'prefix': 'brand:', 'expected_tags': {'shop': 'car'}, 'name': 'Maserati'},
 
         'Q791136': {'prefix': 'brand:', 'expected_tags': {'amenity': 'car_rental'}, 'name': 'Avis'},
         'Q1543874': {'prefix': 'brand:', 'expected_tags': {'amenity': 'car_rental'}, 'name': 'Hertz'},
@@ -970,6 +1051,7 @@ def blacklist_of_unlinkable_entries():
 
         'Q5038192': {'prefix': 'brand:', 'expected_tags': {'shop': 'gift'}, 'name': 'Card Factory'},
         'Q5134299': {'prefix': 'brand:', 'expected_tags': {'shop': 'gift'}, 'name': 'Clintons'},
+        'Q4492609': {'prefix': 'brand:', 'expected_tags': {'shop': 'gift'}, 'name': 'Cracker Barrel'},
 
         'Q886177': {'prefix': 'brand:', 'expected_tags': {'shop': 'florist'}, 'name': 'Blumen Risse'},
 
@@ -1087,6 +1169,15 @@ def blacklist_of_unlinkable_entries():
         'Q37614': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Jollibee'},
         'Q3380773': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Marrybrown'},
         'Q15715284': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'TKK Fried Chicken'},
+        'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Burger King'},
+        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Бургер Кинг'},
+        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'バーガーキング'},
+        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '汉堡王'},
+        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '漢堡王'},
+        'Q1397976': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Fatburger'},
+        'Q2589409': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Sbarro'},
+        'Q10846129': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'The Halal Guys'},
+        'Q7941645': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Voodoo Donut'},
 
         'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Denny's"},
         'Q1185675': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'IHOP'},
@@ -1133,8 +1224,18 @@ def blacklist_of_unlinkable_entries():
         'Q10865579': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '三商巧福'},
         'Q11172707': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '鮮芋仙'},
         'Q699142': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '鼎泰豐'},
+        'Q48699908': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Côte Brasserie'},
+        'Q3116688': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Courtepaille'},
+        'Q4492609': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Cracker Barrel'},
+        'Q648898': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'House of Blues'},
+        'Q6858987': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Miller's Ale House"},
+        'Q99526964': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Ono Hawaiian BBQ'},
+        'Q5360181': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "P.F. Chang's"},
+        'Q11062214': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '广州酒家'},
+        'Q9012420': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '陶陶居'},
 
         'Q2533008': {'prefix': 'brand:', 'expected_tags': {'shop': 'deli'}, 'name': 'Vom Fass'},
+        'Q15911728': {'prefix': 'brand:', 'expected_tags': {'shop': 'deli'}, 'name': '周黑鸭'},
 
         'Q3461079': {'prefix': 'brand:', 'expected_tags': {'shop': 'pastry'}, 'name': 'Sadaharu Aoki'},
 
@@ -1175,6 +1276,9 @@ def blacklist_of_unlinkable_entries():
         'Q17047215': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Vitusapotek'},
         'Q11295397': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'カワチ薬品'},
         'Q11323075': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'ドラッグイレブン'},
+        'Q102174228': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Аптека доброго дня'},
+        'Q106424150': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Аптека Твоєї Родини'},
+        'Q842099': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': '同仁堂'},
         # local mapper disagrees, hibernated for now
         #'Q477222': {'prefix': 'brand:', 'expected_tags': {'shop': 'hearing_aids'}, 'name': 'Amplifon'},
 
@@ -1185,6 +1289,8 @@ def blacklist_of_unlinkable_entries():
         'Q10846977': {'prefix': 'brand:', 'expected_tags': {'leisure': 'adult_gaming_centre'}, 'name': 'ダイナム'},
         'Q11295831': {'prefix': 'brand:', 'expected_tags': {'leisure': 'adult_gaming_centre'}, 'name': 'ガイア'},
         'Q1905948': {'prefix': 'brand:', 'expected_tags': {'leisure': 'adult_gaming_centre'}, 'name': 'マルハン'},
+
+        'Q39738082': {'prefix': 'brand:', 'expected_tags': {'amenity': 'gambling'}, 'name': 'Mecca Bingo'},
 
         'Q5598967': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'Great Clips'},
         'Q5452622': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'First Choice Haircutters'},
@@ -1208,6 +1314,10 @@ def blacklist_of_unlinkable_entries():
         'Q3354448': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Optical Center'},
         'Q28730390': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Becker + Flöge'},
         'Q22671892': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Optiker Bode'},
+        'Q2231148': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Pearle'},
+        'Q2231148': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Pearle Vision'},
+        'Q10687541': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Synoptik'},
+        'Q11308974': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'ジンズ'},
 
         'Q17035733': {'prefix': 'brand:', 'expected_tags': {'shop': 'outdoor'}, 'name': 'Trespass'},
         'Q16246527': {'prefix': 'brand:', 'expected_tags': {'shop': 'outdoor'}, 'name': 'BCF'},
@@ -1297,6 +1407,7 @@ def blacklist_of_unlinkable_entries():
         'Q6943861': {'prefix': 'brand:', 'expected_tags': {'office': 'financial'}, 'name': 'Muthoot Finance'},
 
         'Q5343830': {'prefix': 'brand:', 'expected_tags': {'office': 'financial_advisor'}, 'name': 'Edward Jones'},
+        'Q1066028': {'prefix': 'brand:', 'expected_tags': {'office': 'financial_advisor'}, 'name': 'Charles Schwab'},
 
         'Q1054480': {'prefix': 'brand:', 'expected_tags': {'office': 'estate_agent'}, 'name': 'Century 21'},
         'Q1435638': {'prefix': 'brand:', 'expected_tags': {'office': 'estate_agent'}, 'name': 'Foncia'},
