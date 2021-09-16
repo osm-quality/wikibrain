@@ -612,7 +612,13 @@ class WikimediaLinkIssueDetector:
                     prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
                     )
 
-        title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
+        title_after_possible_redirects = article_name
+        try:
+            title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
+        except wikimedia_connection.TitleViolatesKnownLimits:
+            print("request for redirect target of <" + str(language_code) + "><" + str(article_name) + "> rejected as title was invalid")
+            print("hopefully it is caught elsewhere that title is invalid")
+
         is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
         if is_article_redirected:
             wikidata_id_from_redirect = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
