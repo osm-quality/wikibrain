@@ -1533,7 +1533,7 @@ def blacklist_of_unlinkable_entries():
         'Q161253': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Quercus palustris', 'name:pl': 'Dąb błotny'}},
         'Q25243': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q128887': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Jesion', 'genus:en': 'Ash', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-        'Q18674606': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jabłoń domowa', 'species': 'Malus domestic', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
+        'Q18674606': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jabłoń domowa', 'species': 'Malus domestic', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},        
         'Q161364': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'Red maple', 'species': 'Acer rubrum', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q156907': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jesion wyniosły', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
 
