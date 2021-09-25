@@ -114,6 +114,9 @@ class WikidataTests(unittest.TestCase):
     def test_tree_as_valid_primary_link(self):
         self.assert_linkability('Q6703503') # not an event
 
+    def test_sheltered_information_board_as_valid_primary_link(self):
+        self.assert_linkability('Q7075518') # not an event
+
     def test_wind_farm_as_valid_primary_link(self):
         self.assert_linkability('Q4102067') # not an event
 
@@ -286,6 +289,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_chapel_as_valid_primary_link(self):
         self.assert_linkability('Q4993989')
+
+    def test_specific_locomotive_as_valid_primary_link(self):
+        self.assert_linkability('Q28673829')
 
     def test_tram_yard_as_valid_primary_link(self):
         self.assert_linkability('Q9346796')
