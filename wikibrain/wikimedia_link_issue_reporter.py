@@ -618,6 +618,12 @@ class WikimediaLinkIssueDetector:
         except wikimedia_connection.TitleViolatesKnownLimits:
             print("request for redirect target of <" + str(language_code) + "><" + str(article_name) + "> rejected as title was invalid")
             print("hopefully it is caught elsewhere that title is invalid")
+            print("reconstructing wikipedia tag and reporting error")
+            return ErrorReport(
+                            error_id = "malformed wikipedia tag",
+                            error_message = "malformed wikipedia tag (" + language_code + ":" + article_name + ")",
+                            prerequisite = {'wikipedia': language_code + ":" + article_name },
+                            )
 
         is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
         if is_article_redirected:

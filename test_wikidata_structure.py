@@ -296,7 +296,7 @@ class WikidataTests(unittest.TestCase):
     def test_tram_yard_as_valid_primary_link(self):
         self.assert_linkability('Q9346796')
 
-    def test_exsiting_section_of_proposed_motorway_as_valid_primary_link(self):
+    def test_existing_section_of_proposed_motorway_as_valid_primary_link(self):
         # https://www.openstreetmap.org/way/414708185#map=16/52.0582/21.4617
         self.assert_linkability('Q68683422')
 
