@@ -1026,6 +1026,10 @@ class WikimediaLinkIssueDetector:
     def ignored_entries_in_wikidata_ontology(self):
         too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
 
+        # trademark is ignored as even hamlet can be trademarked
+        # see https://www.wikidata.org/wiki/Q1392479
+        too_abstract_or_wikidata_bugs.append("Q167270")
+
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         too_abstract_or_wikidata_bugs.append("Q12377751")
 
