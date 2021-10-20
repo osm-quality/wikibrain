@@ -57,6 +57,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_carrefour_as_invalid_primary_link(self):
         self.assert_unlinkability('Q217599')
 
+    def test_detecting_genus_of_plants_as_invalid_primary_link(self):
+        self.assert_unlinkability('4430978436')
+
     def test_detecting_cropp_as_invalid_primary_link(self):
         self.assert_unlinkability('Q9196793')
 
@@ -200,6 +203,14 @@ class WikidataTests(unittest.TestCase):
 
     def test_mural_as_valid_primary_link(self):
         self.assert_linkability('Q29351056')
+        self.assert_linkability('Q94279877')
+        
+    def test_ceramic_mural_as_valid_primary_link(self):
+        self.assert_linkability('Q75320653')
+
+    def test_trademark_as_valid_primary_link(self):
+        # trademrk added to ignored_entries_in_wikidata_ontology
+        self.assert_linkability('Q1392479') # everything can be trademarked, even hamlet and it does not make it an event
 
     def test_community_garden_as_valid_primary_link(self):
         self.assert_linkability('Q49493599')
