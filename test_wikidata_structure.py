@@ -58,7 +58,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q217599')
 
     def test_detecting_genus_of_plants_as_invalid_primary_link(self):
-        self.assert_unlinkability('4430978436')
+        self.assert_unlinkability('Q4262384')
 
     def test_detecting_cropp_as_invalid_primary_link(self):
         self.assert_unlinkability('Q9196793')
