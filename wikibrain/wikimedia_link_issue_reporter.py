@@ -1001,7 +1001,7 @@ class WikimediaLinkIssueDetector:
     def output_debug_about_wikidata_item(self, wikidata_id):
         print("**********************")
         print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
-        print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id), self.ignored_entries_in_wikidata_ontology())
+        print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()))
         self.complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(wikidata_id, "tests")
         self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
 
