@@ -3,7 +3,7 @@ import osm_handling_config.global_config as osm_handling_config
 import os
 
 wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-kill = ["Q45621"] #NOT FLUSHED YET!
+kill = [""] #NOT FLUSHED YET!
 """
 # use like this:
 kill = ["Q45621"]
