@@ -162,6 +162,15 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
 
+    def test_that_linking_to_event_is_reported_based_on_wikidata(self):
+        wikidata_id = "Q635051"
+        location = None
+        object_description = "fake test object"
+        tags = {}
+        problem = self.issue_reporter().get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id, tags)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("should use a secondary wikipedia tag - linking to an event", problem.data()['error_id'])
+
     def test_effective_wikipedia(self):
         tags = {"wikidata": "Q52412"}
         wikipedia = self.issue_reporter().get_effective_wikipedia_tag(tags)

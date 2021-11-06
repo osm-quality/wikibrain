@@ -314,3 +314,5 @@ class WikidataTests(unittest.TestCase):
         # https://www.openstreetmap.org/way/414708185#map=16/52.0582/21.4617
         self.assert_linkability('Q68683422')
 
+    def test_sign_as_valid_primary_link(self):
+        self.assert_linkability('Q6800883')
