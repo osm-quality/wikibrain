@@ -316,3 +316,13 @@ class WikidataTests(unittest.TestCase):
 
     def test_sign_as_valid_primary_link(self):
         self.assert_linkability('Q6800883')
+
+    def test_chubby_male_child_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q5475472') # not an event
+
+    def test_geyser_as_valid_primary_link(self):
+        self.assert_linkability('Q1129264') # not an event
+
+    def test_specific_ship_as_valid_primary_link(self):
+        self.assert_linkability('Q7872265') # not an event
+
