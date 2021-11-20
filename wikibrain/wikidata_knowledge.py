@@ -1041,7 +1041,8 @@ def blacklist_of_unlinkable_entries():
         'Q11257202': {'prefix': 'brand:', 'expected_tags': {'shop': 'bicycle'}, 'name': 'サイクルベースあさひ'},
         'Q27225809': {'prefix': 'brand:', 'expected_tags': {'shop': 'bicycle'}, 'name': 'Zweirad-Center Stadler'},
 
-        'Q240262': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bicycle_rental'}, 'name': 'Århus Kommune'},
+        # valid for Århus Kommune itself
+        #'Q240262': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bicycle_rental'}, 'name': 'Århus Kommune'},
 
         'Q4826087': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_parts'}, 'name': 'AutoZone'},
         'Q4686051': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_parts'}, 'name': 'Advance Auto Parts'},
@@ -1571,6 +1572,8 @@ def blacklist_of_unlinkable_entries():
         'Q2989971': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
         'Q2989977': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
 
+        'Q157739': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus occidentalis', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved', 'species:pl': "Platan klonolistny"}},
+        'Q161374': {'prefix': 'genus:', 'expected_tags': {'species': 'Platanus acerifolia', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved', 'species:pl': "Platan klonolistny"}},
         'Q163025': {'prefix': 'genus:', 'expected_tags': {'genus': 'Platanus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q131113': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus': 'Ulmuss', 'genus:pl': 'Wiąz'}},
         'Q232558': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
