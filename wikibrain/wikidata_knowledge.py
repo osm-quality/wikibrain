@@ -53,6 +53,8 @@ def blacklist_of_unlinkable_entries():
         'Q6584353': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'ヤマト運輸'},
         'Q2470783': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_office'}, 'name': 'Укрпошта'},
 
+        'Q638098': {'prefix': 'brand:', 'expected_tags': {'amenity': 'post_depot'}, 'name': 'Royal Mail'},
+
         'Q474379': {'prefix': 'brand:', 'expected_tags': {'shop': 'copyshop'}, 'name': 'FedEx Office'},
 
         'Q7807658': {'prefix': 'brand:', 'expected_tags': {'shop': 'locksmith'}, 'name': 'Timpson'},
@@ -123,6 +125,7 @@ def blacklist_of_unlinkable_entries():
         
         'Q7191691': {'prefix': 'brand:', 'expected_tags': {'shop': 'interior_decoration'}, 'name': 'Pier 1 Imports'},
         'Q1017972': {'prefix': 'brand:', 'expected_tags': {'shop': 'interior_decoration'}, 'name': 'Butlers'},
+        'Q10730152': {'prefix': 'brand:', 'expected_tags': {'shop': 'interior_decoration'}, 'name': 'Søstrene Grene'},
 
         'Q17635288': {'prefix': 'brand:', 'expected_tags': {'shop': 'fabric'}, 'name': 'Mondial Tissus'},
         'Q17052417': {'prefix': 'brand:', 'expected_tags': {'shop': 'fabric'}, 'name': 'Lincraft'},
@@ -358,6 +361,10 @@ def blacklist_of_unlinkable_entries():
         'Q490371': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'E-Mart'},
         'Q1374674': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'EuroSpin'},
         'Q7431920': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Schnucks'},
+        'Q4940907': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'BIG Bompreço'},
+        'Q4906701': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Big Y'},
+        'Q48883773': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': "denn's Biomarkt"},
+        'Q1533254': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'MARKTKAUF'},
 
         'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
         'Q1508234': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Safeway'},
@@ -1457,6 +1464,7 @@ def blacklist_of_unlinkable_entries():
         'Q2231148': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Pearle Vision'},
         'Q10687541': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Synoptik'},
         'Q11308974': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'ジンズ'},
+        'Q27313697': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Mister Spex'},
 
         'Q17035733': {'prefix': 'brand:', 'expected_tags': {'shop': 'outdoor'}, 'name': 'Trespass'},
         'Q16246527': {'prefix': 'brand:', 'expected_tags': {'shop': 'outdoor'}, 'name': 'BCF'},
