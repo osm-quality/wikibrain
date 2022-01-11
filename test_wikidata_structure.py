@@ -19,6 +19,9 @@ class WikidataTests(unittest.TestCase):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable != None:
             self.dump_debug_into_stdout(type_id)
+            print("-------------")
+            print(is_unlinkable.data()['error_message'])
+            print(("-------------"))
         self.assertEqual(None, is_unlinkable)
 
     def assert_unlinkability(self, type_id):
