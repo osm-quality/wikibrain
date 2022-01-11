@@ -1,3 +1,11 @@
+#!/bin/bash
+set -Eeuo pipefail
+IFS=$'\\n\\t'
+err_report() {
+    echo "Error on line $1"
+}
+trap 'err_report $LINENO' ERR
+
 rm dist -rf
 python3 setup.py sdist bdist_wheel
 cd dist
