@@ -888,6 +888,8 @@ class WikimediaLinkIssueDetector:
             return {'what': 'a vehicle model or class', 'replacement': 'vehicle_type:'}
         if type_id == 'Q21502408':
             return {'what': 'a wikidata mandatory constraint', 'replacement': None}
+        if type_id == 'Q14659':
+            return {'what': 'a coat of arms', 'replacement': 'subject:'}
         return None
 
     def get_error_report_if_wikipedia_target_is_of_unusable_type(self, location, wikidata_id):
