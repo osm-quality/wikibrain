@@ -171,6 +171,9 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("should use a secondary wikipedia tag - linking to an event", problem.data()['error_id'])
 
+    def test_that_linking_aircraft_family_is_detected(self):
+        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q2101666')
+
     def test_effective_wikipedia(self):
         tags = {"wikidata": "Q52412"}
         wikipedia = self.issue_reporter().get_effective_wikipedia_tag(tags)
