@@ -13,6 +13,7 @@ def blacklist_of_unlinkable_entries():
         'Q3060526': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'Pathé Gaumont'},
         'Q5579784': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'Golden Screen Cinemas'},
         'Q17053599': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'MBO Cinemas'},
+        'Q321889': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'CineStar'},
 
         'Q4778364': {'prefix': 'brand:', 'expected_tags': {'leisure': 'fitness_centre'}, 'name': 'Anytime Fitness'},
         'Q21015663': {'prefix': 'brand:', 'expected_tags': {'leisure': 'fitness_centre'}, 'name': 'CorePower Yoga'},
@@ -217,6 +218,9 @@ def blacklist_of_unlinkable_entries():
         'Q7929200': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Vijay Sales'},
         'Q2381223': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'MediaMarkt'},
         'Q10350856': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Polishop'},
+        'Q16698091': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Ситилинк'},
+
+        'Q53685733': {'prefix': 'brand:', 'expected_tags': {'craft': 'electronics_repair'}, 'name': 'uBreakiFix'},
 
         'Q7330409': {'prefix': 'brand:', 'expected_tags': {'shop': 'hifi'}, 'name': 'Richer Sounds'},
 
@@ -638,6 +642,8 @@ def blacklist_of_unlinkable_entries():
 
         'Q2817899': {'prefix': 'brand:', 'expected_tags': {'shop': 'dry_cleaning'}, 'name': '5àsec'},
         'Q11579995': {'prefix': 'brand:', 'expected_tags': {'shop': 'dry_cleaning'}, 'name': '白洋舎'},
+
+        'Q7599966': {'prefix': 'brand:', 'expected_tags': {'craft': 'cleaning'}, 'name': 'Stanley Steemer'},
 
         'Q1880676': {'prefix': 'brand:', 'expected_tags': {'shop': 'cosmetics'}, 'name': "L'Occitane"},
         'Q3342592': {'prefix': 'brand:', 'expected_tags': {'shop': 'cosmetics'}, 'name': 'Nocibé'},
@@ -1078,6 +1084,7 @@ def blacklist_of_unlinkable_entries():
 
         # valid for Århus Kommune itself
         #'Q240262': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bicycle_rental'}, 'name': 'Århus Kommune'},
+        'Q3142157': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bicycle_rental'}, 'name': 'Bluebikes'},
 
         'Q4826087': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_parts'}, 'name': 'AutoZone'},
         'Q4686051': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_parts'}, 'name': 'Advance Auto Parts'},
@@ -1108,7 +1115,9 @@ def blacklist_of_unlinkable_entries():
         'Q3492969': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Speedy'},
         'Q958053': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Kwik Fit'},
         'Q3312613': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_repair'}, 'name': 'Midas'},
-        
+
+        'Q1939269': {'prefix': 'brand:', 'expected_tags': {'shop': 'repair'}, 'name': 'Mister Minit'},
+
         'Q1654122': {'prefix': 'brand:', 'expected_tags': {'amenity': 'car_wash'}, 'name': 'IMO Car Wash'},
 
         'Q40993': {'prefix': 'brand:', 'expected_tags': {'shop': 'car'}, 'name': 'Porsche'},
@@ -1142,7 +1151,8 @@ def blacklist_of_unlinkable_entries():
 
         'Q2463547': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vehicle_inspection'}, 'name': 'TÜV Nord'},
         'Q632391': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vehicle_inspection'}, 'name': 'TÜV Rheinland'},
-        
+        'Q383711': {'prefix': 'brand:', 'expected_tags': {'amenity': 'vehicle_inspection'}, 'name': 'DEKRA'},
+
         'Q10508136': {'prefix': 'brand:', 'expected_tags': {'shop': 'agrarian'}, 'name': 'Granngården'},
         'Q5442461': {'prefix': 'brand:', 'expected_tags': {'shop': 'agrarian'}, 'name': 'Felleskjøpet'},
 
@@ -1151,6 +1161,7 @@ def blacklist_of_unlinkable_entries():
 
         'Q459965': {'prefix': 'brand:', 'expected_tags': {'shop': 'trade'}, 'name': 'Caterpillar'},
         'Q1682043': {'prefix': 'brand:', 'expected_tags': {'shop': 'trade'}, 'name': 'Raab Karcher'},
+        'Q496302': {'prefix': 'brand:', 'expected_tags': {'shop': 'trade'}, 'name': 'John Deere'},
 
         'Q815787': {'prefix': 'brand:', 'expected_tags': {'shop': 'garden_centre'}, 'name': 'Bellaflora'},
         'Q1183029': {'prefix': 'brand:', 'expected_tags': {'shop': 'garden_centre'}, 'name': 'Dehner'},
@@ -1305,6 +1316,7 @@ def blacklist_of_unlinkable_entries():
         'Q2589409': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Sbarro'},
         'Q10846129': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'The Halal Guys'},
         'Q7941645': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Voodoo Donut'},
+        'Q5659832': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': "Harold's Chicken Shack"},
 
         'Q1189695': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Denny's"},
         'Q1185675': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'IHOP'},
@@ -1416,6 +1428,8 @@ def blacklist_of_unlinkable_entries():
 
         # local mapper disagrees, hibernated for now
         #'Q477222': {'prefix': 'brand:', 'expected_tags': {'shop': 'hearing_aids'}, 'name': 'Amplifon'},
+
+        'Q85743525': {'prefix': 'brand:', 'expected_tags': {'healthcare': 'physiotherapist'}, 'name': 'Athletico Physical Therapy'},
 
         'Q2553262': {'prefix': 'brand:', 'expected_tags': {'healthcare': 'counselling'}, 'name': 'Planned Parenthood'},
 
