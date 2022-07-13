@@ -332,3 +332,5 @@ class WikidataTests(unittest.TestCase):
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=1674915580&oldid=1674914531
         self.assert_linkability('Q7872265') # not an event
 
+    def test_tomb_as_valid_primary_link(self):
+        self.assert_linkability('Q3531157')
