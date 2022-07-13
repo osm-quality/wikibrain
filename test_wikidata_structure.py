@@ -142,6 +142,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q30') # not an event
 
     def test_aqueduct_as_valid_primary_link(self):
+        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=prev&oldid=1674919371
         self.assert_linkability('Q2859225') # not an event
 
     def test_public_housing_as_valid_primary_link(self):
@@ -327,5 +328,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q1129264') # not an event
 
     def test_specific_ship_as_valid_primary_link(self):
+        # https://www.wikidata.org/wiki/Wikidata:Project_chat#USS_Niagara_museum_ship_is_classified_as_%22group_of_humans%22
+        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=1674915580&oldid=1674914531
         self.assert_linkability('Q7872265') # not an event
 
