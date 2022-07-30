@@ -1015,16 +1015,27 @@ class WikimediaLinkIssueDetector:
         types = wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id)
         if types == None:
             print("this entry has no types")
+
+        any_banned = False
+        # if any values is banned and we need debug info, then
+        # assuming that only info about banned entries needs to be provided
+        # likely makes sense
+        for type_id in types:
+            found = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(type_id, self.ignored_entries_in_wikidata_ontology())
+            for entry in found:
+                ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(entry["id"])
+                if ban_reason != None:
+                    any_banned = True
         for type_id in types:
             print("------")
             print(description_of_source)
-            print("type " + type_id)
-            self.describe_unexpected_wikidata_type(type_id)
+            print("type " + "https://www.wikidata.org/wiki/" + type_id)
+            self.describe_unexpected_wikidata_type(type_id, show_only_banned=any_banned)
 
     def callback_reporting_banned_categories(self, category_id):
         ban_reson = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
         if ban_reson != None:
-            return "banned as it is " + ban_reson['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
+            return " banned as it is " + ban_reson['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
         return ""
 
     def ignored_entries_in_wikidata_ontology(self):
@@ -1069,15 +1080,43 @@ class WikimediaLinkIssueDetector:
        
         return too_abstract_or_wikidata_bugs
 
-    def describe_unexpected_wikidata_type(self, type_id):
+    def describe_unexpected_wikidata_type(self, type_id, show_only_banned):
         # print entire inheritance set
-
         show_debug = True
         callback = self.callback_reporting_banned_categories
-        parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.ignored_entries_in_wikidata_ontology(), show_debug, callback)
-        #for parent_category in parent_categories:
-        #    print("if type_id == '" + parent_category + "':")
-        #    print(wikidata_processing.wikidata_description(parent_category))
+
+        found = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(type_id, self.ignored_entries_in_wikidata_ontology())
+
+        if show_only_banned:
+            for index, entry in enumerate(found):
+                category_id = entry["id"]
+                depth = entry["depth"]
+                note = self.callback_reporting_banned_categories(category_id)
+                if self.banned_entry_in_this_branch(found, index):
+                    print(":"*depth + wikidata_processing.wikidata_description(category_id) + note)
+        else:
+            parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.ignored_entries_in_wikidata_ontology(), show_debug, callback)
+            #for parent_category in parent_categories:
+            #    print("if type_id == '" + parent_category + "':")
+            #    print(wikidata_processing.wikidata_description(parent_category))
+
+    def banned_entry_in_this_branch(self, data, checked_position):
+        #print("00000000000000000000000000")
+        #print(self.get_reason_why_type_makes_object_invalid_primary_link("Q7048977"))
+        #print(checked_position, data[checked_position])
+        for index, id in enumerate(data, start=checked_position):
+            ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(data[index]["id"])
+            if ban_reason != None:
+                #print("returning True")
+                #print("00000000000000000000000000")
+                return True
+            if (index + 1) >= len(data):
+                #print("00000000000000000000000000")
+                return False
+            if data[index + 1]["depth"] <= data[checked_position]["depth"]:
+                #print(index, "+ 1", data[index + 1], "returning false")
+                #print("00000000000000000000000000")
+                return False
 
     def is_wikidata_type_id_recognised_as_OK(self, type_id):
         objects_mappable_in_OSM = [
