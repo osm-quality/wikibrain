@@ -1426,8 +1426,7 @@ def blacklist_of_unlinkable_entries():
         'Q65164556': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Farmácia São João'},
         'Q6818610': {'prefix': 'brand:', 'expected_tags': {'amenity': 'pharmacy'}, 'name': 'Mercury Drug'},
 
-        # local mapper disagrees, hibernated for now
-        #'Q477222': {'prefix': 'brand:', 'expected_tags': {'shop': 'hearing_aids'}, 'name': 'Amplifon'},
+        'Q477222': {'prefix': 'brand:', 'expected_tags': {'shop': 'hearing_aids'}, 'name': 'Amplifon'},
 
         'Q85743525': {'prefix': 'brand:', 'expected_tags': {'healthcare': 'physiotherapist'}, 'name': 'Athletico Physical Therapy'},
 
