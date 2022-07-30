@@ -890,6 +890,8 @@ class WikimediaLinkIssueDetector:
             return {'what': 'a wikidata mandatory constraint', 'replacement': None}
         if type_id == 'Q14659':
             return {'what': 'a coat of arms', 'replacement': 'subject:'}
+        if type_id == 'Q7048977':
+            return {'what': 'an object that exists outside physical reality', 'replacement': 'subject:'}
         return None
 
     def get_error_report_if_wikipedia_target_is_of_unusable_type(self, location, wikidata_id):
