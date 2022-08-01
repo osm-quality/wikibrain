@@ -1034,9 +1034,9 @@ class WikimediaLinkIssueDetector:
             self.describe_unexpected_wikidata_type(type_id, show_only_banned=any_banned)
 
     def callback_reporting_banned_categories(self, category_id):
-        ban_reson = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
-        if ban_reson != None:
-            return " banned as it is " + ban_reson['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
+        ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
+        if ban_reason != None:
+            return " banned as it is " + ban_reason['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
         return ""
 
     def ignored_entries_in_wikidata_ontology(self):
