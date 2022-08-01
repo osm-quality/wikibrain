@@ -1015,6 +1015,7 @@ class WikimediaLinkIssueDetector:
         types = wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id)
         if types == None:
             print("this entry has no types")
+            return
 
         any_banned = False
         # if any values is banned and we need debug info, then
