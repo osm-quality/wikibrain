@@ -1031,7 +1031,7 @@ class WikimediaLinkIssueDetector:
             print("------")
             print(description_of_source)
             print("type " + "https://www.wikidata.org/wiki/" + type_id)
-            self.describe_unexpected_wikidata_type(type_id, show_only_banned=any_banned)
+            self.describe_unexpected_wikidata_type(wikidata_id, type_id, show_only_banned=any_banned)
 
     def callback_reporting_banned_categories(self, category_id):
         ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
@@ -1078,33 +1078,61 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1676962494#canal_classified_as_%22non-physical_entity%22
         # https://www.wikidata.org/w/index.php?title=Wikidata:Requests_for_deletions&diff=1676964568&oldid=1676908466
         too_abstract_or_wikidata_bugs.append('Q1826691')
+
+        # proposed road https://www.wikidata.org/wiki/Q30106829
+        # skipping this as sadly some proposed roads are actually mapped in OSM :(
+        # and in this case there is no agreement to delete them :(
+        too_abstract_or_wikidata_bugs.append('Q30106829')
        
         return too_abstract_or_wikidata_bugs
 
-    def describe_unexpected_wikidata_type(self, type_id, show_only_banned):
+    def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
         # print entire inheritance set
         show_debug = True
         callback = self.callback_reporting_banned_categories
 
         found = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(type_id, self.ignored_entries_in_wikidata_ontology())
 
+        to_show = ""
         if show_only_banned:
             for index, entry in enumerate(found):
                 category_id = entry["id"]
                 depth = entry["depth"]
-                note = self.callback_reporting_banned_categories(category_id)
-                if self.banned_entry_in_this_branch(found, index):
+                if self.new_banned_entry_in_this_branch(found, index):
+                    note = self.callback_reporting_banned_categories(category_id)
                     print(":"*depth + wikidata_processing.wikidata_description(category_id) + note)
+                    
+                    #print(":"*depth + "{{Q|" + category_id + "}}")
+
+                    to_show += ":"*depth + "{{Q|" + category_id + "}}" + "\n"
+                    ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
+                    if ban_reason != None:
+                        header = "=== {{Q|" + object_id_where_it_is_present + "}} classified as " + ban_reason['what'] + " ===\n"
+                        with open("wikidata_report.txt", "a") as myfile:
+                            myfile.write(header + to_show + "\n\n")
         else:
             parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.ignored_entries_in_wikidata_ontology(), show_debug, callback)
             #for parent_category in parent_categories:
             #    print("if type_id == '" + parent_category + "':")
             #    print(wikidata_processing.wikidata_description(parent_category))
 
-    def banned_entry_in_this_branch(self, data, checked_position):
+    def new_banned_entry_in_this_branch(self, data, checked_position):
         #print("00000000000000000000000000")
         #print(self.get_reason_why_type_makes_object_invalid_primary_link("Q7048977"))
         #print(checked_position, data[checked_position])
+        index = checked_position - 1
+        relevant_level = data[checked_position]["depth"] - 1
+        # higher depth is not relevant as it is some other branch with a sgared parent
+        # it can be only lower than 1 - as depth increases by one
+        while index > 0:
+            if data[index]["depth"] == relevant_level:
+                relevant_level -= 1 # next level will be lower, again we skip branches with shared parent
+                ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(data[index]["id"])
+                if ban_reason != None:
+                    # one of direct parents/grandparents is already banned so not a new banned entry
+                    return False
+            index -= 1
+
         for index, id in enumerate(data, start=checked_position):
             ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(data[index]["id"])
             if ban_reason != None:
