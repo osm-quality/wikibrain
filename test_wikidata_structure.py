@@ -216,7 +216,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q75320653')
 
     def test_trademark_as_valid_primary_link(self):
-        # trademrk added to ignored_entries_in_wikidata_ontology
+        # trademark added to ignored_entries_in_wikidata_ontology to solve this
         self.assert_linkability('Q1392479') # everything can be trademarked, even hamlet and it does not make it an event
 
     def test_community_garden_as_valid_primary_link(self):
