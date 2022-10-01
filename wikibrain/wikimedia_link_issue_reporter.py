@@ -1,3 +1,4 @@
+import wikimedia_connection
 import wikimedia_connection.wikimedia_connection as wikimedia_connection
 import wikimedia_connection.wikidata_processing as wikidata_processing
 import geopy.distance

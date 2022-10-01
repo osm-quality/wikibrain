@@ -16,6 +16,7 @@ setuptools.setup(
     install_requires = [
         'geopy>=1.11.0',
         'nose>=1.3.7',
+        'wikimedia-connection>=0.0.2',
     ],
     classifiers=(
         "Programming Language :: Python :: 3",
