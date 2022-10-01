@@ -1185,6 +1185,10 @@ class WikimediaLinkIssueDetector:
         return False
 
     def wikidata_ids_of_countries_with_language(self, language_code):
+        if language_code == "jp":
+            return ['Q17']
+        if language_code == "sv":
+            return ['Q34']
         if language_code == "pl":
             return ['Q36']
         if language_code == "de":
