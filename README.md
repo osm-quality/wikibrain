@@ -9,3 +9,7 @@ It has a very unfortunate dependecies - sorry for that, pull requests improving 
 # Running tests
 
 ```nosetests3``` or ```python3 -m unittest```
+
+# Fixing Wikidata
+
+Search for `too_abstract_or_wikidata_bugs` and disable that to get more errors caused by Wikidata
