@@ -6,6 +6,10 @@ It has a very unfortunate dependecies - sorry for that, pull requests improving 
 
 - first you need to clone, modify and install as a python package [this thing](https://codeberg.org/matkoniecz/osm_handling_config) - pull request providing cache location in a better way (config file? environment variable?) is welcome
 
+Finally, install packages in a standard way (providing config and this should be the only steps, sorry):
+
+`pip3 install -r requirements.txt`
+
 # Running tests
 
 `python3 -m unittest`
