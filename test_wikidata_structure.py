@@ -336,6 +336,9 @@ class WikidataTests(unittest.TestCase):
     def test_tomb_as_valid_primary_link(self):
         self.assert_linkability('Q3531157')
 
+    def test_rock_cut_tomb_as_valid_primary_link(self):
+        self.assert_linkability('Q5952161')
+
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q113278632')
 
