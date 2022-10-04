@@ -2,6 +2,7 @@ import unittest
 from wikibrain import wikimedia_link_issue_reporter
 import wikimedia_connection.wikimedia_connection as wikimedia_connection
 import osm_handling_config.global_config as osm_handling_config
+import wikimedia_connection.wikidata_processing as wikidata_processing
 
 class WikidataTests(unittest.TestCase):
     def is_unlinkable_check(self, type_id):
@@ -337,3 +338,8 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q113278632')
+
+    def test_company_is_not_human(self):
+        for type_id in wikidata_processing.get_all_types_describing_wikidata_object("Q15832619", wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()):
+            if type_id == "Q5":
+                self.assertTrue(False)

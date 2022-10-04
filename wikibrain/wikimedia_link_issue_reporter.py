@@ -1040,7 +1040,8 @@ class WikimediaLinkIssueDetector:
             return " banned as it is " + ban_reason['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
         return ""
 
-    def ignored_entries_in_wikidata_ontology(self):
+    @staticmethod
+    def ignored_entries_in_wikidata_ontology():
         too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
 
         # https://www.wikidata.org/wiki/Talk:Q41554881#Problematic_description_and_classification
