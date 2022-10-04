@@ -8,7 +8,7 @@ It has a very unfortunate dependecies - sorry for that, pull requests improving 
 
 # Running tests
 
-```nosetests3``` or ```python3 -m unittest```
+`python3 -m unittest`
 
 # Fixing Wikidata
 
