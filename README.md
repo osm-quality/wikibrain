@@ -8,7 +8,7 @@ It has a very unfortunate dependecies - sorry for that, pull requests improving 
 
 Finally, install packages in a standard way (providing config and this should be the only steps, sorry):
 
-`pip3 install -r requirements.txt`
+`pip3 install wikibrain`
 
 # Running tests
 
