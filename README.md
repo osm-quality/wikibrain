@@ -18,8 +18,6 @@ cd wikibrain
 pip3 install -r requirements.txt
 ```
 
-But in either case https://github.com/matkoniecz/wikibrain/issues/1 remains unsolved.
-
 # Running tests
 
 `python3 -m unittest`
