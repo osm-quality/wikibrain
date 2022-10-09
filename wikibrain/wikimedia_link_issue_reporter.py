@@ -229,6 +229,20 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
+        if tags.get("information") == "board":
+            if tags.get("wikipedia") != None:
+                return ErrorReport(
+                    error_id = "information board with wikipedia tag, not subject:wikipedia",
+                    error_message = "information board topic must be tagged with subject:wikipedia tag - not with wikipedia tag",
+                    prerequisite = {'wikipedia': tags.get("wikipedia"), "information": tags.get("information")},
+                    )
+            if tags.get("wikidata") != None:
+                return ErrorReport(
+                    error_id = "information board with wikidata tag, not subject:wikidata",
+                    error_message = "information board topic must be tagged with subject:wikidata tag - not with wikipedia tag",
+                    prerequisite = {'wikidata': tags.get("wikidata"), "information": tags.get("information")},
+                    )
+
         something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, effective_wikidata_id, tags)
         if something_reportable != None:
             return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
