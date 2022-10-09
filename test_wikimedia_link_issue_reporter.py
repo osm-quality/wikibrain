@@ -205,5 +205,14 @@ class Tests(unittest.TestCase):
             self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
         self.assertEqual (None, primary_linkability_status)
 
+    def test_that_not_prefixes_are_respected(self):
+        # https://www.openstreetmap.org/way/165659335
+        tags = {"not:brand:wikidata": "Q177054", "brand:wikidata": "Q177054"}
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("wikipedia/wikidata type tag that is incorrect accoding to not:* tag", problem.data()['error_id'])
+
 if __name__ == '__main__':
     unittest.main()

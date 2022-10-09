@@ -242,6 +242,20 @@ class WikimediaLinkIssueDetector:
                     error_message = "information board topic must be tagged with subject:wikidata tag - not with wikipedia tag",
                     prerequisite = {'wikidata': tags.get("wikidata"), "information": tags.get("information")},
                     )
+        
+        for key in tags.keys():
+            if key.find("not:") == 0:
+                being_checked_key = key[4:]
+                if being_checked_key in tags:
+                    if tags[being_checked_key] == tags[key]:
+                        if "wikipedia" in key or "wikidata" in key:
+                            return ErrorReport(
+                                error_id = "wikipedia/wikidata type tag that is incorrect accoding to not:* tag",
+                                error_message = being_checked_key + "=" + tags.get(being_checked_key) +  " is present despite that " + key + "=" + tags[key] + "is also present - at least one of them is wrong",
+                                prerequisite = {being_checked_key: tags.get(being_checked_key), key: tags.get(key)},
+                                )
+                        else:
+                            print("not: key (not concerning wikipedia/wikidata) is being ignored in", object_description)
 
         something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, effective_wikidata_id, tags)
         if something_reportable != None:
