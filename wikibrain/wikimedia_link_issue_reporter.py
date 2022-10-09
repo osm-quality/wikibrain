@@ -245,7 +245,11 @@ class WikimediaLinkIssueDetector:
 
         something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, effective_wikidata_id, tags)
         if something_reportable != None:
-            return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
+            if something_reportable.error_id == "link to a list" and "#" in tags.get("wikipedia"):
+                pass
+                # not actually a real error, I think
+            else:
+                return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
         something_reportable = self.get_wikipedia_language_issues(object_description, tags, effective_wikipedia, effective_wikidata_id)
         if something_reportable != None:
