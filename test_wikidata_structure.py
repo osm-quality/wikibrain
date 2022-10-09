@@ -337,6 +337,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q3531157')
 
     def test_rock_cut_tomb_as_valid_primary_link(self):
+        # fixed in https://www.wikidata.org/w/index.php?title=Q1404229&diff=1746681007&oldid=1711659919
+        # that removed "rock-cut architecture" from https://www.wikidata.org/wiki/Q1404229
+        # as individual tombs are not "creation of structures, buildings, and sculptures by excavating solid rock"
         self.assert_linkability('Q5952161')
 
     def test_specific_locomotive_as_valid_primary_link(self):
