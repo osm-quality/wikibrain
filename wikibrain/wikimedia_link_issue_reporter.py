@@ -250,7 +250,7 @@ class WikimediaLinkIssueDetector:
                     if tags[being_checked_key] == tags[key]:
                         if "wikipedia" in key or "wikidata" in key:
                             return ErrorReport(
-                                error_id = "wikipedia/wikidata type tag that is incorrect accoding to not:* tag",
+                                error_id = "wikipedia/wikidata type tag that is incorrect according to not:* tag",
                                 error_message = being_checked_key + "=" + tags.get(being_checked_key) +  " is present despite that " + key + "=" + tags[key] + "is also present - at least one of them is wrong",
                                 prerequisite = {being_checked_key: tags.get(being_checked_key), key: tags.get(key)},
                                 )

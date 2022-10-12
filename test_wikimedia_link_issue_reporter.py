@@ -212,7 +212,7 @@ class Tests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("wikipedia/wikidata type tag that is incorrect accoding to not:* tag", problem.data()['error_id'])
+        self.assertEqual ("wikipedia/wikidata type tag that is incorrect according to not:* tag", problem.data()['error_id'])
 
 if __name__ == '__main__':
     unittest.main()
