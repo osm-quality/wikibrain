@@ -479,6 +479,9 @@ class WikimediaLinkIssueDetector:
 
                 language_code = wikimedia_connection.get_language_code_from_link(link)
                 article_name = wikimedia_connection.get_article_name_from_link(link)
+                if article_name == None or language_code == None:
+                    conflict_list.append("one of links (" + link + ") has unexpected invalid format")
+                    continue
                 try:
                     title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
                     is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
