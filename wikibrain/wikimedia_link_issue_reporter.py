@@ -108,9 +108,15 @@ class WikimediaLinkIssueDetector:
                                     prerequisite = {'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc")},
                                     )
                 wikipedia_expected = self.get_best_interwiki_link_by_id(tags.get("wikidata"))
+                all_languages = wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance()
+                if (self.languages_ordered_by_preference == []):
+                    raise Exception("WAT, simc found and languages_ordered_by_preference is unset? Polish was expected")
+                if (self.languages_ordered_by_preference + all_languages)[0] != "pl":
+                    print(self.languages_ordered_by_preference)
+                    raise Exception("WAT, simc found and object is not in Poland? WAT? If in Poland - then languages were set badly (is languages_ordered_by_preference set?)" + str(self.languages_ordered_by_preference))
                 if tags.get("wikipedia") != wikipedia_expected:
                     if wikipedia_expected != None:
-                        message = "new wikipedia tag <" + wikipedia_expected + " proposed based on matching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
+                        message = "new wikipedia tag " + wikipedia_expected + " proposed based on matching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
                         return ErrorReport(
                                         error_id = "wikipedia needs to be updated based on wikidata code and teryt:simc identifier",
                                         error_message = message,
