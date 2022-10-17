@@ -1124,11 +1124,6 @@ class WikimediaLinkIssueDetector:
         # "Commons gallery" - it detects Wikidata mistakes for no benefit. Ignoring it silently is preferable 
         too_abstract_or_wikidata_bugs.append('Q21167233')
 
-        # invalid value but kept with troll qualifier
-        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1676962494#canal_classified_as_%22non-physical_entity%22
-        # https://www.wikidata.org/w/index.php?title=Wikidata:Requests_for_deletions&diff=1676964568&oldid=1676908466
-        too_abstract_or_wikidata_bugs.append('Q1826691')
-
         # proposed road https://www.wikidata.org/wiki/Q30106829
         # skipping this as sadly some proposed roads are actually mapped in OSM :(
         # and in this case there is no agreement to delete them :(
