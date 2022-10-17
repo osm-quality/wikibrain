@@ -1107,6 +1107,13 @@ class WikimediaLinkIssueDetector:
         # see https://www.wikidata.org/wiki/Q1392479
         too_abstract_or_wikidata_bugs.append("Q167270")
 
+        # physical object can be cultural symbols
+        # https://www.wikidata.org/wiki/Q180376
+        too_abstract_or_wikidata_bugs.append("Q3139104")
+
+        # again, anything may be symbol of anything
+        too_abstract_or_wikidata_bugs.append("Q80071")
+
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         too_abstract_or_wikidata_bugs.append("Q12377751")
 
