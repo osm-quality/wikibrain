@@ -3,6 +3,11 @@ import osm_handling_config.global_config as osm_handling_config
 import os
 
 wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+
+forced_refresh = True
+forced_refresh = False
+wikimedia_connection.get_data_from_wikidata("en", "Santa Fe 769", forced_refresh)
+
 kill = [""] #NOT FLUSHED YET!
 """
 # use like this:
