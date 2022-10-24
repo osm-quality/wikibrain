@@ -1273,6 +1273,8 @@ class WikimediaLinkIssueDetector:
             netherlands = 'Q55'
             belgium = 'Q31' # one of three official
             return [netherlands, belgium]
+        if language_code == "ja": # japanese
+            return ['Q17']
         if language_code == "en":
             new_zealand = 'Q664'
             usa = 'Q30'
