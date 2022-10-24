@@ -1062,7 +1062,7 @@ class WikimediaLinkIssueDetector:
         print("https://www.wikidata.org/wiki/" + wikidata_id)
         types = wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id)
         if types == None:
-            print("this entry has no types")
+            print(wikidata_id, "entry has no types (may still have subclasses)")
             return
 
         any_banned = False
