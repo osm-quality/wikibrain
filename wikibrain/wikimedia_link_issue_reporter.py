@@ -882,8 +882,14 @@ class WikimediaLinkIssueDetector:
         if wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P279') != None:
             return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id) 
 
+    def wikidata_entries_classifying_entry(self, effective_wikidata_id):
+        parent_categories = wikidata_processing.get_recursive_all_subclass_of(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
+        for base_type_id in (parent_categories + [effective_wikidata_id]):
+            for type_id in wikidata_processing.get_all_types_describing_wikidata_object(base_type_id, self.ignored_entries_in_wikidata_ontology()):
+                yield type_id
+
     def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
-        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology()):
+        for type_id in self.wikidata_entries_classifying_entry(effective_wikidata_id):
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
             if potential_failure != None:
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
@@ -896,8 +902,8 @@ class WikimediaLinkIssueDetector:
         # TODO - also generate_webpage file must be updated
         if type_id == 'Q5':
             return {'what': 'a human', 'replacement': 'name:'}
-        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q729', 'Q5113', 'Q38829', 'Q55983715']:
-            return {'what': 'an animal or plant', 'replacement': None}
+        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q5113', 'Q38829', 'Q55983715']:
+            return {'what': 'an animal or plant (and not an individual one)', 'replacement': None}
         #valid for example for museums, parishes
         #if type_id == 'Q43229':
         #    return {'what': 'an organization', 'replacement': None}

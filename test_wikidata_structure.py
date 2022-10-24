@@ -359,3 +359,6 @@ class WikidataTests(unittest.TestCase):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object("Q15832619", wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()):
             if type_id == "Q5":
                 self.assertTrue(False)
+
+    def test_specific_animal_as_valid_primary_link(self):
+        self.assert_linkability('Q7082812')

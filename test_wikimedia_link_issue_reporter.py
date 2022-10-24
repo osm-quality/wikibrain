@@ -88,19 +88,25 @@ class Tests(unittest.TestCase):
                 continue
             count+=1
             is_animal = False
-            for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.issue_reporter().ignored_entries_in_wikidata_ontology()):
+            for type_id in self.issue_reporter().wikidata_entries_classifying_entry(wikidata_id):
                 potential_failure = self.issue_reporter().get_reason_why_type_makes_object_invalid_primary_link(type_id)
                 if potential_failure == None:
                     continue
-                if potential_failure['what'] != 'an animal or plant':
+                expected_error = 'an animal or plant (and not an individual one)'
+                if potential_failure['what'] != expected_error:
                     self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
-                    self.assertEqual(potential_failure['what'], 'an animal or plant')
+                    self.assertEqual(potential_failure['what'], expected_error)
                 is_animal = True
                 break
             if is_animal != True:
+                print()
+                print("18888888888888888888888")
                 print(wikidata_id, " not recognized as an animal!")
                 print("fix wikimedia_link_issue_reporter or fix wikidata and flush cache (wikimedia-connection-cache/wikidata_by_id/<wikidata_id>.wikidata_entity.txt)")
-                self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
+                print("58888888888888888888888")
+                for type_id in self.issue_reporter().wikidata_entries_classifying_entry(wikidata_id):
+                    potential_failure = self.issue_reporter().get_reason_why_type_makes_object_invalid_primary_link(type_id)
+                    print(type_id, potential_failure)
                 assert False
         self.assertNotEqual(count, 0)
 
