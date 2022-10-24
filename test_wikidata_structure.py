@@ -345,6 +345,16 @@ class WikidataTests(unittest.TestCase):
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q113278632')
 
+        # actual data is causing problems...
+        tags = {'wikidata': 'Q113278632', 'wikipedia': 'en:Santa Fe 769'}
+        location = (0, 0)
+        object_type = "node"
+        object_description = "test"
+        report = wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        if report != None:
+            print(report.data())
+        self.assertEqual(None, report)
+
     def test_company_is_not_human(self):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object("Q15832619", wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()):
             if type_id == "Q5":
