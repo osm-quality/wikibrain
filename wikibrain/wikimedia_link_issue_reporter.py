@@ -1259,6 +1259,8 @@ class WikimediaLinkIssueDetector:
     def wikidata_ids_of_countries_with_language(self, language_code):
         if language_code == "jp":
             return ['Q17']
+        if language_code == "ua": # Ukrainian
+            return ['Q212'] # Ukraine
         if language_code == "sv":
             return ['Q34']
         if language_code == "pl":
@@ -1267,6 +1269,8 @@ class WikimediaLinkIssueDetector:
             return ['Q183']
         if language_code == "cz":
             return ['Q213']
+        if language_code == "lv":
+            return ['Q211']
         if language_code == "it":
             vatican = 'Q237'
             san_marino = 'Q238'
