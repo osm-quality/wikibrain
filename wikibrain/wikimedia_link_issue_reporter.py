@@ -683,6 +683,24 @@ class WikimediaLinkIssueDetector:
                     prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
                     proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia_link}}],
                     )
+
+        if wikidata_id_from_article != None:
+            for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id_from_article, self.ignored_entries_in_wikidata_ontology()):
+                if type_id == self.disambig_type_id():
+                    wikidata_is_clean = True
+                    for type_id in wikidata_processing.get_all_types_describing_wikidata_object(present_wikidata_id, self.ignored_entries_in_wikidata_ontology()):
+                        if type_id == self.disambig_type_id():
+                            wikidata_is_clean = False
+                    if wikidata_is_clean:
+                        new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
+                        return ErrorReport(
+                            error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not",
+                            error_general_intructions = common_message,
+                            error_message = message,
+                            prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
+                            proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia}}],
+                            )
+
         message = (base_message + " (" +
                    self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +
                    " wikidata id assigned to linked Wikipedia article)")
@@ -942,9 +960,12 @@ class WikimediaLinkIssueDetector:
             return {'what': 'an object that exists outside physical reality', 'replacement': 'subject:'}
         return None
 
+    def disambig_type_id(self):
+        return 'Q4167410'
+
     def get_error_report_if_wikipedia_target_is_of_unusable_type(self, location, wikidata_id):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()):
-            if type_id == 'Q4167410':
+            if type_id == self.disambig_type_id():
                 # TODO note that pageprops may be a better source that should be used
                 # it does not require wikidata entry
                 # wikidata entry may be wrong
