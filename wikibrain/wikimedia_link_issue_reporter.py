@@ -684,22 +684,32 @@ class WikimediaLinkIssueDetector:
                     proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia_link}}],
                     )
 
-        if wikidata_id_from_article != None:
-            for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id_from_article, self.ignored_entries_in_wikidata_ontology()):
-                if type_id == self.disambig_type_id():
-                    wikidata_is_clean = True
-                    for type_id in wikidata_processing.get_all_types_describing_wikidata_object(present_wikidata_id, self.ignored_entries_in_wikidata_ontology()):
-                        if type_id == self.disambig_type_id():
-                            wikidata_is_clean = False
-                    if wikidata_is_clean:
-                        new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
-                        return ErrorReport(
-                            error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not",
-                            error_general_intructions = common_message,
-                            error_message = message,
-                            prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
-                            proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia}}],
-                            )
+        if(self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_id_from_article, present_wikidata_id)):
+            new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
+            message = "article claims to point to disambig, wikidata does not. wikidata tag is likely to be correct, wikipedia tag almost certainly is not"
+            return ErrorReport(
+                error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not",
+                error_general_intructions = common_message,
+                error_message = message,
+                prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
+                proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia}}],
+                )
+        redirected = self.get_article_name_after_redirect(language_code, article_name)
+        if redirected != None:
+            link = language_code + ":" + article_name
+            language_code_redirected = wikimedia_connection.get_language_code_from_link(link)
+            article_name_redirected = wikimedia_connection.get_article_name_from_link(link)
+            wikidata_of_redirected = wikimedia_connection.get_wikidata_object_id_from_article(language_code_redirected, article_name_redirected, self.forced_refresh)
+            if(self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_of_redirected, present_wikidata_id)):
+                new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
+                message = "article claims to redirect to disambig, wikidata does not. wikidata tag is likely to be correct, wikipedia tag almost certainly is not"
+                return ErrorReport(
+                    error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not",
+                    error_general_intructions = common_message,
+                    error_message = message,
+                    prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
+                    proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia}}],
+                    )
 
         message = (base_message + " (" +
                    self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +
@@ -715,6 +725,18 @@ class WikimediaLinkIssueDetector:
             error_message = message,
             prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code + ":" + article_name},
             )
+
+    def is_first_wikidata_disambig_while_second_points_to_something_not_disambig(self, first, second):
+        if first == None:
+            return False
+        if first == None:
+            return False
+        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(second, self.ignored_entries_in_wikidata_ontology()):
+            if type_id == self.disambig_type_id():
+                return False
+        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(first, self.ignored_entries_in_wikidata_ontology()):
+            if type_id == self.disambig_type_id():
+                return True
 
     def compare_wikidata_ids(self, id1, id2):
         if id1 == None:
