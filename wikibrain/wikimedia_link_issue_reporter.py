@@ -81,6 +81,9 @@ class WikimediaLinkIssueDetector:
 
         something_reportable = self.critical_structural_issue_report(object_type, tags)
         if something_reportable != None:
+            if something_reportable.error_id == "wikipedia wikidata mismatch":
+                if "#" in tags.get("wikipedia"):
+                    something_reportable.error_id == "wikipedia wikidata mismatch, wikipedia links to section - high risk of false positive"
             return something_reportable
 
         something_reportable = self.freely_reorderable_issue_reports(object_description, location, tags)
@@ -265,7 +268,7 @@ class WikimediaLinkIssueDetector:
 
         something_reportable = self.get_problem_based_on_wikidata_and_osm_element(object_description, location, effective_wikidata_id, tags)
         if something_reportable != None:
-            if something_reportable.error_id == "link to a list" and "#" in tags.get("wikipedia"):
+            if something_reportable.error_id == "link to a list" and tags.get("wikipedia") != None and "#" in tags.get("wikipedia"):
                 pass
                 # not actually a real error, I think
             else:
