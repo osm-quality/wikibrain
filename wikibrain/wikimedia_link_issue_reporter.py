@@ -315,6 +315,8 @@ class WikimediaLinkIssueDetector:
                         )
 
     def check_is_wikidata_page_existing(self, present_wikidata_id):
+        if present_wikidata_id == None:
+            raise Exception("check_is_wikidata_page_existing null pointer exception")
         wikidata = wikimedia_connection.get_data_from_wikidata_by_id(present_wikidata_id)
         if wikidata != None:
             return None
