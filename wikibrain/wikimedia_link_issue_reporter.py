@@ -1298,6 +1298,8 @@ class WikimediaLinkIssueDetector:
             return ['Q213']
         if language_code == "lv":
             return ['Q211']
+        if language_code == "lt":
+            return ['Q37']
         if language_code == "it":
             vatican = 'Q237'
             san_marino = 'Q238'
