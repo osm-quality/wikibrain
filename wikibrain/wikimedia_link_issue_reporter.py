@@ -1293,18 +1293,21 @@ class WikimediaLinkIssueDetector:
         if language_code == "pl":
             return ['Q36']
         if language_code == "de":
-            return ['Q183']
+            return ['Q183', # Germany
+                'Q39', # Switzerland
+            ]
         if language_code == "cz":
             return ['Q213']
         if language_code == "lv":
             return ['Q211']
         if language_code == "lt":
             return ['Q37']
-        if language_code == "it":
+        if language_code == "it": # https://en.wikipedia.org/wiki/Italian_language
             vatican = 'Q237'
             san_marino = 'Q238'
             italy = 'Q38'
-            return [vatican, san_marino, italy]
+            switzerland = 'Q39'
+            return [vatican, san_marino, italy, switzerland]
         if language_code == "tr": # turkish
             return ['Q43']
         if language_code == "bg":
