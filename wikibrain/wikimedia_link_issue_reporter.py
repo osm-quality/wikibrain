@@ -143,14 +143,15 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        if tags.get("wikidata") != None:
-            something_reportable = self.check_is_wikidata_link_clearly_malformed(tags.get("wikidata"))
-            if something_reportable != None:
-                return something_reportable
+        for key in tags.keys():
+            if "wikidata" in key:
+                something_reportable = self.check_is_wikidata_link_clearly_malformed(key, tags.get(key))
+                if something_reportable != None:
+                    return something_reportable
 
-            something_reportable = self.check_is_wikidata_page_existing(tags.get("wikidata"))
-            if something_reportable != None:
-                return something_reportable
+                something_reportable = self.check_is_wikidata_page_existing(key, tags.get(key))
+                if something_reportable != None:
+                    return something_reportable
 
         if tags.get("wikipedia") != None:
             language_code = wikimedia_connection.get_language_code_from_link(tags.get("wikipedia"))
@@ -314,17 +315,20 @@ class WikimediaLinkIssueDetector:
                         extra_data = prefix
                         )
 
-    def check_is_wikidata_page_existing(self, present_wikidata_id):
+    def check_is_wikidata_page_existing(self, key, present_wikidata_id):
         if present_wikidata_id == None:
-            raise Exception("check_is_wikidata_page_existing null pointer exception")
+            raise Exception("check_is_wikidata_page_existing null pointer exception on " + key)
         wikidata = wikimedia_connection.get_data_from_wikidata_by_id(present_wikidata_id)
         if wikidata != None:
             return None
+        error_id_description = "wikidata tag links to 404"
+        if key != "wikidata":
+            error_id_description = "secondary wikidata tag links to 404"
         link = wikimedia_connection.wikidata_url(present_wikidata_id)
         return ErrorReport(
-                        error_id = "wikidata tag links to 404",
-                        error_message = "wikidata tag present on element points to not existing element (" + link + ")",
-                        prerequisite = {'wikidata': present_wikidata_id},
+                        error_id = error_id_description,
+                        error_message = key + " tag present on element points to not existing element (" + link + ")",
+                        prerequisite = {key: present_wikidata_id},
                         )
 
     def check_is_wikipedia_link_clearly_malformed(self, link):
@@ -337,12 +341,15 @@ class WikimediaLinkIssueDetector:
         else:
             return None
 
-    def check_is_wikidata_link_clearly_malformed(self, link):
+    def check_is_wikidata_link_clearly_malformed(self, key, link):
+        error_id_description = "malformed wikidata tag"
+        if key != "wikidata":
+            error_id_description = "malformed secondary wikidata tag"
         if self.is_wikidata_tag_clearly_broken(link):
             return ErrorReport(
-                            error_id = "malformed wikidata tag",
-                            error_message = "malformed wikidata tag (" + link + ")",
-                            prerequisite = {'wikidata': link},
+                            error_id = error_id_description,
+                            error_message = "malformed " + key + " tag (" + link + ")",
+                            prerequisite = {key: link},
                             )
         else:
             return None
