@@ -985,7 +985,7 @@ class WikimediaLinkIssueDetector:
         if type_id == 'Q202444':
             return {'what': 'a given name', 'replacement': 'name:'}
         if type_id in ['Q29048322', 'Q22999537', 'Q16335899', 'Q1875621', 'Q2000908']:
-            return {'what': 'a vehicle model or class', 'replacement': 'vehicle_type:'}
+            return {'what': 'a vehicle model or class', 'replacement': 'model:'}
         if type_id == 'Q21502408':
             return {'what': 'a wikidata mandatory constraint', 'replacement': None}
         if type_id == 'Q14659':
