@@ -17,6 +17,9 @@ class Tests(unittest.TestCase):
     def test_nonexisting_wikidata_is_not_malformed(self):
         self.assertEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikipedia': 'en:Oslo'}))
 
+    def test_multiple_wikidata_are_not_malformed(self):
+        self.assertEqual (False, self.issue_reporter().is_wikidata_tag_clearly_broken('Q8128437837382347234823472;Q38272487927'))
+
     def test_well_formed_nonexisting_wikidata(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': 'Q812843783738234723482347238272487927', 'wikipedia': 'en:Oslo'}))
 

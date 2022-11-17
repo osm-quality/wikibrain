@@ -767,6 +767,11 @@ class WikimediaLinkIssueDetector:
         return False
 
     def is_wikidata_tag_clearly_broken(self, link):
+        if ";" in link:
+            for part in link.split(";"):
+                if self.is_wikidata_tag_clearly_broken(part):
+                    return True
+            return False
         if link == None:
             return True
         if len(link) < 2:
