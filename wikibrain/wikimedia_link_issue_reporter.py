@@ -1296,63 +1296,680 @@ class WikimediaLinkIssueDetector:
         return False
 
     def wikidata_ids_of_countries_with_language(self, language_code):
-        if language_code == "jp":
-            return ['Q17']
-        if language_code == "ua": # Ukrainian
-            return ['Q212'] # Ukraine
-        if language_code == "sv":
-            return ['Q34']
-        if language_code == "pl":
-            return ['Q36']
-        if language_code == "de":
-            return ['Q183', # Germany
-                'Q39', # Switzerland
+        # data from Wikidata generated using generate_official_language_list.py in top level of repository
+        if language_code == "jiv": # Shuar
+            return ["Q736"] # Ecuador
+
+        if language_code == "gcl": # Grenadian Creole English
+            return ["Q769"] # Grenada
+
+        if language_code == "es": # Spanish
+            return [
+                "Q298" # Chile
+                "Q414" # Argentina
+                "Q419" # Peru
+                "Q717" # Venezuela
+                "Q733" # Paraguay
+                "Q736" # Ecuador
+                "Q739" # Colombia
+                "Q750" # Bolivia
+                "Q774" # Guatemala
+                "Q783" # Honduras
+                "Q786" # Dominican Republic
+                "Q792" # El Salvador
+                "Q983" # Equatorial Guinea
+                "Q29" # Spain
+                "Q77" # Uruguay
+                "Q96" # Mexico
+                "Q241" # Cuba
+                "Q800" # Costa Rica
+                "Q804" # Panama
+                "Q811" # Nicaragua
             ]
-        if language_code == "cz":
-            return ['Q213']
-        if language_code == "lv":
-            return ['Q211']
-        if language_code == "lt":
-            return ['Q37']
-        if language_code == "it": # https://en.wikipedia.org/wiki/Italian_language
-            vatican = 'Q237'
-            san_marino = 'Q238'
-            italy = 'Q38'
-            switzerland = 'Q39'
-            return [vatican, san_marino, italy, switzerland]
-        if language_code == "tr": # turkish
-            return ['Q43']
-        if language_code == "bg":
-            return ['Q219'] # Bulgaria
-        if language_code == "uk": # ukrainian
-            return ['Q212']
-        if language_code == "ro": # romanian
-            return ['Q218']
-        if language_code == "sr": # Serbian (if I made mistake here please do not assume that I have some specific position in inis regional conflict)
-            serbia = 'Q403'
-            montenegro = 'Q236'
-            bosnia_and_herzegovina = 'Q225'
-            return [serbia, montenegro, bosnia_and_herzegovina]
-        if language_code == "fa": # persian = farsi
-            iran = 'Q794'
-            afghanistan = 'Q889'
-            tajikistan = 'Q863'
-            return [iran, afghanistan, tajikistan]
-        if language_code == "nl":
-            netherlands = 'Q55'
-            belgium = 'Q31' # one of three official
-            return [netherlands, belgium]
-        if language_code == "ja": # japanese
-            return ['Q17']
-        if language_code == "en":
-            new_zealand = 'Q664'
-            usa = 'Q30'
-            uk = 'Q145'
-            australia = 'Q408'
-            canada = 'Q16'
-            ireland = 'Q22890'
-            # IDEA - add other areas from https://en.wikipedia.org/wiki/English_language
-            return [uk, usa, new_zealand, australia, canada, ireland]
+
+        if language_code == "hi": # Hindi
+            return ["Q668"] # India
+
+        if language_code == "en": # English
+            return [
+                "Q258" # South Africa
+                "Q334" # Singapore
+                "Q408" # Australia
+                "Q664" # New Zealand
+                "Q668" # India
+                "Q672" # Tuvalu
+                "Q678" # Tonga
+                "Q683" # Samoa
+                "Q685" # Solomon Islands
+                "Q686" # Vanuatu
+                "Q691" # Papua New Guinea
+                "Q695" # Palau
+                "Q697" # Nauru
+                "Q702" # Federated States of Micronesia
+                "Q709" # Marshall Islands
+                "Q710" # Kiribati
+                "Q712" # Fiji
+                "Q734" # Guyana
+                "Q754" # Trinidad and Tobago
+                "Q757" # Saint Vincent and the Grenadines
+                "Q760" # Saint Lucia
+                "Q763" # Saint Kitts and Nevis
+                "Q766" # Jamaica
+                "Q769" # Grenada
+                "Q778" # The Bahamas
+                "Q781" # Antigua and Barbuda
+                "Q784" # Dominica
+                "Q986" # Eritrea
+                "Q1005" # The Gambia
+                "Q1009" # Cameroon
+                "Q1013" # Lesotho
+                "Q1014" # Liberia
+                "Q1020" # Malawi
+                "Q1027" # Mauritius
+                "Q1030" # Namibia
+                "Q1033" # Nigeria
+                "Q1036" # Uganda
+                "Q1037" # Rwanda
+                "Q1042" # Seychelles
+                "Q1044" # Sierra Leone
+                "Q1049" # Sudan
+                "Q1050" # Eswatini
+                "Q16" # Canada
+                "Q27" # Republic of Ireland
+                "Q30" # United States of America
+                "Q114" # Kenya
+                "Q117" # Ghana
+                "Q145" # United Kingdom
+                "Q233" # Malta
+                "Q242" # Belize
+                "Q244" # Barbados
+                "Q967" # Burundi
+                "Q921" # Brunei
+                "Q924" # Tanzania
+                "Q928" # Philippines
+                "Q953" # Zambia
+                "Q954" # Zimbabwe
+                "Q958" # South Sudan
+                "Q963" # Botswana
+            ]
+
+        if language_code == "ay": # Aymara
+            return [
+                "Q419" # Peru
+                "Q750" # Bolivia
+            ]
+
+        if language_code == "pt": # Portuguese
+            return [
+                "Q574" # East Timor
+                "Q983" # Equatorial Guinea
+                "Q1007" # Guinea-Bissau
+                "Q1011" # Cape Verde
+                "Q1029" # Mozambique
+                "Q1039" # São Tomé and Príncipe
+                "Q45" # Portugal
+                "Q155" # Brazil
+                "Q916" # Angola
+                "Q824489" # Estado Novo
+            ]
+
+        if language_code == "qu": # Quechua
+            return [
+                "Q419" # Peru
+                "Q750" # Bolivia
+            ]
+
+        if language_code == "ja": # Japanese
+            return [
+                "Q695" # Palau
+                "Q17" # Japan
+            ]
+
+        if language_code == "ta": # Tamil
+            return [
+                "Q334" # Singapore
+                "Q854" # Sri Lanka
+            ]
+
+        if language_code == "nl": # Dutch
+            return [
+                "Q730" # Suriname
+                "Q29999" # Kingdom of the Netherlands
+                "Q31" # Belgium
+            ]
+
+        if language_code == "hy": # Armenian
+            return ["Q399"] # Armenia
+
+        if language_code == "fa": # Persian
+            return ["Q794"] # Iran
+
+        if language_code == "ko": # Korean
+            return [
+                "Q423" # North Korea
+                "Q884" # South Korea
+            ]
+
+        if language_code == "km": # Khmer
+            return ["Q424"] # Cambodia
+
+        if language_code == "ms": # Malay
+            return [
+                "Q334" # Singapore
+                "Q833" # Malaysia
+                "Q921" # Brunei
+            ]
+
+        if language_code == "mn": # Mongolian
+            return ["Q711"] # Mongolia
+
+        if language_code == "uz": # Uzbek
+            return [
+                "Q265" # Uzbekistan
+                "Q889" # Afghanistan
+            ]
+
+        if language_code == "sr": # Serbian
+            return [
+                "Q403" # Serbia
+                "Q225" # Bosnia and Herzegovina
+            ]
+
+        if language_code == "zu": # Zulu
+            return ["Q258"] # South Africa
+
+        if language_code == "xh": # Xhosa
+            return [
+                "Q258" # South Africa
+                "Q954" # Zimbabwe
+            ]
+
+        if language_code == "na": # Nauruan
+            return ["Q697"] # Nauru
+
+        if language_code == "ar": # Arabic
+            return [
+                "Q262" # Algeria
+                "Q398" # Bahrain
+                "Q657" # Chad
+                "Q977" # Djibouti
+                "Q986" # Eritrea
+                "Q1016" # Libya
+                "Q1025" # Mauritania
+                "Q1028" # Morocco
+                "Q1045" # Somalia
+                "Q1049" # Sudan
+                "Q79" # Egypt
+                "Q970" # Comoros
+                "Q796" # Iraq
+                "Q805" # Yemen
+                "Q810" # Jordan
+                "Q817" # Kuwait
+                "Q822" # Lebanon
+                "Q842" # Oman
+                "Q846" # Qatar
+                "Q851" # Saudi Arabia
+                "Q858" # Syria
+                "Q878" # United Arab Emirates
+                "Q889" # Afghanistan
+                "Q948" # Tunisia
+                "Q958" # South Sudan
+            ]
+
+        if language_code == "af": # Afrikaans
+            return ["Q258"] # South Africa
+
+        if language_code == "gil": # Gilbertese
+            return ["Q710"] # Kiribati
+
+        if language_code == "ve": # Venda
+            return [
+                "Q258" # South Africa
+                "Q954" # Zimbabwe
+            ]
+
+        if language_code == "fr": # French
+            return [
+                "Q657" # Chad
+                "Q686" # Vanuatu
+                "Q790" # Haiti
+                "Q971" # Republic of the Congo
+                "Q974" # Democratic Republic of the Congo
+                "Q977" # Djibouti
+                "Q983" # Equatorial Guinea
+                "Q1000" # Gabon
+                "Q1006" # Guinea
+                "Q1008" # Ivory Coast
+                "Q1009" # Cameroon
+                "Q1019" # Madagascar
+                "Q1027" # Mauritius
+                "Q1032" # Niger
+                "Q1037" # Rwanda
+                "Q1041" # Senegal
+                "Q1042" # Seychelles
+                "Q16" # Canada
+                "Q31" # Belgium
+                "Q32" # Luxembourg
+                "Q39" # Switzerland
+                "Q142" # France
+                "Q235" # Monaco
+                "Q965" # Burkina Faso
+                "Q967" # Burundi
+                "Q970" # Comoros
+                "Q912" # Mali
+                "Q929" # Central African Republic
+                "Q945" # Togo
+                "Q962" # Benin
+            ]
+
+        if language_code == "de": # German
+            return [
+                "Q347" # Liechtenstein
+                "Q31" # Belgium
+                "Q32" # Luxembourg
+                "Q39" # Switzerland
+                "Q40" # Austria
+                "Q183" # Germany
+            ]
+
+        if language_code == "fj": # Fijian
+            return ["Q712"] # Fiji
+
+        if language_code == "ht": # Haitian Creole
+            return ["Q790"] # Haiti
+
+        if language_code == "ho": # Hiri Motu
+            return ["Q691"] # Papua New Guinea
+
+        if language_code == "pau": # Palauan
+            return ["Q695"] # Palau
+
+        if language_code == "nso": # Northern Sotho
+            return ["Q258"] # South Africa
+
+        if language_code == "sm": # Samoan
+            return ["Q683"] # Samoa
+
+        if language_code == "ss": # Swazi
+            return [
+                "Q258" # South Africa
+                "Q1050" # Eswatini
+            ]
+
+        if language_code == "tvl": # Tuvaluan
+            return ["Q672"] # Tuvalu
+
+        if language_code == "to": # Tongan
+            return ["Q678"] # Tonga
+
+        if language_code == "tet": # Tetum
+            return ["Q574"] # East Timor
+
+        if language_code == "tn": # Tswana
+            return [
+                "Q258" # South Africa
+                "Q954" # Zimbabwe
+            ]
+
+        if language_code == "tpi": # Tok Pisin
+            return ["Q691"] # Papua New Guinea
+
+        if language_code == "ts": # Tsonga
+            return [
+                "Q258" # South Africa
+                "Q954" # Zimbabwe
+            ]
+
+        if language_code == "st": # Sesotho
+            return [
+                "Q258" # South Africa
+                "Q1013" # Lesotho
+                "Q954" # Zimbabwe
+            ]
+
+        if language_code == "bi": # Bislama
+            return ["Q686"] # Vanuatu
+
+        if language_code == "gn": # Guarani
+            return [
+                "Q733" # Paraguay
+                "Q750" # Bolivia
+            ]
+
+        if language_code == "mh": # Marshallese
+            return ["Q709"] # Marshall Islands
+
+        if language_code == "mi": # Māori
+            return ["Q664"] # New Zealand
+
+        if language_code == "nr": # Southern Ndebele
+            return ["Q258"] # South Africa
+
+        if language_code == "hif": # Fiji Hindi
+            return ["Q712"] # Fiji
+
+        if language_code == "zgh": # Standard Moroccan Berber
+            return ["Q1028"] # Morocco
+
+        if language_code == "sw": # Swahili
+            return [
+                "Q1036" # Uganda
+                "Q1037" # Rwanda
+                "Q114" # Kenya
+                "Q924" # Tanzania
+            ]
+
+        if language_code == "mg": # Malagasy
+            return ["Q1019"] # Madagascar
+
+        if language_code == "so": # Somali
+            return ["Q1045"] # Somalia
+
+        if language_code == "ny": # Chewa
+            return [
+                "Q1020" # Malawi
+                "Q954" # Zimbabwe
+            ]
+
+        if language_code == "rw": # Kinyarwanda
+            return ["Q1037"] # Rwanda
+
+        if language_code == "crs": # Seychellois Creole
+            return ["Q1042"] # Seychelles
+
+        if language_code == "ti": # Tigrinya
+            return ["Q986"] # Eritrea
+
+        if language_code == "wo": # Wolof
+            return ["Q1041"] # Senegal
+
+        if language_code == "pbp": # Badyara
+            return ["Q1041"] # Senegal
+
+        if language_code == "kri": # Krio
+            return ["Q1044"] # Sierra Leone
+
+        if language_code == "kea": # Cape Verdean Creole
+            return ["Q1011"] # Cape Verde
+
+        if language_code == "bjs": # Bajan Creole
+            return ["Q244"] # Barbados
+
+        if language_code == "tr": # Turkish
+            return [
+                "Q43" # Turkey
+                "Q229" # Cyprus
+            ]
+
+        if language_code == "is": # Icelandic
+            return ["Q189"] # Iceland
+
+        if language_code == "it": # Italian
+            return [
+                "Q38" # Italy
+                "Q39" # Switzerland
+                "Q238" # San Marino
+            ]
+
+        if language_code == "pl": # Polish
+            return ["Q36"] # Poland
+
+        if language_code == "fi": # Finnish
+            return ["Q33"] # Finland
+
+        if language_code == "ab": # Abkhaz
+            return ["Q230"] # Georgia
+
+        if language_code == "hr": # Croatian
+            return [
+                "Q224" # Croatia
+                "Q225" # Bosnia and Herzegovina
+            ]
+
+        if language_code == "ca": # Catalan
+            return ["Q228"] # Andorra
+
+        if language_code == "ru": # Russian
+            return [
+                "Q159" # Russia
+                "Q184" # Belarus
+                "Q232" # Kazakhstan
+                "Q813" # Kyrgyzstan
+                "Q863" # Tajikistan
+            ]
+
+        if language_code == "zh": # Chinese
+            return [
+                "Q148" # People's Republic of China
+                "Q865" # Taiwan
+            ]
+
+        if language_code == "ro": # Romanian
+            return [
+                "Q217" # Moldova
+                "Q218" # Romania
+            ]
+
+        if language_code == "bg": # Bulgarian
+            return ["Q219"] # Bulgaria
+
+        if language_code == "ka": # Georgian
+            return ["Q230"] # Georgia
+
+        if language_code == "sq": # Albanian
+            return [
+                "Q221" # North Macedonia
+                "Q222" # Albania
+            ]
+
+        if language_code == "uk": # Ukrainian
+            return ["Q212"] # Ukraine
+
+        if language_code == "cnr": # Montenegrin
+            return ["Q236"] # Montenegro
+
+        if language_code == "sv": # Swedish
+            return [
+                "Q33" # Finland
+                "Q34" # Sweden
+            ]
+
+        if language_code == "da": # Danish
+            return [
+                "Q35" # Denmark
+                "Q756617" # Kingdom of Denmark
+            ]
+
+        if language_code == "no": # Norwegian
+            return ["Q20"] # Norway
+
+        if language_code == "lb": # Luxembourgish
+            return ["Q32"] # Luxembourg
+
+        if language_code == "sk": # Slovak
+            return ["Q214"] # Slovakia
+
+        if language_code == "cs": # Czech
+            return ["Q213"] # Czech Republic
+
+        if language_code == "sl": # Slovene
+            return ["Q215"] # Slovenia
+
+        if language_code == "hu": # Hungarian
+            return ["Q28"] # Hungary
+
+        if language_code == "et": # Estonian
+            return ["Q191"] # Estonia
+
+        if language_code == "lv": # Latvian
+            return ["Q211"] # Latvia
+
+        if language_code == "lt": # Lithuanian
+            return ["Q37"] # Lithuania
+
+        if language_code == "be": # Belarusian
+            return ["Q184"] # Belarus
+
+        if language_code == "el": # Greek
+            return [
+                "Q41" # Greece
+                "Q229" # Cyprus
+                "Q229" # Cyprus
+            ]
+
+        if language_code == "ga": # Irish
+            return ["Q27"] # Republic of Ireland
+
+        if language_code == "mt": # Maltese
+            return ["Q233"] # Malta
+
+        if language_code == "id": # Indonesian
+            return ["Q252"] # Indonesia
+
+        if language_code == "kk": # Kazakh
+            return ["Q232"] # Kazakhstan
+
+        if language_code == "az": # Azerbaijani
+            return ["Q227"] # Azerbaijan
+
+        if language_code == "mk": # Macedonian
+            return ["Q221"] # North Macedonia
+
+        if language_code == "bs": # Bosnian
+            return ["Q225"] # Bosnia and Herzegovina
+
+        if language_code == "rm": # Romansh
+            return ["Q39"] # Switzerland
+
+        if language_code == "nah": # Nahuatl
+            return ["Q96"] # Mexico
+
+        if language_code == "mwl": # Mirandese
+            return ["Q45"] # Portugal
+
+        if language_code == "yua": # Yucatec Maya
+            return ["Q96"] # Mexico
+
+        if language_code == "nb": # Bokmål
+            return ["Q20"] # Norway
+
+        if language_code == "nn": # Nynorsk
+            return ["Q20"] # Norway
+
+        if language_code == "am": # Amharic
+            return ["Q115"] # Ethiopia
+
+        if language_code == "jv": # Javanese
+            return ["Q252"] # Indonesia
+
+        if language_code == "rn": # Kirundi
+            return ["Q967"] # Burundi
+
+        if language_code == "smi": # Sámi
+            return ["Q20"] # Norway
+
+        if language_code == "prs": # Dari
+            return ["Q889"] # Afghanistan
+
+        if language_code == "pwn": # Paiwan
+            return ["Q865"] # Taiwan
+
+        if language_code == "nmq": # Nambya
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "bwg": # Barwe
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "ur": # Urdu
+            return ["Q843"] # Pakistan
+
+        if language_code == "vi": # Vietnamese
+            return ["Q881"] # Vietnam
+
+        if language_code == "lo": # Lao
+            return ["Q819"] # Laos
+
+        if language_code == "th": # Thai
+            return ["Q869"] # Thailand
+
+        if language_code == "my": # Burmese
+            return ["Q836"] # Myanmar
+
+        if language_code == "ky": # Kyrgyz
+            return ["Q813"] # Kyrgyzstan
+
+        if language_code == "tg": # Tajik
+            return ["Q863"] # Tajikistan
+
+        if language_code == "tk": # Turkmen
+            return [
+                "Q874" # Turkmenistan
+                "Q889" # Afghanistan
+            ]
+
+        if language_code == "he": # Hebrew
+            return ["Q801"] # Israel
+
+        if language_code == "bn": # Bengali
+            return ["Q902"] # Bangladesh
+
+        if language_code == "si": # Sinhala
+            return ["Q854"] # Sri Lanka
+
+        if language_code == "ndc": # Ndau
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "fo": # Faroese
+            return ["Q756617"] # Kingdom of Denmark
+
+        if language_code == "kl": # Greenlandic
+            return ["Q756617"] # Kingdom of Denmark
+
+        if language_code == "dv": # Maldivian
+            return ["Q826"] # Maldives
+
+        if language_code == "bal": # Balochi
+            return ["Q889"] # Afghanistan
+
+        if language_code == "dz": # Dzongkha
+            return ["Q917"] # Bhutan
+
+        if language_code == "fil": # Filipino
+            return ["Q928"] # Philippines
+
+        if language_code == "khi": # Khoisan
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "kck": # Kalanga
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "ne": # Nepali
+            return ["Q837"] # Nepal
+
+        if language_code == "sg": # Sango
+            return ["Q929"] # Central African Republic
+
+        if language_code == "sn": # Shona
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "toi": # Tonga
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "ami": # Amis language
+            return ["Q865"] # Taiwan
+
+        if language_code == "nd": # Northern Ndebele
+            return ["Q954"] # Zimbabwe
+
+        if language_code == "ku": # Kurdish
+            return ["Q796"] # Iraq
+
+        if language_code == "map": # Austronesian
+            return ["Q865"] # Taiwan
+
+        if language_code == "ps": # Pashto
+            return ["Q889"] # Afghanistan
+
         assert False, "language code <" + language_code + "> without hardcoded list of matching countries"
 
     # unknown data, known to be completely inside -> not allowed, returns None
