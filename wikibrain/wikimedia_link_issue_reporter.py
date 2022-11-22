@@ -1305,26 +1305,26 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "es": # Spanish
             return [
-                "Q298" # Chile
-                "Q414" # Argentina
-                "Q419" # Peru
-                "Q717" # Venezuela
-                "Q733" # Paraguay
-                "Q736" # Ecuador
-                "Q739" # Colombia
-                "Q750" # Bolivia
-                "Q774" # Guatemala
-                "Q783" # Honduras
-                "Q786" # Dominican Republic
-                "Q792" # El Salvador
-                "Q983" # Equatorial Guinea
-                "Q29" # Spain
-                "Q77" # Uruguay
-                "Q96" # Mexico
-                "Q241" # Cuba
-                "Q800" # Costa Rica
-                "Q804" # Panama
-                "Q811" # Nicaragua
+                "Q298", # Chile
+                "Q414", # Argentina
+                "Q419", # Peru
+                "Q717", # Venezuela
+                "Q733", # Paraguay
+                "Q736", # Ecuador
+                "Q739", # Colombia
+                "Q750", # Bolivia
+                "Q774", # Guatemala
+                "Q783", # Honduras
+                "Q786", # Dominican Republic
+                "Q792", # El Salvador
+                "Q983", # Equatorial Guinea
+                "Q29", # Spain
+                "Q77", # Uruguay
+                "Q96", # Mexico
+                "Q241", # Cuba
+                "Q800", # Costa Rica
+                "Q804", # Panama
+                "Q811", # Nicaragua
             ]
 
         if language_code == "hi": # Hindi
@@ -1332,110 +1332,110 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "en": # English
             return [
-                "Q258" # South Africa
-                "Q334" # Singapore
-                "Q408" # Australia
-                "Q664" # New Zealand
-                "Q668" # India
-                "Q672" # Tuvalu
-                "Q678" # Tonga
-                "Q683" # Samoa
-                "Q685" # Solomon Islands
-                "Q686" # Vanuatu
-                "Q691" # Papua New Guinea
-                "Q695" # Palau
-                "Q697" # Nauru
-                "Q702" # Federated States of Micronesia
-                "Q709" # Marshall Islands
-                "Q710" # Kiribati
-                "Q712" # Fiji
-                "Q734" # Guyana
-                "Q754" # Trinidad and Tobago
-                "Q757" # Saint Vincent and the Grenadines
-                "Q760" # Saint Lucia
-                "Q763" # Saint Kitts and Nevis
-                "Q766" # Jamaica
-                "Q769" # Grenada
-                "Q778" # The Bahamas
-                "Q781" # Antigua and Barbuda
-                "Q784" # Dominica
-                "Q986" # Eritrea
-                "Q1005" # The Gambia
-                "Q1009" # Cameroon
-                "Q1013" # Lesotho
-                "Q1014" # Liberia
-                "Q1020" # Malawi
-                "Q1027" # Mauritius
-                "Q1030" # Namibia
-                "Q1033" # Nigeria
-                "Q1036" # Uganda
-                "Q1037" # Rwanda
-                "Q1042" # Seychelles
-                "Q1044" # Sierra Leone
-                "Q1049" # Sudan
-                "Q1050" # Eswatini
-                "Q16" # Canada
-                "Q27" # Republic of Ireland
-                "Q30" # United States of America
-                "Q114" # Kenya
-                "Q117" # Ghana
-                "Q145" # United Kingdom
-                "Q233" # Malta
-                "Q242" # Belize
-                "Q244" # Barbados
-                "Q967" # Burundi
-                "Q921" # Brunei
-                "Q924" # Tanzania
-                "Q928" # Philippines
-                "Q953" # Zambia
-                "Q954" # Zimbabwe
-                "Q958" # South Sudan
-                "Q963" # Botswana
+                "Q258", # South Africa
+                "Q334", # Singapore
+                "Q408", # Australia
+                "Q664", # New Zealand
+                "Q668", # India
+                "Q672", # Tuvalu
+                "Q678", # Tonga
+                "Q683", # Samoa
+                "Q685", # Solomon Islands
+                "Q686", # Vanuatu
+                "Q691", # Papua New Guinea
+                "Q695", # Palau
+                "Q697", # Nauru
+                "Q702", # Federated States of Micronesia
+                "Q709", # Marshall Islands
+                "Q710", # Kiribati
+                "Q712", # Fiji
+                "Q734", # Guyana
+                "Q754", # Trinidad and Tobago
+                "Q757", # Saint Vincent and the Grenadines
+                "Q760", # Saint Lucia
+                "Q763", # Saint Kitts and Nevis
+                "Q766", # Jamaica
+                "Q769", # Grenada
+                "Q778", # The Bahamas
+                "Q781", # Antigua and Barbuda
+                "Q784", # Dominica
+                "Q986", # Eritrea
+                "Q1005", # The Gambia
+                "Q1009", # Cameroon
+                "Q1013", # Lesotho
+                "Q1014", # Liberia
+                "Q1020", # Malawi
+                "Q1027", # Mauritius
+                "Q1030", # Namibia
+                "Q1033", # Nigeria
+                "Q1036", # Uganda
+                "Q1037", # Rwanda
+                "Q1042", # Seychelles
+                "Q1044", # Sierra Leone
+                "Q1049", # Sudan
+                "Q1050", # Eswatini
+                "Q16", # Canada
+                "Q27", # Republic of Ireland
+                "Q30", # United States of America
+                "Q114", # Kenya
+                "Q117", # Ghana
+                "Q145", # United Kingdom
+                "Q233", # Malta
+                "Q242", # Belize
+                "Q244", # Barbados
+                "Q967", # Burundi
+                "Q921", # Brunei
+                "Q924", # Tanzania
+                "Q928", # Philippines
+                "Q953", # Zambia
+                "Q954", # Zimbabwe
+                "Q958", # South Sudan
+                "Q963", # Botswana
             ]
 
         if language_code == "ay": # Aymara
             return [
-                "Q419" # Peru
-                "Q750" # Bolivia
+                "Q419", # Peru
+                "Q750", # Bolivia
             ]
 
         if language_code == "pt": # Portuguese
             return [
-                "Q574" # East Timor
-                "Q983" # Equatorial Guinea
-                "Q1007" # Guinea-Bissau
-                "Q1011" # Cape Verde
-                "Q1029" # Mozambique
-                "Q1039" # São Tomé and Príncipe
-                "Q45" # Portugal
-                "Q155" # Brazil
-                "Q916" # Angola
-                "Q824489" # Estado Novo
+                "Q574", # East Timor
+                "Q983", # Equatorial Guinea
+                "Q1007", # Guinea-Bissau
+                "Q1011", # Cape Verde
+                "Q1029", # Mozambique
+                "Q1039", # São Tomé and Príncipe
+                "Q45", # Portugal
+                "Q155", # Brazil
+                "Q916", # Angola
+                "Q824489", # Estado Novo
             ]
 
         if language_code == "qu": # Quechua
             return [
-                "Q419" # Peru
-                "Q750" # Bolivia
+                "Q419", # Peru
+                "Q750", # Bolivia
             ]
 
         if language_code == "ja": # Japanese
             return [
-                "Q695" # Palau
-                "Q17" # Japan
+                "Q695", # Palau
+                "Q17", # Japan
             ]
 
         if language_code == "ta": # Tamil
             return [
-                "Q334" # Singapore
-                "Q854" # Sri Lanka
+                "Q334", # Singapore
+                "Q854", # Sri Lanka
             ]
 
         if language_code == "nl": # Dutch
             return [
-                "Q730" # Suriname
-                "Q29999" # Kingdom of the Netherlands
-                "Q31" # Belgium
+                "Q730", # Suriname
+                "Q29999", # Kingdom of the Netherlands
+                "Q31", # Belgium
             ]
 
         if language_code == "hy": # Armenian
@@ -1446,8 +1446,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ko": # Korean
             return [
-                "Q423" # North Korea
-                "Q884" # South Korea
+                "Q423", # North Korea
+                "Q884", # South Korea
             ]
 
         if language_code == "km": # Khmer
@@ -1455,9 +1455,9 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ms": # Malay
             return [
-                "Q334" # Singapore
-                "Q833" # Malaysia
-                "Q921" # Brunei
+                "Q334", # Singapore
+                "Q833", # Malaysia
+                "Q921", # Brunei
             ]
 
         if language_code == "mn": # Mongolian
@@ -1465,14 +1465,14 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "uz": # Uzbek
             return [
-                "Q265" # Uzbekistan
-                "Q889" # Afghanistan
+                "Q265", # Uzbekistan
+                "Q889", # Afghanistan
             ]
 
         if language_code == "sr": # Serbian
             return [
-                "Q403" # Serbia
-                "Q225" # Bosnia and Herzegovina
+                "Q403", # Serbia
+                "Q225", # Bosnia and Herzegovina
             ]
 
         if language_code == "zu": # Zulu
@@ -1480,8 +1480,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "xh": # Xhosa
             return [
-                "Q258" # South Africa
-                "Q954" # Zimbabwe
+                "Q258", # South Africa
+                "Q954", # Zimbabwe
             ]
 
         if language_code == "na": # Nauruan
@@ -1489,31 +1489,31 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ar": # Arabic
             return [
-                "Q262" # Algeria
-                "Q398" # Bahrain
-                "Q657" # Chad
-                "Q977" # Djibouti
-                "Q986" # Eritrea
-                "Q1016" # Libya
-                "Q1025" # Mauritania
-                "Q1028" # Morocco
-                "Q1045" # Somalia
-                "Q1049" # Sudan
-                "Q79" # Egypt
-                "Q970" # Comoros
-                "Q796" # Iraq
-                "Q805" # Yemen
-                "Q810" # Jordan
-                "Q817" # Kuwait
-                "Q822" # Lebanon
-                "Q842" # Oman
-                "Q846" # Qatar
-                "Q851" # Saudi Arabia
-                "Q858" # Syria
-                "Q878" # United Arab Emirates
-                "Q889" # Afghanistan
-                "Q948" # Tunisia
-                "Q958" # South Sudan
+                "Q262", # Algeria
+                "Q398", # Bahrain
+                "Q657", # Chad
+                "Q977", # Djibouti
+                "Q986", # Eritrea
+                "Q1016", # Libya
+                "Q1025", # Mauritania
+                "Q1028", # Morocco
+                "Q1045", # Somalia
+                "Q1049", # Sudan
+                "Q79", # Egypt
+                "Q970", # Comoros
+                "Q796", # Iraq
+                "Q805", # Yemen
+                "Q810", # Jordan
+                "Q817", # Kuwait
+                "Q822", # Lebanon
+                "Q842", # Oman
+                "Q846", # Qatar
+                "Q851", # Saudi Arabia
+                "Q858", # Syria
+                "Q878", # United Arab Emirates
+                "Q889", # Afghanistan
+                "Q948", # Tunisia
+                "Q958", # South Sudan
             ]
 
         if language_code == "af": # Afrikaans
@@ -1524,52 +1524,52 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ve": # Venda
             return [
-                "Q258" # South Africa
-                "Q954" # Zimbabwe
+                "Q258", # South Africa
+                "Q954", # Zimbabwe
             ]
 
         if language_code == "fr": # French
             return [
-                "Q657" # Chad
-                "Q686" # Vanuatu
-                "Q790" # Haiti
-                "Q971" # Republic of the Congo
-                "Q974" # Democratic Republic of the Congo
-                "Q977" # Djibouti
-                "Q983" # Equatorial Guinea
-                "Q1000" # Gabon
-                "Q1006" # Guinea
-                "Q1008" # Ivory Coast
-                "Q1009" # Cameroon
-                "Q1019" # Madagascar
-                "Q1027" # Mauritius
-                "Q1032" # Niger
-                "Q1037" # Rwanda
-                "Q1041" # Senegal
-                "Q1042" # Seychelles
-                "Q16" # Canada
-                "Q31" # Belgium
-                "Q32" # Luxembourg
-                "Q39" # Switzerland
-                "Q142" # France
-                "Q235" # Monaco
-                "Q965" # Burkina Faso
-                "Q967" # Burundi
-                "Q970" # Comoros
-                "Q912" # Mali
-                "Q929" # Central African Republic
-                "Q945" # Togo
-                "Q962" # Benin
+                "Q657", # Chad
+                "Q686", # Vanuatu
+                "Q790", # Haiti
+                "Q971", # Republic of the Congo
+                "Q974", # Democratic Republic of the Congo
+                "Q977", # Djibouti
+                "Q983", # Equatorial Guinea
+                "Q1000", # Gabon
+                "Q1006", # Guinea
+                "Q1008", # Ivory Coast
+                "Q1009", # Cameroon
+                "Q1019", # Madagascar
+                "Q1027", # Mauritius
+                "Q1032", # Niger
+                "Q1037", # Rwanda
+                "Q1041", # Senegal
+                "Q1042", # Seychelles
+                "Q16", # Canada
+                "Q31", # Belgium
+                "Q32", # Luxembourg
+                "Q39", # Switzerland
+                "Q142", # France
+                "Q235", # Monaco
+                "Q965", # Burkina Faso
+                "Q967", # Burundi
+                "Q970", # Comoros
+                "Q912", # Mali
+                "Q929", # Central African Republic
+                "Q945", # Togo
+                "Q962", # Benin
             ]
 
         if language_code == "de": # German
             return [
-                "Q347" # Liechtenstein
-                "Q31" # Belgium
-                "Q32" # Luxembourg
-                "Q39" # Switzerland
-                "Q40" # Austria
-                "Q183" # Germany
+                "Q347", # Liechtenstein
+                "Q31", # Belgium
+                "Q32", # Luxembourg
+                "Q39", # Switzerland
+                "Q40", # Austria
+                "Q183", # Germany
             ]
 
         if language_code == "fj": # Fijian
@@ -1592,8 +1592,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ss": # Swazi
             return [
-                "Q258" # South Africa
-                "Q1050" # Eswatini
+                "Q258", # South Africa
+                "Q1050", # Eswatini
             ]
 
         if language_code == "tvl": # Tuvaluan
@@ -1607,8 +1607,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "tn": # Tswana
             return [
-                "Q258" # South Africa
-                "Q954" # Zimbabwe
+                "Q258", # South Africa
+                "Q954", # Zimbabwe
             ]
 
         if language_code == "tpi": # Tok Pisin
@@ -1616,15 +1616,15 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ts": # Tsonga
             return [
-                "Q258" # South Africa
-                "Q954" # Zimbabwe
+                "Q258", # South Africa
+                "Q954", # Zimbabwe
             ]
 
         if language_code == "st": # Sesotho
             return [
-                "Q258" # South Africa
-                "Q1013" # Lesotho
-                "Q954" # Zimbabwe
+                "Q258", # South Africa
+                "Q1013", # Lesotho
+                "Q954", # Zimbabwe
             ]
 
         if language_code == "bi": # Bislama
@@ -1632,8 +1632,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "gn": # Guarani
             return [
-                "Q733" # Paraguay
-                "Q750" # Bolivia
+                "Q733", # Paraguay
+                "Q750", # Bolivia
             ]
 
         if language_code == "mh": # Marshallese
@@ -1653,10 +1653,10 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "sw": # Swahili
             return [
-                "Q1036" # Uganda
-                "Q1037" # Rwanda
-                "Q114" # Kenya
-                "Q924" # Tanzania
+                "Q1036", # Uganda
+                "Q1037", # Rwanda
+                "Q114", # Kenya
+                "Q924", # Tanzania
             ]
 
         if language_code == "mg": # Malagasy
@@ -1667,8 +1667,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ny": # Chewa
             return [
-                "Q1020" # Malawi
-                "Q954" # Zimbabwe
+                "Q1020", # Malawi
+                "Q954", # Zimbabwe
             ]
 
         if language_code == "rw": # Kinyarwanda
@@ -1697,8 +1697,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "tr": # Turkish
             return [
-                "Q43" # Turkey
-                "Q229" # Cyprus
+                "Q43", # Turkey
+                "Q229", # Cyprus
             ]
 
         if language_code == "is": # Icelandic
@@ -1706,9 +1706,9 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "it": # Italian
             return [
-                "Q38" # Italy
-                "Q39" # Switzerland
-                "Q238" # San Marino
+                "Q38", # Italy
+                "Q39", # Switzerland
+                "Q238", # San Marino
             ]
 
         if language_code == "pl": # Polish
@@ -1722,8 +1722,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "hr": # Croatian
             return [
-                "Q224" # Croatia
-                "Q225" # Bosnia and Herzegovina
+                "Q224", # Croatia
+                "Q225", # Bosnia and Herzegovina
             ]
 
         if language_code == "ca": # Catalan
@@ -1731,23 +1731,23 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "ru": # Russian
             return [
-                "Q159" # Russia
-                "Q184" # Belarus
-                "Q232" # Kazakhstan
-                "Q813" # Kyrgyzstan
-                "Q863" # Tajikistan
+                "Q159", # Russia
+                "Q184", # Belarus
+                "Q232", # Kazakhstan
+                "Q813", # Kyrgyzstan
+                "Q863", # Tajikistan
             ]
 
         if language_code == "zh": # Chinese
             return [
-                "Q148" # People's Republic of China
-                "Q865" # Taiwan
+                "Q148", # People's Republic of China
+                "Q865", # Taiwan
             ]
 
         if language_code == "ro": # Romanian
             return [
-                "Q217" # Moldova
-                "Q218" # Romania
+                "Q217", # Moldova
+                "Q218", # Romania
             ]
 
         if language_code == "bg": # Bulgarian
@@ -1758,8 +1758,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "sq": # Albanian
             return [
-                "Q221" # North Macedonia
-                "Q222" # Albania
+                "Q221", # North Macedonia
+                "Q222", # Albania
             ]
 
         if language_code == "uk": # Ukrainian
@@ -1770,14 +1770,14 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "sv": # Swedish
             return [
-                "Q33" # Finland
-                "Q34" # Sweden
+                "Q33", # Finland
+                "Q34", # Sweden
             ]
 
         if language_code == "da": # Danish
             return [
-                "Q35" # Denmark
-                "Q756617" # Kingdom of Denmark
+                "Q35", # Denmark
+                "Q756617", # Kingdom of Denmark
             ]
 
         if language_code == "no": # Norwegian
@@ -1812,9 +1812,9 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "el": # Greek
             return [
-                "Q41" # Greece
-                "Q229" # Cyprus
-                "Q229" # Cyprus
+                "Q41", # Greece
+                "Q229", # Cyprus
+                "Q229", # Cyprus
             ]
 
         if language_code == "ga": # Irish
@@ -1903,8 +1903,8 @@ class WikimediaLinkIssueDetector:
 
         if language_code == "tk": # Turkmen
             return [
-                "Q874" # Turkmenistan
-                "Q889" # Afghanistan
+                "Q874", # Turkmenistan
+                "Q889", # Afghanistan
             ]
 
         if language_code == "he": # Hebrew

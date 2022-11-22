@@ -34,7 +34,7 @@ def main():
             for row in rows:
                 country_wikidata_where_language_is_official = row[5].replace("http://www.wikidata.org/entity/", "")
                 country_name_where_language_is_official = row[6]
-                returned += prefix + tab + tab + "\"" + country_wikidata_where_language_is_official + "\" # " + country_name_where_language_is_official + "\n"
+                returned += prefix + tab + tab + "\"" + country_wikidata_where_language_is_official + "\", # " + country_name_where_language_is_official + "\n"
             returned += prefix + tab + "]\n"
         else:
             country_wikidata_where_language_is_official = rows[0][5].replace("http://www.wikidata.org/entity/", "")
