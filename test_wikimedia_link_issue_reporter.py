@@ -57,6 +57,13 @@ class Tests(unittest.TestCase):
     def test_that_completely_broken_wikipedia_tag_detector_has_no_false_positives(self):
         self.assertEqual (False, self.issue_reporter().is_wikipedia_tag_clearly_broken("pl:smok"))
 
+    def test_be_tarask_unusual_lang_code_is_accepted_in_wikipedia_tag(self):
+        # https://www.openstreetmap.org/node/243011151 0 version 15
+        self.assertEqual (False, self.issue_reporter().is_wikipedia_tag_clearly_broken("be-tarask:Машніца (Менская вобласьць)"))
+
+    def test_be_tarask_unusual_lang_code_is_accepted_(self):
+        self.assertEqual (False, self.issue_reporter().is_language_code_clearly_broken("be-tarask"))
+
     def test_detector_of_old_style_wikipedia_links_accepts_valid(self):
         key = 'wikipedia:pl'
         self.assertEqual (True, self.issue_reporter().check_is_it_valid_key_for_old_style_wikipedia_tag(key))

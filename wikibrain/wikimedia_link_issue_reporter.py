@@ -799,11 +799,11 @@ class WikimediaLinkIssueDetector:
         #         broken language code "pl|"
         if language_code is None:
             return True
+        if language_code in wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance():
+            return False
         if language_code.__len__() > 3:
             return True
         if re.search("^[a-z]+\Z",language_code) == None:
-            return True
-        if language_code not in wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance():
             return True
         return False
 
