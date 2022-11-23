@@ -324,6 +324,12 @@ class WikimediaLinkIssueDetector:
         error_id_description = "wikidata tag links to 404"
         if key != "wikidata":
             error_id_description = "secondary wikidata tag links to 404"
+            if ";" in present_wikidata_id:
+                for part in present_wikidata_id.split(";"):
+                    returned = self.check_is_wikidata_page_existing(key, part)
+                    if returned != None:
+                        return returned
+                return None
         link = wikimedia_connection.wikidata_url(present_wikidata_id)
         return ErrorReport(
                         error_id = error_id_description,
