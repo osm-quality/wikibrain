@@ -2013,8 +2013,10 @@ class WikimediaLinkIssueDetector:
             country_name = wikidata_processing.get_wikidata_label(country_id, 'en')
             if country_name == None:
                 return "it is at least partially in country without known name on Wikidata (country_id=" + country_id + ")"
-            if country_id == 'Q7318':
-                print(object_description + " is tagged on wikidata as location in no longer existing " + country_name)
+            if country_id == 'Q7318': # Nazi Germany. Wikidata is being silly again
+                # not reporting or mentioning as this is not a Wikidata validator
+                # and there is enormous amount of ontology issues if anyone would care about them
+                # print(object_description + " is tagged on wikidata as location in no longer existing " + country_name)
                 return None
             return "it is at least partially in " + country_name
         return None
