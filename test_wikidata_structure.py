@@ -362,3 +362,8 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_animal_as_valid_primary_link(self):
         self.assert_linkability('Q7082812')
+
+    def test_weird_biography_that_is_actually_about_house(self):
+        # https://en.wikipedia.org/wiki/Edith_Macefield
+        # this pretends to be about human while it is about building
+        self.assert_linkability('Q5338613')
