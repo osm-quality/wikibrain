@@ -346,6 +346,12 @@ class WikimediaLinkIssueDetector:
                             )
         else:
             language_code = wikimedia_connection.get_language_code_from_link(link)
+            if language_code in wikipedia_knowledge.WikipediaKnowledge.wikipedia_language_code_redirects():
+                return ErrorReport(
+                                error_id = "wikipedia tag using redirecting language code",
+                                error_message = "language code (" + language_code + ") in wikipedia tag (" + link + ") points to redirecting language code, see https://en.wikipedia.org/wiki/List_of_Wikipedias#Redirects",
+                                prerequisite = {'wikipedia': link},
+                                )
             if language_code not in wikimedia_connection.interwiki_language_codes():
                 return ErrorReport(
                                 error_id = "malformed wikipedia tag - nonexisting language code",
@@ -813,6 +819,8 @@ class WikimediaLinkIssueDetector:
         if language_code is None:
             return True
         if language_code in wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance():
+            return False
+        if language_code in wikipedia_knowledge.WikipediaKnowledge.wikipedia_language_code_redirects():
             return False
         if language_code.__len__() > 3:
             return True

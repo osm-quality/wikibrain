@@ -1,5 +1,10 @@
 class WikipediaKnowledge:
     @staticmethod
+    def wikipedia_language_code_redirects():
+        # https://en.wikipedia.org/wiki/List_of_Wikipedias#Redirects
+        return ["be-x-old", "cz", "dk", "mo", "nan", "nb"]
+
+    @staticmethod
     def all_wikipedia_language_codes_order_by_importance():
         # list from https://meta.wikimedia.org/wiki/List_of_Wikipedias as of 2017-10-07
         # ordered by article count except some for extreme bot spam

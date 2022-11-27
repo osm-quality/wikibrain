@@ -61,8 +61,27 @@ class Tests(unittest.TestCase):
         # https://www.openstreetmap.org/node/243011151 0 version 15
         self.assertEqual (False, self.issue_reporter().is_wikipedia_tag_clearly_broken("be-tarask:Машніца (Менская вобласьць)"))
 
-    def test_be_tarask_unusual_lang_code_is_accepted_(self):
+    def test_be_tarask_unusual_lang_code_is_accepted(self):
         self.assertEqual (False, self.issue_reporter().is_language_code_clearly_broken("be-tarask"))
+
+    def test_be_tarask_unusual_lang_code_is_accepted_full_pass_test(self):
+        tags = {
+            "wikipedia": "be-tarask:Калілы",
+            "wikidata": "Q6496859",
+            "place": "hamlet",
+            "name": "Калілы",
+            }
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+
+    def test_be_x_old_unusual_lang_code_is_not_considered_as_utterly_broken_in_wikipedia_tag(self):
+        # https://www.openstreetmap.org/node/243011151 0 version 15
+        self.assertEqual (False, self.issue_reporter().is_wikipedia_tag_clearly_broken("be-x-old:Пятроўшчына (прадмесьце)"))
+
+    def test_be_tarask_unusual_lang_code_is_not_considered_as_utterly_broken(self):
+        self.assertEqual (False, self.issue_reporter().is_language_code_clearly_broken("be-x-old"))
 
     def test_detector_of_old_style_wikipedia_links_accepts_valid(self):
         key = 'wikipedia:pl'
