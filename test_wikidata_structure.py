@@ -369,3 +369,7 @@ class WikidataTests(unittest.TestCase):
         # https://en.wikipedia.org/wiki/Edith_Macefield
         # this pretends to be about human while it is about building
         self.assert_linkability('Q5338613')
+
+    def test_monastery_as_valid_primary_link(self):
+        self.assert_linkability('Q4508631')
+        self.assert_passing_all_tests('Q4508631', 'pl:Cziłter-Koba') # https://pl.wikipedia.org/wiki/Czi%C5%82ter-Koba
