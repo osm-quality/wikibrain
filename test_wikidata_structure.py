@@ -24,7 +24,21 @@ class WikidataTests(unittest.TestCase):
         wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().dump_base_types_of_object_in_stdout(type_id, 'tests')
         print()
         if is_unlinkable != None:
+            print("is_unlinkable.error_message")
             print(is_unlinkable.error_message)
+            if "is about an object that exists outside physical reality, so it is very unlikely to be correct" in is_unlinkable.error_message:
+                print()
+                print()
+                print()
+                print()
+                print("============================== title")
+                print("{{Q|" + type_id + "}} is object that exists outside physical reality, according to Wikidata ontology")
+                print()
+                print()
+                print()
+            print("is_unlinkable.data")
+            print(is_unlinkable.data())
+            #print(is_unlinkable.yaml_output())
 
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
