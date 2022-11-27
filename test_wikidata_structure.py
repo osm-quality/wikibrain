@@ -5,6 +5,16 @@ import osm_handling_config.global_config as osm_handling_config
 import wikimedia_connection.wikidata_processing as wikidata_processing
 
 class WikidataTests(unittest.TestCase):
+    def assert_passing_all_tests(self, wikidata, wikipedia):
+        tags = {'wikidata': wikidata, 'wikipedia': wikipedia}
+        location = (0, 0)
+        object_type = "node"
+        object_description = "test"
+        report = wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        if report != None:
+            print(report.data())
+        self.assertEqual(None, report)
+
     def is_unlinkable_check(self, type_id):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
@@ -344,16 +354,8 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q113278632')
+        self.assert_passing_all_tests('Q113278632', 'en:Santa Fe 769')
 
-        # actual data is causing problems...
-        tags = {'wikidata': 'Q113278632', 'wikipedia': 'en:Santa Fe 769'}
-        location = (0, 0)
-        object_type = "node"
-        object_description = "test"
-        report = wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
-        if report != None:
-            print(report.data())
-        self.assertEqual(None, report)
 
     def test_company_is_not_human(self):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object("Q15832619", wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()):
