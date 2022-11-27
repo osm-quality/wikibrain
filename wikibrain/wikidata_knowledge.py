@@ -4,6 +4,7 @@ def blacklisted_and_unfixable_ids():
         'Q3591778', # dew pond
         'Q17172602', # monumental cross
         'Q937114', # ghost bike https://www.wikidata.org/wiki/Q937114
+        'Q3993741', # https://www.openstreetmap.org/note/3453837
     ]
 
 def blacklist_of_unlinkable_entries():
