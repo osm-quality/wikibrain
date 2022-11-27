@@ -373,3 +373,7 @@ class WikidataTests(unittest.TestCase):
     def test_monastery_as_valid_primary_link(self):
         self.assert_linkability('Q4508631')
         self.assert_passing_all_tests('Q4508631', 'pl:Cziłter-Koba') # https://pl.wikipedia.org/wiki/Czi%C5%82ter-Koba
+
+    def test_detecting_weapon_model_as_invalid_primary_link(self):
+        # https://www.openstreetmap.org/node/3014280721
+        self.assert_unlinkability('Q266837')
