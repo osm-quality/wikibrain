@@ -1181,6 +1181,10 @@ class WikimediaLinkIssueDetector:
     def ignored_entries_in_wikidata_ontology():
         too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
 
+        # become broked in 2022-11-27, see 
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk%3AWikiProject_Ontology&type=revision&diff=1779873478&oldid=1778618241
+        too_abstract_or_wikidata_bugs.append("Q111414683")
+
         # https://www.wikidata.org/wiki/Talk:Q41554881#Problematic_description_and_classification
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1528309435#Geysers_are_classified_as_events._What_exactly_went_wrong?
         too_abstract_or_wikidata_bugs.append("Q41554881")
