@@ -401,11 +401,17 @@ class WikidataTests(unittest.TestCase):
     def test_pole_of_inaccessibility_as_valid_primary_link(self):
         # https://www.openstreetmap.org/node/3001893677
         self.assert_linkability('Q752003')
+        report = self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q752003')
+        if report != None:
+            self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', show_debug=True)
         self.assert_passing_all_tests('Q752003', 'en:Pole of inaccessibility')
 
-    def test_australian_administartive_boundary_as_valid_primary_link(self):
+    def test_australian_administrative_boundary_as_valid_primary_link(self):
         # https://www.openstreetmap.org/relation/7032873
         self.assert_linkability('Q3179144')
+        report = self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144')
+        if report != None:
+            self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', show_debug=True)
         self.assert_passing_all_tests('Q3179144', 'en:Unincorporated Far West Region')
 
     def test_pilgrimage_route_as_valid_primary_link(self):

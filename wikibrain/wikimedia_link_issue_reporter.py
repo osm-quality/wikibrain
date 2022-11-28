@@ -954,11 +954,16 @@ class WikimediaLinkIssueDetector:
         if property_error != None:
             return property_error
 
-    def get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(self, wikidata_id):
+    def get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(self, wikidata_id, show_debug=False):
         if wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P247') != None:
             return self.get_should_use_subject_error('a spacecraft', 'name:', wikidata_id)
         # https://www.wikidata.org/wiki/Property:P279 - subclass of
-        if wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P279') != None:
+        subclass_of = wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P279')
+        if subclass_of != None:
+            if show_debug:
+                for entry in subclass_of:
+                    subclass_of_wikidata = entry['mainsnak']['datavalue']['value']['id']
+                    print(wikidata_id, "subclass_of", subclass_of_wikidata)
             return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id) 
 
     def wikidata_entries_classifying_entry(self, effective_wikidata_id):
