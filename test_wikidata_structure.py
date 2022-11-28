@@ -5,23 +5,26 @@ import osm_handling_config.global_config as osm_handling_config
 import wikimedia_connection.wikidata_processing as wikidata_processing
 
 class WikidataTests(unittest.TestCase):
+    def detector(self):
+        return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
+
     def assert_passing_all_tests(self, wikidata, wikipedia):
         tags = {'wikidata': wikidata, 'wikipedia': wikipedia}
         location = (0, 0)
         object_type = "node"
         object_description = "test"
-        report = wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        report = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
         if report != None:
             print(report.data())
         self.assertEqual(None, report)
 
     def is_unlinkable_check(self, type_id):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
+        return self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
 
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
-        wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().dump_base_types_of_object_in_stdout(type_id, 'tests')
+        self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
         print()
         if is_unlinkable != None:
             print("is_unlinkable.error_message")
@@ -66,7 +69,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_rejects_links_to_spacecraft(self):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        self.assertNotEqual(None, wikimedia_link_issue_reporter.WikimediaLinkIssueDetector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q2513'))
+        self.assertNotEqual(None, self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q2513'))
 
     def test_reject_links_to_humans(self):
         self.assert_unlinkability('Q561127')
