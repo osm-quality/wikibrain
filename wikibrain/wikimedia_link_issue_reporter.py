@@ -898,6 +898,9 @@ class WikimediaLinkIssueDetector:
         if link == None:
             print("ops, no language code matched for " + wikidata_id)
             return []
+        return self.get_list_of_links_from_specific_page(link)
+
+    def get_list_of_links_from_specific_page(self, link):
         article_name = wikimedia_connection.get_article_name_from_link(link)
         language_code = wikimedia_connection.get_language_code_from_link(link)
         links_from_disambig_page = wikimedia_connection.get_from_wikipedia_api(language_code, "&prop=links", article_name)['links']
@@ -930,17 +933,24 @@ class WikimediaLinkIssueDetector:
             return " <no location data on wikidata>"
         return ' is ' + self.distance_in_km_to_string(distance) + " away"
 
-    def get_list_of_disambig_fixes(self, location, element_wikidata_id):
+    def get_list_of_disambig_fixes(self, target_location, element_wikidata_id):
         #TODO open all pages, merge duplicates using wikidata and list them as currently
-        returned = ""
         links = self.get_list_of_links_from_disambig(element_wikidata_id)
         if element_wikidata_id == None:
             return "page without wikidata element, unable to load link data. Please, create wikidata element (TODO: explain how it can be done)"
         if links == None:
             return "TODO improve language handling on foreign disambigs"
+        return self.string_with_list_of_distances_to_locations(target_location, links)
+        
+    def string_with_list_of_distances_to_locations(self, target_location, links):
+        """
+        links: list of dictionary entries, each with language_code and title
+        for example: [{'title': 'Candedo (Murça)', 'language_code': 'pt'}]
+        """
+        returned = ""
         for link in links:
             link_wikidata_id = wikimedia_connection.get_wikidata_object_id_from_article(link['language_code'], link['title'])
-            distance_description = self.get_distance_description_between_location_and_wikidata_id(location, link_wikidata_id)
+            distance_description = self.get_distance_description_between_location_and_wikidata_id(target_location, link_wikidata_id)
             returned += link['title'] + distance_description + "\n"
         return returned
 
