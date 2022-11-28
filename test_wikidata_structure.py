@@ -391,3 +391,28 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_weapon_model_as_invalid_primary_link(self):
         # https://www.openstreetmap.org/node/3014280721
         self.assert_unlinkability('Q266837')
+
+        # https://www.openstreetmap.org/node/1331944863
+        self.assert_unlinkability('Q7277047')
+
+    def test_pole_of_inaccessibility_as_valid_primary_link(self):
+        # https://www.openstreetmap.org/node/3001893677
+        self.assert_linkability('Q752003')
+        self.assert_passing_all_tests('Q752003', 'en:Pole of inaccessibility')
+
+    def test_australian_administartive_boundary_as_valid_primary_link(self):
+        # https://www.openstreetmap.org/relation/7032873
+        self.assert_linkability('Q3179144')
+        self.assert_passing_all_tests('Q3179144', 'en:Unincorporated Far West Region')
+
+    def test_pilgrimage_route_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q41150')
+
+    def test_fountain_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q822122')
+
+    def test_modern_artwork_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q64435838')

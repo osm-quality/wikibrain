@@ -14,6 +14,9 @@ class Tests(unittest.TestCase):
     def test_empty_wikidata_is_malformed(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': '', 'wikipedia': 'en:Oslo'}))
 
+    def test_malformed_secondary_wikidata_is_malformed(self):
+        self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'operator:wikidata': '#'}))
+
     def test_nonexisting_wikidata_is_not_malformed(self):
         self.assertEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikipedia': 'en:Oslo'}))
 
