@@ -193,6 +193,7 @@ class WikidataTests(unittest.TestCase):
  
     def test_botanical_garden_as_valid_primary_link(self):
         self.assert_linkability('Q589884')
+        self.assert_linkability('Q677516')
        
     def test_alley_as_valid_primary_link(self):
         self.assert_linkability('Q3413299')
@@ -239,7 +240,10 @@ class WikidataTests(unittest.TestCase):
     def test_mural_as_valid_primary_link(self):
         self.assert_linkability('Q29351056')
         self.assert_linkability('Q94279877')
-        
+
+    def test_sgraffito_mural_as_valid_primary_link(self):
+        self.assert_linkability('Q63149011')
+
     def test_ceramic_mural_as_valid_primary_link(self):
         self.assert_linkability('Q75320653')
 
@@ -287,6 +291,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_collosal_statue_as_valid_primary_link(self):
         self.assert_linkability('Q805442')
+
+    def test_statue_as_valid_primary_link(self):
+        self.assert_linkability('Q87720384')
 
     def test_air_force_academy_as_valid_primary_link(self):
         self.assert_linkability('Q2015914')
@@ -369,6 +376,9 @@ class WikidataTests(unittest.TestCase):
         # as individual tombs are not "creation of structures, buildings, and sculptures by excavating solid rock"
         self.assert_linkability('Q5952161')
 
+    def test_cave_church_as_valid_primary_link(self):
+        self.assert_linkability('Q26263282')
+
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q113278632')
         self.assert_passing_all_tests('Q113278632', 'en:Santa Fe 769')
@@ -425,3 +435,36 @@ class WikidataTests(unittest.TestCase):
     def test_modern_artwork_as_valid_primary_link(self):
         # not an event
         self.assert_linkability('Q64435838')
+
+    def test_river_source_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q47037286')
+
+    def test_old_house_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q31147655')
+
+    def test_ferry_route_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q926453')
+
+    def test_pastoral_lease_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q8293195')
+
+    def test_park_and_node_beach_as_valid_primary_link(self):
+        # not an event
+        self.assert_linkability('Q5619268')
+
+    def test_parish_as_valid_primary_link(self):
+        # organisations are linkable
+        self.assert_linkability('Q11808430')
+
+    def test_local_bank_as_valid_primary_link(self):
+        self.assert_linkability('Q9165022')
+
+    def test_specific_business_enteprise_as_valid_primary_link(self):
+        self.assert_linkability('Q4830453')
+
+    def test_murder_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q4468588')
