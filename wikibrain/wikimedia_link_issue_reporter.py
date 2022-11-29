@@ -1001,48 +1001,61 @@ class WikimediaLinkIssueDetector:
 
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
         # TODO - also generate_webpage file must be updated
-        if type_id == 'Q5':
-            return {'what': 'a human', 'replacement': 'name:'}
-        if type_id in ['Q18786396', 'Q16521', 'Q55983715', 'Q12045585', 'Q5113', 'Q38829', 'Q55983715']:
-            return {'what': 'an animal or plant (and not an individual one)', 'replacement': None}
-        #valid for example for museums, parishes
-        #if type_id == 'Q43229':
-        #    return {'what': 'an organization', 'replacement': None}
-        if type_id == 'Q1344':
-            return {'what': 'an opera', 'replacement': None}
-        if type_id == 'Q35127':
-            return {'what': 'a website', 'replacement': None}
-        if type_id == 'Q17320256':
-            return {'what': 'a physical process', 'replacement': None}
-        if type_id == 'Q1656682' or type_id == 'Q4026292' or type_id == 'Q3249551' or type_id == 'Q1190554':
-            return {'what': 'an event', 'replacement': None}
-        if type_id == 'Q5398426':
-            return {'what': 'a television series', 'replacement': None}
-        if type_id == 'Q3026787':
-            return {'what': 'a saying', 'replacement': None}
-        if type_id == 'Q18534542':
-            return {'what': 'a restaurant chain', 'replacement': 'brand:'}
-        #some local banks may fit - see https://www.openstreetmap.org/node/2598972915
-        #if type_id == 'Q22687':
-        #    return {'what': 'a bank', 'replacement': 'brand:'}
-        if type_id == 'Q507619':
-            return {'what': 'a chain store', 'replacement': 'brand:'}
-        # appears in constraints of coordinate property in Wikidata but not applicable to OSM
-        # pl:ArcelorMittal Poland Oddział w Krakowie may be linked
-        #if type_id == 'Q4830453':
-        #    return {'what': 'a business enterprise', 'replacement': 'brand:'}
-        if type_id == 'Q202444':
-            return {'what': 'a given name', 'replacement': 'name:'}
-        if type_id in ['Q15142894', 'Q2000908']:
-            return {'what': 'a weapon model or class', 'replacement': 'model:'}
-        if type_id in ['Q29048322', 'Q22999537', 'Q16335899', 'Q1875621']:
-            return {'what': 'a vehicle model or class', 'replacement': 'model:'}
-        if type_id == 'Q21502408':
-            return {'what': 'a wikidata mandatory constraint', 'replacement': None}
-        if type_id == 'Q14659':
-            return {'what': 'a coat of arms', 'replacement': 'subject:'}
-        if type_id == 'Q7048977':
-            return {'what': 'an object that exists outside physical reality', 'replacement': 'subject:'}
+        return self.invalid_types().get(type_id, None)
+
+    def invalid_types(self):
+        taxon = {'what': 'an animal or plant (and not an individual one)', 'replacement': None}
+        weapon = {'what': 'a weapon model or class', 'replacement': 'model:'}
+        vehicle = {'what': 'a vehicle model or class', 'replacement': 'model:'}
+        event = {'what': 'an event', 'replacement': None}
+        return {
+            'Q5': {'what': 'a human', 'replacement': 'name:'},
+            'Q18786396': taxon,
+            'Q16521': taxon,
+            'Q55983715': taxon,
+            'Q12045585': taxon,
+            'Q5113': taxon,
+            'Q38829': taxon,
+            'Q55983715': taxon,
+            'Q1344': {'what': 'an opera', 'replacement': None},
+            'Q35127': {'what': 'a website', 'replacement': None},
+            'Q17320256': {'what': 'a physical process', 'replacement': None},
+            'Q5398426': {'what': 'a television series', 'replacement': None},
+            'Q3026787': {'what': 'a saying', 'replacement': None},
+            'Q18534542': {'what': 'a restaurant chain', 'replacement': 'brand:'},
+            'Q507619': {'what': 'a chain store', 'replacement': 'brand:'},
+            'Q202444': {'what': 'a given name', 'replacement': 'name:'},
+            'Q2000908': weapon,
+            'Q15142894': weapon,
+            'Q29048322': vehicle,
+            'Q22999537': vehicle,
+            'Q16335899': vehicle,
+            'Q1875621': vehicle,
+            'Q21502408': {'what': 'a wikidata mandatory constraint', 'replacement': None},
+            'Q14659': {'what': 'a coat of arms', 'replacement': 'subject:'},
+            'Q7048977': {'what': 'an object that exists outside physical reality', 'replacement': 'subject:'},
+            'Q11038979': {'what': 'a cult', 'replacement': 'subject:'},
+            'Q17127659': {'what': 'a terrorist organisation', 'replacement': 'subject:'},
+            'Q1530022': {'what': 'a religious organisation', 'replacement': 'subject:'},
+            'Q11822042': {'what': 'a transport accident', 'replacement': 'subject:'},
+            'Q178561': {'what': 'a battle', 'replacement': 'subject:'},
+            'Q13418847': {'what': 'a historical event', 'replacement': 'subject:'},
+            'Q53706': {'what': 'a robbery', 'replacement': 'subject:'},
+            'Q83267': {'what': 'a crime', 'replacement': 'subject:'},
+            'Q1920219': {'what': 'a social issue', 'replacement': 'subject:'},
+            'Q885167': {'what': 'a television program', 'replacement': 'subject:'},
+            'Q60797': {'what': 'a sermon', 'replacement': 'subject:'},
+            'Q11424': {'what': 'a film', 'replacement': 'subject:'},
+            'Q1792379': {'what': 'an art genre', 'replacement': 'subject:'},
+            'Q2634583': {'what': 'a stampede', 'replacement': 'subject:'},
+            'Q3839081': {'what': 'a disaster', 'replacement': 'subject:'},
+            'Q431289': {'what': 'a brand', 'replacement': 'brand:'},
+            'Q7676551': {'what': 'a festival', 'replacement': 'brand:'},
+            'Q1656682': event,
+            'Q4026292': event,
+            'Q3249551': event,
+            'Q1190554': event,
+        }
         return None
 
     def disambig_type_id(self):

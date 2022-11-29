@@ -27,18 +27,19 @@ class WikidataTests(unittest.TestCase):
         self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
         print()
         if is_unlinkable != None:
-            print("is_unlinkable.error_message")
-            print(is_unlinkable.error_message)
-            if "is about an object that exists outside physical reality, so it is very unlikely to be correct" in is_unlinkable.error_message:
-                print()
-                print()
-                print()
-                print()
-                print("============================== title")
-                print("{{Q|" + type_id + "}} is object that exists outside physical reality, according to Wikidata ontology")
-                print()
-                print()
-                print()
+            #print("is_unlinkable.error_message")
+            #print(is_unlinkable.error_message)
+            print()
+            print()
+            print("============================== title")
+            invalid_groups = self.detector().invalid_types()
+            for key in invalid_groups:
+                possible_match = invalid_groups[key]["what"]
+                if "is about " + possible_match + ", so it is very unlikely to be correct" in is_unlinkable.error_message:
+                    print("{{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology")
+            print("--------------------------------------------")
+            print()
+            print()
             print("is_unlinkable.data")
             print(is_unlinkable.data())
             #print(is_unlinkable.yaml_output())
