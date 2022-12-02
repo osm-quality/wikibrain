@@ -1036,7 +1036,6 @@ class WikimediaLinkIssueDetector:
             'Q7048977': {'what': 'an object that exists outside physical reality', 'replacement': 'subject:'},
             'Q11038979': {'what': 'a cult', 'replacement': 'subject:'},
             'Q17127659': {'what': 'a terrorist organisation', 'replacement': 'subject:'},
-            'Q1530022': {'what': 'a religious organisation', 'replacement': 'subject:'},
             'Q11822042': {'what': 'a transport accident', 'replacement': 'subject:'},
             'Q178561': {'what': 'a battle', 'replacement': 'subject:'},
             'Q13418847': {'what': 'a historical event', 'replacement': 'subject:'},
