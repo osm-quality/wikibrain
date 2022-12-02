@@ -414,14 +414,6 @@ class WikidataTests(unittest.TestCase):
         # https://www.openstreetmap.org/node/1331944863
         self.assert_unlinkability('Q7277047')
 
-    def test_pole_of_inaccessibility_as_valid_primary_link(self):
-        # https://www.openstreetmap.org/node/3001893677
-        self.assert_linkability('Q752003')
-        report = self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q752003')
-        if report != None:
-            self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', show_debug=True)
-        self.assert_passing_all_tests('Q752003', 'en:Pole of inaccessibility')
-
     def test_australian_administrative_boundary_as_valid_primary_link(self):
         # https://www.openstreetmap.org/relation/7032873
         self.assert_linkability('Q3179144')
