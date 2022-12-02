@@ -1163,12 +1163,14 @@ class WikimediaLinkIssueDetector:
         return None
 
     def complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(self, wikidata_id, description_of_source):
+        raise Exception("deprecated - is_wikidata_type_id_recognised_as_OK should be removed as encouraging timewasting Wikidata editing")
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()):
             if self.is_wikidata_type_id_recognised_as_OK(type_id):
                 return None
         self.dump_base_types_of_object_in_stdout(wikidata_id, description_of_source)
 
     def output_debug_about_wikidata_item(self, wikidata_id):
+        raise Exception("deprecated - is_wikidata_type_id_recognised_as_OK should be removed as encouraging timewasting Wikidata editing")
         print("**********************")
         print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
         print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()))
@@ -1331,6 +1333,7 @@ class WikimediaLinkIssueDetector:
                 return False
 
     def is_wikidata_type_id_recognised_as_OK(self, type_id):
+        raise Exception("deprecated - is_wikidata_type_id_recognised_as_OK should be removed as encouraging timewasting Wikidata editing")
         objects_mappable_in_OSM = [
             {'wikidata': 'Q486972', 'label': 'human settlement'},
             {'wikidata': 'Q811979', 'label': 'designed structure'},
