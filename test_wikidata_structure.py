@@ -238,8 +238,13 @@ class WikidataTests(unittest.TestCase):
     def test_museum_as_valid_primary_link(self):
         self.assert_linkability('Q731126')
 
-    def test_mural_as_valid_primary_link(self):
+    def test_mural_as_valid_primary_link_testcase1(self):
+        self.assert_linkability('Q20103040')
+
+    def test_mural_as_valid_primary_link_testcase2(self):
         self.assert_linkability('Q29351056')
+
+    def test_mural_as_valid_primary_link_testcase3(self):
         self.assert_linkability('Q94279877')
 
     def test_sgraffito_mural_as_valid_primary_link(self):
@@ -469,3 +474,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_murder_as_invalid_primary_link(self):
         self.assert_unlinkability('Q4468588')
+
+    def test_circus_as_valid_primary_link(self):
+        self.assert_linkability('Q4453469')

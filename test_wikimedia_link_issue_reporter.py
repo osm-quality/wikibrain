@@ -244,6 +244,9 @@ class Tests(unittest.TestCase):
             self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
         self.assertEqual (None, primary_linkability_status)
 
+    def test_simplest_passing_case_for_why_object_is_allowed_to_have_foreign_language_label(self):
+        self.assertNotEqual (None, self.issue_reporter().why_object_is_allowed_to_have_foreign_language_label("dummy description", 'Q205547'))
+        
     def test_that_not_prefixes_are_respected(self):
         # https://www.openstreetmap.org/way/165659335
         tags = {"not:brand:wikidata": "Q177054", "brand:wikidata": "Q177054"}
