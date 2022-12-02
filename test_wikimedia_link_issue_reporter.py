@@ -29,10 +29,6 @@ class Tests(unittest.TestCase):
     def test_malformed_wikidata_crash(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': 'Q81927)', 'wikipedia': 'en:Oslo'}))
 
-    def test_complain_function(self):
-        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        self.issue_reporter().complain_in_stdout_if_wikidata_entry_not_of_known_safe_type('Q824359', "explanation")
-
     def test_description_of_distance_return_string(self):
         example_city_wikidata_id = 'Q31487'
         self.assertEqual(type(""), type(self.issue_reporter().get_distance_description_between_location_and_wikidata_id((50, 20), example_city_wikidata_id)))

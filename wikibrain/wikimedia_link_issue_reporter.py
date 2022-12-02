@@ -1162,19 +1162,10 @@ class WikimediaLinkIssueDetector:
 
         return None
 
-    def complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(self, wikidata_id, description_of_source):
-        raise Exception("deprecated - is_wikidata_type_id_recognised_as_OK should be removed as encouraging timewasting Wikidata editing")
-        for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()):
-            if self.is_wikidata_type_id_recognised_as_OK(type_id):
-                return None
-        self.dump_base_types_of_object_in_stdout(wikidata_id, description_of_source)
-
     def output_debug_about_wikidata_item(self, wikidata_id):
-        raise Exception("deprecated - is_wikidata_type_id_recognised_as_OK should be removed as encouraging timewasting Wikidata editing")
         print("**********************")
         print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
         print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()))
-        self.complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(wikidata_id, "tests")
         self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
 
     def dump_base_types_of_object_in_stdout(self, wikidata_id, description_of_source):
@@ -1331,44 +1322,6 @@ class WikimediaLinkIssueDetector:
                 #print(index, "+ 1", data[index + 1], "returning false")
                 #print("00000000000000000000000000")
                 return False
-
-    def is_wikidata_type_id_recognised_as_OK(self, type_id):
-        raise Exception("deprecated - is_wikidata_type_id_recognised_as_OK should be removed as encouraging timewasting Wikidata editing")
-        objects_mappable_in_OSM = [
-            {'wikidata': 'Q486972', 'label': 'human settlement'},
-            {'wikidata': 'Q811979', 'label': 'designed structure'},
-            {'wikidata': 'Q46831', 'label': 'mountain range - geographic area containing numerous geologically related mountains'},
-            {'wikidata': 'Q11776944', 'label': 'Megaregion'},
-            {'wikidata': 'Q31855', 'label': 'instytut badawczy'},
-            {'wikidata': 'Q34442', 'label': 'road'},
-            {'wikidata': 'Q2143825', 'label': 'walking path path for hiking in a natural environment'},
-            {'wikidata': 'Q11634', 'label': 'art of sculpture'},
-            {'wikidata': 'Q56061', 'label': 'administrative territorial entity - territorial entity for administration purposes, with or without its own local government'},
-            {'wikidata': 'Q473972', 'label': 'protected area'},
-            {'wikidata': 'Q4022', 'label': 'river'},
-            {'wikidata': 'Q22698', 'label': 'park'},
-            {'wikidata': 'Q11446', 'label': 'ship'},
-            {'wikidata': 'Q12876', 'label': 'tank'},
-            {'wikidata': 'Q57607', 'label': 'christmas market'},
-            {'wikidata': 'Q8502', 'label': 'mountain'},
-            {'wikidata': 'Q10862618', 'label': 'mountain saddle'},
-            {'wikidata': 'Q35509', 'label': 'cave'},
-            {'wikidata': 'Q23397', 'label': 'lake'},
-            {'wikidata': 'Q39816', 'label': 'valley'},
-            {'wikidata': 'Q179700', 'label': 'statue'},
-            # Quite generic ones
-            {'wikidata': 'Q271669', 'label': 'landform'},
-            {'wikidata': 'Q376799', 'label': 'transport infrastructure'},
-            {'wikidata': 'Q15324', 'label': 'body of water'},
-            {'wikidata': 'Q975783', 'label': 'land estate'},
-            {'wikidata': 'Q8205328', 'label': 'equipment (human-made physical object with a useful purpose)'},
-            {'wikidata': 'Q618123', 'label': 'geographical object'},
-            {'wikidata': 'Q43229', 'label': 'organization'},
-        ]
-        for mappable_type in objects_mappable_in_OSM:
-            if type_id == mappable_type['wikidata']:
-                return True
-        return False
 
     def wikidata_ids_of_countries_with_language(self, language_code):
         # data from Wikidata generated using generate_official_language_list.py in top level of repository
