@@ -1246,6 +1246,15 @@ class WikimediaLinkIssueDetector:
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         too_abstract_or_wikidata_bugs.append("Q12377751")
 
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
+        too_abstract_or_wikidata_bugs.append('Q13411064')
+
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#fruit_harvest_(Q63149011)_is_an_art_genre,_according_to_Wikidata_ontology
+        too_abstract_or_wikidata_bugs.append('Q471835')
+
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#Gunnison_Beach_(Q5619268)_is_an_event_because_it_is_a_nude_beach
+        too_abstract_or_wikidata_bugs.append('Q847935')
+
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
         too_abstract_or_wikidata_bugs.append('Q17362920')
