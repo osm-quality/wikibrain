@@ -341,7 +341,7 @@ class WikimediaLinkIssueDetector:
         if self.is_wikipedia_tag_clearly_broken(link):
             return ErrorReport(
                             error_id = "malformed wikipedia tag",
-                            error_message = "malformed wikipedia tag (" + link + ")",
+                            error_message = "malformed value in wikipedia tag (" + link + ")",
                             prerequisite = {'wikipedia': link},
                             )
         else:
@@ -354,7 +354,7 @@ class WikimediaLinkIssueDetector:
                                 )
             if language_code not in wikimedia_connection.interwiki_language_codes():
                 return ErrorReport(
-                                error_id = "malformed wikipedia tag - nonexisting language code",
+                                error_id = "malformed value in wikipedia tag - nonexisting language code",
                                 error_message = "language code (" + language_code + ") in wikipedia tag (" + link + ") points to nonexisting Wikipedia",
                                 prerequisite = {'wikipedia': link},
                                 )
@@ -363,11 +363,11 @@ class WikimediaLinkIssueDetector:
     def check_is_wikidata_link_clearly_malformed(self, key, link):
         error_id_description = "malformed wikidata tag"
         if key != "wikidata":
-            error_id_description = "malformed secondary wikidata tag"
+            error_id_description = "malformed value in secondary wikidata tag"
         if self.is_wikidata_tag_clearly_broken(link):
             return ErrorReport(
                             error_id = error_id_description,
-                            error_message = "malformed " + key + " tag (" + link + ")",
+                            error_message = "malformed value in " + key + " tag (" + link + ")",
                             prerequisite = {key: link},
                             )
         else:
