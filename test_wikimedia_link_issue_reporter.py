@@ -17,6 +17,16 @@ class Tests(unittest.TestCase):
     def test_malformed_secondary_wikidata_is_malformed(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'operator:wikidata': '#'}))
 
+    def test_allow_trailing_semicolon_with_multiple_elements(self):
+        # https://t.me/osmhr/17923
+        # https://www.openstreetmap.org/way/365519518
+        self.assertEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'buried:wikidata': 'Q12636988;Q988613;Q125654;Q3446366;Q1280010;Q1254204;Q6154837;Q1253890;Q1254973;Q1564945;Q1564896;Q1564308;Q1275600;Q11043751;Q12629841;Q12633385;Q3446999;Q3446505;Q3436888;Q12644887;Q640602;Q1565289;Q1564970;Q13566201;Q551371;'}))
+
+    def test_block_trailing_semicolon_with_single_element(self):
+        # https://t.me/osmhr/17923
+        # https://www.openstreetmap.org/way/365519518
+        self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'buried:wikidata': 'Q12636988;'}))
+
     def test_nonexisting_wikidata_is_not_malformed(self):
         self.assertEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikipedia': 'en:Oslo'}))
 
