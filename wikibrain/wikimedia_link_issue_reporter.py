@@ -1238,6 +1238,10 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/wiki/Q180376
         too_abstract_or_wikidata_bugs.append("Q3139104")
 
+        # ferry routes are not events
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782894312#Tramwaj_wodny_w_Bydgoszczy_(Q926453)_is_an_event,_according_to_Wikidata_ontology 
+        too_abstract_or_wikidata_bugs.append("Q18984099")
+
         # again, anything may be symbol of anything
         too_abstract_or_wikidata_bugs.append("Q80071")
 
@@ -1252,6 +1256,9 @@ class WikimediaLinkIssueDetector:
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#Gunnison_Beach_(Q5619268)_is_an_event_because_it_is_a_nude_beach
         too_abstract_or_wikidata_bugs.append('Q847935')
+
+        # otherwise is confused by https://www.wikidata.org/wiki/Q64124
+        too_abstract_or_wikidata_bugs.append('Q3321844')
 
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
