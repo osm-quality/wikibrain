@@ -461,9 +461,6 @@ class WikidataTests(unittest.TestCase):
     def test_local_bank_as_valid_primary_link(self):
         self.assert_linkability('Q9165022')
 
-    def test_specific_business_enteprise_as_valid_primary_link(self):
-        self.assert_linkability('Q4830453')
-
     def test_murder_as_invalid_primary_link(self):
         self.assert_unlinkability('Q4468588')
 
