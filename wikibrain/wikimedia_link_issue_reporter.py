@@ -1054,6 +1054,7 @@ class WikimediaLinkIssueDetector:
             'Q3839081': {'what': 'a disaster', 'replacement': 'subject:'},
             'Q431289': {'what': 'a brand', 'replacement': 'brand:'},
             'Q7676551': {'what': 'a festival', 'replacement': 'brand:'},
+            'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
             'Q1656682': event,
             'Q4026292': event,
             'Q3249551': event,
