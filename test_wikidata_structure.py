@@ -466,3 +466,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_circus_as_valid_primary_link(self):
         self.assert_linkability('Q4453469')
+
+    def test_bar_as_valid_primary_link(self):
+        self.assert_linkability('Q16910525')
+
+    def test_territory_as_valid_primary_link(self):
+        self.assert_linkability('25842885')
+
+    def test_district_with_specific_history_as_valid_primary_link(self):
+        self.assert_linkability('Q64124')
