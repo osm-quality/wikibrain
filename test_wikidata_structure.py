@@ -211,14 +211,20 @@ class WikidataTests(unittest.TestCase):
     def test_monument_as_valid_primary_link(self):
         self.assert_linkability('Q11823211')
 
+    def test_holocaust_memorial_monument_as_valid_primary_link(self):
+        self.assert_linkability('Q570442')
+
     def test_cafe_as_valid_primary_link(self):
         self.assert_linkability('Q672804')
 
     def test_religious_administrative_area_as_valid_primary_link(self):
         self.assert_linkability('Q1364786')
 
-    def test_administrative_area_as_valid_primary_link(self):
+    def test_administrative_area_as_valid_primary_link_testcase_1(self):
         self.assert_linkability('Q1144105')
+
+    def test_administrative_area_as_valid_primary_link_testcase_2(self):
+        self.assert_linkability('Q266657')
 
     def test_hiking_trail_as_valid_primary_link(self):
         self.assert_linkability('Q783074')
@@ -471,7 +477,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q16910525')
 
     def test_territory_as_valid_primary_link(self):
-        self.assert_linkability('25842885')
+        self.assert_linkability('Q25842885')
 
     def test_district_with_specific_history_as_valid_primary_link(self):
         self.assert_linkability('Q64124')

@@ -1251,6 +1251,9 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
         too_abstract_or_wikidata_bugs.append('Q13411064')
 
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1783270432#Monument_to_the_Holocaust,_Tel_Aviv_(Q570442)_is_an_art_genre,_according_to_Wikidata_ontology
+        too_abstract_or_wikidata_bugs.append('Q58184346')
+
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#fruit_harvest_(Q63149011)_is_an_art_genre,_according_to_Wikidata_ontology
         too_abstract_or_wikidata_bugs.append('Q471835')
 
