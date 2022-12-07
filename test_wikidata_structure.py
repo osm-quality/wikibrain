@@ -30,7 +30,7 @@ class WikidataTests(unittest.TestCase):
             #print("is_unlinkable.error_message")
             #print(is_unlinkable.error_message)
             print()
-            print()
+            print("https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology")
             print("============================== title")
             invalid_groups = self.detector().invalid_types()
             for key in invalid_groups:
