@@ -361,15 +361,19 @@ class WikimediaLinkIssueDetector:
             return None
 
     def check_is_wikidata_link_clearly_malformed(self, key, link):
-        error_id = "malformed wikidata tag"
-        if key != "wikidata":
-            error_id = "malformed value in secondary wikidata tag"
         if self.is_wikidata_tag_clearly_broken(link):
-            return ErrorReport(
-                            error_id = error_id,
-                            error_message = "malformed value in " + key + " tag (" + link + ")",
-                            prerequisite = {key: link},
-                            )
+            if key == "wikidata":
+                return ErrorReport(
+                                error_id = "malformed wikidata tag",
+                                error_message = "malformed value in " + key + " tag (" + link + ")",
+                                prerequisite = {key: link},
+                                )
+            else:
+                return ErrorReport(
+                                error_id = "malformed secondary wikidata tag",
+                                error_message = "malformed value in " + key + " tag (" + link + ")",
+                                prerequisite = {key: link},
+                                )
         else:
             return None
 
