@@ -1056,6 +1056,7 @@ class WikimediaLinkIssueDetector:
             'Q1792379': {'what': 'an art genre', 'replacement': 'subject:'},
             'Q2634583': {'what': 'a stampede', 'replacement': 'subject:'},
             'Q3839081': {'what': 'a disaster', 'replacement': 'subject:'},
+            'Q37929123': {'what': 'an electric vehicle charging network', 'replacement': 'brand:'},
             'Q431289': {'what': 'a brand', 'replacement': 'brand:'},
             'Q7676551': {'what': 'a festival', 'replacement': 'brand:'},
             'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
