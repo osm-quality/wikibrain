@@ -481,3 +481,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_district_with_specific_history_as_valid_primary_link(self):
         self.assert_linkability('Q64124')
+
+    def test_skyspace_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q63066124')
+
+    def test_one_more_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q65029693')
