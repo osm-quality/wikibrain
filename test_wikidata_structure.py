@@ -24,8 +24,6 @@ class WikidataTests(unittest.TestCase):
 
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
-        self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
-        print()
         if is_unlinkable != None:
             #print("is_unlinkable.error_message")
             #print(is_unlinkable.error_message)
@@ -40,9 +38,11 @@ class WikidataTests(unittest.TestCase):
             print("--------------------------------------------")
             print()
             print()
-            print("is_unlinkable.data")
-            print(is_unlinkable.data())
+            #print("is_unlinkable.data")
+            #print(is_unlinkable.data())
             #print(is_unlinkable.yaml_output())
+        self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
+        print()
 
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
