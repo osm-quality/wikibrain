@@ -1261,8 +1261,14 @@ class WikimediaLinkIssueDetector:
         # otherwise is confused by https://www.wikidata.org/wiki/Q64124
         too_abstract_or_wikidata_bugs.append('Q3321844')
 
+        # no, ugly sculptures are not events
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786613628#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology
+        too_abstract_or_wikidata_bugs.append('Q212431')
+
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Lublin_County_(Q912777)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
+        # https://www.wikidata.org/wiki/Wikidata:Property_proposal/has_duplicate_Wikimedia_page
         too_abstract_or_wikidata_bugs.append('Q17362920')
 
         # "Commons gallery" - it detects Wikidata mistakes for no benefit. Ignoring it silently is preferable 
