@@ -487,3 +487,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_one_more_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q65029693')
+
+    def test_gene_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q425264')
