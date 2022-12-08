@@ -1203,83 +1203,119 @@ class WikimediaLinkIssueDetector:
         return ""
 
     @staticmethod
-    def ignored_entries_in_wikidata_ontology():
-        too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
-
-        # become broked in 2022-11-27, see 
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk%3AWikiProject_Ontology&type=revision&diff=1779873478&oldid=1778618241
-        too_abstract_or_wikidata_bugs.append("Q111414683")
-
-        # https://www.wikidata.org/wiki/Talk:Q41554881#Problematic_description_and_classification
-        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1528309435#Geysers_are_classified_as_events._What_exactly_went_wrong?
-        too_abstract_or_wikidata_bugs.append("Q41554881")
-
-        # religious art mess
-        # maybe it can be resolved, see following
-        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#How_to_prevent_Maria_column_from_being_classified_as_a_process?
-        too_abstract_or_wikidata_bugs.append('Q2864737')
-
-        too_abstract_or_wikidata_bugs.append('Q47848') # concrete objects are marked as subclass of 
-        # sacred architecture (architectural practices used in places of worship) [https://www.wikidata.org/wiki/Q47848]
-        # as result I need to skip it, see for example https://www.wikidata.org/wiki/Q775129
-        too_abstract_or_wikidata_bugs.append('Q2860334') # exactly the same ("church architecture")
-
-        too_abstract_or_wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
-        too_abstract_or_wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
+    def reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology():
+        skipped = []
+        # proposed road https://www.wikidata.org/wiki/Q30106829
+        # skipping this as sadly some proposed roads are actually mapped in OSM :(
+        # and in this case there is no agreement to delete them :(
+        skipped.append('Q30106829')
 
         # trademark is ignored as even hamlet can be trademarked
         # so it provides no extra info and detangling architecture here is too tricky
         # see https://www.wikidata.org/wiki/Q1392479
-        too_abstract_or_wikidata_bugs.append("Q167270")
+        skipped.append("Q167270")
 
         # physical object can be cultural symbols
         # https://www.wikidata.org/wiki/Q180376
-        too_abstract_or_wikidata_bugs.append("Q3139104")
+        skipped.append("Q3139104")
+
+        # again, anything may be symbol of anything
+        skipped.append("Q80071")
+        
+        # allow meridian linking due to meridian markers
+        skipped.append("Q32099")
+        return skipped
+
+
+    @staticmethod
+    def ignored_entries_in_wikidata_ontology():
+        too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
+        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology()
+        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
+        return too_abstract_or_wikidata_bugs
+
+    @staticmethod
+    def workarounds_for_wikidata_bugs_breakage_and_mistakes():
+        wikidata_bugs = []
+        # become broked in 2022-11-27, see 
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk%3AWikiProject_Ontology&type=revision&diff=1779873478&oldid=1778618241
+        wikidata_bugs.append("Q111414683")
+
+        # https://www.wikidata.org/wiki/Talk:Q41554881#Problematic_description_and_classification
+        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1528309435#Geysers_are_classified_as_events._What_exactly_went_wrong?
+        wikidata_bugs.append("Q41554881")
+
+        # religious art mess
+        # maybe it can be resolved, see following
+        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#How_to_prevent_Maria_column_from_being_classified_as_a_process?
+        wikidata_bugs.append('Q2864737')
+
+        wikidata_bugs.append('Q47848') # concrete objects are marked as subclass of 
+        # sacred architecture (architectural practices used in places of worship) [https://www.wikidata.org/wiki/Q47848]
+        # as result I need to skip it, see for example https://www.wikidata.org/wiki/Q775129
+        wikidata_bugs.append('Q2860334') # exactly the same ("church architecture")
+
+        wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
+        wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
 
         # ferry routes are not events
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782894312#Tramwaj_wodny_w_Bydgoszczy_(Q926453)_is_an_event,_according_to_Wikidata_ontology 
-        too_abstract_or_wikidata_bugs.append("Q18984099")
-
-        # again, anything may be symbol of anything
-        too_abstract_or_wikidata_bugs.append("Q80071")
+        wikidata_bugs.append("Q18984099")
 
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
-        too_abstract_or_wikidata_bugs.append("Q12377751")
+        wikidata_bugs.append("Q12377751")
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
-        too_abstract_or_wikidata_bugs.append('Q13411064')
+        wikidata_bugs.append('Q13411064')
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1783270432#Monument_to_the_Holocaust,_Tel_Aviv_(Q570442)_is_an_art_genre,_according_to_Wikidata_ontology
-        too_abstract_or_wikidata_bugs.append('Q58184346')
+        wikidata_bugs.append('Q58184346')
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#fruit_harvest_(Q63149011)_is_an_art_genre,_according_to_Wikidata_ontology
-        too_abstract_or_wikidata_bugs.append('Q471835')
+        wikidata_bugs.append('Q471835')
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#Gunnison_Beach_(Q5619268)_is_an_event_because_it_is_a_nude_beach
-        too_abstract_or_wikidata_bugs.append('Q847935')
+        wikidata_bugs.append('Q847935')
 
         # otherwise is confused by https://www.wikidata.org/wiki/Q64124
-        too_abstract_or_wikidata_bugs.append('Q3321844')
+        wikidata_bugs.append('Q3321844')
 
         # no, ugly sculptures are not events
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786613628#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology
-        too_abstract_or_wikidata_bugs.append('Q212431')
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q212431')
+        # neither are allegorical ones
+        wikidata_bugs.append('Q4731380')
+        # nor other scultures, lets hide the entire mistakenly listed class
+        wikidata_bugs.append('Q17310537')
+        # really?
+        wikidata_bugs.append('Q466521')
+        
+        # confuses animal lister
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786617153#tiger_(Q19939)_is_word_or_phrase
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786617153#chicken_(Q780)_is_also_word_or_phrase
+        wikidata_bugs.append('Q115372263')
+        wikidata_bugs.append('Q12767945')
+
+        # property is not an event
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#Tykocin_Castle_(Q5734420)_is_an_event,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q1400881')
+
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Krak%C3%B3w_Fast_Tram_(Q1814872)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology_-_and_an_event
+        wikidata_bugs.append('Q12162227')
+        
 
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Lublin_County_(Q912777)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # https://www.wikidata.org/wiki/Wikidata:Property_proposal/has_duplicate_Wikimedia_page
-        too_abstract_or_wikidata_bugs.append('Q17362920')
+        wikidata_bugs.append('Q17362920')
 
         # "Commons gallery" - it detects Wikidata mistakes for no benefit. Ignoring it silently is preferable 
-        too_abstract_or_wikidata_bugs.append('Q21167233')
+        wikidata_bugs.append('Q21167233')
 
-        # proposed road https://www.wikidata.org/wiki/Q30106829
-        # skipping this as sadly some proposed roads are actually mapped in OSM :(
-        # and in this case there is no agreement to delete them :(
-        too_abstract_or_wikidata_bugs.append('Q30106829')
+        wikidata_bugs.append('Q17134993')
        
-        return too_abstract_or_wikidata_bugs
+        return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
         # print entire inheritance set
