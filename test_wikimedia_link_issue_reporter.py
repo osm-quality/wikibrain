@@ -11,6 +11,22 @@ class Tests(unittest.TestCase):
     def issue_reporter(self):
         return wikibrain.wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
 
+    def test_old_style_be_tarask_link(self):
+        # https://www.openstreetmap.org/node/243018588/history
+        # https://be.wikipedia.org/wiki/be:Цярэшкі%20(Шаркаўшчынскі%20раён)
+        # https://be-tarask.wikipedia.org/wiki/Цярэшкі%20(Шаркоўшчынскі%20раён)
+        # https://www.wikidata.org/wiki/Q6545847
+        tags = {"wikipedia": "be:Цярэшкі (Шаркаўшчынскі раён)", "wikipedia:be-tarask": "Цярэшкі (Шаркоўшчынскі раён)"}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertEqual("Q6545847", wikimedia_connection.get_wikidata_object_id_from_link("be:Цярэшкі (Шаркаўшчынскі раён)"))
+        self.assertEqual("Q6545847", wikimedia_connection.get_wikidata_object_id_from_link("be-tarask:Цярэшкі (Шаркоўшчынскі раён)"))
+        self.assertNotEqual (None, problem)
+        self.assertNotEqual ('wikipedia tag in outdated form and there is mismatch between links', problem.data()['error_id'])
+        self.assertEqual ("wikipedia tag from wikipedia tag in an outdated form", problem.data()['error_id'])
+
     def test_empty_wikidata_is_malformed(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': '', 'wikipedia': 'en:Oslo'}))
 
