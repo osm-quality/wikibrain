@@ -1219,6 +1219,10 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/wiki/Q180376
         skipped.append("Q3139104")
 
+        # or part of heritage
+        # https://www.wikidata.org/wiki/Q10356475
+        skipped.append("Q210272")
+
         # again, anything may be symbol of anything
         skipped.append("Q80071")
         

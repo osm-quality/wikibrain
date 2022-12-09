@@ -490,3 +490,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_gene_as_invalid_primary_link(self):
         self.assert_unlinkability('Q425264')
+
+    def test_protected_kiosk_as_valid_primary_link(self):
+        self.assert_linkability('Q10356475')
