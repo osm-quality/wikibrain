@@ -1200,7 +1200,7 @@ class WikimediaLinkIssueDetector:
     def callback_reporting_banned_categories(self, category_id):
         ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
         if ban_reason != None:
-            return " banned as it is " + ban_reason['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
+            return " this was unexpected here as it indicates " + ban_reason['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
         return ""
 
     @staticmethod
