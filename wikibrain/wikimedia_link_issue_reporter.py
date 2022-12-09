@@ -1010,6 +1010,7 @@ class WikimediaLinkIssueDetector:
         event = {'what': 'an event', 'replacement': None}
         return {
             'Q5': {'what': 'a human', 'replacement': 'name:'},
+            'Q14897293': {'what': 'a fictional entity', 'replacement': 'subject:'},
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
