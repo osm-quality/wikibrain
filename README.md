@@ -24,4 +24,6 @@ pip3 install -r requirements.txt
 
 # Fixing Wikidata
 
-Search for `too_abstract_or_wikidata_bugs` and disable that to get more errors caused by Wikidata
+Search for `too_abstract_or_wikidata_bugs` and disable that to get more errors caused by Wikidata.
+
+See also and [my step by step list](https://www.wikidata.org/wiki/User:Mateusz_Konieczny#Ontology_on_Wikidata_is_systematically_broken)
