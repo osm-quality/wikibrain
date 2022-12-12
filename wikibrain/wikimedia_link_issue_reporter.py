@@ -288,14 +288,6 @@ class WikimediaLinkIssueDetector:
 
         return None
 
-    def wikidata_connection_blacklisted_and_unfixable(self):
-        print("DEPRECATED, call wikidata_knowledge.blacklisted_and_unfixable_ids")
-        return wikidata_knowledge.blacklisted_and_unfixable_ids()
-
-    def wikidata_connection_blacklist(self):
-        print("DEPRECATED, call wikidata_knowledge.blacklist_of_unlinkable_entries")
-        return wikidata_knowledge.blacklist_of_unlinkable_entries()
-
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
         if wikidata_id == None:
             wikidata_id = present_wikidata_id
