@@ -1361,9 +1361,6 @@ class WikimediaLinkIssueDetector:
             #    print(wikidata_processing.wikidata_description(parent_category))
 
     def new_banned_entry_in_this_branch(self, data, checked_position):
-        #print("00000000000000000000000000")
-        #print(self.get_reason_why_type_makes_object_invalid_primary_link("Q7048977"))
-        #print(checked_position, data[checked_position])
         index = checked_position - 1
         relevant_level = data[checked_position]["depth"] - 1
         # higher depth is not relevant as it is some other branch with a sgared parent
