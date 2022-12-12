@@ -983,20 +983,23 @@ class WikimediaLinkIssueDetector:
                 yield type_id
 
     def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
+        # https://en.wikipedia.org/wiki/Edith_Macefield
+        # this pretends to be about human while it is about building
+        # see https://osmus.slack.com/archives/C1FKE1NCA/p1668339647063239
+        # see https://www.openstreetmap.org/way/217502987
+        if effective_wikidata_id == 'Q5338613':
+            return None
+        remembered_potential_failure = None
         for type_id in self.wikidata_entries_classifying_entry(effective_wikidata_id):
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
             if potential_failure != None:
-                # https://en.wikipedia.org/wiki/Edith_Macefield
-                # this pretends to be about human while it is about building
-                # see https://osmus.slack.com/archives/C1FKE1NCA/p1668339647063239
-                # see https://www.openstreetmap.org/way/217502987
-                if effective_wikidata_id == 'Q5338613':
-                    return None
-
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
                     pass # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
-                else:
-                    return self.get_should_use_subject_error(potential_failure['what'], potential_failure['replacement'], effective_wikidata_id)
+                if potential_failure['what'] != "an event" or remembered_potential_failure == None:
+                    # prefer to not report general one (there could be a more specific one reason in  a different branch)
+                    remembered_potential_failure = potential_failure
+        if remembered_potential_failure != None:
+            return self.get_should_use_subject_error(remembered_potential_failure['what'], remembered_potential_failure['replacement'], effective_wikidata_id)
         return None
 
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
