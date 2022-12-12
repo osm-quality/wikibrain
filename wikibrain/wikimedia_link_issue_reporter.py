@@ -1275,6 +1275,9 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782894312#Tramwaj_wodny_w_Bydgoszczy_(Q926453)_is_an_event,_according_to_Wikidata_ontology 
         wikidata_bugs.append("Q18984099")
 
+        # rail line is not an event
+        wikidata_bugs.append('Q1412403')
+
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         wikidata_bugs.append("Q12377751")
 

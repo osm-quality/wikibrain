@@ -110,6 +110,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_high_school_as_valid_primary_link(self):
         self.assert_linkability('Q9296000')
 
+    def test_detecting_high_school_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q85652366')
+
     def test_detecting_primary_school_as_valid_primary_link(self):
         self.assert_linkability('Q7112654')
 
@@ -307,6 +310,15 @@ class WikidataTests(unittest.TestCase):
     def test_statue_as_valid_primary_link(self):
         self.assert_linkability('Q87720384')
 
+    def test_world_war_one_statue_as_valid_primary_link(self):
+        self.assert_linkability('Q113621082')
+
+    def test_railway_miniature_as_valid_primary_link(self):
+        self.assert_linkability('Q685524')
+
+    def test_some_outdoor_art_as_valid_primary_link(self):
+        self.assert_linkability('Q106274335')
+
     def test_air_force_academy_as_valid_primary_link(self):
         self.assert_linkability('Q2015914')
 
@@ -493,3 +505,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_protected_kiosk_as_valid_primary_link(self):
         self.assert_linkability('Q10356475')
+
+    def test_glassworks_as_valid_primary_link(self):
+        self.assert_linkability('Q63124776')
+
+    def test_train_line_as_valid_primary_link(self):
+        self.assert_linkability('Q680235')
+
