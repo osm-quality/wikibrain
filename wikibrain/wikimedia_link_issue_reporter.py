@@ -1281,6 +1281,10 @@ class WikimediaLinkIssueDetector:
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         wikidata_bugs.append("Q12377751")
 
+        # individual statues are not art genres
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1788335136#Q113621082_is_an_art_genre,_according_to_Wikidata_ontology
+        wikidata_bugs.append("Q3399515")
+
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q13411064')
 
@@ -1288,6 +1292,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q471835')
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#Gunnison_Beach_(Q5619268)_is_an_event_because_it_is_a_nude_beach
+        # note that it is more generic problem which was not actually fixed
         wikidata_bugs.append('Q847935')
 
         # otherwise is confused by https://www.wikidata.org/wiki/Q64124
