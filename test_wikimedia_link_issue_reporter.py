@@ -25,7 +25,27 @@ class Tests(unittest.TestCase):
         self.assertEqual("Q6545847", wikimedia_connection.get_wikidata_object_id_from_link("be-tarask:Цярэшкі (Шаркоўшчынскі раён)"))
         self.assertNotEqual (None, problem)
         self.assertNotEqual ('wikipedia tag in outdated form and there is mismatch between links', problem.data()['error_id'])
-        self.assertEqual ("wikipedia tag from wikipedia tag in an outdated form", problem.data()['error_id'])
+        self.assertEqual ("wikipedia tag in an outdated form for removal", problem.data()['error_id'])
+
+    def test_nonexisting_wikidata_link(self):
+        # not malformed but does not exist
+        tags = {"wikidata": "Q999999999999999999999999999999999999"}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("wikidata tag links to 404", problem.data()['error_id'])
+
+    def test_nonexisting_secondary_wikidata_link(self):
+        # not malformed but does not exist
+        tags = {"nonsense:wikidata": "Q999999999999999999999999999999999999"}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("secondary wikidata tag links to 404", problem.data()['error_id'])
 
     def test_empty_wikidata_is_malformed(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': '', 'wikipedia': 'en:Oslo'}))
