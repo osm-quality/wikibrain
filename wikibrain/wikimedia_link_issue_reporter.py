@@ -1178,14 +1178,16 @@ class WikimediaLinkIssueDetector:
 
     def output_debug_about_wikidata_item(self, wikidata_id):
         print("**********************")
+        print("starting output_debug_about_wikidata_item")
         print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
         print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()))
         self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
 
     def dump_base_types_of_object_in_stdout(self, wikidata_id, description_of_source):
-        print("----------------")
-        print("https://www.wikidata.org/wiki/" + wikidata_id)
-        print("{{Q|" + wikidata_id + "}}")
+        if description_of_source != "tests": # make copying to Wikidata easier
+            print("(((((((((((((()))))))))))))) dump_base_types_of_object_in_stdout")
+            print("https://www.wikidata.org/wiki/" + wikidata_id)
+            print("{{Q|" + wikidata_id + "}}")
         types = wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id)
         if types == None:
             print(wikidata_id, "entry has no types (may still have subclasses)")
@@ -1202,9 +1204,10 @@ class WikimediaLinkIssueDetector:
                 if ban_reason != None:
                     any_banned = True
         for type_id in types:
-            print("------")
-            print(description_of_source)
-            print("type " + "https://www.wikidata.org/wiki/" + type_id)
+            if description_of_source != "tests": # make copying to Wikidata easier
+                print("^^^^^^^ - show only banned:", any_banned)
+                print("source:", description_of_source)
+                print("type " + "https://www.wikidata.org/wiki/" + type_id)
             self.describe_unexpected_wikidata_type(wikidata_id, type_id, show_only_banned=any_banned)
 
     def callback_reporting_banned_categories(self, category_id):
