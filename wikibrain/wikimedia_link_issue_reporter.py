@@ -1237,6 +1237,14 @@ class WikimediaLinkIssueDetector:
         
         # allow meridian linking due to meridian markers
         skipped.append("Q32099")
+
+        # landslides are fine (despite being subclass of disaster that is subclass of an event)
+        # there was weird associated behaviour but I am not going to
+        # debug Wikidata structure and discover why landlide is classified
+        # as a social issue
+        # https://www.wikidata.org/wiki/Q167903
+        skipped.append("Q167903")
+
         return skipped
 
 

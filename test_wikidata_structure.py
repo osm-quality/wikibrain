@@ -513,3 +513,5 @@ class WikidataTests(unittest.TestCase):
     def test_train_line_as_valid_primary_link(self):
         self.assert_linkability('Q680235')
 
+    def test_landslide_as_valid_primary_link(self):
+        self.assert_linkability('Q1946797')
