@@ -1291,6 +1291,11 @@ class WikimediaLinkIssueDetector:
         # rail line is not an event
         wikidata_bugs.append('Q1412403')
 
+        # Wikidata: high school education is process that takes place without human involvement
+        # yes, really
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1789193528#high_school_education_(Q14623204)_is_process_that_takes_place_without_human_involvement
+        wikidata_bugs.append('Q133500')
+
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         wikidata_bugs.append("Q12377751")
 
@@ -1345,6 +1350,9 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q21167233')
 
         wikidata_bugs.append('Q17134993')
+
+        # more workarounds, not going to record for what
+        wikidata_bugs.append('Q63922515')
        
         return wikidata_bugs
 
