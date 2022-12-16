@@ -465,6 +465,9 @@ class WikidataTests(unittest.TestCase):
         # not an event
         self.assert_linkability('Q926453')
 
+    def test_another_ferry_route_as_valid_primary_link(self):
+        self.assert_linkability('Q2593299')
+
     def test_pastoral_lease_as_valid_primary_link(self):
         # not an event
         self.assert_linkability('Q8293195')

@@ -1287,6 +1287,9 @@ class WikimediaLinkIssueDetector:
         # ferry routes are not events
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782894312#Tramwaj_wodny_w_Bydgoszczy_(Q926453)_is_an_event,_according_to_Wikidata_ontology 
         wikidata_bugs.append("Q18984099")
+        # nor industries in general
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1791129129#Woolwich_Ferry_(Q2593299)_is_a_general_industry,_according_to_Wikidata_ontology
+        wikidata_bugs.append("Q155930")
 
         # rail line is not an event
         wikidata_bugs.append('Q1412403')
