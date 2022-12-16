@@ -1021,7 +1021,7 @@ class WikimediaLinkIssueDetector:
             'Q5113': taxon,
             'Q38829': taxon,
             'Q55983715': taxon,
-            'Q268592': {'what': 'an industry', 'replacement': None},
+            'Q268592': {'what': 'a general industry', 'replacement': None},
             'Q1344': {'what': 'an opera', 'replacement': None},
             'Q35127': {'what': 'a website', 'replacement': None},
             'Q17320256': {'what': 'a physical process', 'replacement': None},
