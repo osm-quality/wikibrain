@@ -15,6 +15,10 @@ def blacklist_of_unlinkable_entries():
         'Q5579784': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'Golden Screen Cinemas'},
         'Q17053599': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'MBO Cinemas'},
         'Q321889': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'CineStar'},
+        'Q1092476': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'Cineplex'},
+        'Q15909979': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': '百老匯戲院 Broadway Circuit'},
+        'Q15909979': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': '百老汇影城'},
+        'Q67934947': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': '英皇戲院 Emperor Cinemas'},
 
         'Q4778364': {'prefix': 'brand:', 'expected_tags': {'leisure': 'fitness_centre'}, 'name': 'Anytime Fitness'},
         'Q21015663': {'prefix': 'brand:', 'expected_tags': {'leisure': 'fitness_centre'}, 'name': 'CorePower Yoga'},
@@ -255,6 +259,11 @@ def blacklist_of_unlinkable_entries():
         'Q2381223': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'MediaMarkt'},
         'Q10350856': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Polishop'},
         'Q16698091': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Ситилинк'},
+        'Q5187683': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Cromā'},
+        'Q109311658': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Electroplanet'},
+        'Q2693387': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Euronics'},
+        'Q1227164': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Fust'},
+        'Q3200093': {'prefix': 'brand:', 'expected_tags': {'shop': 'electronics'}, 'name': 'Krëfel'},
 
         'Q449852': {'prefix': 'brand:', 'expected_tags': {'shop': 'vacuum_cleaner'}, 'name': 'Vorwerk'},
 
@@ -429,6 +438,11 @@ def blacklist_of_unlinkable_entries():
         'Q11278154': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'まいばすけっと'},
         'Q11340427': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'マックスバリュ'},
         'Q11526020': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '東光ストア'},
+        'Q41629254': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'COOP Jednota'},
+        'Q1547993': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'tegut'},
+        'Q111772555': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': 'Woolworths Metro'},
+        'Q3117359': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '家乐福'},
+        'Q3117359': {'prefix': 'brand:', 'expected_tags': {'shop': 'supermarket'}, 'name': '家樂福'},
 
         'Q715583': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Costco'},
         'Q1508234': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Safeway'},
@@ -1566,6 +1580,10 @@ def blacklist_of_unlinkable_entries():
         'Q9012420': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '陶陶居'},
         'Q66132404': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'dean&david'},
         'Q7049673': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Noodles & Company'},
+        'Q47012702': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Bill's"},
+        'Q23461481': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': "Del Frisco's Double Eagle Steakhouse"},
+        'Q85785905': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': 'Mission BBQ'},
+        'Q6928843': {'prefix': 'brand:', 'expected_tags': {'amenity': 'restaurant'}, 'name': '李先生'},
 
         'Q2533008': {'prefix': 'brand:', 'expected_tags': {'shop': 'deli'}, 'name': 'Vom Fass'},
         'Q15911728': {'prefix': 'brand:', 'expected_tags': {'shop': 'deli'}, 'name': '周黑鸭'},
