@@ -104,7 +104,7 @@ class WikimediaLinkIssueDetector:
                     return None
                 wikidata_simc = wikidata_simc_object[0]['mainsnak']['datavalue']['value']
                 if wikidata_simc != tags.get("teryt:simc"):
-                    message = "mismatching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") where " + str(wikidata_simc) + " is declared and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
+                    message = "mismatching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") where " + str(wikidata_simc) + " is declared and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared. TERYT database may be searched at http://eteryt.stat.gov.pl/eTeryt/rejestr_teryt/udostepnianie_danych/baza_teryt/uzytkownicy_indywidualni/wyszukiwanie/wyszukiwanie.aspx?contrast=default (switch to SIMC tab) "
                     return ErrorReport(
                                     error_id = "mismatching teryt:simc codes in wikidata and in osm element",
                                     error_message = message,
