@@ -521,3 +521,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_general_article_about_cycling_in_belarus_as_invalid_primary_link(self):
         self.assert_unlinkability('Q97007609')
+
+    def test_forest_as_valid_primary_link(self):
+        self.assert_linkability('Q20713832')
