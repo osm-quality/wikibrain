@@ -9,6 +9,7 @@ import osm_handling_config.global_config as osm_handling_config
 
 class Tests(unittest.TestCase):
     def issue_reporter(self):
+        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         return wikibrain.wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
 
     def test_old_style_be_tarask_link(self):
