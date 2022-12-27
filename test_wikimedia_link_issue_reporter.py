@@ -283,9 +283,12 @@ class Tests(unittest.TestCase):
         passed_tags = {}
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
-        if primary_linkability_status == None:
-            self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
-        self.assertNotEqual (None, primary_linkability_status)
+        # somehow changed on its own? well, I will not protest...
+        # stopped being merged with another entity, see for example
+        # https://www.wikidata.org/w/index.php?title=Q1516298&diff=1357250965&oldid=1357245965
+        #if primary_linkability_status == None:
+        #    self.issue_reporter().output_debug_about_wikidata_item(wikidata_id)
+        #self.assertNotEqual (None, primary_linkability_status)
 
         wikidata_id = 'Q1516298'
         passed_tags = {'boundary': 'aboriginal_lands'}

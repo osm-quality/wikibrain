@@ -528,5 +528,12 @@ class WikidataTests(unittest.TestCase):
     def test_retail_chain_as_invalid_primary_link(self):
         self.assert_unlinkability('Q3345688')
 
-    def test_tank_dfamily_as_invalid_primary_link(self):
+    def test_tank_family_as_invalid_primary_link(self):
         self.assert_unlinkability('Q172233')
+
+    def test_tank_family_as_invalid_primary_link_testcase_b(self):
+        self.assert_unlinkability('Q2720752')
+
+    def test_federal_aid_program_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q7990125')
+

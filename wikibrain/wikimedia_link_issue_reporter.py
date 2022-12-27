@@ -993,15 +993,19 @@ class WikimediaLinkIssueDetector:
         # see https://www.openstreetmap.org/way/217502987
         if effective_wikidata_id == 'Q5338613':
             return None
+        if effective_wikidata_id in self.ignored_entries_in_wikidata_ontology():
+            return None
         remembered_potential_failure = None
         for type_id in self.wikidata_entries_classifying_entry(effective_wikidata_id):
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
             if potential_failure != None:
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
                     pass # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
-                if potential_failure['what'] != "an event" or remembered_potential_failure == None:
-                    # prefer to not report general one (there could be a more specific one reason in  a different branch)
-                    remembered_potential_failure = potential_failure
+
+                # prefer to not report general one (there could be a more specific one reason in a different branch)
+                if potential_failure['what'] in ["an event", "a behavior"] and remembered_potential_failure != None:
+                    continue
+                remembered_potential_failure = potential_failure
         if remembered_potential_failure != None:
             return self.get_should_use_subject_error(remembered_potential_failure['what'], remembered_potential_failure['replacement'], effective_wikidata_id)
         return None
@@ -1040,6 +1044,16 @@ class WikimediaLinkIssueDetector:
             'Q18534542': {'what': 'a restaurant chain', 'replacement': 'brand:'},
             'Q507619': {'what': 'a chain store', 'replacement': 'brand:'},
             'Q202444': {'what': 'a given name', 'replacement': 'name:'},
+
+            # public housing is a behavior...
+            # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1796693368#Farragut_Houses_(Q22329573)_is_a_behavior,_according_to_Wikidata_ontology
+            # this one got excluded
+            #'Q451967': {'what': 'an intentional human activity', 'replacement':  None},
+            #'Q61788060': {'what': 'a human activity', 'replacement':  None},
+            #'Q3769299': {'what': 'a human behavior', 'replacement':  None},
+            'Q9332': {'what': 'a behavior', 'replacement':  None},
+            
+            'Q1914636': {'what': 'an activity', 'replacement':  None},
             'Q2000908': weapon,
             'Q15142894': weapon,
             'Q15142889': weapon,
@@ -1047,6 +1061,8 @@ class WikimediaLinkIssueDetector:
             'Q22999537': vehicle,
             'Q16335899': vehicle,
             'Q1875621': vehicle,
+            'Q37761255': vehicle,
+            'Q22222786': {'what': 'a government program', 'replacement': None},
             'Q24634210': {'what': 'a podcast', 'replacement': None},
             'Q273120': {'what': 'a protest', 'replacement': None},
             'Q49773': {'what': 'a social movement', 'replacement': None},
@@ -1301,6 +1317,8 @@ class WikimediaLinkIssueDetector:
         # nor industries in general
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1791129129#Woolwich_Ferry_(Q2593299)_is_a_general_industry,_according_to_Wikidata_ontology
         wikidata_bugs.append("Q155930")
+        # etc
+        wikidata_bugs.append("Q4931513")        
 
         # rail line is not an event
         wikidata_bugs.append('Q1412403')
@@ -1367,6 +1385,14 @@ class WikimediaLinkIssueDetector:
 
         # more workarounds, not going to record for what
         wikidata_bugs.append('Q63922515')
+
+        # education mess
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1794982038#Prva_ekonomska_%C5%A1kola_(Q85652366)_is_an_event,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q8434')
+
+        # public housing is not behavior
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1796693368#Farragut_Houses_(Q22329573)_is_a_behavior,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q5409930')
        
         return wikidata_bugs
 
