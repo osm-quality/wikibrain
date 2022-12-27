@@ -1018,6 +1018,12 @@ class WikimediaLinkIssueDetector:
         return {
             'Q5': {'what': 'a human', 'replacement': 'name:'},
             'Q14897293': {'what': 'a fictional entity', 'replacement': 'name:etymology:'},
+            'Q16858238': {'what': 'a train category', 'replacement': None},
+            'Q28747937': {'what': 'a history of a city', 'replacement': None},
+            'Q63313685': {'what': 'a history of a geographic region', 'replacement': None},
+            'Q690109': {'what': 'a branch of military service', 'replacement': None},
+            'Q98924064': {'what': 'an electronic device model series', 'replacement': None},
+            "Q111972893": {'what': 'a type of structure', 'replacement': None},
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
