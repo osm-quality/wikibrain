@@ -917,6 +917,7 @@ class WikimediaLinkIssueDetector:
             return str(int(distance_in_km*1000)) + " m"
 
     def distance_in_km_of_wikidata_object_from_location(self, coords_given, wikidata_id):
+        # coords_given are (latititude, longitude) tuple
         if wikidata_id == None:
             return None
         location_from_wikidata = wikimedia_connection.get_location_from_wikidata(wikidata_id)
@@ -926,6 +927,7 @@ class WikimediaLinkIssueDetector:
         return geopy.distance.distance(coords_given, location_from_wikidata).km
 
     def get_distance_description_between_location_and_wikidata_id(self, location, wikidata_id):
+        # location is (latititude, longitude) tuple
         if location == (None, None):
             return " <no location data>"
         distance = self.distance_in_km_of_wikidata_object_from_location(location, wikidata_id)
@@ -934,6 +936,7 @@ class WikimediaLinkIssueDetector:
         return ' is ' + self.distance_in_km_to_string(distance) + " away"
 
     def get_list_of_disambig_fixes(self, target_location, element_wikidata_id):
+        # target_location is (latititude, longitude) tuple
         #TODO open all pages, merge duplicates using wikidata and list them as currently
         links = self.get_list_of_links_from_disambig(element_wikidata_id)
         if element_wikidata_id == None:
@@ -943,6 +946,7 @@ class WikimediaLinkIssueDetector:
         return self.string_with_list_of_distances_to_locations(target_location, links)
         
     def string_with_list_of_distances_to_locations(self, target_location, links):
+        # target_location is (latititude, longitude) tuple
         """
         links: list of dictionary entries, each with language_code and title
         for example: [{'title': 'Candedo (Murça)', 'language_code': 'pt'}]
