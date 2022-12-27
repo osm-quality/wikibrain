@@ -138,6 +138,9 @@ class WikidataTests(unittest.TestCase):
     def test_train_line_as_valid_primary_link(self):
         self.assert_linkability('Q3720557') # train service is not a service (Q15141321) defined as "transcation..."
 
+    def test_train_category_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q680235')
+
     def test_tide_organ_as_valid_primary_link(self):
         self.assert_linkability('Q7975291') # art is not sublass of creativity - though it is using creativity. It is also not sublass of a process.
 
@@ -513,9 +516,6 @@ class WikidataTests(unittest.TestCase):
     def test_glassworks_as_valid_primary_link(self):
         self.assert_linkability('Q63124776')
 
-    def test_train_line_as_valid_primary_link(self):
-        self.assert_linkability('Q680235')
-
     def test_landslide_as_valid_primary_link(self):
         self.assert_linkability('Q1946797')
 
@@ -524,3 +524,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_forest_as_valid_primary_link(self):
         self.assert_linkability('Q20713832')
+
+    def test_retail_chain_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q3345688')
+
+    def test_tank_dfamily_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q172233')
