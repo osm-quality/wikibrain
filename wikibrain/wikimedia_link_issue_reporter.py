@@ -1085,6 +1085,7 @@ class WikimediaLinkIssueDetector:
         return 'Q4167410'
 
     def get_error_report_if_wikipedia_target_is_of_unusable_type(self, location, wikidata_id):
+        # target_location is (latititude, longitude) tuple
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()):
             if type_id == self.disambig_type_id():
                 # TODO note that pageprops may be a better source that should be used
