@@ -353,6 +353,14 @@ class WikimediaLinkIssueDetector:
             return None
 
     def check_is_wikidata_link_clearly_malformed(self, key, link):
+        if key == "name:etymology:wikidata:missing":
+            if link == "yes":
+                return ErrorReport(
+                                error_id = "name:etymology:wikidata:missing",
+                                error_message = "name:etymology:wikidata:missing tag is a poor idea that makes little to no sense (" + link + ")",
+                                prerequisite = {key: link},
+                                )
+
         if self.is_wikidata_tag_clearly_broken(link):
             if key == "wikidata":
                 return ErrorReport(
