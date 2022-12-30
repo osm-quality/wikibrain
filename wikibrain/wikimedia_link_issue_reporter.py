@@ -1008,7 +1008,7 @@ class WikimediaLinkIssueDetector:
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
             if potential_failure != None:
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
-                    pass # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
+                    continue # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
 
                 # prefer to not report general one (there could be a more specific one reason in a different branch)
                 if potential_failure['what'] in ["an event", "a behavior"] and remembered_potential_failure != None:
