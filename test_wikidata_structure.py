@@ -537,3 +537,6 @@ class WikidataTests(unittest.TestCase):
     def test_federal_aid_program_as_invalid_primary_link(self):
         self.assert_unlinkability('Q7990125')
 
+    def test_incinerator_as_valid_primary_link(self):
+        # it is not a physical process...
+        self.assert_linkability('Q1424213')
