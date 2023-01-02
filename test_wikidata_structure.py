@@ -156,8 +156,11 @@ class WikidataTests(unittest.TestCase):
     def test_dunes_as_valid_primary_link(self):
         self.assert_linkability('Q1130721') # not an event - aeolian landform (Q4687862) is not sublass of aeolian process, natural object is not sublass of natural phenonemon ( https://www.wikidata.org/w/index.php?title=Q29651224&action=history )
 
-    def test_tree_as_valid_primary_link(self):
+    def test_specific_tree_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q6703503') # not an event
+
+    def test_specific_tree_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q33040885') # not a taxon
 
     def test_sheltered_information_board_as_valid_primary_link(self):
         self.assert_linkability('Q7075518') # not an event
