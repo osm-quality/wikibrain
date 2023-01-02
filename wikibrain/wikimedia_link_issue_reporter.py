@@ -1391,6 +1391,9 @@ class WikimediaLinkIssueDetector:
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Krak%C3%B3w_Fast_Tram_(Q1814872)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology_-_and_an_event
         wikidata_bugs.append('Q12162227')
+        # other breakage with this element
+        wikidata_bugs.append('Q1814872')
+        
         
 
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
