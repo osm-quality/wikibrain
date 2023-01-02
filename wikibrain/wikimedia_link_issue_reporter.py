@@ -357,7 +357,7 @@ class WikimediaLinkIssueDetector:
             if link == "yes":
                 return ErrorReport(
                                 error_id = "name:etymology:wikidata:missing",
-                                error_message = "name:etymology:wikidata:missing tag is a poor idea that makes little to no sense (" + link + ")",
+                                error_message = "name:etymology:wikidata:missing with value '" + link + "' - a really dubious tagging scheme, just create missing wikidata entries if you really need them. See also https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1800873697#Is_someone_who_is_a_patron_of_a_street_always_notable_enough_for_Wikidata_identifier?",
                                 prerequisite = {key: link},
                                 )
 
