@@ -999,6 +999,7 @@ class WikimediaLinkIssueDetector:
         # this pretends to be about human while it is about building
         # see https://osmus.slack.com/archives/C1FKE1NCA/p1668339647063239
         # see https://www.openstreetmap.org/way/217502987
+        # for search: [biography][person]
         if effective_wikidata_id == 'Q5338613':
             return None
         # event entry about hoax/delusion that is actually strongly about location
