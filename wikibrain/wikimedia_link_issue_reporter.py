@@ -1039,6 +1039,10 @@ class WikimediaLinkIssueDetector:
             'Q690109': {'what': 'a branch of military service', 'replacement': None},
             'Q98924064': {'what': 'an electronic device model series', 'replacement': None},
             "Q111972893": {'what': 'a type of structure', 'replacement': None},
+            "Q1358919": {'what': 'a bicycle sharing system', 'replacement': 'brand:'},
+            "Q350945": {'what': 'a heraldic animal', 'replacement': None},
+            "Q1796040": {'what': 'a geodetic control network', 'replacement': None},
+            "Q18325841": {'what': 'a public transport network', 'replacement': None},
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
@@ -1055,6 +1059,10 @@ class WikimediaLinkIssueDetector:
             'Q18534542': {'what': 'a restaurant chain', 'replacement': 'brand:'},
             'Q507619': {'what': 'a chain store', 'replacement': 'brand:'},
             'Q202444': {'what': 'a given name', 'replacement': 'name:'},
+            'Q60075825': {'what': 'a Christian holy day', 'replacement': None},
+            'Q2915444': {'what': 'a fireworks event', 'replacement': None},
+            'Q645883': {'what': 'a military operation', 'replacement': None},
+            
 
             # public housing is a behavior...
             # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1796693368#Farragut_Houses_(Q22329573)_is_a_behavior,_according_to_Wikidata_ontology
@@ -1100,6 +1108,7 @@ class WikimediaLinkIssueDetector:
             'Q37929123': {'what': 'an electric vehicle charging network', 'replacement': 'brand:'},
             'Q431289': {'what': 'a brand', 'replacement': 'brand:'},
             'Q7676551': {'what': 'a festival', 'replacement': 'brand:'},
+            'Q868557': {'what': 'a music festival', 'replacement': 'brand:'},
             'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
             'Q1656682': event,
             'Q4026292': event,
