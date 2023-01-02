@@ -446,6 +446,9 @@ class WikidataTests(unittest.TestCase):
         # this pretends to be about human while it is about building
         self.assert_linkability('Q5338613')
 
+    def test_event_entry_that_is_actually_strongly_about_location(self):
+        self.assert_linkability('Q5371519')
+
     def test_monastery_as_valid_primary_link(self):
         self.assert_linkability('Q4508631')
         self.assert_passing_all_tests('Q4508631', 'pl:Cziłter-Koba') # https://pl.wikipedia.org/wiki/Czi%C5%82ter-Koba

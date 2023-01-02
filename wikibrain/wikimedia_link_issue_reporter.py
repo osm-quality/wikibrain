@@ -1001,6 +1001,9 @@ class WikimediaLinkIssueDetector:
         # see https://www.openstreetmap.org/way/217502987
         if effective_wikidata_id == 'Q5338613':
             return None
+        # event entry about hoax/delusion that is actually strongly about location
+        if effective_wikidata_id == 'Q5371519':
+            return None
         if effective_wikidata_id in self.ignored_entries_in_wikidata_ontology():
             return None
         remembered_potential_failure = None
