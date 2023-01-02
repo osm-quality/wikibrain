@@ -102,6 +102,15 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2106892')
 
+    def test_detecting_reconstructed_castle_as_valid_primary_link(self):
+        self.assert_linkability('Q2461065')
+
+    def test_detecting_fort_as_valid_primary_link(self):
+        self.assert_linkability('Q20089971')
+
+    def test_detecting_roundabout_art_as_valid_primary_link(self):
+        self.assert_linkability('Q105414527')
+
     def test_detecting_funicular_as_valid_primary_link(self):
         self.assert_linkability('Q5614426')
 
@@ -356,8 +365,17 @@ class WikidataTests(unittest.TestCase):
     def test_meridian_as_valid_primary_link(self):
         self.assert_linkability('Q131108')
 
-    def test_sculpure_as_valid_primary_link(self):
+    def test_sculpture_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q105492941')
+
+    def test_sculpture_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q108428976')
+
+    def test_sculpture_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q108410880')
+
+    def test_animal_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q108421050')
 
     def test_subway_station_as_valid_primary_link(self):
         self.assert_linkability('Q89406786')
@@ -473,6 +491,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_another_ferry_route_as_valid_primary_link(self):
         self.assert_linkability('Q2593299')
+
+    def test_tram_system_as_valid_primary_link(self):
+        # it is not a behavior...
+        self.assert_linkability('Q9360797')
 
     def test_pastoral_lease_as_valid_primary_link(self):
         # not an event
