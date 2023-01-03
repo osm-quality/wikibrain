@@ -1393,8 +1393,12 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q12162227')
         # other breakage with this element
         wikidata_bugs.append('Q1814872')
-        
-        
+
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1801653370#Stehende_(Q108428976)_is_a_behavior,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q40446')
+
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases/Archive_1&oldid=1801653492#Shetlandpony_(Q108421050)_is_a_behavior,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q3476508')
 
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
