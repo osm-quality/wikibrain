@@ -1332,7 +1332,8 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
 
-        # isolated network is not an event
+        # isolated network (island network) is not an event
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803454079#H%C3%A4rtsfeldbahn_(Q1642426)_is_an_event,_according_to_Wikidata_ontology
         wikidata_bugs.append("Q1664456")
 
         # ferry routes are not events
