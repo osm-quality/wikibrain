@@ -105,8 +105,11 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_reconstructed_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2461065')
 
-    def test_detecting_fort_as_valid_primary_link(self):
+    def test_detecting_fort_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q20089971')
+
+    def test_detecting_fort_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q865131')
 
     def test_detecting_roundabout_art_as_valid_primary_link(self):
         self.assert_linkability('Q105414527')
@@ -119,6 +122,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_detecting_high_school_as_valid_primary_link(self):
         self.assert_linkability('Q9296000')
+
+    def test_walk_of_fame_as_valid_primary_link(self):
+        self.assert_linkability('Q2345775')
 
     def test_detecting_high_school_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q85652366')
@@ -146,6 +152,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_train_line_as_valid_primary_link(self):
         self.assert_linkability('Q3720557') # train service is not a service (Q15141321) defined as "transcation..."
+
+    def test_narrow_gauge_train_line_as_valid_primary_link(self):
+        self.assert_linkability('Q1642426')
 
     def test_train_category_as_invalid_primary_link(self):
         self.assert_unlinkability('Q680235')
@@ -428,6 +437,9 @@ class WikidataTests(unittest.TestCase):
     def test_cave_church_as_valid_primary_link(self):
         self.assert_linkability('Q26263282')
 
+    def test_wayside_shrine_as_valid_primary_link(self):
+        self.assert_linkability('Q41318154')
+
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q113278632')
         self.assert_passing_all_tests('Q113278632', 'en:Santa Fe 769')
@@ -568,3 +580,36 @@ class WikidataTests(unittest.TestCase):
     def test_incinerator_as_valid_primary_link(self):
         # it is not a physical process...
         self.assert_linkability('Q1424213')
+
+    def test_tourist_trail_as_valid_primary_link(self):
+        self.assert_linkability('Q112876332')
+
+    def test_scenic_route_as_valid_primary_link(self):
+        self.assert_linkability('Q1337273')
+
+    def test_firefighting_museum_as_valid_primary_link(self):
+        self.assert_linkability('Q76629326')
+
+    def test_specific_ritual_object_as_valid_primary_link(self):
+        self.assert_linkability('Q43386863')
+
+    def test_biosphere_reserve_as_valid_primary_link(self):
+        self.assert_linkability('Q26271338')
+
+    def test_inn_sign_as_valid_primary_link(self):
+        self.assert_linkability('Q41402928')
+
+    def test_joke_machine_as_valid_primary_link(self):
+        self.assert_linkability('Q60238364')
+
+    def test_abandoned_village_as_valid_primary_link(self):
+        self.assert_linkability('Q105643919')
+
+    def test_hotel_as_valid_primary_link(self):
+        self.assert_linkability('Q41411301')
+
+    def test_business_park_as_valid_primary_link(self):
+        self.assert_linkability('Q107022150')
+
+    def test_horsecar_tourism_attraction_as_valid_primary_link(self):
+        self.assert_linkability('Q9360797')
