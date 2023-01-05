@@ -1043,7 +1043,7 @@ class WikimediaLinkIssueDetector:
             "Q1358919": {'what': 'a bicycle sharing system', 'replacement': 'brand:'},
             "Q350945": {'what': 'a heraldic animal', 'replacement': None},
             "Q1796040": {'what': 'a geodetic control network', 'replacement': None},
-            "Q18325841": {'what': 'a public transport network', 'replacement': None},
+            "Q18325841": {'what': 'a public transport network', 'replacement': 'operator:'},
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
