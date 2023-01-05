@@ -1376,6 +1376,8 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q4731380')
         # nor other scultures, lets hide the entire mistakenly listed class
         wikidata_bugs.append('Q17310537')
+        # neither ones formed into groups
+        wikidata_bugs.append('Q2293148')
         # really?
         wikidata_bugs.append('Q466521')
         

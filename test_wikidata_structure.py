@@ -587,6 +587,9 @@ class WikidataTests(unittest.TestCase):
     def test_scenic_route_as_valid_primary_link(self):
         self.assert_linkability('Q1337273')
 
+    def test_set_of_sculptures_forming_route_as_valid_primary_link(self):
+        self.assert_linkability('Q2293084')
+
     def test_firefighting_museum_as_valid_primary_link(self):
         self.assert_linkability('Q76629326')
 
