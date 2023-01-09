@@ -180,6 +180,9 @@ class WikidataTests(unittest.TestCase):
     def test_specific_tree_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q33040885') # not a taxon
 
+    def test_specific_tree_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q15133783')
+
     def test_sheltered_information_board_as_valid_primary_link(self):
         self.assert_linkability('Q7075518') # not an event
 
@@ -194,6 +197,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_another_railway_segment_as_valid_primary_link(self):
         self.assert_linkability('Q1126676') # not a physical process
+
+    def test_railway_miniature_as_valid_primary_link(self):
+        self.assert_linkability('Q685524')
+
+    def test_railway_station_as_valid_primary_link(self):
+        self.assert_linkability('Q2016811')
 
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30') # not an event
@@ -213,6 +222,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_cemetery_as_valid_primary_link(self):
         self.assert_linkability('Q30593659') # not an event
+
+    def test_cholera_cemetery_as_valid_primary_link(self):
+        self.assert_linkability('Q18147583')
 
     def test_megaproject_as_valid_primary_link(self):
         self.assert_linkability('Q782093') # some megaprojects are already existing, project ( https://www.wikidata.org/wiki/Q170584 ) may be already complete
@@ -337,9 +349,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_world_war_one_statue_as_valid_primary_link(self):
         self.assert_linkability('Q113621082')
-
-    def test_railway_miniature_as_valid_primary_link(self):
-        self.assert_linkability('Q685524')
 
     def test_some_outdoor_art_as_valid_primary_link(self):
         self.assert_linkability('Q106274335')
@@ -616,3 +625,26 @@ class WikidataTests(unittest.TestCase):
 
     def test_horsecar_tourism_attraction_as_valid_primary_link(self):
         self.assert_linkability('Q9360797')
+
+    def test_lighthouse_as_valid_primary_link(self):
+        self.assert_linkability('Q28376122')
+
+    def test_hospice_as_valid_primary_link(self):
+        self.assert_linkability('Q177545')
+
+    def test_berlin_wall_as_valid_primary_link(self):
+        self.assert_linkability('Q5086')
+
+    def test_paleontological_site_as_valid_primary_link(self):
+        self.assert_linkability('Q7354875')
+
+    def test_sewer_network_as_valid_primary_link(self):
+        # a bit dubious but is not a behaviour...
+        self.assert_linkability('Q1399679')
+
+    def test_community_as_valid_primary_link(self):
+        # a bit dubious but is not a behaviour...
+        self.assert_linkability('Q2073041')
+
+    def test_artist_run_space_as_valid_primary_link(self):
+        self.assert_linkability('Q780609')
