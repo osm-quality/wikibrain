@@ -273,6 +273,17 @@ class Tests(unittest.TestCase):
         wikidata = self.issue_reporter().get_effective_wikidata_tag(tags)
         self.assertEqual("Q52412", wikidata)
 
+    def test_valid_redirect_links(self):
+        # "wikipedia wikidata mismatch" not reported where redirect is assigned own wikidata
+        # https://it.wikipedia.org/w/index.php?title=Savazza&redirect=no Q18438710
+        # https://github.com/matkoniecz/OSM-wikipedia-tag-validator/issues/8
+        tags = {"wikipedia": "it:Savazza", "wikidata": "Q18438710"}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertEqual (None, problem)
+
     # TODO: implement this at certain point
     #def test_576_in_future(self):
     #    wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
