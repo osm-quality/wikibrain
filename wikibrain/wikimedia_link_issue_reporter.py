@@ -1311,14 +1311,6 @@ class WikimediaLinkIssueDetector:
     @staticmethod
     def workarounds_for_wikidata_bugs_breakage_and_mistakes():
         wikidata_bugs = []
-        # become broked in 2022-11-27, see 
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk%3AWikiProject_Ontology&type=revision&diff=1779873478&oldid=1778618241
-        wikidata_bugs.append("Q111414683")
-
-        # https://www.wikidata.org/wiki/Talk:Q41554881#Problematic_description_and_classification
-        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1528309435#Geysers_are_classified_as_events._What_exactly_went_wrong?
-        wikidata_bugs.append("Q41554881")
-
         # religious art mess
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803759760#Kreuzschlepper_(Q41318154)_is_a_behavior,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q2531916')
@@ -1357,15 +1349,23 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q13411064')
 
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#fruit_harvest_(Q63149011)_is_an_art_genre,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q471835')
-
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#Gunnison_Beach_(Q5619268)_is_an_event_because_it_is_a_nude_beach
         # note that it is more generic problem which was not actually fixed
         wikidata_bugs.append('Q847935')
 
         # otherwise is confused by https://www.wikidata.org/wiki/Q64124
         wikidata_bugs.append('Q3321844')
+
+        # also reported, not going to bother with linking...
+        wikidata_bugs.append('Q110701')
+        wikidata_bugs.append('Q12772819')
+        wikidata_bugs.append('Q5104305')
+        wikidata_bugs.append('Q39715')
+        wikidata_bugs.append('Q27627826')
+        wikidata_bugs.append('Q2373919')
+        wikidata_bugs.append('Q156849')
+        wikidata_bugs.append('Q4034417')
+        wikidata_bugs.append('Q608152')
 
         # no, ugly sculptures are not events
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology
@@ -1379,12 +1379,6 @@ class WikimediaLinkIssueDetector:
         # really?
         wikidata_bugs.append('Q466521')
         
-        # confuses animal lister
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786617153#tiger_(Q19939)_is_word_or_phrase
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786617153#chicken_(Q780)_is_also_word_or_phrase
-        wikidata_bugs.append('Q115372263')
-        wikidata_bugs.append('Q12767945')
-
         # property is not an event
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#Tykocin_Castle_(Q5734420)_is_an_event,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q1400881')
