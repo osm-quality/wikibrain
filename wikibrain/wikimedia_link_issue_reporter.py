@@ -1014,6 +1014,11 @@ class WikimediaLinkIssueDetector:
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
                     continue # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
 
+                if potential_failure['what'] == " a bicycle sharing system" and tags.get('type') == 'network':
+                    continue # for relations like https://www.openstreetmap.org/relation/6409389 it seems fine
+                             # though not sure is relation itself is fine
+                             # but lets skip and focus on blatantly bad things
+
                 # prefer to not report general one (there could be a more specific one reason in a different branch)
                 if potential_failure['what'] in ["an event", "a behavior"] and remembered_potential_failure != None:
                     continue
