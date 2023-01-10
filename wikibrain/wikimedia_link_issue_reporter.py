@@ -1320,14 +1320,8 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q41554881")
 
         # religious art mess
-        # maybe it can be resolved, see following
-        # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#How_to_prevent_Maria_column_from_being_classified_as_a_process?
-        wikidata_bugs.append('Q2864737')
-
-        wikidata_bugs.append('Q47848') # concrete objects are marked as subclass of 
-        # sacred architecture (architectural practices used in places of worship) [https://www.wikidata.org/wiki/Q47848]
-        # as result I need to skip it, see for example https://www.wikidata.org/wiki/Q775129
-        wikidata_bugs.append('Q2860334') # exactly the same ("church architecture")
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803759760#Kreuzschlepper_(Q41318154)_is_a_behavior,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q2531916')
 
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
