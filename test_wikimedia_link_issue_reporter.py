@@ -311,6 +311,18 @@ class Tests(unittest.TestCase):
 
     def test_simplest_passing_case_for_why_object_is_allowed_to_have_foreign_language_label(self):
         self.assertNotEqual (None, self.issue_reporter().why_object_is_allowed_to_have_foreign_language_label("dummy description", 'Q205547'))
+
+    def test_that_wikipedia_wikidata_conflict_is_detected_for_secondary_tags(self):
+        # https://www.wikidata.org/wiki/Q2743499 - that bank
+        matching_tags = {"brand:wikidata": "Q2743499", "brand:wikipedia": "en:Punjab National Bank"}
+        # https://www.wikidata.org/wiki/Q274349 - some astronomer
+        not_matching_tags = {"brand:wikidata": "Q274349", "brand:wikipedia": "en:Punjab National Bank"}
+        location = None
+        object_description = "fake test object"
+        should_be_fine = self.issue_reporter().get_the_most_important_problem_generic(matching_tags, location, "node", object_description)
+        should_be_failing = self.issue_reporter().get_the_most_important_problem_generic(not_matching_tags, location, "node", object_description)
+        self.assertEqual (None, should_be_fine)
+        self.assertNotEqual (None, should_be_failing)
         
     def test_that_not_prefixes_are_respected(self):
         # https://www.openstreetmap.org/way/165659335

@@ -168,10 +168,16 @@ class WikimediaLinkIssueDetector:
             # early to ensure that passing later wikidata_id of article is not going to be confusing
             if tags.get("wikidata") != None: # in case of completely missing wikidata tag it is not a critical issue and will be solved 
                                              # by add_wikipedia_and_wikidata_based_on_each_other
-                something_reportable = self.check_for_wikipedia_wikidata_collision(tags.get("wikidata"), language_code, article_name)
+                something_reportable = self.check_for_wikipedia_wikidata_collision(tags, "wikidata", "wikipedia")
                 if something_reportable != None:
                     return something_reportable
-
+        for wikidata_key in tags.keys():
+           if wikidata_key.find("wikidata") != -1:
+                wikipedia_key = wikidata_key.replace("wikidata", "wikipedia")
+                if wikipedia_key in tags:
+                    something_reportable = self.check_for_wikipedia_wikidata_collision(tags, wikidata_key, wikipedia_key)
+                    if something_reportable != None:
+                        return something_reportable
         return None
 
     def add_wikipedia_and_wikidata_based_on_each_other(self, tags):
@@ -664,7 +670,15 @@ class WikimediaLinkIssueDetector:
             print("requested <" + str(language_code) + ", <" + str(article_name) + ">)")
             raise e
 
-    def check_for_wikipedia_wikidata_collision(self, present_wikidata_id, language_code, article_name):
+    def check_for_wikipedia_wikidata_collision(self, tags, wikidata_key, wikipedia_key):
+        language_code = wikimedia_connection.get_language_code_from_link(tags.get(wikipedia_key))
+        article_name = wikimedia_connection.get_article_name_from_link(tags.get(wikipedia_key))
+        present_wikidata_id = tags.get(wikidata_key)
+        prefix = wikidata_key.replace(":wikidata", "")
+        error_id_suffix = ""
+        if wikidata_key != "wikidata":
+            error_id_suffix = " - for secondary tag"
+
         if present_wikidata_id == None:
             return None
 
@@ -676,17 +690,17 @@ class WikimediaLinkIssueDetector:
         if present_wikidata_id == wikidata_id_from_article:
             return None
 
-        base_message = "wikidata and wikipedia tags link to a different objects"
-        common_message = base_message + ", because wikidata tag points to a redirect that should be followed"
+        base_message = wikidata_key + " and " + wikipedia_key + " tags link to a different objects"
+        common_message = base_message + ", because " + wikidata_key + " tag points to a redirect that should be followed"
         message = self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article)
         maybe_redirected_wikidata_id = self.get_wikidata_id_after_redirect(present_wikidata_id)
         if maybe_redirected_wikidata_id != present_wikidata_id:
             if maybe_redirected_wikidata_id == wikidata_id_from_article:
                 return ErrorReport(
-                    error_id = "wikipedia wikidata mismatch - follow wikidata redirect",
+                    error_id = "wikipedia wikidata mismatch - follow wikidata redirect" + error_id_suffix,
                     error_general_intructions = common_message,
                     error_message = message,
-                    prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
+                    prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
                     )
 
         title_after_possible_redirects = article_name
@@ -695,39 +709,39 @@ class WikimediaLinkIssueDetector:
         except wikimedia_connection.TitleViolatesKnownLimits:
             print("request for redirect target of <" + str(language_code) + "><" + str(article_name) + "> rejected as title was invalid")
             print("hopefully it is caught elsewhere that title is invalid")
-            print("reconstructing wikipedia tag and reporting error")
+            print("reconstructing " + wikipedia_key + " tag and reporting error")
             return ErrorReport(
-                            error_id = "malformed wikipedia tag",
-                            error_message = "malformed wikipedia tag (" + language_code + ":" + article_name + ")",
-                            prerequisite = {'wikipedia': language_code + ":" + article_name },
+                            error_id = "malformed wikipedia tag" + error_id_suffix,
+                            error_message = "malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
+                            prerequisite = {wikipedia_key: language_code + ":" + article_name },
                             )
 
         is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
         if is_article_redirected:
             wikidata_id_from_redirect = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
             if present_wikidata_id == wikidata_id_from_redirect:
-                common_message = base_message + ", because wikipedia tag points to a redirect that should be followed"
+                common_message = base_message + ", because " + wikipedia_key + " tag points to a redirect that should be followed"
                 message = self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article)
                 message += " article redirects from " + language_code + ":" + article_name + " to " + language_code + ":" + title_after_possible_redirects
                 new_wikipedia_link = language_code+":"+title_after_possible_redirects
                 return ErrorReport(
-                    error_id = "wikipedia wikidata mismatch - follow wikipedia redirect",
+                    error_id = "wikipedia wikidata mismatch - follow wikipedia redirect" + error_id_suffix,
                     error_general_intructions = common_message,
                     error_message = message,
                     desired_wikipedia_target = new_wikipedia_link,
-                    prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
-                    proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia_link}}],
+                    prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
+                    proposed_tagging_changes = [{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia_link}}],
                     )
 
         if(self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_id_from_article, present_wikidata_id)):
             new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
-            message = "article claims to point to disambig, wikidata does not. wikidata tag is likely to be correct, wikipedia tag almost certainly is not"
+            message = "article claims to point to disambig, " + wikidata_key + " does not. " + wikidata_key + " tag is likely to be correct, " + wikipedia_key + " tag almost certainly is not"
             return ErrorReport(
-                error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not",
+                error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not" + error_id_suffix,
                 error_general_intructions = common_message,
                 error_message = message,
-                prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
-                proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia}}],
+                prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
+                proposed_tagging_changes = [{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia}}],
                 )
         redirected = self.get_article_name_after_redirect(language_code, article_name)
         if redirected != None:
@@ -737,28 +751,28 @@ class WikimediaLinkIssueDetector:
             wikidata_of_redirected = wikimedia_connection.get_wikidata_object_id_from_article(language_code_redirected, article_name_redirected, self.forced_refresh)
             if(self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_of_redirected, present_wikidata_id)):
                 new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
-                message = "article claims to redirect to disambig, wikidata does not. wikidata tag is likely to be correct, wikipedia tag almost certainly is not"
+                message = "article claims to redirect to disambig, " + wikidata_key + " does not. " + wikidata_key + " tag is likely to be correct, " + wikipedia_key + " tag almost certainly is not"
                 return ErrorReport(
-                    error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not",
+                    error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not" + error_id_suffix,
                     error_general_intructions = common_message,
                     error_message = message,
-                    prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code+":"+article_name},
-                    proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": new_wikipedia}}],
+                    prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
+                    proposed_tagging_changes = [{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia}}],
                     )
 
         message = (base_message + " (" +
                    self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +
                    " wikidata id assigned to linked Wikipedia article)")
         if maybe_redirected_wikidata_id != present_wikidata_id:
-            message += " Note that this OSM object has wikidata tag links a redirect ("
+            message += " Note that this OSM object has " + wikidata_key + " tag links a redirect ("
             message += present_wikidata_id  + " to " + maybe_redirected_wikidata_id + ")."
         if is_article_redirected:
-            message += " Note that this OSM object has wikipedia tag that links redirect ('"
+            message += " Note that this OSM object has " + wikipedia_key + " tag that links redirect ('"
             message += article_name  + "' to '" + title_after_possible_redirects + "')."
         return ErrorReport(
-            error_id = "wikipedia wikidata mismatch",
+            error_id = "wikipedia wikidata mismatch" + error_id_suffix,
             error_message = message,
-            prerequisite = {'wikidata': present_wikidata_id, 'wikipedia': language_code + ":" + article_name},
+            prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code + ":" + article_name},
             )
 
     def is_first_wikidata_disambig_while_second_points_to_something_not_disambig(self, first, second):
