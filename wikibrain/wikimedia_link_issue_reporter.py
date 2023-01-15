@@ -285,12 +285,14 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             return something_reportable
 
-        # TODO - check disabled
-        # requires resolving https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#Tagging_ruins/remains_left_after_object
-        # extra support for one more parameter required
-        #something_reportable = self.check_is_object_is_existing(wikidata_id)
-        #if something_reportable != None:
-        #    return something_reportable
+        something_reportable = self.check_is_object_is_existing(effective_wikidata_id)
+        if something_reportable != None:
+            return something_reportable
+
+        if "brand:wikidata" in tags:
+            something_reportable = self.check_is_object_brand_is_existing(tags.get("brand:wikidata"))
+            if something_reportable != None:
+                return something_reportable
 
         return None
 
@@ -438,7 +440,21 @@ class WikimediaLinkIssueDetector:
             return None
         no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
         if no_longer_existing != None:
-            error_general_intructions = "Wikidata claims that this object no longer exists. Historical, no longer existing object must not be mapped in OSM - so it means that either Wikidata is mistaken or wikipedia/wikidata tag is wrong or OSM has an outdated object." + " " + self.wikidata_data_quality_warning()
+            error_general_intructions = "Wikidata claims that this object no longer exists. Historical, no longer existing object should not be mapped in OSM (except temporary marking to avoid remapping them from aerial imagery or similar sources) - so it means that either Wikidata is mistaken or has only partial data - for example it is fine to link ruins of a church to its wikipedia entry ( see https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#Tagging_ruins/remains_left_after_object ) or wikipedia/wikidata tag is wrong or OSM has an outdated object that should be removed." + " " + self.wikidata_data_quality_warning()
+            message = ""
+            return ErrorReport(
+                            error_id = "no longer existing object",
+                            error_general_intructions = error_general_intructions,
+                            error_message = message,
+                            prerequisite = {'wikidata': present_wikidata_id}
+                            )
+
+    def check_is_object_brand_is_existing(self, present_wikidata_id):
+        if present_wikidata_id == None:
+            return None
+        no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
+        if no_longer_existing != None:
+            error_general_intructions = "Wikidata claims that assigned brand object no longer exists. That means that either this shop is gone or it is rebranded. Or brand:wikidata tag is wrong. Historical, no longer existing object should not be mapped in OSM." + " " + self.wikidata_data_quality_warning()
             message = ""
             return ErrorReport(
                             error_id = "no longer existing object",
