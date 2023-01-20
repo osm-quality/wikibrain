@@ -1035,6 +1035,10 @@ class WikimediaLinkIssueDetector:
             if potential_failure != None:
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
                     continue # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
+                    # TODO
+                    # ideally can be fixed, see https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases/Archive_1&oldid=1808808796#Tulalip_Tribes_of_Washington_(Q1516298)_is_human,_according_to_Wikidata_ontology
+                    # bother with it after USA report page is empty and Wikidata Ontology has run out of things to fix
+                    # AKA never
 
                 if potential_failure['what'] == " a bicycle sharing system" and tags.get('type') == 'network':
                     continue # for relations like https://www.openstreetmap.org/relation/6409389 it seems fine
