@@ -648,3 +648,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_artist_run_space_as_valid_primary_link(self):
         self.assert_linkability('Q780609')
+
+    def test_set_of_rocks_as_valid_primary_link(self):
+        self.assert_linkability('Q878769')
+
+    def test_chimney_as_valid_primary_link(self):
+        self.assert_linkability('Q17792230')
