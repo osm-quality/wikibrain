@@ -311,6 +311,9 @@ class WikimediaLinkIssueDetector:
                         )
 
     def check_is_wikidata_page_existing(self, key, present_wikidata_id):
+        if key == "note:wikidata":
+            # not an actual wikidata link, see https://www.openstreetmap.org/way/139505589
+            return None
         if present_wikidata_id == None:
             raise Exception("check_is_wikidata_page_existing null pointer exception on " + key)
         wikidata = wikimedia_connection.get_data_from_wikidata_by_id(present_wikidata_id)
