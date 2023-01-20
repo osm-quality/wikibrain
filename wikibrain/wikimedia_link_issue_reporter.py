@@ -8,14 +8,12 @@ from wikibrain import wikipedia_knowledge
 from wikibrain import wikidata_knowledge
 
 class ErrorReport:
-    def __init__(self, error_message=None, error_general_intructions=None, desired_wikipedia_target=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
+    def __init__(self, error_message=None, error_general_intructions=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
         # to include something in serialization - modify data function
         self.error_id = error_id
         self.error_message = error_message
         self.error_general_intructions = error_general_intructions
         self.debug_log = debug_log
-        self.current_wikipedia_target = None #TODO - eliminate, start from wikipedia validator using this data
-        self.desired_wikipedia_target = desired_wikipedia_target  #TODO - eliminate, start from wikipedia validator using this data
         self.prerequisite = prerequisite
         self.extra_data = extra_data # TODO - replace by more specific
         self.proposed_tagging_changes = proposed_tagging_changes
@@ -25,7 +23,6 @@ class ErrorReport:
 
     def bind_to_element(self, element):
         self.tags = element.get_tag_dictionary()
-        self.current_wikipedia_target = element.get_tag_value("wikipedia") # TODO - save all tags #TODO - how to handle multiple?
         self.osm_object_url = element.get_link()
         if element.get_coords() == None:
             self.location = (None, None)
@@ -39,8 +36,6 @@ class ErrorReport:
             error_general_intructions = self.error_general_intructions,
             debug_log = self.debug_log,
             osm_object_url = self.osm_object_url,
-            current_wikipedia_target = self.current_wikipedia_target, #TODO - eliminate, start from wikipedia validator using this data
-            desired_wikipedia_target = self.desired_wikipedia_target, #TODO - eliminate, start from wikipedia validator using this data
             proposed_tagging_changes = self.proposed_tagging_changes,
             extra_data = self.extra_data,
             prerequisite = self.prerequisite,
@@ -428,7 +423,6 @@ class WikimediaLinkIssueDetector:
                     error_general_intructions = error_general_intructions,
                     error_message = message,
                     prerequisite = {'wikipedia': language_code+":"+article_name},
-                    desired_wikipedia_target = proposed_new_target,
                     proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": proposed_new_target}}],
                     )
 
@@ -595,7 +589,6 @@ class WikimediaLinkIssueDetector:
                 error_id = "wikipedia tag from wikipedia tag in an outdated form",
                 error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "), wikipedia tag may be added",
                 prerequisite = prerequisite,
-                desired_wikipedia_target = new_wikipedia,
                 proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": new_wikipedia}}],
                 )
         else:
@@ -626,7 +619,6 @@ class WikimediaLinkIssueDetector:
             return ErrorReport(
                 error_id = "wikipedia from wikidata tag",
                 error_message = "without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article, article language is not surprising",
-                desired_wikipedia_target = link,
                 prerequisite = {'wikipedia': None, 'wikidata': present_wikidata_id},
                 proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
                 )
@@ -634,7 +626,6 @@ class WikimediaLinkIssueDetector:
             return ErrorReport(
                 error_id = "wikipedia from wikidata tag, unexpected language",
                 error_message = "without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article",
-                desired_wikipedia_target = link,
                 prerequisite = {'wikipedia': None, 'wikidata': present_wikidata_id},
                 proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
                 )
@@ -744,7 +735,6 @@ class WikimediaLinkIssueDetector:
                     error_id = "wikipedia wikidata mismatch - follow wikipedia redirect" + error_id_suffix,
                     error_general_intructions = common_message,
                     error_message = message,
-                    desired_wikipedia_target = new_wikipedia_link,
                     prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
                     proposed_tagging_changes = [{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia_link}}],
                     )
@@ -890,7 +880,6 @@ class WikimediaLinkIssueDetector:
             return ErrorReport(
                 error_id = "wikipedia tag unexpected language",
                 error_message = error_message,
-                desired_wikipedia_target = good_link,
                 proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": good_link}}],
                 prerequisite = prerequisite,
                 )
