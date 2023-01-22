@@ -654,3 +654,21 @@ class WikidataTests(unittest.TestCase):
 
     def test_chimney_as_valid_primary_link(self):
         self.assert_linkability('Q17792230')
+
+    def test_exhibition_as_valid_primary_link(self):
+        self.assert_linkability('Q63208613')
+
+    def test_church_building_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q9333671')
+
+    def test_church_building_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q9167695')
+
+    def test_snowpack_as_valid_primary_link(self):
+        self.assert_linkability('Q11762336')
+
+    def test_religious_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q104895379')
+
+    def test_graduation_tower_as_valid_primary_link(self):
+        self.assert_linkability('Q9363870')
