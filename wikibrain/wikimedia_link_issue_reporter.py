@@ -687,7 +687,7 @@ class WikimediaLinkIssueDetector:
         prefix = wikidata_key.replace(":wikidata", "")
         error_id_suffix = ""
         if wikidata_key != "wikidata":
-            error_id_suffix = " - for secondary tag"
+            error_id_suffix = " - for " + prefix + " prefixed tags"
 
         if present_wikidata_id == None:
             return None
