@@ -692,6 +692,8 @@ class WikimediaLinkIssueDetector:
         if present_wikidata_id == None:
             return None
 
+        if article_name == None:
+            return None
         article_name_with_section_stripped = article_name
         if article_name.find("#") != -1:
             article_name_with_section_stripped = re.match('([^#]*)#(.*)', article_name).group(1)
