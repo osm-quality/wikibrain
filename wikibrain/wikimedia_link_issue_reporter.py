@@ -1399,6 +1399,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q156849')
         wikidata_bugs.append('Q4034417')
         wikidata_bugs.append('Q608152')
+        wikidata_bugs.append('Q4456944')
 
         # no, ugly sculptures are not events
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology
