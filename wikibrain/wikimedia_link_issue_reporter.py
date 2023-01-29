@@ -688,6 +688,9 @@ class WikimediaLinkIssueDetector:
         error_id_suffix = ""
         if wikidata_key != "wikidata":
             error_id_suffix = " - for " + prefix + " prefixed tags"
+        
+        if prefix == "not":
+            return None # not really worth validating TODO: maybe enable after basically everything else is fixed
 
         if present_wikidata_id == None:
             return None
