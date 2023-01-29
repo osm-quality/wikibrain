@@ -28,6 +28,8 @@ class WikidataTests(unittest.TestCase):
             #print("is_unlinkable.error_message")
             #print(is_unlinkable.error_message)
             print()
+            print("--------------------------------------------")
+            print()
             print("https://www.wikidata.org/wiki/" + type_id)
             print("https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology")
             print("============================== title")
@@ -35,9 +37,7 @@ class WikidataTests(unittest.TestCase):
             for key in invalid_groups:
                 possible_match = invalid_groups[key]["what"]
                 if "is about " + possible_match + ", so it is very unlikely to be correct" in is_unlinkable.error_message:
-                    print("{{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology")
-            print("--------------------------------------------")
-            print()
+                    print("== {{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology ==")
             print()
             #print("is_unlinkable.data")
             #print(is_unlinkable.data())
