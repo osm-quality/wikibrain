@@ -666,11 +666,11 @@ class WikimediaLinkIssueDetector:
         wikidata_data = wikimedia_connection.get_data_from_wikidata_by_id(wikidata_id)
         try:
             return wikidata_data['entities'][wikidata_id]['id']
-        except KeyError as e:
+        except (TypeError, KeyError) as e:
             print(e)
             print("requested <" + str(wikidata_id) + ">)")
             print(wikidata_data)
-            raise e
+            return None
 
     def get_article_name_after_redirect(self, language_code, article_name):
         try:
