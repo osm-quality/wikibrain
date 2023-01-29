@@ -1,6 +1,7 @@
 def blacklisted_and_unfixable_ids():
     return [
         'Q1456883',
+        'Q98272514', # "Falling stones protection nets" https://www.wikidata.org/wiki/Q98272514
         'Q3591778', # dew pond
         'Q17172602', # monumental cross
         'Q937114', # ghost bike https://www.wikidata.org/wiki/Q937114
