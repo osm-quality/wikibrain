@@ -1379,9 +1379,6 @@ class WikimediaLinkIssueDetector:
         # etc
         wikidata_bugs.append("Q4931513")        
 
-        # rail line is not an event
-        wikidata_bugs.append('Q1412403')
-
         # Wikidata: high school education is process that takes place without human involvement
         # yes, really
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1789193528#high_school_education_(Q14623204)_is_process_that_takes_place_without_human_involvement
@@ -1390,19 +1387,12 @@ class WikimediaLinkIssueDetector:
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         wikidata_bugs.append("Q12377751")
 
-        # individual statues are not art genres
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1788335136#Q113621082_is_an_art_genre,_according_to_Wikidata_ontology
-        wikidata_bugs.append("Q3399515")
-
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q13411064')
 
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#Gunnison_Beach_(Q5619268)_is_an_event_because_it_is_a_nude_beach
         # note that it is more generic problem which was not actually fixed
         wikidata_bugs.append('Q847935')
-
-        # otherwise is confused by https://www.wikidata.org/wiki/Q64124
-        wikidata_bugs.append('Q3321844')
 
         # also reported, not going to bother with linking...
         wikidata_bugs.append('Q110701')
@@ -1458,15 +1448,6 @@ class WikimediaLinkIssueDetector:
         # really?
         wikidata_bugs.append('Q466521')
         
-        # property is not an event
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#Tykocin_Castle_(Q5734420)_is_an_event,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q1400881')
-
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Krak%C3%B3w_Fast_Tram_(Q1814872)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology_-_and_an_event
-        wikidata_bugs.append('Q12162227')
-        # other breakage with this element
-        wikidata_bugs.append('Q1814872')
-
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1801653370#Stehende_(Q108428976)_is_a_behavior,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q40446')
 
