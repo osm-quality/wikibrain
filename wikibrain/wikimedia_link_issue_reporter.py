@@ -1086,6 +1086,7 @@ class WikimediaLinkIssueDetector:
             'Q55983715': taxon,
             'Q268592': {'what': 'a general industry', 'replacement': None},
             'Q1344': {'what': 'an opera', 'replacement': None},
+            'Q618779': {'what': 'an award', 'replacement': None},
             'Q35127': {'what': 'a website', 'replacement': None},
             'Q17320256': {'what': 'a physical process', 'replacement': None},
             'Q5398426': {'what': 'a television series', 'replacement': None},
@@ -1096,6 +1097,15 @@ class WikimediaLinkIssueDetector:
             'Q60075825': {'what': 'a Christian holy day', 'replacement': None},
             'Q2915444': {'what': 'a fireworks event', 'replacement': None},
             'Q645883': {'what': 'a military operation', 'replacement': None},
+            'Q331055': {'what': 'a burial', 'replacement': None},
+            'Q201676': {'what': 'a funeral', 'replacement': None},
+            'Q14350': {'what': 'a radio station', 'replacement': 'brand:'},
+            'Q220505': {'what': 'a film festival', 'replacement': None},
+            'Q13406554': {'what': 'a sports competition', 'replacement': None},
+            'Q18608583': {'what': 'a recurring sports event', 'replacement': None},
+            'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313
+            'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
+            'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
             
 
             # public housing is a behavior...
@@ -1143,6 +1153,7 @@ class WikimediaLinkIssueDetector:
             'Q431289': {'what': 'a brand', 'replacement': 'brand:'},
             'Q7676551': {'what': 'a festival', 'replacement': 'brand:'},
             'Q868557': {'what': 'a music festival', 'replacement': 'brand:'},
+            'Q1759320': {'what': 'a costume party', 'replacement': 'brand:'},
             'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
             'Q1656682': event,
             'Q4026292': event,
@@ -1350,6 +1361,7 @@ class WikimediaLinkIssueDetector:
 
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
+        wikidata_bugs.append('Q21484471') # Wikipedia article covering multiple topics - self-report of Wikidata ontology bug
 
         # isolated network (island network) is not an event
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803454079#H%C3%A4rtsfeldbahn_(Q1642426)_is_an_event,_according_to_Wikidata_ontology
@@ -1400,6 +1412,36 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q4034417')
         wikidata_bugs.append('Q608152')
         wikidata_bugs.append('Q4456944')
+        wikidata_bugs.append('Q464980')
+        wikidata_bugs.append('Q5608878')
+        wikidata_bugs.append('Q16675884')
+        wikidata_bugs.append('Q2921001')
+        wikidata_bugs.append('Q1329540')
+        wikidata_bugs.append('Q15275719')
+        wikidata_bugs.append('Q449111')
+        wikidata_bugs.append('Q1985622')
+        wikidata_bugs.append('Q309100')
+        wikidata_bugs.append('Q217102')
+        wikidata_bugs.append('Q1436734')
+        wikidata_bugs.append('Q1402508')
+        wikidata_bugs.append('Q4006')
+        wikidata_bugs.append('Q1046088')
+        wikidata_bugs.append('Q17015069')
+        wikidata_bugs.append('Q959782')
+        wikidata_bugs.append('Q163687')
+        wikidata_bugs.append('Q129372')
+        wikidata_bugs.append('Q1370468')
+        wikidata_bugs.append('Q1143785')
+        wikidata_bugs.append('Q7561')
+        wikidata_bugs.append('Q3565868')
+        wikidata_bugs.append('Q1307347')
+        wikidata_bugs.append('Q1158818')
+        wikidata_bugs.append('Q188447')
+        wikidata_bugs.append('Q487850')
+        wikidata_bugs.append('Q63100')
+        wikidata_bugs.append('Q1961917')
+        wikidata_bugs.append('Q618779')
+        wikidata_bugs.append('Q65236448')
 
         # no, ugly sculptures are not events
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology

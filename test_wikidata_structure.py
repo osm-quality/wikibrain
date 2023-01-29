@@ -105,6 +105,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_reconstructed_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2461065')
 
+    def test_detecting_reconstructed_gate_as_valid_primary_link(self):
+        self.assert_linkability('Q30035365')
+
     def test_detecting_fort_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q20089971')
 
@@ -204,6 +207,9 @@ class WikidataTests(unittest.TestCase):
     def test_railway_station_as_valid_primary_link(self):
         self.assert_linkability('Q2016811')
 
+    def test_railway_line_as_valid_primary_link(self):
+        self.assert_linkability('Q706198')
+
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30') # not an event
 
@@ -281,8 +287,14 @@ class WikidataTests(unittest.TestCase):
     def test_headquarters_landscape_area_as_valid_primary_link(self):
         self.assert_linkability('Q5578587')
 
-    def test_museum_as_valid_primary_link(self):
+    def test_museum_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q731126')
+
+    def test_museum_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q27490233')
+
+    def test_museum_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q9337658')
 
     def test_mural_as_valid_primary_link_testcase1(self):
         self.assert_linkability('Q20103040')
@@ -453,6 +465,8 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q113278632')
         self.assert_passing_all_tests('Q113278632', 'en:Santa Fe 769')
 
+    def test_cave_church_as_valid_primary_link(self):
+        self.assert_linkability('Q1275277')
 
     def test_company_is_not_human(self):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object("Q15832619", wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()):
@@ -672,3 +686,57 @@ class WikidataTests(unittest.TestCase):
 
     def test_graduation_tower_as_valid_primary_link(self):
         self.assert_linkability('Q9363870')
+
+    def test_reconstructed_tower_as_valid_primary_link(self):
+        self.assert_linkability('Q106462927')
+
+    def test_boulder_as_valid_primary_link(self):
+        self.assert_linkability('Q664518')
+
+    def test_globe_as_valid_primary_link(self):
+        self.assert_linkability('Q5327187')
+
+    def test_escape_room_as_valid_primary_link(self):
+        self.assert_linkability('Q18209063')
+
+    def test_telephone_booth_as_valid_primary_link(self):
+        self.assert_linkability('Q22025014')
+
+    def test_city_as_valid_primary_link(self):
+        self.assert_linkability('Q13298')
+
+    def test_excavation_as_valid_primary_link(self):
+        self.assert_linkability('Q398648')
+
+    def test_city_part_as_valid_primary_link(self):
+        self.assert_linkability('Q73289125')
+
+    def test_coastal_defense_fort_as_valid_primary_link(self):
+        self.assert_linkability('Q5472138')
+
+    def test_railing_as_valid_primary_link(self):
+        self.assert_linkability('Q37818361')
+
+    def test_monastery_with_peat_bath_as_valid_primary_link(self):
+        self.assert_linkability('Q27914521')
+
+    def test_green_belt_as_valid_primary_link(self):
+        self.assert_linkability('Q883390')
+
+    def test_cross_dyke_as_valid_primary_link(self):
+        self.assert_linkability('Q883390')
+
+    def test_power_line_as_valid_primary_link(self):
+        self.assert_linkability('Q1563634')
+
+    def test_power_station_as_valid_primary_link(self):
+        self.assert_linkability('Q19378684')
+
+    def test_ranch_as_valid_primary_link(self):
+        self.assert_linkability('Q7185999')
+
+    def test_mall_as_valid_primary_link(self):
+        self.assert_linkability('Q9265538')
+
+    def test_wall_as_valid_primary_link(self):
+        self.assert_linkability('Q1543119')
