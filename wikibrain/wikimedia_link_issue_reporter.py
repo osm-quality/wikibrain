@@ -1362,9 +1362,11 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803759760#Kreuzschlepper_(Q41318154)_is_a_behavior,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q2531916')
 
+        # following detects Wikidata mistakes for no benefit. Ignoring it silently is preferable
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q21484471') # Wikipedia article covering multiple topics - self-report of Wikidata ontology bug
+        wikidata_bugs.append('Q21167233') # "Commons gallery" 
 
         # isolated network (island network) is not an event
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803454079#H%C3%A4rtsfeldbahn_(Q1642426)_is_an_event,_according_to_Wikidata_ontology
@@ -1459,9 +1461,6 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Lublin_County_(Q912777)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # https://www.wikidata.org/wiki/Wikidata:Property_proposal/has_duplicate_Wikimedia_page
         wikidata_bugs.append('Q17362920')
-
-        # "Commons gallery" - it detects Wikidata mistakes for no benefit. Ignoring it silently is preferable 
-        wikidata_bugs.append('Q21167233')
 
         wikidata_bugs.append('Q17134993')
 
