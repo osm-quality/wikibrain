@@ -684,6 +684,10 @@ class WikimediaLinkIssueDetector:
         language_code = wikimedia_connection.get_language_code_from_link(tags.get(wikipedia_key))
         article_name = wikimedia_connection.get_article_name_from_link(tags.get(wikipedia_key))
         present_wikidata_id = tags.get(wikidata_key)
+        if self.is_wikidata_tag_clearly_broken_or_with_multiple_values(present_wikidata_id):
+            # TODO: support somehow
+            # worth doing only after I start running out of errors to report to people
+            return None
         prefix = wikidata_key.replace(":wikidata", "")
         error_id_suffix = ""
         if wikidata_key != "wikidata":
