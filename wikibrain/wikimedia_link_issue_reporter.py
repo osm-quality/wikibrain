@@ -2275,6 +2275,8 @@ class WikimediaLinkIssueDetector:
                 return True
         if tags.get("historic") == "battlefield":
             return True
+        if tags.get("boundary") == "timezone":
+            return True
 
 
     def describe_osm_object(self, element):
