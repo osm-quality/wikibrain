@@ -62,6 +62,17 @@ class Tests(unittest.TestCase):
             print(problem.data()['error_message'])
         self.assertEqual (None, problem)
 
+    def test_allow_trailing_semicolon_with_multiple_elements_minimal_case(self):
+        # https://t.me/osmhr/17923
+        # https://www.openstreetmap.org/way/365519518
+        problem = self.issue_reporter().critical_structural_issue_report('node', {'buried:wikidata': 'Q1565289;Q1564970;Q13566201;Q551371;'})
+        if problem != None:
+            print(problem.data()['error_message'])
+        self.assertEqual (None, problem)
+
+    def test_allow_trailing_semicolon_with_multiple_elements_direct_function_test(self):
+        self.assertEqual (False, self.issue_reporter().is_wikidata_tag_clearly_broken('Q12636988;Q988613;Q125654;Q3446366;Q1280010;Q1254204;Q6154837;Q1253890;Q1254973;Q1564945;Q1564896;Q1564308;Q1275600;Q11043751;Q12629841;Q12633385;Q3446999;Q3446505;Q3436888;Q12644887;Q640602;Q1565289;Q1564970;Q13566201;Q551371;'))
+
     def test_block_semicolon_with_space_with_multiple_elements(self):
         # https://t.me/osmhr/17923
         # https://www.openstreetmap.org/way/365519518
@@ -77,8 +88,28 @@ class Tests(unittest.TestCase):
     def test_nonexisting_wikidata_is_not_malformed(self):
         self.assertEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikipedia': 'en:Oslo'}))
 
-    def test_multiple_wikidata_are_not_malformed(self):
+    def test_multiple_wikidata_are_not_automatically_malformed(self):
         self.assertEqual (False, self.issue_reporter().is_wikidata_tag_clearly_broken('Q8128437837382347234823472;Q38272487927'))
+
+    def test_nonexisting_wikidata_is_not_allowed_in_wikidata_multiple_value_list(self):
+        tags = {
+            "whatever:wikidata": "Q8128437837382347234823472;Q38272487927",
+            }
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+
+    def test_existing_wikidata_is_allowed_in_wikidata_multiple_value_list(self):
+        tags = {
+            "whatever:wikidata": "Q1;Q2",
+            }
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertEqual (None, problem)
 
     def test_well_formed_nonexisting_wikidata(self):
         self.assertNotEqual (None, self.issue_reporter().critical_structural_issue_report('node', {'wikidata': 'Q812843783738234723482347238272487927', 'wikipedia': 'en:Oslo'}))
