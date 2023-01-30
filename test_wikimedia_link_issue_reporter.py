@@ -162,6 +162,7 @@ class Tests(unittest.TestCase):
         object_type = 'node'
         object_description = "fake test object"
         problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertEqual (None, problem)
 
     def test_be_x_old_unusual_lang_code_is_not_considered_as_utterly_broken_in_wikipedia_tag(self):
         # https://www.openstreetmap.org/node/243011151 0 version 15
