@@ -28,16 +28,19 @@ class WikidataTests(unittest.TestCase):
             #print("is_unlinkable.error_message")
             #print(is_unlinkable.error_message)
             print()
-            print("--------------------------------------------")
             print()
             print("https://www.wikidata.org/wiki/" + type_id)
             print("https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology")
-            print("============================== title")
+            print()
             invalid_groups = self.detector().invalid_types()
+            reported_already = [] # sometimes the same problem name has multiple invalid types pointing to it
+            # in such case it should be still reported once
             for key in invalid_groups:
                 possible_match = invalid_groups[key]["what"]
                 if "is about " + possible_match + ", so it is very unlikely to be correct" in is_unlinkable.error_message:
-                    print("== {{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology ==")
+                    if possible_match not in reported_already:
+                        print("== {{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology ==")
+                        reported_already.append(possible_match)
             print()
             #print("is_unlinkable.data")
             #print(is_unlinkable.data())
@@ -49,9 +52,6 @@ class WikidataTests(unittest.TestCase):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable != None:
             self.dump_debug_into_stdout(type_id)
-            print("-------------")
-            print(is_unlinkable.data()['error_message'])
-            print(("-------------"))
         self.assertEqual(None, is_unlinkable)
 
     def assert_unlinkability(self, type_id):
