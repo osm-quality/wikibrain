@@ -1428,7 +1428,6 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q1046088')
         wikidata_bugs.append('Q17015069')
         wikidata_bugs.append('Q959782')
-        wikidata_bugs.append('Q163687')
         wikidata_bugs.append('Q129372')
         wikidata_bugs.append('Q1370468')
         wikidata_bugs.append('Q1143785')
@@ -1448,38 +1447,12 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q11024')
         wikidata_bugs.append('Q42240')
 
-        # no, ugly sculptures are not events
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q212431')
-        # neither are allegorical ones
-        wikidata_bugs.append('Q4731380')
-        # nor other scultures, lets hide the entire mistakenly listed class
-        wikidata_bugs.append('Q17310537')
-        # neither ones formed into groups
-        wikidata_bugs.append('Q2293148')
-        # really?
-        wikidata_bugs.append('Q466521')
-        
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1801653370#Stehende_(Q108428976)_is_a_behavior,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q40446')
-
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases/Archive_1&oldid=1801653492#Shetlandpony_(Q108421050)_is_a_behavior,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q3476508')
 
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Lublin_County_(Q912777)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # https://www.wikidata.org/wiki/Wikidata:Property_proposal/has_duplicate_Wikimedia_page
         wikidata_bugs.append('Q17362920')
-
-        wikidata_bugs.append('Q17134993')
-
-        # more workarounds, not going to record for what
-        wikidata_bugs.append('Q63922515')
-
-        # education mess
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1794982038#Prva_ekonomska_%C5%A1kola_(Q85652366)_is_an_event,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q8434')
 
         # public housing is not behavior
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1796693368#Farragut_Houses_(Q22329573)_is_a_behavior,_according_to_Wikidata_ontology
