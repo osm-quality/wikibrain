@@ -1105,6 +1105,8 @@ class WikimediaLinkIssueDetector:
             'Q331055': {'what': 'a burial', 'replacement': None},
             'Q201676': {'what': 'a funeral', 'replacement': None},
             'Q14350': {'what': 'a radio station', 'replacement': 'brand:'},
+            'Q1616075': {'what': 'a television station', 'replacement': 'brand:'},
+            'Q15265344': {'what': 'a broadcaster', 'replacement': 'brand:'},
             'Q220505': {'what': 'a film festival', 'replacement': None},
             'Q13406554': {'what': 'a sports competition', 'replacement': None},
             'Q18608583': {'what': 'a recurring sports event', 'replacement': None},
@@ -1121,6 +1123,7 @@ class WikimediaLinkIssueDetector:
             #'Q3769299': {'what': 'a human behavior', 'replacement':  None},
             'Q9332': {'what': 'a behavior', 'replacement':  None},
             
+            'Q179057': {'what': 'an explosion', 'replacement':  None},
             'Q1914636': {'what': 'an activity', 'replacement':  None},
             'Q2000908': weapon,
             'Q15142894': weapon,
@@ -1439,6 +1442,11 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q1961917')
         wikidata_bugs.append('Q618779')
         wikidata_bugs.append('Q65236448')
+        wikidata_bugs.append('Q1701967')
+        wikidata_bugs.append('Q42303986')
+        wikidata_bugs.append('Q7705750')
+        wikidata_bugs.append('Q11024')
+        wikidata_bugs.append('Q42240')
 
         # no, ugly sculptures are not events
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1786616004#butterfly_(Q65029693)_is_an_event,_according_to_Wikidata_ontology

@@ -186,6 +186,9 @@ class WikidataTests(unittest.TestCase):
     def test_specific_tree_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q15133783')
 
+    def test_specific_tree_as_valid_primary_link_testcase_d(self):
+        self.assert_linkability('Q995630')
+
     def test_sheltered_information_board_as_valid_primary_link(self):
         self.assert_linkability('Q7075518') # not an event
 
@@ -425,6 +428,9 @@ class WikidataTests(unittest.TestCase):
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q28673829')
 
+    def test_specific_prototype_as_valid_primary_link(self):
+        self.assert_linkability('Q701696')
+
     def test_tram_yard_as_valid_primary_link(self):
         self.assert_linkability('Q9346796')
 
@@ -465,8 +471,11 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q113278632')
         self.assert_passing_all_tests('Q113278632', 'en:Santa Fe 769')
 
-    def test_cave_church_as_valid_primary_link(self):
+    def test_cave_as_valid_primary_link(self):
         self.assert_linkability('Q1275277')
+
+    def test_cliff_as_valid_primary_link(self):
+        self.assert_linkability('Q924900')
 
     def test_company_is_not_human(self):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object("Q15832619", wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()):
@@ -696,6 +705,9 @@ class WikidataTests(unittest.TestCase):
     def test_globe_as_valid_primary_link(self):
         self.assert_linkability('Q5327187')
 
+    def test_stellarator_as_valid_primary_link(self):
+        self.assert_linkability('Q315738')
+
     def test_escape_room_as_valid_primary_link(self):
         self.assert_linkability('Q18209063')
 
@@ -728,6 +740,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_power_line_as_valid_primary_link(self):
         self.assert_linkability('Q1563634')
+
+    def test_power_cable_as_valid_primary_link(self):
+        self.assert_linkability('Q314180')
 
     def test_power_station_as_valid_primary_link(self):
         self.assert_linkability('Q19378684')
