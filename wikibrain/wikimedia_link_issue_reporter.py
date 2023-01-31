@@ -1107,6 +1107,7 @@ class WikimediaLinkIssueDetector:
             'Q2915444': {'what': 'a fireworks event', 'replacement': None},
             'Q645883': {'what': 'a military operation', 'replacement': None},
             'Q331055': {'what': 'a burial', 'replacement': None},
+            'Q7397': {'what': 'a software', 'replacement': None},
             'Q201676': {'what': 'a funeral', 'replacement': None},
             'Q14350': {'what': 'a radio station', 'replacement': 'brand:'},
             'Q1616075': {'what': 'a television station', 'replacement': 'brand:'},
