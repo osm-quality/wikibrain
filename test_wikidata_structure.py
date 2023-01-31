@@ -784,9 +784,20 @@ class WikidataTests(unittest.TestCase):
     def test_that_organisation_is_not_an_event(self):
         self.is_not_an_event('Q15852617')
 
-    def test_that_overnment_organisation_is_not_an_event(self):
+    def test_that_government_organisation_is_not_an_event_or_behavior(self):
         self.is_not_an_event('Q55504346')
         self.is_not_a_behavior('Q55504346')
+
+    def test_that_business_organisation_is_not_an_event_or_behavior_testcase_a(self):
+        self.is_not_an_event('Q1653655')
+        self.is_not_a_behavior('Q1653655')
+
+    def test_that_business_organisation_is_not_an_event_or_behavior_testcase_b(self):
+        self.is_not_an_event('Q2328484')
+        self.is_not_a_behavior('Q2328484')
+
+    def test_theme_park_as_valid_primary_link(self):
+        self.assert_linkability('Q14531179')
 
     def test_college_as_valid_primary_link(self):
         self.assert_linkability('Q884105')
@@ -805,3 +816,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_polder_as_valid_primary_link(self):
         self.assert_linkability('Q929195')
+
+    def test_tunnel_as_valid_primary_link(self):
+        self.assert_linkability('Q927797')
