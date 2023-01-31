@@ -29,6 +29,7 @@ class WikidataTests(unittest.TestCase):
 
     def is_not_a_behavior(self, type_id):
         self.is_not_a_specific_error_class(type_id, 'a behavior')
+        self.is_not_a_specific_error_class(type_id, 'a human behavior')
 
     def is_not_a_specific_error_class(self, type_id, error_class):
         potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
@@ -377,6 +378,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_statue_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q60314102')
+
+    def test_statue_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q115610737')
 
     def test_collosal_statue_as_valid_primary_link(self):
         self.assert_linkability('Q805442')
@@ -796,6 +800,10 @@ class WikidataTests(unittest.TestCase):
         self.is_not_an_event('Q2328484')
         self.is_not_a_behavior('Q2328484')
 
+    def test_that_business_organisation_is_not_an_event_or_behavior_testcase_c(self):
+        self.is_not_an_event('Q135635')
+        self.is_not_a_behavior('Q135635')
+
     def test_theme_park_as_valid_primary_link(self):
         self.assert_linkability('Q14531179')
 
@@ -819,3 +827,21 @@ class WikidataTests(unittest.TestCase):
 
     def test_tunnel_as_valid_primary_link(self):
         self.assert_linkability('Q927797')
+
+    def test_bicycle_sharing_system_is_not_human_behavior(self):
+        self.is_not_a_behavior('Q3555363')
+
+    def test_wikimedia_deutschland_is_not_human_behavior(self):
+        self.is_not_a_behavior('Q8288')
+
+    def test_ngo_is_not_human_behavior(self):
+        self.is_not_a_behavior('Q2363543')
+
+    def test_ngo_as_invalid_primary_link(self):
+        self.is_not_a_behavior('Q2363543')
+
+    def test_grafitti_wall_as_valid_primary_link(self):
+        self.assert_linkability('Q69689708')
+
+    def test_prehistoric_settlement_as_valid_primary_link(self):
+        self.assert_linkability('Q1015819')
