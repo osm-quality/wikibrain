@@ -31,13 +31,13 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class(type_id, 'a behavior')
         self.is_not_a_specific_error_class(type_id, 'a human behavior')
 
-    def is_not_a_specific_error_class(self, type_id, error_class):
-        potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
+    def is_not_a_specific_error_class(self, type_id, expected_error_class):
+        potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
         if potential_failure == None:
             return
-        if potential_failure['what'] == error_class:
-            self.detector().output_debug_about_wikidata_item(wikidata_id)
-            self.assertEqual(potential_failure['what'], expected_error)
+        if potential_failure.data()['error_id'] == 'should use a secondary wikipedia tag - linking to ' + expected_error_class:
+            self.dump_debug_into_stdout(type_id)
+            self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking to ' + expected_error_class)
 
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
