@@ -21,6 +21,22 @@ class WikidataTests(unittest.TestCase):
     def is_unlinkable_check(self, type_id):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         return self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
+        # get_error_report_if_type_unlinkable_as_primary
+        #return self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(type_id, {})
+    
+    def is_not_an_event(self, type_id):
+        self.is_not_a_specific_error_class(type_id, 'an event')
+
+    def is_not_a_behavior(self, type_id):
+        self.is_not_a_specific_error_class(type_id, 'a behavior')
+
+    def is_not_a_specific_error_class(self, type_id, error_class):
+        potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
+        if potential_failure == None:
+            return
+        if potential_failure['what'] == error_class:
+            self.detector().output_debug_about_wikidata_item(wikidata_id)
+            self.assertEqual(potential_failure['what'], expected_error)
 
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
@@ -356,11 +372,14 @@ class WikidataTests(unittest.TestCase):
         # see test_maria_column_as_valid_primary_link for a discussion link
         self.assert_linkability('Q7197229')
 
+    def test_statue_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q87720384')
+
+    def test_statue_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q60314102')
+
     def test_collosal_statue_as_valid_primary_link(self):
         self.assert_linkability('Q805442')
-
-    def test_statue_as_valid_primary_link(self):
-        self.assert_linkability('Q87720384')
 
     def test_world_war_one_statue_as_valid_primary_link(self):
         self.assert_linkability('Q113621082')
@@ -755,3 +774,34 @@ class WikidataTests(unittest.TestCase):
 
     def test_wall_as_valid_primary_link(self):
         self.assert_linkability('Q1543119')
+
+    def test_office_building_as_valid_primary_link(self):
+        self.assert_linkability('Q1590873')
+
+    def test_that_software_is_not_an_event(self):
+        self.is_not_an_event('Q25874683')
+
+    def test_that_organisation_is_not_an_event(self):
+        self.is_not_an_event('Q15852617')
+
+    def test_that_overnment_organisation_is_not_an_event(self):
+        self.is_not_an_event('Q55504346')
+        self.is_not_a_behavior('Q55504346')
+
+    def test_college_as_valid_primary_link(self):
+        self.assert_linkability('Q884105')
+
+    def test_specific_building_as_valid_primary_link(self):
+        self.assert_linkability('Q15807394')
+
+    def test_wetland_as_valid_primary_link(self):
+        self.assert_linkability('Q53953145')
+
+    def test_bridge_as_valid_primary_link(self):
+        self.assert_linkability('Q2220859')
+
+    def test_garden_element_as_valid_primary_link(self):
+        self.assert_linkability('Q101579214')
+
+    def test_polder_as_valid_primary_link(self):
+        self.assert_linkability('Q929195')
