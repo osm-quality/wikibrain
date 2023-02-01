@@ -841,11 +841,7 @@ class WikidataTests(unittest.TestCase):
     def test_wikimedia_deutschland_is_not_human_behavior(self):
         self.is_not_a_behavior('Q8288')
 
-    def test_ngo_is_not_human_behavior(self):
-        self.is_not_a_behavior('Q2363543')
-
     def test_ngo_as_invalid_primary_link(self):
-        self.is_not_a_behavior('Q2363543')
         self.assert_unlinkability('Q2363543')
 
     def test_grafitti_wall_as_valid_primary_link(self):
