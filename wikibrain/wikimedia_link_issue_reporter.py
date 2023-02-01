@@ -1290,7 +1290,7 @@ class WikimediaLinkIssueDetector:
         self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
 
     def dump_base_types_of_object_in_stdout(self, wikidata_id, description_of_source):
-        if description_of_source != "tests": # make copying to Wikidata easier
+        if description_of_source != "tests": # make copying to Wikidata easier - TODO - eliminate this hack
             print("(((((((((((((()))))))))))))) dump_base_types_of_object_in_stdout")
             print("https://www.wikidata.org/wiki/" + wikidata_id)
             print("{{Q|" + wikidata_id + "}}")
@@ -1310,7 +1310,7 @@ class WikimediaLinkIssueDetector:
                 if ban_reason != None:
                     any_banned = True
         for type_id in types:
-            if description_of_source != "tests": # make copying to Wikidata easier
+            if description_of_source != "tests": # make copying to Wikidata easier TODO - eliminate this hack
                 print("^^^^^^^ - show only banned:", any_banned)
                 print("source:", description_of_source)
                 print("type " + "https://www.wikidata.org/wiki/" + type_id)
