@@ -52,13 +52,12 @@ class WikidataTests(unittest.TestCase):
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable != None:
-            #print("is_unlinkable.error_message")
-            #print(is_unlinkable.error_message)
-            print()
-            print()
-            print("https://www.wikidata.org/wiki/" + type_id)
-            print("https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology")
-            print()
+            reported = ""
+            reported += "\n"
+            reported += "\n"
+            reported += "https://www.wikidata.org/wiki/" + type_id + "\n"
+            reported += "https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology\n"
+            reported += "\n"
             invalid_groups = self.detector().invalid_types()
             reported_already = [] # sometimes the same problem name has multiple invalid types pointing to it
             # in such case it should be still reported once
@@ -66,12 +65,10 @@ class WikidataTests(unittest.TestCase):
                 possible_match = invalid_groups[key]["what"]
                 if "is about " + possible_match + ", so it is very unlikely to be correct" in is_unlinkable.error_message:
                     if possible_match not in reported_already:
-                        print("== {{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology ==")
+                        reported += "== {{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology =="
                         reported_already.append(possible_match)
-            print()
-            #print("is_unlinkable.data")
-            #print(is_unlinkable.data())
-            #print(is_unlinkable.yaml_output())
+            reported += "\n"
+        print(reported)
         self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
         print()
 
