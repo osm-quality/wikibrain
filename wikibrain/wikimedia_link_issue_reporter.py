@@ -1129,6 +1129,7 @@ class WikimediaLinkIssueDetector:
             'Q9332': {'what': 'a behavior', 'replacement':  None},
             
             'Q179057': {'what': 'an explosion', 'replacement':  None},
+            'Q28640': {'what': 'a profession', 'replacement':  None},
             'Q1914636': {'what': 'an activity', 'replacement':  None},
             'Q2000908': weapon,
             'Q15142894': weapon,
