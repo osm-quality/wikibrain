@@ -1476,10 +1476,6 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/wiki/Wikidata:Property_proposal/has_duplicate_Wikimedia_page
         wikidata_bugs.append('Q17362920')
 
-        # public housing is not behavior
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1796693368#Farragut_Houses_(Q22329573)_is_a_behavior,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q5409930')
-       
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
