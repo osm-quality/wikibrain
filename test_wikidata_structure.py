@@ -18,6 +18,16 @@ class WikidataTests(unittest.TestCase):
             print(report.data())
         self.assertEqual(None, report)
 
+    def assert_failing_full_tests(self, wikidata, wikipedia):
+        tags = {'wikidata': wikidata, 'wikipedia': wikipedia}
+        location = (0, 0)
+        object_type = "node"
+        object_description = "test"
+        report = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        if report != None:
+            print(report.data())
+        self.assertNotEqual(None, report)
+
     def is_unlinkable_check(self, type_id):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         return self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
@@ -839,9 +849,13 @@ class WikidataTests(unittest.TestCase):
 
     def test_ngo_as_invalid_primary_link(self):
         self.is_not_a_behavior('Q2363543')
+        self.assert_unlinkability('Q2363543')
 
     def test_grafitti_wall_as_valid_primary_link(self):
         self.assert_linkability('Q69689708')
 
     def test_prehistoric_settlement_as_valid_primary_link(self):
         self.assert_linkability('Q1015819')
+
+    def test_generic_bench_entry_as_invalid_primary_link(self):
+        self.assert_failing_full_tests('Q204776', 'en:Bench (furniture)')
