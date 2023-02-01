@@ -1501,7 +1501,7 @@ class WikimediaLinkIssueDetector:
                     to_show += ":"*depth + "{{Q|" + category_id + "}}" + "\n"
                     ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
                     if ban_reason != None:
-                        header = "=== {{Q|" + object_id_where_it_is_present + "}} classified as " + ban_reason['what'] + " ===\n"
+                        header = "== {{Q|" + object_id_where_it_is_present + "}} classified as " + ban_reason['what'] + " ==\n"
                         with open("wikidata_report.txt", "a") as myfile:
                             myfile.write(header + to_show + "\n\n")
         else:
