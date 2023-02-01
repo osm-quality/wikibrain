@@ -430,7 +430,7 @@ class WikimediaLinkIssueDetector:
                     )
 
     def wikidata_data_quality_warning(self):
-        return "REMEMBER TO VERIFY! WIKIDATA QUALITY MAY BE POOR!"
+        return "REMEMBER TO VERIFY! WIKIDATA QUALITY MAY BE POOR! WIKIDATA MUST NOT BE USED AS SOURCE! ALWAYS VERIFY!"
 
     def check_is_object_is_existing(self, present_wikidata_id):
         if present_wikidata_id == None:
