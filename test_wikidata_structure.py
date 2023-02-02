@@ -355,10 +355,14 @@ class WikidataTests(unittest.TestCase):
         # see https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=1358272534&oldid=1358269822
         self.assert_linkability('Q2064095')
 
-    def test_sign_as_valid_primary_link(self):
+    def test_sign_as_valid_primary_link_testcase_a(self):
         # see https://www.wikidata.org/w/index.php?title=Wikidata%3AProject_chat&type=revision&diff=1358269822&oldid=1358263283
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=prev&oldid=1359638515
         self.assert_linkability('Q4804421')
+
+    def test_sign_as_valid_primary_link_testcase_b(self):
+        # physical sign vs signage again
+        self.assert_linkability('Q41284513')
 
     def test_neon_sign_as_valid_primary_link(self):
         # see link in test_sign_as_valid_primary_link for related discussion about physical signs
