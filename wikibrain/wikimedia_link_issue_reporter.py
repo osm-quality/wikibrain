@@ -726,7 +726,7 @@ class WikimediaLinkIssueDetector:
         try:
             title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
         except wikimedia_connection.TitleViolatesKnownLimits:
-            print("request for redirect target of <" + str(language_code) + "><" + str(article_name) + "> rejected as title was invalid")
+            print("request for redirect target of language_code: <" + str(language_code) + "> article_name: <" + str(article_name) + "> rejected as title was invalid, there was attempt to get redirect target of key " + wikipedia_key + " containing " + tags.get(wikipedia_key))
             print("hopefully it is caught elsewhere that title is invalid")
             print("reconstructing " + wikipedia_key + " tag and reporting error")
             return ErrorReport(
