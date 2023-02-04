@@ -1395,7 +1395,6 @@ class WikimediaLinkIssueDetector:
         # Wikidata: high school education is process that takes place without human involvement
         # yes, really
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1789193528#high_school_education_(Q14623204)_is_process_that_takes_place_without_human_involvement
-        wikidata_bugs.append('Q133500')
 
         # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
         wikidata_bugs.append("Q12377751")
@@ -1403,13 +1402,8 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q13411064')
 
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782549490#Gunnison_Beach_(Q5619268)_is_an_event_because_it_is_a_nude_beach
-        # note that it is more generic problem which was not actually fixed
-        wikidata_bugs.append('Q847935')
-
         # also reported, not going to bother with linking...
         wikidata_bugs.append('Q110701')
-        wikidata_bugs.append('Q12772819')
         wikidata_bugs.append('Q5104305')
         wikidata_bugs.append('Q39715')
         wikidata_bugs.append('Q27627826')
