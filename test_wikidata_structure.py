@@ -138,6 +138,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_fort_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q865131')
 
+    def test_detecting_fort_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q11962228')
+
     def test_detecting_roundabout_art_as_valid_primary_link(self):
         self.assert_linkability('Q105414527')
 
@@ -674,6 +677,9 @@ class WikidataTests(unittest.TestCase):
     def test_abandoned_village_as_valid_primary_link(self):
         self.assert_linkability('Q105643919')
 
+    def test_regular_village_as_valid_primary_link(self):
+        self.assert_linkability('Q3039540')
+
     def test_hotel_as_valid_primary_link(self):
         self.assert_linkability('Q41411301')
 
@@ -781,6 +787,9 @@ class WikidataTests(unittest.TestCase):
     def test_power_station_as_valid_primary_link(self):
         self.assert_linkability('Q19378684')
 
+    def test_power_station_with_cogeneration_as_valid_primary_link(self):
+        self.assert_linkability('Q106674849')
+
     def test_ranch_as_valid_primary_link(self):
         self.assert_linkability('Q7185999')
 
@@ -856,3 +865,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_generic_bench_entry_as_invalid_primary_link(self):
         self.assert_failing_full_tests('Q204776', 'en:Bench (furniture)')
+
+    def test_france_italy_border_as_valid_primary_link(self):
+        self.assert_linkability('Q1991288')
+
+    def test_autonomus_administrative_area_as_valid_primary_link(self):
+        self.assert_linkability('Q756294')
+
+    def test_specific_battery_as_valid_primary_link(self):
+        self.assert_linkability('Q15179168')

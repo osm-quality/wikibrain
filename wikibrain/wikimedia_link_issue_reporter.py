@@ -1093,6 +1093,7 @@ class WikimediaLinkIssueDetector:
             'Q5113': taxon,
             'Q38829': taxon,
             'Q55983715': taxon,
+            'Q42240': {'what': 'a research', 'replacement': None},
             'Q268592': {'what': 'a general industry', 'replacement': None},
             'Q1344': {'what': 'an opera', 'replacement': None},
             'Q618779': {'what': 'an award', 'replacement': None},
@@ -1105,8 +1106,13 @@ class WikimediaLinkIssueDetector:
             'Q202444': {'what': 'a given name', 'replacement': 'name:'},
             'Q60075825': {'what': 'a Christian holy day', 'replacement': None},
             'Q2915444': {'what': 'a fireworks event', 'replacement': None},
-            'Q645883': {'what': 'a military operation', 'replacement': None},
+            'Q650711': {'what': 'a combat', 'replacement': None},
+            'Q650711': {'what': 'a military operation', 'replacement': None},
+            'Q180684': {'what': 'a conflict', 'replacement': None},
+            'Q2761147': {'what': 'a meeting', 'replacement': None},
             'Q331055': {'what': 'a burial', 'replacement': None},
+            'Q11862829': {'what': 'an academic discipline', 'replacement': None},
+            'Q1298668': {'what': 'a research project', 'replacement': None},
             'Q7397': {'what': 'a software', 'replacement': None},
             'Q201676': {'what': 'a funeral', 'replacement': None},
             'Q14350': {'what': 'a radio station', 'replacement': 'brand:'},
@@ -1465,6 +1471,12 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q24455304')
         wikidata_bugs.append('Q8187769')
         wikidata_bugs.append('Q1066689')
+        wikidata_bugs.append('Q31728')
+        wikidata_bugs.append('Q1116728')
+        wikidata_bugs.append('Q1292279')
+        wikidata_bugs.append('Q221620')
+        wikidata_bugs.append('Q383973')
+        wikidata_bugs.append('Q1298668')
 
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
