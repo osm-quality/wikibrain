@@ -12,7 +12,7 @@ cd dist
 pip3 uninstall wikibrain -y
 pip3 install --user *.whl
 cd ..
-rm wikidata_report.txt
-python3 -m unittest || true
+rm wikidata_report.txt || true # may be not present (test it better!)
+python3 -m unittest || true # tests may fail, in such case next line may help us to fix this
 cat wikidata_report.txt
 # twine upload dist/* # to upload to PyPi
