@@ -848,6 +848,9 @@ class WikidataTests(unittest.TestCase):
     def test_tunnel_as_valid_primary_link(self):
         self.assert_linkability('Q927797')
 
+    def test_pedestrian_tunnel_as_valid_primary_link(self):
+        self.assert_linkability('Q2346336')
+
     def test_bicycle_sharing_system_is_not_human_behavior(self):
         self.is_not_a_behavior('Q3555363')
 
@@ -874,3 +877,22 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_battery_as_valid_primary_link(self):
         self.assert_linkability('Q15179168')
+
+    def test_company_is_not_an_intentional_human_activity(self):
+        self.is_not_a_specific_error_class('Q215392', 'an intentional human activity')
+
+    def test_street_with_brothels_as_valid_primary_link(self):
+        self.assert_linkability('Q1877599')
+
+    def test_promenade_as_valid_primary_link(self):
+        self.assert_linkability('Q15052053')
+
+    def test_brothel_as_valid_primary_link(self):
+        self.assert_linkability('Q4745250')
+
+    def test_telescope_as_valid_primary_link(self):
+        self.assert_linkability('Q1632481')
+
+    def test_canopy_walkway_as_valid_primary_link(self):
+        self.assert_linkability('Q27478902')
+

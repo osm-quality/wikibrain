@@ -1477,6 +1477,10 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q221620')
         wikidata_bugs.append('Q383973')
         wikidata_bugs.append('Q1298668')
+        wikidata_bugs.append('Q36633')
+        wikidata_bugs.append('Q765633')
+        wikidata_bugs.append('Q7833728')
+        wikidata_bugs.append('Q837322')
 
         # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
         # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
