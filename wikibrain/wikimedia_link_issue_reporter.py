@@ -1124,14 +1124,9 @@ class WikimediaLinkIssueDetector:
             'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313
             'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
             'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
-            
-
-            # public housing is a behavior...
-            # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1796693368#Farragut_Houses_(Q22329573)_is_a_behavior,_according_to_Wikidata_ontology
-            # this one got excluded
-            #'Q451967': {'what': 'an intentional human activity', 'replacement':  None},
-            #'Q61788060': {'what': 'a human activity', 'replacement':  None},
-            #'Q3769299': {'what': 'a human behavior', 'replacement':  None},
+            'Q451967': {'what': 'an intentional human activity', 'replacement':  None},
+            'Q61788060': {'what': 'a human activity', 'replacement':  None},
+            'Q3769299': {'what': 'a human behavior', 'replacement':  None},
             'Q9332': {'what': 'a behavior', 'replacement':  None},
             
             'Q179057': {'what': 'an explosion', 'replacement':  None},
