@@ -1477,12 +1477,6 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q7833728')
         wikidata_bugs.append('Q837322')
 
-        # "Wikimedia duplicated page" - ignoring this helps to ignore Cebuano bot wiki
-        # such as at https://www.wikidata.org/w/index.php?title=Q1144105&oldid=1307322140
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1785851899#Lublin_County_(Q912777)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
-        # https://www.wikidata.org/wiki/Wikidata:Property_proposal/has_duplicate_Wikimedia_page
-        wikidata_bugs.append('Q17362920')
-
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
