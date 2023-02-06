@@ -890,8 +890,11 @@ class WikidataTests(unittest.TestCase):
     def test_brothel_as_valid_primary_link(self):
         self.assert_linkability('Q4745250')
 
-    def test_telescope_as_valid_primary_link(self):
+    def test_telescope_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q1632481')
+
+    def test_telescope_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q1513315')
 
     def test_canopy_walkway_as_valid_primary_link(self):
         self.assert_linkability('Q27478902')
