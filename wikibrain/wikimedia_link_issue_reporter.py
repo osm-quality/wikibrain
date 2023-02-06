@@ -1378,10 +1378,6 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q21484471') # Wikipedia article covering multiple topics - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q21167233') # "Commons gallery" 
 
-        # isolated network (island network) is not an event
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803454079#H%C3%A4rtsfeldbahn_(Q1642426)_is_an_event,_according_to_Wikidata_ontology
-        wikidata_bugs.append("Q1664456")
-
         # ferry routes are not events
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782894312#Tramwaj_wodny_w_Bydgoszczy_(Q926453)_is_an_event,_according_to_Wikidata_ontology 
         wikidata_bugs.append("Q18984099")
