@@ -1372,10 +1372,6 @@ class WikimediaLinkIssueDetector:
     @staticmethod
     def workarounds_for_wikidata_bugs_breakage_and_mistakes():
         wikidata_bugs = []
-        # religious art mess
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1803759760#Kreuzschlepper_(Q41318154)_is_a_behavior,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q2531916')
-
         # following detects Wikidata mistakes for no benefit. Ignoring it silently is preferable
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
