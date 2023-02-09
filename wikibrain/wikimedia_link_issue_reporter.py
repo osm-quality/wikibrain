@@ -1123,6 +1123,7 @@ class WikimediaLinkIssueDetector:
             'Q220505': {'what': 'a film festival', 'replacement': None},
             'Q13406554': {'what': 'a sports competition', 'replacement': None},
             'Q18608583': {'what': 'a recurring sports event', 'replacement': None},
+            'Q13414953': {'what': 'a religious denomination', 'replacement': None},
             'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313
             'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
             'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
@@ -1172,6 +1173,7 @@ class WikimediaLinkIssueDetector:
             'Q868557': {'what': 'a music festival', 'replacement': 'brand:'},
             'Q1759320': {'what': 'a costume party', 'replacement': 'brand:'},
             'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
+            'Q13418847': {'what': 'a historical event', 'replacement': None},
             'Q1656682': event,
             'Q4026292': event,
             'Q3249551': event,
@@ -1470,6 +1472,21 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q765633')
         wikidata_bugs.append('Q7833728')
         wikidata_bugs.append('Q837322')
+        wikidata_bugs.append('Q113302021')
+        wikidata_bugs.append('Q5739064')
+        wikidata_bugs.append('Q6027980')
+        wikidata_bugs.append('Q3399515')
+        wikidata_bugs.append('Q188063')
+        wikidata_bugs.append('Q44')
+        wikidata_bugs.append('Q11079823')
+        wikidata_bugs.append('Q647266')
+        wikidata_bugs.append('Q6869278')
+        wikidata_bugs.append('Q1001041')
+        wikidata_bugs.append('Q174923')
+        wikidata_bugs.append('Q6484056')
+        wikidata_bugs.append('Q2919821')
+        wikidata_bugs.append('Q5162954')
+        wikidata_bugs.append('Q13231467')
 
         return wikidata_bugs
 

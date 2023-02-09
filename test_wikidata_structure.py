@@ -67,6 +67,9 @@ class WikidataTests(unittest.TestCase):
                     if possible_match not in reported_already:
                         reported += "== {{Q|" + type_id + "}} is " + possible_match + ", according to Wikidata ontology =="
                         reported_already.append(possible_match)
+            if reported_already == []:
+                reported += "weird, no group matched"
+                reported += is_unlinkable.error_message
             reported += "\n"
         print(reported)
         self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
@@ -402,6 +405,9 @@ class WikidataTests(unittest.TestCase):
     def test_world_war_one_statue_as_valid_primary_link(self):
         self.assert_linkability('Q113621082')
 
+    def test_equestrian_statue_as_valid_primary_link(self):
+        self.assert_linkability('Q17570718')
+
     def test_some_outdoor_art_as_valid_primary_link(self):
         self.assert_linkability('Q106274335')
 
@@ -653,6 +659,9 @@ class WikidataTests(unittest.TestCase):
     def test_tourist_trail_as_valid_primary_link(self):
         self.assert_linkability('Q112876332')
 
+    def test_old_rail_trail_as_valid_primary_link(self):
+        self.assert_linkability('Q107412801')
+
     def test_scenic_route_as_valid_primary_link(self):
         self.assert_linkability('Q1337273')
 
@@ -720,6 +729,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_exhibition_as_valid_primary_link(self):
         self.assert_linkability('Q63208613')
+
+    def test_building_complex_as_valid_primary_link(self):
+        self.assert_linkability('Q2319878')
 
     def test_church_building_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q9333671')
@@ -896,6 +908,57 @@ class WikidataTests(unittest.TestCase):
     def test_telescope_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q1513315')
 
-    def test_canopy_walkway_as_valid_primary_link(self):
+    def test_canopy_walkway_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q27478902')
+
+    def test_canopy_walkway_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q64760026')
+
+    def test_industrial_region_as_valid_primary_link(self):
+        self.assert_linkability('Q7303912')
+
+    def test_andorra_country_as_valid_primary_link(self):
+        self.assert_linkability('Q228')
+
+    def test_detect_battle_more_specifically_than_generic_event(self):
+        self.is_not_an_event('Q4087439')
+
+    def test_andorra_country_as_valid_primary_link(self):
+        self.assert_linkability('Q228')
+
+    def test_school_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q4059246')
+
+    def test_school_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q5038462')
+
+    def test_temple_as_valid_primary_link(self):
+        self.assert_linkability('Q28058072')
+
+    def test_brewery_as_valid_primary_link(self):
+        self.assert_linkability('Q11603175')
+
+    def test_low_emission_zone_as_valid_primary_link(self):
+        self.assert_linkability('Q3826967')
+
+    def test_cottage_as_valid_primary_link(self):
+        self.assert_linkability('Q109301056')
+
+    def test_ruined_cottage_as_valid_primary_link(self):
+        self.assert_linkability('Q108459640')
+
+    def test_library_as_valid_primary_link(self):
+        self.assert_linkability('Q11551945')
+
+    def test_location_with_optical_illusion_as_valid_primary_link(self):
+        self.assert_linkability('Q1325829')
+
+    def test_location_with_optical_illusion_as_valid_primary_link(self):
+        self.assert_linkability('Q1325829')
+
+    def test_protected_scottish_bay_as_valid_primary_link(self):
+        self.assert_linkability('Q1246011')
+
+    def test_path_with_ppublic_right_of_way_as_valid_primary_link(self):
+        self.assert_linkability('Q5142648')
 
