@@ -129,6 +129,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2106892')
 
+    def test_detecting_castle__that_was_used_as_prison_as_valid_primary_link(self):
+        self.assert_linkability('Q11913101')
+
     def test_detecting_reconstructed_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2461065')
 
