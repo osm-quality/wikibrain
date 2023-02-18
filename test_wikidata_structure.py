@@ -962,6 +962,19 @@ class WikidataTests(unittest.TestCase):
     def test_protected_scottish_bay_as_valid_primary_link(self):
         self.assert_linkability('Q1246011')
 
-    def test_path_with_ppublic_right_of_way_as_valid_primary_link(self):
+    def test_path_with_public_right_of_way_as_valid_primary_link(self):
         self.assert_linkability('Q5142648')
+
+    def test_specific_muslim_religious_site_as_valid_primary_link(self):
+        self.assert_linkability('Q5834042')
+
+    def test_mountain_summit_as_valid_primary_link(self):
+        # it was classified as summit as in "meeting of heads of state or government" :)
+        self.assert_linkability('Q21010152')
+
+    def test_business_is_not_an_academic_discipline(self):
+        self.is_not_a_specific_error_class('Q13604004', 'an academic discipline')
+
+    def test_fad_diet_is_not_an_academic_discipline(self):
+        self.is_not_a_specific_error_class('Q3132857', 'an academic discipline')
 

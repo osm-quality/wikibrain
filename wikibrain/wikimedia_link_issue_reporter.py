@@ -1111,6 +1111,7 @@ class WikimediaLinkIssueDetector:
             'Q650711': {'what': 'a military operation', 'replacement': None},
             'Q1707496': {'what': 'a police operation', 'replacement': None},
             'Q180684': {'what': 'a conflict', 'replacement': None},
+            'Q1072326': {'what': 'a summit (political conference)', 'replacement': None},
             'Q2761147': {'what': 'a meeting', 'replacement': None},
             'Q331055': {'what': 'a burial', 'replacement': None},
             'Q11862829': {'what': 'an academic discipline', 'replacement': None},
