@@ -2286,6 +2286,9 @@ class WikimediaLinkIssueDetector:
             return True
         if tags.get("boundary") == "timezone":
             return True
+        if element.get_tag_value("xmas:feature") != None:
+            return True # events mapped as features, seem quite dubious to me but can be sort of treated as places
+        return False
 
 
     def describe_osm_object(self, element):
