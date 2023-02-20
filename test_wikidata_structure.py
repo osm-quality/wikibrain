@@ -317,8 +317,11 @@ class WikidataTests(unittest.TestCase):
     def test_urban_park_as_valid_primary_link(self):
         self.assert_linkability('Q98411615')
 
-    def test_protected_landscape_area_as_valid_primary_link(self):
+    def test_protected_landscape_area_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q8465509')
+
+    def test_protected_landscape_area_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q6901264')
 
     def test_headquarters_landscape_area_as_valid_primary_link(self):
         self.assert_linkability('Q5578587')
@@ -452,6 +455,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_sculpture_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q108410880')
+
+    def test_animal_sculpture_group_as_valid_primary_link(self):
+        self.assert_linkability('Q161770')
 
     def test_animal_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q108421050')
@@ -817,6 +823,9 @@ class WikidataTests(unittest.TestCase):
     def test_office_building_as_valid_primary_link(self):
         self.assert_linkability('Q1590873')
 
+    def test_that_defunct_monastery_is_not_an_event(self):
+        self.is_not_an_event('Q28976876')
+
     def test_that_software_is_not_an_event(self):
         self.is_not_an_event('Q25874683')
 
@@ -838,6 +847,11 @@ class WikidataTests(unittest.TestCase):
     def test_that_business_organisation_is_not_an_event_or_behavior_testcase_c(self):
         self.is_not_an_event('Q135635')
         self.is_not_a_behavior('Q135635')
+
+    def test_that_business_organisation_is_not_an_event_or_behavior_testcase_d(self):
+        self.is_not_an_event('Q37156')
+        self.is_not_a_behavior('Q37156')
+
 
     def test_theme_park_as_valid_primary_link(self):
         self.assert_linkability('Q14531179')
@@ -977,4 +991,16 @@ class WikidataTests(unittest.TestCase):
 
     def test_fad_diet_is_not_an_academic_discipline(self):
         self.is_not_a_specific_error_class('Q3132857', 'an academic discipline')
+
+    def test_dinosaur_trace_as_valid_primary_link(self):
+        self.assert_linkability('Q1226704')
+
+    def test_region_as_valid_primary_link(self):
+        self.assert_linkability('Q1402033')
+
+    def test_scammy_pseudomuseum_as_valid_primary_link(self):
+        self.assert_linkability('Q19865287')
+
+    def test_building_part_as_valid_primary_link(self):
+        self.assert_linkability('Q76012362')
 
