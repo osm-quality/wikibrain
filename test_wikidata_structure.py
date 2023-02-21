@@ -156,6 +156,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_fast_tram_as_valid_primary_link(self):
         self.assert_linkability('Q1814872')
 
+    def test_detecting_summer_school_as_valid_primary_link(self):
+        self.assert_linkability('Q5150387')
+
     def test_detecting_high_school_as_valid_primary_link(self):
         self.assert_linkability('Q9296000')
 
@@ -435,8 +438,11 @@ class WikidataTests(unittest.TestCase):
     def test_house_later_housing_area_as_valid_primary_link(self):
         self.assert_linkability('Q6906313')
 
-    def test_artwork_as_valid_primary_link(self):
+    def test_artwork_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q57838673')
+
+    def test_artwork_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q115930654')
 
     def test_gate_as_valid_primary_link(self):
         self.assert_linkability('Q26317425')
@@ -622,6 +628,9 @@ class WikidataTests(unittest.TestCase):
     def test_territory_as_valid_primary_link(self):
         self.assert_linkability('Q25842885')
 
+    def test_island_with_territorial_dispute_as_valid_primary_link(self):
+        self.assert_linkability('Q598889')
+
     def test_district_with_specific_history_as_valid_primary_link(self):
         self.assert_linkability('Q64124')
 
@@ -742,6 +751,9 @@ class WikidataTests(unittest.TestCase):
     def test_building_complex_as_valid_primary_link(self):
         self.assert_linkability('Q2319878')
 
+    def test_palace_as_valid_primary_link(self):
+        self.assert_linkability('Q11939856')
+
     def test_church_building_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q9333671')
 
@@ -832,6 +844,10 @@ class WikidataTests(unittest.TestCase):
     def test_that_organisation_is_not_an_event(self):
         self.is_not_an_event('Q15852617')
 
+    def test_that_comic_strip_is_not_an_event_or_behavior(self):
+        self.is_not_an_event('Q1129715')
+        self.is_not_a_behavior('Q1129715')
+
     def test_that_government_organisation_is_not_an_event_or_behavior(self):
         self.is_not_an_event('Q55504346')
         self.is_not_a_behavior('Q55504346')
@@ -856,8 +872,14 @@ class WikidataTests(unittest.TestCase):
     def test_theme_park_as_valid_primary_link(self):
         self.assert_linkability('Q14531179')
 
-    def test_college_as_valid_primary_link(self):
+    def test_college_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q884105')
+
+    def test_college_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q4589150')
+
+    def test_college_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q6514765')
 
     def test_specific_building_as_valid_primary_link(self):
         self.assert_linkability('Q15807394')
@@ -1004,3 +1026,47 @@ class WikidataTests(unittest.TestCase):
     def test_building_part_as_valid_primary_link(self):
         self.assert_linkability('Q76012362')
 
+    def test_maybe_defunct_car_cemetery_as_valid_primary_link(self):
+        self.assert_linkability('Q1620927')
+
+    def test_that_studies_center_is_not_an_event(self):
+        self.is_not_an_event('Q106592334')
+
+    def test_islamic_army_is_not_an_event(self):
+        self.is_not_an_event('Q271110')
+
+    def test_tree_or_more_specifically_clonal_colony_as_valid_primary_link(self):
+        self.assert_linkability('Q19865287')
+
+    def test_geotope_as_valid_primary_link(self):
+        self.assert_linkability('Q48261221')
+
+    def test_archeological_site_as_valid_primary_link(self):
+        self.assert_linkability('Q66815081')
+
+    def test_arty_pedestrian_bridge_as_valid_primary_link(self):
+        self.assert_linkability('Q65594284')
+
+    def test_sculpture_garden_as_valid_primary_link(self):
+        self.assert_linkability('Q860863')
+
+    def test_gorge_as_valid_primary_link(self):
+        self.assert_linkability('Q1647633')
+
+    def test_landform_as_valid_primary_link(self):
+        self.assert_linkability('Q312118')
+
+    def test_social_facility_as_valid_primary_link(self):
+        self.assert_linkability('Q105564991')
+
+    def test_icon_painting_as_valid_primary_link(self):
+        self.assert_linkability('Q3918454')
+
+    def test_religious_artwork_as_valid_primary_link(self):
+        self.assert_linkability('Q23641766')
+
+    def test_heretical_sect_is_not_a_conflict(self):
+        self.is_not_a_specific_error_class('Q958306', 'a conflict')
+
+    def test_refinery_as_valid_primary_link(self):
+        self.assert_linkability('Q3417387')
