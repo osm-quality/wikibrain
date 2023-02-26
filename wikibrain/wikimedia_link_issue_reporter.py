@@ -1370,6 +1370,8 @@ class WikimediaLinkIssueDetector:
         too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
         too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology()
         too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
+        too_abstract_or_wikidata_bugs.append("Q13930359") # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q15275719") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         return too_abstract_or_wikidata_bugs
 
     @staticmethod

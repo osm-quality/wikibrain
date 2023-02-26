@@ -480,8 +480,11 @@ class WikidataTests(unittest.TestCase):
     def test_castle_as_valid_primary_link(self):
         self.assert_linkability('Q5734420')
 
-    def test_chapel_as_valid_primary_link(self):
+    def test_chapel_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q4993989')
+
+    def test_chapel_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q29784970')
 
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q28673829')
@@ -838,6 +841,9 @@ class WikidataTests(unittest.TestCase):
     def test_that_defunct_monastery_is_not_an_event(self):
         self.is_not_an_event('Q28976876')
 
+    def test_that_defunct_school_is_not_an_event(self):
+        self.is_not_an_event('Q113019862')
+
     def test_that_software_is_not_an_event(self):
         self.is_not_an_event('Q25874683')
 
@@ -868,6 +874,9 @@ class WikidataTests(unittest.TestCase):
         self.is_not_an_event('Q37156')
         self.is_not_a_behavior('Q37156')
 
+    def test_that_business_organisation_is_not_an_event_or_behavior_testcase_e(self):
+        self.is_not_an_event('Q649618')
+        self.is_not_a_behavior('Q649618')
 
     def test_theme_park_as_valid_primary_link(self):
         self.assert_linkability('Q14531179')
@@ -959,8 +968,11 @@ class WikidataTests(unittest.TestCase):
     def test_andorra_country_as_valid_primary_link(self):
         self.assert_linkability('Q228')
 
-    def test_detect_battle_more_specifically_than_generic_event(self):
+    def test_detect_battle_more_specifically_than_generic_event_testcase_a(self):
         self.is_not_an_event('Q4087439')
+
+    def test_detect_battle_more_specifically_than_generic_event_testcase_b(self):
+        self.is_not_an_event('Q677959')
 
     def test_andorra_country_as_valid_primary_link(self):
         self.assert_linkability('Q228')
@@ -1070,3 +1082,45 @@ class WikidataTests(unittest.TestCase):
 
     def test_refinery_as_valid_primary_link(self):
         self.assert_linkability('Q3417387')
+
+    def test_archeological_remnants_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q108990211')
+
+    def test_archeological_remnants_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q108987278')
+
+    def test_military_base_as_valid_primary_link(self):
+        self.assert_linkability('Q62092177')
+
+    def test_fish_weir_official_recognised_as_heritage_asset_as_valid_primary_link(self):
+        self.assert_linkability('Q26207149')
+
+    def test_irrigation_system_as_valid_primary_link(self):
+        self.assert_linkability('Q12074417')
+
+    def test_artificial_waterway_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q99706580')
+
+    def test_artificial_waterway_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q19299105')
+
+    def test_plain_in_hungary_as_valid_primary_link(self):
+        self.assert_linkability('Q1295104')
+
+    def test_industrial_district_as_valid_primary_link(self):
+        self.assert_linkability('Q6436825')
+
+    def test_attempted_low_energy_building_as_valid_primary_link(self):
+        self.assert_linkability('Q26933425')
+
+    def test_opera_as_valid_primary_link(self):
+        self.assert_linkability('Q1598188')
+
+    def test_restaurant_as_valid_primary_link(self):
+        self.assert_linkability('Q76059198')
+
+    def test_restaurant_where_shooting_took_place_as_valid_primary_link(self):
+        self.assert_linkability('Q6649212')
+
+    def test_oil_refinery_as_valid_primary_link(self):
+        self.assert_linkability('Q1260981')
