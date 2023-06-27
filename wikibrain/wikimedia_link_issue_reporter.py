@@ -1057,7 +1057,8 @@ class WikimediaLinkIssueDetector:
                              # but lets skip and focus on blatantly bad things
 
                 # prefer to not report general one (there could be a more specific one reason in a different branch)
-                if potential_failure['what'] in ["an event", "a behavior"] and remembered_potential_failure != None:
+                if potential_failure['what'] in ["an event", "a behavior", "a human activity", "a human behavior", 
+                "a behavior"] and remembered_potential_failure != None:
                     continue
                 remembered_potential_failure = potential_failure
         if remembered_potential_failure != None:
