@@ -71,9 +71,9 @@ class WikidataTests(unittest.TestCase):
                 reported += "weird, no group matched"
                 reported += is_unlinkable.error_message
             reported += "\n"
-        print(reported)
-        self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
-        print()
+            print(reported)
+            self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
+            print()
 
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
