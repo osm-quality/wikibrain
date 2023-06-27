@@ -832,8 +832,20 @@ class WikidataTests(unittest.TestCase):
     def test_wall_as_valid_primary_link(self):
         self.assert_linkability('Q1543119')
 
+    def test_clonal_colony_as_valid_primary_link(self):
+        self.assert_linkability('Q921090')
+
+    def test_memorial_as_valid_primary_link(self):
+        self.assert_linkability('Q15980484')
+
+    def test_horse_pond_as_valid_primary_link(self):
+        self.assert_linkability('Q49473780')
+
     def test_office_building_as_valid_primary_link(self):
         self.assert_linkability('Q1590873')
+
+    def test_garden_as_valid_primary_link(self):
+        self.assert_linkability('Q19575149')
 
     def test_that_defunct_monastery_is_not_an_event(self):
         self.is_not_an_event('Q28976876')
@@ -841,8 +853,48 @@ class WikidataTests(unittest.TestCase):
     def test_that_defunct_school_is_not_an_event(self):
         self.is_not_an_event('Q113019862')
 
+    def test_that_drug_rehabilitation_community_is_not_an_event(self):
+        self.is_not_an_event('Q2219871')
+
+    def test_that_diet_is_not_an_event_but_is_unlinkable_anyway(self):
+        self.assert_unlinkability('Q3132857')
+        self.is_not_an_event('Q3132857')
+
+    def test_that_company_is_not_an_event_but_is_unlinkable_anyway(self):
+        self.assert_unlinkability('Q37156')
+        self.is_not_an_event('Q37156')
+
+    def test_that_software_company_is_not_an_event_but_is_unlinkable_anyway(self):
+        self.assert_unlinkability('Q468381')
+        self.is_not_an_event('Q468381')
+
+    def test_that_event_is_unlinkable(self):
+        self.assert_unlinkability('Q4380984')
+
+    def test_that_university_or_its_department_is_linkable(self):
+        self.assert_linkability('Q16902376')
+
+    def test_that_animal_breeding_location_is_linkable(self):
+        self.assert_linkability('Q50810212')
+
     def test_that_software_is_not_an_event(self):
         self.is_not_an_event('Q25874683')
+
+    def test_that_australian_administartive_area_is_valid_link(self):
+        self.assert_linkability('Q1533526')
+        self.assert_linkability('Q947334')
+        self.assert_linkability('Q1030580')
+        self.assert_linkability('Q1847617')
+        self.assert_linkability('Q353997')
+        self.assert_linkability('Q1016835')
+        self.assert_linkability('Q1624414')
+        self.assert_linkability('Q912566')
+        self.assert_linkability('Q1338860')
+        self.assert_linkability('Q1742110')
+        
+
+    def test_that_charity_organization_is_not_an_event(self):
+        self.is_not_an_event('Q7075332')
 
     def test_that_organisation_is_not_an_event(self):
         self.is_not_an_event('Q15852617')
