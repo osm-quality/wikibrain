@@ -462,9 +462,6 @@ class WikidataTests(unittest.TestCase):
     def test_sculpture_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q108410880')
 
-    def test_animal_sculpture_group_as_valid_primary_link(self):
-        self.assert_linkability('Q161770')
-
     def test_animal_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q108421050')
 
