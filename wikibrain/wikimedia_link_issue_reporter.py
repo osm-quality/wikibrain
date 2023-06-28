@@ -1408,7 +1408,18 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1921440592#The_Bitches_(Q878769)_(set_of_rocks)_is_a_physical_process,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q495844')
 
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1925222891#Campbelltown_(Q1030580)_is_a_human_activity,_according_to_Wikidata_ontology
+        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Cities_and_Towns&oldid=1925223941#How_to_model_climate_emergency_declarations
+        wikidata_bugs.append('Q104880945')
+
         # also reported, not going to bother with linking...
+        wikidata_bugs.append('Q1632481')
+        wikidata_bugs.append('Q1707496')
+        wikidata_bugs.append('Q59264914')
+        wikidata_bugs.append('Q2083731')
+        wikidata_bugs.append('Q1078913')
+        wikidata_bugs.append('Q56299222')
+        wikidata_bugs.append('Q611804')
         wikidata_bugs.append('Q11642')
         wikidata_bugs.append('Q6047930')
         wikidata_bugs.append('Q214519')
