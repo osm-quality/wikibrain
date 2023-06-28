@@ -762,6 +762,9 @@ class WikidataTests(unittest.TestCase):
     def test_church_building_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q9167695')
 
+    def test_church_building_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q9167731')
+
     def test_snowpack_as_valid_primary_link(self):
         self.assert_linkability('Q11762336')
 
@@ -797,6 +800,18 @@ class WikidataTests(unittest.TestCase):
 
     def test_city_part_as_valid_primary_link(self):
         self.assert_linkability('Q73289125')
+
+    def test_stable_as_valid_primary_link(self):
+        self.assert_linkability('Q30562672')
+
+    def test_cowshed_as_valid_primary_link(self):
+        self.assert_linkability('Q30555460')
+
+    def test_specific_theatre_as_valid_primary_link(self):
+        self.assert_linkability('Q7671545')
+
+    def test_specific_institution_as_valid_primary_link(self):
+        self.assert_linkability('Q11713051')
 
     def test_coastal_defense_fort_as_valid_primary_link(self):
         self.assert_linkability('Q5472138')
@@ -852,6 +867,9 @@ class WikidataTests(unittest.TestCase):
     def test_that_defunct_monastery_is_not_an_event(self):
         self.is_not_an_event('Q28976876')
 
+    def test_that_university_organisation_is_not_an_event(self):
+        self.is_not_an_event('Q106592334')
+
     def test_that_defunct_school_is_not_an_event(self):
         self.is_not_an_event('Q113019862')
 
@@ -895,8 +913,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q1742110')
         
 
-    def test_that_charity_organization_is_not_an_event(self):
+    def test_that_charity_organization_is_not_an_event_or_behavior(self):
         self.is_not_an_event('Q7075332')
+        self.is_not_a_behavior('Q7075332')
 
     def test_that_organisation_is_not_an_event(self):
         self.is_not_an_event('Q15852617')
@@ -904,6 +923,15 @@ class WikidataTests(unittest.TestCase):
     def test_that_comic_strip_is_not_an_event_or_behavior(self):
         self.is_not_an_event('Q1129715')
         self.is_not_a_behavior('Q1129715')
+
+    def test_that_gabon_is_not_an_event_or_behavior(self):
+        self.is_not_an_event('Q1000')
+        self.is_not_a_behavior('Q1000')
+
+    def test_that_community_center_is_not_an_event_or_behavior_and_likely_is_valid_link(self):
+        self.is_not_an_event('Q102043581')
+        self.is_not_a_behavior('Q102043581')
+        self.assert_linkability('Q102043581')
 
     def test_that_government_organisation_is_not_an_event_or_behavior(self):
         self.is_not_an_event('Q55504346')
@@ -929,8 +957,20 @@ class WikidataTests(unittest.TestCase):
         self.is_not_an_event('Q649618')
         self.is_not_a_behavior('Q649618')
 
+    def test_observation_network_is_not_a_behavior(self):
+        self.is_not_a_behavior('Q21427321')
+
+    def test_government_office_is_not_a_behavior(self):
+        self.is_not_a_behavior('Q3882136')
+
+    def test_government_office_also_this_one_is_not_a_behavior(self):
+        self.is_not_a_behavior('Q2955976')
+
     def test_theme_park_as_valid_primary_link(self):
         self.assert_linkability('Q14531179')
+
+    def test_nazi_complex_as_valid_primary_link(self):
+        self.assert_linkability('Q320076')
 
     def test_college_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q884105')
@@ -943,6 +983,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_building_as_valid_primary_link(self):
         self.assert_linkability('Q15807394')
+
+    def test_archeological_site_as_valid_primary_link(self):
+        self.assert_linkability('Q17372554')
 
     def test_wetland_as_valid_primary_link(self):
         self.assert_linkability('Q53953145')
@@ -1001,11 +1044,26 @@ class WikidataTests(unittest.TestCase):
     def test_brothel_as_valid_primary_link(self):
         self.assert_linkability('Q4745250')
 
+    def test_cave_nature_reserve_as_valid_primary_link(self):
+        self.assert_linkability('Q116396391')
+
+    def test_rancho_as_valid_primary_link(self):
+        self.assert_linkability('Q7290956')
+
+    def test_island_rancho_as_valid_primary_link(self):
+        self.assert_linkability('Q845229')
+
+    def test_ugly_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q445256')
+
     def test_telescope_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q1632481')
 
     def test_telescope_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q1513315')
+
+    def test_distributed_telescope_as_valid_primary_link(self):
+        self.assert_linkability('Q1192324')
 
     def test_canopy_walkway_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q27478902')

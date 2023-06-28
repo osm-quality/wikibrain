@@ -1075,6 +1075,8 @@ class WikimediaLinkIssueDetector:
         vehicle = {'what': 'a vehicle model or class', 'replacement': 'model:'}
         event = {'what': 'an event', 'replacement': None}
         return {
+            'Q11483816':  {'what': 'an annual event', 'replacement': None}, # maybe not an actual problem?
+
             'Q5': {'what': 'a human', 'replacement': 'name:'},
             'Q14897293': {'what': 'a fictional entity', 'replacement': 'name:etymology:'},
             'Q16858238': {'what': 'a train category', 'replacement': None},
@@ -1376,6 +1378,7 @@ class WikimediaLinkIssueDetector:
         too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
         too_abstract_or_wikidata_bugs.append("Q13930359") # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q15275719") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q673514") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         return too_abstract_or_wikidata_bugs
 
     @staticmethod
@@ -1416,6 +1419,11 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q104880945')
 
         # also reported, not going to bother with linking...
+        wikidata_bugs.append('Q7406919')
+        wikidata_bugs.append('Q184872')
+        wikidata_bugs.append('Q3481436')
+        wikidata_bugs.append('Q3217027')
+        wikidata_bugs.append('Q47502370')
         wikidata_bugs.append('Q7406919')
         wikidata_bugs.append('Q28877')
         wikidata_bugs.append('Q188460')
