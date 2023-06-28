@@ -51,13 +51,13 @@ class WikidataTests(unittest.TestCase):
 
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
+        reported = ""
+        reported += "\n"
+        reported += "\n"
+        reported += "https://www.wikidata.org/wiki/" + type_id + "\n"
+        reported += "https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology\n"
+        reported += "\n"
         if is_unlinkable != None:
-            reported = ""
-            reported += "\n"
-            reported += "\n"
-            reported += "https://www.wikidata.org/wiki/" + type_id + "\n"
-            reported += "https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology\n"
-            reported += "\n"
             invalid_groups = self.detector().invalid_types()
             reported_already = [] # sometimes the same problem name has multiple invalid types pointing to it
             # in such case it should be still reported once
@@ -71,9 +71,11 @@ class WikidataTests(unittest.TestCase):
                 reported += "weird, no group matched"
                 reported += is_unlinkable.error_message
             reported += "\n"
-            print(reported)
-            self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
-            print()
+        else:
+            pass
+        print(reported)
+        self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
+        print()
 
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
