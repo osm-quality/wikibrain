@@ -10,6 +10,9 @@ def blacklisted_and_unfixable_ids():
 
 def blacklist_of_unlinkable_entries():
     return {
+        'Q37156': {'prefix': 'brand:', 'expected_tags': {'office': 'company'}, 'name': 'IBM'},
+        'Q468381': {'prefix': 'brand:', 'expected_tags': {'office': 'company'}, 'name': 'Avira'},
+
         'Q5686673': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'Cinepolis'},
         'Q5416698': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'Event'},
         'Q3060526': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cinema'}, 'name': 'Pathé Gaumont'},

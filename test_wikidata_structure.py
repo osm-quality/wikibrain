@@ -863,11 +863,11 @@ class WikidataTests(unittest.TestCase):
         self.is_not_an_event('Q3132857')
 
     def test_that_company_is_not_an_event_but_is_unlinkable_anyway(self):
-        self.assert_unlinkability('Q37156')
+        self.assert_unlinkability('Q37156') # IBM
         self.is_not_an_event('Q37156')
 
     def test_that_software_company_is_not_an_event_but_is_unlinkable_anyway(self):
-        self.assert_unlinkability('Q468381')
+        self.assert_unlinkability('Q468381') # Avira
         self.is_not_an_event('Q468381')
 
     def test_that_event_is_unlinkable(self):

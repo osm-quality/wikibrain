@@ -1103,6 +1103,7 @@ class WikimediaLinkIssueDetector:
             'Q5398426': {'what': 'a television series', 'replacement': None},
             'Q3026787': {'what': 'a saying', 'replacement': None},
             'Q18534542': {'what': 'a restaurant chain', 'replacement': 'brand:'},
+            'Q161726': {'what': 'a multinational corporation', 'replacement': 'brand:'},
             'Q507619': {'what': 'a chain store', 'replacement': 'brand:'},
             'Q202444': {'what': 'a given name', 'replacement': 'name:'},
             'Q34394': {'what': 'a belief', 'replacement': 'name:'},
@@ -1145,6 +1146,8 @@ class WikimediaLinkIssueDetector:
             'Q16335899': vehicle,
             'Q1875621': vehicle,
             'Q37761255': vehicle,
+            'Q474191': {'what': 'a diet', 'replacement':  None},
+            'Q2897903': {'what': 'goods and services', 'replacement':  None},
             'Q22222786': {'what': 'a government program', 'replacement': None},
             'Q24634210': {'what': 'a podcast', 'replacement': None},
             'Q273120': {'what': 'a protest', 'replacement': None},
@@ -1413,6 +1416,9 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q104880945')
 
         # also reported, not going to bother with linking...
+        wikidata_bugs.append('Q7406919')
+        wikidata_bugs.append('Q28877')
+        wikidata_bugs.append('Q188460')
         wikidata_bugs.append('Q1632481')
         wikidata_bugs.append('Q1707496')
         wikidata_bugs.append('Q59264914')
