@@ -1419,6 +1419,15 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q104880945')
 
         # also reported, not going to bother with linking...
+        wikidata_bugs.append('Q3754526')
+        wikidata_bugs.append('Q5409930')
+        wikidata_bugs.append('Q6031064')
+        wikidata_bugs.append('Q8434')
+        wikidata_bugs.append('Q2305441')
+        wikidata_bugs.append('Q170584')
+        wikidata_bugs.append('Q62832')
+        wikidata_bugs.append('Q349772')
+        wikidata_bugs.append('Q681337')
         wikidata_bugs.append('Q7406919')
         wikidata_bugs.append('Q184872')
         wikidata_bugs.append('Q3481436')
