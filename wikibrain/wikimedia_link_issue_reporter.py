@@ -1368,6 +1368,13 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/wiki/Q167903
         skipped.append("Q167903")
 
+        # https://www.wikidata.org/wiki/Q860863
+        # merges event that created it and sculpture garden
+        # likely unfixable
+        # and if fixable then it should be fixed on my side by accepting
+        # cases with both "sculpture garden" (physical) and "sculpture gathering" (event)
+        skipped.append("Q860879")
+
         return skipped
 
 
