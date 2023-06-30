@@ -260,6 +260,22 @@ class Tests(unittest.TestCase):
         self.assertNotEqual ('wikidata from wikipedia tag', problem.data()['error_id'])
         self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
 
+    def test_that_redirect_link_to_taxon_is_detected_as_problematic(self):
+        tags = {"wikipedia": "de:Walnussbaum", 'natural': 'tree'}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+
+    def test_that_direct_link_to_taxon_is_detected_as_problematic(self):
+        tags = {"wikipedia": "de:Walnüsse", 'natural': 'tree'}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+
     def test_that_linking_to_human_is_reported_from_reordeable_issues(self):
         tags = {"wikipedia": "en:Stanislav Petrov"}
         location = None
