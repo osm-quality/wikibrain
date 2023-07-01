@@ -30,9 +30,9 @@ class WikidataTests(unittest.TestCase):
 
     def is_unlinkable_check(self, type_id):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        return self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
+        return self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikipedia': 'dummy'})
         # get_error_report_if_type_unlinkable_as_primary
-        #return self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(type_id, {})
+        #return self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(type_id, {'wikipedia': 'dummy'})
     
     def is_not_an_event(self, type_id):
         self.is_not_a_specific_error_class(type_id, 'an event')
@@ -42,7 +42,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class(type_id, 'a human behavior')
 
     def is_not_a_specific_error_class(self, type_id, expected_error_class):
-        potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {})
+        potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikipedia': 'dummy'})
         if potential_failure == None:
             return
         if potential_failure.data()['error_id'] == 'should use a secondary wikipedia tag - linking to ' + expected_error_class:
@@ -100,7 +100,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_rejects_links_to_spacecraft(self):
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        self.assertNotEqual(None, self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q2513'))
+        self.assertNotEqual(None, self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q2513', "wikipedia"))
 
     def test_reject_links_to_humans(self):
         self.assert_unlinkability('Q561127')
@@ -570,9 +570,9 @@ class WikidataTests(unittest.TestCase):
     def test_australian_administrative_boundary_as_valid_primary_link(self):
         # https://www.openstreetmap.org/relation/7032873
         self.assert_linkability('Q3179144')
-        report = self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144')
+        report = self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', "wikipedia")
         if report != None:
-            self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', show_debug=True)
+            self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', "wikipedia", show_debug=True)
         self.assert_passing_all_tests('Q3179144', 'en:Unincorporated Far West Region')
 
     def test_pilgrimage_route_as_valid_primary_link(self):

@@ -228,7 +228,7 @@ class Tests(unittest.TestCase):
         self.assertNotEqual(count, 0)
 
     def ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary(self, wikidata_id):
-        passed_tags = {}
+        passed_tags = {'wikipedia': 'dummy_filler'}
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
         if primary_linkability_status == None:
@@ -258,7 +258,7 @@ class Tests(unittest.TestCase):
         problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
         self.assertNotEqual (None, problem)
         self.assertNotEqual ('wikidata from wikipedia tag', problem.data()['error_id'])
-        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to a human", problem.data()['error_id'])
 
     def test_that_redirect_link_to_taxon_is_detected_as_problematic(self):
         tags = {"wikipedia": "de:Walnussbaum", 'natural': 'tree'}
@@ -282,7 +282,7 @@ class Tests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to a human", problem.data()['error_id'])
 
     def test_that_linking_to_human_is_reported_from_reordeable_issues_specified_as_wikidata(self):
         tags = {"wikidata": "Q52412"}
@@ -290,25 +290,25 @@ class Tests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking from wikidata tag to a human", problem.data()['error_id'])
 
     def test_that_linking_to_human_is_reported_based_on_wikidata(self):
         wikidata_id = "Q52412"
         location = None
         object_description = "fake test object"
-        tags = {}
+        tags = {'wikipedia': 'dummy'}
         problem = self.issue_reporter().get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id, tags)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("should use a secondary wikipedia tag - linking to a human", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to a human", problem.data()['error_id'])
 
     def test_that_linking_to_event_is_reported_based_on_wikidata(self):
         wikidata_id = "Q635051"
         location = None
         object_description = "fake test object"
-        tags = {}
+        tags = {'wikipedia': 'dummy'}
         problem = self.issue_reporter().get_problem_based_on_wikidata_and_osm_element(object_description, location, wikidata_id, tags)
         self.assertNotEqual (None, problem)
-        self.assertEqual ("should use a secondary wikipedia tag - linking to an event", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to an event", problem.data()['error_id'])
 
     def test_that_linking_aircraft_family_is_detected(self):
         self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q2101666')
@@ -341,7 +341,7 @@ class Tests(unittest.TestCase):
         
     def test_that_indian_teritory_is_considered_as_linkable_by_passing_tags(self):
         wikidata_id = 'Q1516298'
-        passed_tags = {}
+        passed_tags = {'wikidata': wikidata_id}
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
         # somehow changed on its own? well, I will not protest...
@@ -352,7 +352,7 @@ class Tests(unittest.TestCase):
         #self.assertNotEqual (None, primary_linkability_status)
 
         wikidata_id = 'Q1516298'
-        passed_tags = {'boundary': 'aboriginal_lands'}
+        passed_tags = {'boundary': 'aboriginal_lands', 'wikidata': wikidata_id}
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         primary_linkability_status = self.issue_reporter().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
         if primary_linkability_status != None:

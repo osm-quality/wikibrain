@@ -927,9 +927,18 @@ class WikimediaLinkIssueDetector:
         object categorised by Wikidata - wrong classification may be caused by wrong data on Wikidata"
         return message
 
-    def get_should_use_subject_error(self, type, special_prefix, wikidata_id):
+    def get_should_use_subject_error_tag_summary(self, tags):
+        if "wikidata" in tags and "wikipedia" in tags:
+            return "wikipedia and wikidata"
+        if "wikidata" in tags and "wikipedia" not in tags:
+            return "wikidata"
+        if "wikidata" not in tags and "wikipedia" in tags:
+            return "wikipedia"
+        raise Exception("what is going on")
+
+    def get_should_use_subject_error(self, type, special_prefix, wikidata_id, summary_of_tags_in_use):
         return ErrorReport(
-            error_id = "should use a secondary wikipedia tag - linking to " + type,
+            error_id = "should use a secondary wikipedia tag - linking from " + summary_of_tags_in_use + " tag to " + type,
             error_message = self.should_use_subject_message(type, special_prefix, wikidata_id),
             prerequisite = {'wikidata': wikidata_id},
             )
@@ -1005,13 +1014,14 @@ class WikimediaLinkIssueDetector:
         if class_error != None:
             return class_error
 
-        property_error = self.get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(effective_wikidata_id)
+        tag_summary = self.get_should_use_subject_error_tag_summary(tags)
+        property_error = self.get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(effective_wikidata_id, tag_summary)
         if property_error != None:
             return property_error
 
-    def get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(self, wikidata_id, show_debug=False):
+    def get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary(self, wikidata_id, tag_summary, show_debug=False):
         if wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P247') != None:
-            return self.get_should_use_subject_error('a spacecraft', 'name:', wikidata_id)
+            return self.get_should_use_subject_error('a spacecraft', 'name:', wikidata_id, tag_summary)
         # https://www.wikidata.org/wiki/Property:P279 - subclass of
         subclass_of = wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P279')
         if subclass_of != None:
@@ -1019,7 +1029,7 @@ class WikimediaLinkIssueDetector:
                 for entry in subclass_of:
                     subclass_of_wikidata = entry['mainsnak']['datavalue']['value']['id']
                     print(wikidata_id, "subclass_of", subclass_of_wikidata)
-            return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id) 
+            return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id, tag_summary)
 
     def wikidata_entries_classifying_entry(self, effective_wikidata_id):
         parent_categories = wikidata_processing.get_recursive_all_subclass_of(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
@@ -1062,7 +1072,8 @@ class WikimediaLinkIssueDetector:
                     continue
                 remembered_potential_failure = potential_failure
         if remembered_potential_failure != None:
-            return self.get_should_use_subject_error(remembered_potential_failure['what'], remembered_potential_failure['replacement'], effective_wikidata_id)
+            tag_summary = self.get_should_use_subject_error_tag_summary(tags)
+            return self.get_should_use_subject_error(remembered_potential_failure['what'], remembered_potential_failure['replacement'], effective_wikidata_id, tag_summary)
         return None
 
     def get_reason_why_type_makes_object_invalid_primary_link(self, type_id):
@@ -1259,7 +1270,8 @@ class WikimediaLinkIssueDetector:
             return secondary_tag_error
 
         if location != None:
-            secondary_tag_error = self.headquaters_location_indicate_invalid_connection(location, effective_wikidata_id)
+            tag_summary = self.get_should_use_subject_error_tag_summary(tags)
+            secondary_tag_error = self.headquaters_location_indicate_invalid_connection(location, effective_wikidata_id, tag_summary)
             if secondary_tag_error != None:
                 return secondary_tag_error
 
@@ -1277,7 +1289,7 @@ class WikimediaLinkIssueDetector:
             pass
         return (None, None)
     
-    def headquaters_location_indicate_invalid_connection(self, location, wikidata_id):
+    def headquaters_location_indicate_invalid_connection(self, location, wikidata_id, tag_summary):
         if location == (None, None):
             return None
         headquarters_location_data = wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P159')
@@ -1290,7 +1302,7 @@ class WikimediaLinkIssueDetector:
             location_from_wikidata = self.get_location_of_this_headquaters(option)
             if location_from_wikidata != (None, None):
                 if geopy.distance.geodesic(location, location_from_wikidata).km > 20:
-                    return self.get_should_use_subject_error('a company that has multiple locations', 'brand:', wikidata_id)
+                    return self.get_should_use_subject_error('a company that has multiple locations', 'brand:', wikidata_id, tag_summary)
 
         return None
 
