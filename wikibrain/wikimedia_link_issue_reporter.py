@@ -1403,6 +1403,18 @@ class WikimediaLinkIssueDetector:
     @staticmethod
     def workarounds_for_wikidata_bugs_breakage_and_mistakes():
         wikidata_bugs = []
+
+        # Considered as unfixable:
+
+        # conflating two distinct things
+        # but for tidal races there is no good solution
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1921440592#The_Bitches_(Q878769)_(set_of_rocks)_is_a_physical_process,_according_to_Wikidata_ontology
+
+        wikidata_bugs.append('Q495844')
+
+        wikidata_bugs.append('Q47502370')
+        #return wikidata_bugs # count two extra errors, I guess
+
         # following detects Wikidata mistakes for no benefit. Ignoring it silently is preferable
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
         wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
@@ -1428,11 +1440,6 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q13411064')
 
-        # conflating two distinct things
-        # but for tidal races there is no good solution
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1921440592#The_Bitches_(Q878769)_(set_of_rocks)_is_a_physical_process,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q495844')
-
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1925222891#Campbelltown_(Q1030580)_is_a_human_activity,_according_to_Wikidata_ontology
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Cities_and_Towns&oldid=1925223941#How_to_model_climate_emergency_declarations
         wikidata_bugs.append('Q104880945')
@@ -1451,7 +1458,6 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q184872')
         wikidata_bugs.append('Q3481436')
         wikidata_bugs.append('Q3217027')
-        wikidata_bugs.append('Q47502370')
         wikidata_bugs.append('Q7406919')
         wikidata_bugs.append('Q28877')
         wikidata_bugs.append('Q188460')
