@@ -1089,9 +1089,10 @@ class WikimediaLinkIssueDetector:
                              # but lets skip and focus on blatantly bad things
 
                 # prefer to not report general one (there could be a more specific one reason in a different branch)
-                if potential_failure['what'] in ["an event", "a behavior", "a human activity", "a human behavior", 
-                "a behavior"] and remembered_potential_failure != None:
-                    continue
+                if 'extremely_broad_and_unspecific' in potential_failure:
+                    if potential_failure['extremely_broad_and_unspecific'] == True:
+                        if remembered_potential_failure != None:
+                            continue
                 remembered_potential_failure = potential_failure
         if remembered_potential_failure != None:
             tag_summary = self.get_should_use_subject_error_tag_summary(tags)
@@ -1106,7 +1107,7 @@ class WikimediaLinkIssueDetector:
         taxon = {'what': 'an animal or plant (and not an individual one)', 'replacement': None}
         weapon = {'what': 'a weapon model or class', 'replacement': 'model:'}
         vehicle = {'what': 'a vehicle model or class', 'replacement': 'model:'}
-        event = {'what': 'an event', 'replacement': None}
+        generic_event = {'what': 'an event', 'replacement': None, 'extremely_broad_and_unspecific': True}
         return {
             'Q11483816':  {'what': 'an annual event', 'replacement': None}, # maybe not an actual problem?
 
@@ -1165,10 +1166,10 @@ class WikimediaLinkIssueDetector:
             'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313
             'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
             'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
-            'Q451967': {'what': 'an intentional human activity', 'replacement':  None},
-            'Q61788060': {'what': 'a human activity', 'replacement':  None},
-            'Q3769299': {'what': 'a human behavior', 'replacement':  None},
-            'Q9332': {'what': 'a behavior', 'replacement':  None},
+            'Q451967': {'what': 'an intentional human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
+            'Q61788060': {'what': 'a human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
+            'Q3769299': {'what': 'a human behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},
+            'Q9332': {'what': 'a behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             
             'Q179057': {'what': 'an explosion', 'replacement':  None},
             'Q28640': {'what': 'a profession', 'replacement':  None},
@@ -1214,10 +1215,10 @@ class WikimediaLinkIssueDetector:
             'Q1759320': {'what': 'a costume party', 'replacement': 'brand:'},
             'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
             'Q13418847': {'what': 'a historical event', 'replacement': None},
-            'Q1656682': event,
-            'Q4026292': event,
-            'Q3249551': event,
-            'Q1190554': event,
+            'Q1656682': generic_event,
+            'Q4026292': generic_event,
+            'Q3249551': generic_event,
+            'Q1190554': generic_event,
         }
         return None
 
