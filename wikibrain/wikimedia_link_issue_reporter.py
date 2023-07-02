@@ -289,6 +289,28 @@ class WikimediaLinkIssueDetector:
             if something_reportable != None:
                 return something_reportable
 
+        if "bridge:wikipedia" and "bridge:wikidata" in tags:
+            return ErrorReport(
+                        error_id = "bridge:wikipedia and bridge:wikidata - move to bridge outline",
+                        error_message = "bridge:wikipedia and bridge:wikidata links should be tagged on man_made=bridge outline - without prefixes as wikipedia=* and wikidata=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
+                        prerequisite = {'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
+                        )
+
+        if "bridge:wikipedia" in tags:
+            return ErrorReport(
+                        error_id = "bridge:wikipedia - move to bridge outline",
+                        error_message = "bridge:wikipedia link should be tagged on man_made=bridge outline - without prefix, as just wikipedia=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
+                        prerequisite = {'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
+                        )
+
+        if "bridge:wikidata" in tags:
+            return ErrorReport(
+                        error_id = "bridge:wikipedia and bridge:wikidata - move to bridge outline",
+                        error_message = "bridge:wikidata link should be tagged on man_made=bridge outline - without prefix, as just wikidata=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
+                        prerequisite = {'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
+                        )
+
+
         return None
 
     def get_problem_based_on_wikidata_blacklist(self, wikidata_id, present_wikidata_id, link):
