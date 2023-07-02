@@ -1124,6 +1124,8 @@ class WikimediaLinkIssueDetector:
             "Q350945": {'what': 'a heraldic animal', 'replacement': None},
             "Q1796040": {'what': 'a geodetic control network', 'replacement': None},
             "Q18325841": {'what': 'a public transport network', 'replacement': 'operator:'},
+            "Q1326624": {'what': 'an electric utility', 'replacement': 'operator:'},
+            "Q7860962": {'what': 'a road type', 'replacement': None},
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
@@ -1131,6 +1133,7 @@ class WikimediaLinkIssueDetector:
             'Q5113': taxon,
             'Q38829': taxon,
             'Q55983715': taxon,
+            'Q133182': {'what': 'a superstitution', 'replacement': 'subject:'},
             'Q42240': {'what': 'a research', 'replacement': None},
             'Q268592': {'what': 'a general industry', 'replacement': None},
             'Q1344': {'what': 'an opera', 'replacement': None},
@@ -1438,8 +1441,15 @@ class WikimediaLinkIssueDetector:
 
         wikidata_bugs.append('Q495844')
 
+        # walk of fame mess
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1927584762#Walk_of_Fame_of_Cabaret_(Q2345775)_is_an_award,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q47502370')
-        #return wikidata_bugs # count two extra errors, I guess
+
+        # systematic confusion of newsagent as profession and newsagent as shop
+        # not interested in spending time on fixing wikidata bugs
+        # maybe if everything else will become fixed
+        wikidata_bugs.append('Q1528905')
+        #return wikidata_bugs # count three extra errors, I guess
 
         # following detects Wikidata mistakes for no benefit. Ignoring it silently is preferable
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
@@ -1471,6 +1481,9 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q104880945')
 
         # also reported, not going to bother with linking...
+        wikidata_bugs.append('Q846574')
+        wikidata_bugs.append('Q180538')
+        wikidata_bugs.append('Q40444998')
         wikidata_bugs.append('Q55638')
         wikidata_bugs.append('Q3754526')
         wikidata_bugs.append('Q5409930')

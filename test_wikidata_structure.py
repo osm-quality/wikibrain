@@ -209,6 +209,12 @@ class WikidataTests(unittest.TestCase):
     def test_park_as_valid_primary_link(self):
         self.assert_linkability('Q1535460') # cultural heritage ( https://www.wikidata.org/w/index.php?title=Q210272&action=history ) is not a subclass of heritage designation, heritage (https://www.wikidata.org/w/index.php?title=Q2434238&offset=&limit=500&action=history) is not subclass of preservation
         
+    def test_another_park_as_valid_primary_link(self):
+        self.assert_linkability('Q60331605')
+
+    def test_litography_workshop_as_valid_primary_link(self):
+        self.assert_linkability('Q7680903')
+
     def test_geoglyph_as_valid_primary_link(self):
         self.assert_linkability('Q7717476') # not an event - via Q12060132 ("hillside letter" that is not a signage, it is product of a signage)
 
@@ -651,6 +657,12 @@ class WikidataTests(unittest.TestCase):
     def test_protected_kiosk_as_valid_primary_link(self):
         self.assert_linkability('Q10356475')
 
+    def test_defunct_protected_kiosk_building_as_valid_primary_link(self):
+        self.assert_linkability('Q14715519')
+
+    def test_fishing_grounds_as_valid_primary_link(self):
+        self.assert_linkability('Q5338344')
+
     def test_glassworks_as_valid_primary_link(self):
         self.assert_linkability('Q63124776')
 
@@ -876,6 +888,9 @@ class WikidataTests(unittest.TestCase):
     def test_that_defunct_school_is_not_an_event(self):
         self.is_not_an_event('Q113019862')
 
+    def test_that_flight_school_is_not_a_human_activity(self):
+        self.is_not_a_specific_error_class('Q4654871', 'a human activity')
+
     def test_that_drug_rehabilitation_community_is_not_an_event(self):
         self.is_not_an_event('Q2219871')
 
@@ -1037,6 +1052,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_company_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q215392', 'an intentional human activity')
+
+    def test_another_company_is_not_an_intentional_human_activity(self):
+        self.is_not_a_specific_error_class('Q1814208', 'an intentional human activity')
 
     def test_street_with_brothels_as_valid_primary_link(self):
         self.assert_linkability('Q1877599')
