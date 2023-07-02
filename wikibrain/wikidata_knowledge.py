@@ -1,3 +1,10 @@
+def skipped_cases():
+    return [
+        # in test category, but requiring survey on the ground
+        'Q97327423', # https://www.openstreetmap.org/note/3537021
+        "Q106617236", # https://www.openstreetmap.org/node/10974264904 may actually qualify as a tourism attraction
+    ]
+
 def blacklisted_and_unfixable_ids():
     return [
         'Q1456883',

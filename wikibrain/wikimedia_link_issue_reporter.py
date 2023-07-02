@@ -236,6 +236,9 @@ class WikimediaLinkIssueDetector:
 
         # IDEA links from buildings to parish are wrong - but from religious admin are OK https://www.wikidata.org/wiki/Q11808149
 
+        if effective_wikidata_id in wikidata_knowledge.skipped_cases():
+            return None # manually excluded
+
         something_reportable = self.get_problem_based_on_wikidata_blacklist(effective_wikidata_id, tags.get('wikidata'), effective_wikipedia)
         if something_reportable != None:
             return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)

@@ -401,5 +401,14 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("wikipedia/wikidata type tag that is incorrect according to not:* tag", problem.data()['error_id'])
 
+    def test_that_special_manual_exclusion_list_is_respected(self):
+        # in wikidata_knowledge.skipped_cases
+        tags = {"wikidata": "Q97327423"}
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertEqual (None, problem)
+        self.assertEqual ("wikipedia/wikidata type tag that is incorrect according to not:* tag", problem.data()['error_id'])
+
 if __name__ == '__main__':
     unittest.main()
