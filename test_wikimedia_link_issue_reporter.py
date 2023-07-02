@@ -260,6 +260,24 @@ class Tests(unittest.TestCase):
         self.assertNotEqual ('wikidata from wikipedia tag', problem.data()['error_id'])
         self.assertEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to a human", problem.data()['error_id'])
 
+    def test_that_shooting_is_reported_more_specifically_than_generic_intentional_human_activity(self):
+        # https://www.wikidata.org/wiki/Q112898269
+        tags = {"wikipedia": "en:Highland Park parade shooting", 'wikidata': 'Q112898269'}
+        location = None
+        object_type = 'way'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertEqual (False, "tag to an intentional human activity" in problem.data()['error_id'])
+
+    def test_that_agriculture_is_reported_more_specifically_than_generic_intentional_human_activity(self):
+        # https://www.wikidata.org/wiki/Q11451
+        tags = {"wikipedia": "en:Agriculture", 'wikidata': 'Q11451'}
+        location = None
+        object_type = 'way'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertEqual (False, "tag to an intentional human activity" in problem.data()['error_id'])
+
     def test_that_redirect_link_to_taxon_is_detected_as_problematic(self):
         tags = {"wikipedia": "de:Walnussbaum", 'natural': 'tree'}
         location = None

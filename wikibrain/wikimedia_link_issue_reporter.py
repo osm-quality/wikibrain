@@ -1111,6 +1111,7 @@ class WikimediaLinkIssueDetector:
         return {
             'Q11483816':  {'what': 'an annual event', 'replacement': None}, # maybe not an actual problem?
 
+            'Q3958441': {'what': 'an economic sector', 'replacement': None},
             'Q5': {'what': 'a human', 'replacement': 'name:'},
             'Q14897293': {'what': 'a fictional entity', 'replacement': 'name:etymology:'},
             'Q16858238': {'what': 'a train category', 'replacement': None},
@@ -1215,6 +1216,8 @@ class WikimediaLinkIssueDetector:
             'Q1759320': {'what': 'a costume party', 'replacement': 'brand:'},
             'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
             'Q13418847': {'what': 'a historical event', 'replacement': None},
+            'Q2252077': {'what': 'a shooting', 'replacement': None},
+            'Q2223653': {'what': 'a terrorist attack', 'replacement': None},
             'Q1656682': generic_event,
             'Q4026292': generic_event,
             'Q3249551': generic_event,
@@ -1468,6 +1471,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q104880945')
 
         # also reported, not going to bother with linking...
+        wikidata_bugs.append('Q55638')
         wikidata_bugs.append('Q3754526')
         wikidata_bugs.append('Q5409930')
         wikidata_bugs.append('Q6031064')
