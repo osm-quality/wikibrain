@@ -856,6 +856,7 @@ class WikimediaLinkIssueDetector:
                 if self.is_wikidata_tag_clearly_broken_or_with_multiple_values(part):
                     return True
             return False
+        return self.is_wikidata_tag_clearly_broken_or_with_multiple_values(link)
 
     def is_wikidata_tag_clearly_broken_or_with_multiple_values(self, link):
         if link == None:

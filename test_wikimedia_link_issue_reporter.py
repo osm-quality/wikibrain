@@ -38,6 +38,16 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("wikidata tag links to 404", problem.data()['error_id'])
 
+    def test_malformed_wikidata_link(self):
+        # not malformed but does not exist
+        tags = {"wikidata": "Saturn"}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.issue_reporter().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("malformed wikidata tag", problem.data()['error_id'])
+
     def test_nonexisting_secondary_wikidata_link(self):
         # not malformed but does not exist
         tags = {"nonsense:wikidata": "Q999999999999999999999999999999999999"}
