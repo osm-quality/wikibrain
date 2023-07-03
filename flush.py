@@ -8,7 +8,7 @@ forced_refresh = True
 forced_refresh = False
 wikimedia_connection.get_data_from_wikidata("en", "Santa Fe 769", forced_refresh)
 
-kill = ["Q109301056"] #NOT FLUSHED YET!
+kill = "Q6800883".split() #NOT FLUSHED YET!
 """
 # use like this:
 kill = ["Q45621"]
