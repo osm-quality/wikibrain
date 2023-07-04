@@ -1484,7 +1484,9 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Cities_and_Towns&oldid=1925223941#How_to_model_climate_emergency_declarations
         wikidata_bugs.append('Q104880945')
 
-        # also reported, not going to bother with linking...
+        # also reported, not going to bother with linking and describing...
+        wikidata_bugs.append('Q159535')
+        wikidata_bugs.append('Q253140')
         wikidata_bugs.append('Q846574')
         wikidata_bugs.append('Q180538')
         wikidata_bugs.append('Q40444998')

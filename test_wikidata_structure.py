@@ -242,6 +242,9 @@ class WikidataTests(unittest.TestCase):
     def test_wind_farm_as_valid_primary_link(self):
         self.assert_linkability('Q4102067') # not an event
 
+    def test_farm_as_valid_primary_link(self):
+        self.assert_linkability('Q99902190')
+
     def test_hollywood_sign_as_valid_primary_link(self):
         self.assert_linkability('Q180376') # not an event (hollywood sign is not an instance of signage)
 
@@ -463,6 +466,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_meridian_as_valid_primary_link(self):
         self.assert_linkability('Q131108')
+
+    def test_place_where_conspiracy_theory_happened_as_valid_primary_link(self):
+        # borderline as article actually focuses more on a conspiracy theory itself...
+        self.assert_linkability('Q7535626')
 
     def test_sculpture_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q105492941')
@@ -934,6 +941,10 @@ class WikidataTests(unittest.TestCase):
     def test_that_charity_organization_is_not_an_event_or_behavior(self):
         self.is_not_an_event('Q7075332')
         self.is_not_a_behavior('Q7075332')
+
+    def test_that_married_couple_an_event_or_behavior(self):
+        self.is_not_an_event('Q3051246')
+        self.is_not_a_behavior('Q3051246')
 
     def test_that_organisation_is_not_an_event(self):
         self.is_not_an_event('Q15852617')
