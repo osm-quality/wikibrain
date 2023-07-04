@@ -1167,7 +1167,6 @@ class WikimediaLinkIssueDetector:
             'Q14350': {'what': 'a radio station', 'replacement': 'brand:'},
             'Q1616075': {'what': 'a television station', 'replacement': 'brand:'},
             'Q15265344': {'what': 'a broadcaster', 'replacement': 'brand:'},
-            'Q220505': {'what': 'a film festival', 'replacement': None},
             'Q13406554': {'what': 'a sports competition', 'replacement': None},
             'Q18608583': {'what': 'a recurring sports event', 'replacement': None},
             'Q13414953': {'what': 'a religious denomination', 'replacement': None},
@@ -1431,6 +1430,7 @@ class WikimediaLinkIssueDetector:
         too_abstract_or_wikidata_bugs.append("Q13930359") # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q15275719") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q673514") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q132241") # festivals in general are exempt for now
         return too_abstract_or_wikidata_bugs
 
     @staticmethod
