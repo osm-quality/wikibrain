@@ -289,6 +289,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_pilgrim_route_as_valid_primary_link(self):
         self.assert_linkability('Q829469')
+
+    def test_totem_pole_as_valid_primary_link(self):
+        self.assert_linkability('Q104536355')
  
     def test_botanical_garden_as_valid_primary_link(self):
         self.assert_linkability('Q589884')
