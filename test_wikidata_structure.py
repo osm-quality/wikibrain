@@ -619,6 +619,9 @@ class WikidataTests(unittest.TestCase):
         # it is not a behavior...
         self.assert_linkability('Q9360797')
 
+    def test_drug_treatment_center_as_valid_primary_link(self):
+        self.assert_linkability('Q11143416')
+
     def test_pastoral_lease_as_valid_primary_link(self):
         # not an event
         self.assert_linkability('Q8293195')
@@ -1067,6 +1070,9 @@ class WikidataTests(unittest.TestCase):
     def test_another_company_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q1814208', 'an intentional human activity')
 
+    def test_porcelain_manufacture_is_not_an_intentional_human_activity_but_result_of_it(self):
+        self.is_not_a_specific_error_class('Q895625', 'an intentional human activity')
+
     def test_street_with_brothels_as_valid_primary_link(self):
         self.assert_linkability('Q1877599')
 
@@ -1184,6 +1190,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_studies_center_is_not_an_event(self):
         self.is_not_an_event('Q106592334')
+
+    def test_that_association_is_not_an_event(self):
+        self.is_not_an_event('Q157033')
 
     def test_islamic_army_is_not_an_event(self):
         self.is_not_an_event('Q271110')

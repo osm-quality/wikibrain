@@ -1484,6 +1484,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q104880945')
 
         # also reported, not going to bother with linking and describing...
+        wikidata_bugs.append('Q1260022')
         wikidata_bugs.append('Q159535')
         wikidata_bugs.append('Q253140')
         wikidata_bugs.append('Q846574')
