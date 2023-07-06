@@ -1130,6 +1130,8 @@ class WikimediaLinkIssueDetector:
             "Q18325841": {'what': 'a public transport network', 'replacement': 'operator:'},
             "Q1326624": {'what': 'an electric utility', 'replacement': 'operator:'},
             "Q7860962": {'what': 'a road type', 'replacement': None},
+            "Q2135540": {'what': 'a legal action', 'replacement': None},
+            "Q781413": {'what': 'a mental process', 'replacement': None},
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
