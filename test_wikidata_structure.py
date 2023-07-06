@@ -910,10 +910,25 @@ class WikidataTests(unittest.TestCase):
     def test_that_company_is_not_an_event_but_is_unlinkable_anyway(self):
         self.assert_unlinkability('Q37156') # IBM
         self.is_not_an_event('Q37156')
+        self.is_not_a_behavior('Q37156')
+
+    def test_that_company_making_events_is_not_an_event(self):
+        self.is_not_an_event('Q3093234')        
+        self.is_not_a_behavior('Q3093234')
 
     def test_that_software_company_is_not_an_event_but_is_unlinkable_anyway(self):
         self.assert_unlinkability('Q468381') # Avira
         self.is_not_an_event('Q468381')
+        self.is_not_a_behavior('Q468381')
+
+    def test_that_software_company_is_not_an_event_but_is_unlinkable_anyway(self):
+        self.assert_unlinkability('Q468381')
+        self.is_not_an_event('Q468381')
+        self.is_not_a_behavior('Q468381')
+
+    def test_that_another_company_is_not_an_event_or_behavior(self):
+        self.is_not_an_event('Q3211063')
+        self.is_not_a_behavior('Q3211063')
 
     def test_that_event_is_unlinkable(self):
         self.assert_unlinkability('Q4380984')
@@ -1071,6 +1086,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_porcelain_manufacture_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q895625', 'an intentional human activity')
+
+    def test_another_site_is_not_an_intentional_human_activity_but_result_of_it(self):
+        self.is_not_a_specific_error_class('Q16467716', 'an intentional human activity')
 
     def test_street_with_brothels_as_valid_primary_link(self):
         self.assert_linkability('Q1877599')
