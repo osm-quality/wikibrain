@@ -1281,12 +1281,6 @@ class WikimediaLinkIssueDetector:
         if base_type_problem != None:
             return base_type_problem
 
-        if self.additional_debug:
-            # TODO, IDEA - run with this parameter enable to start catching more issues
-            # for Wikidata lovers
-            self.complain_in_stdout_if_wikidata_entry_not_of_known_safe_type(effective_wikidata_id, description)
-
-
     def get_problem_based_on_wikidata_base_types(self, location, effective_wikidata_id, tags):
         unusable_wikipedia_article = self.get_error_report_if_wikipedia_target_is_of_unusable_type(location, effective_wikidata_id)
         if unusable_wikipedia_article != None:
