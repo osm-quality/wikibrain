@@ -1274,3 +1274,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_oil_refinery_as_valid_primary_link(self):
         self.assert_linkability('Q1260981')
+
+    def test_tolkien_influence_article_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q1237666')
+
+    def test_cinema_of_europe_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q993246')
+
+    def test_features_of_firefox_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q459708')

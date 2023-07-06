@@ -1223,6 +1223,7 @@ class WikimediaLinkIssueDetector:
             'Q13418847': {'what': 'a historical event', 'replacement': None},
             'Q2252077': {'what': 'a shooting', 'replacement': None},
             'Q2223653': {'what': 'a terrorist attack', 'replacement': None},
+            'Q20136634': {'what': 'an overview article', 'replacement': None},
             'Q1656682': generic_event,
             'Q4026292': generic_event,
             'Q3249551': generic_event,
@@ -1244,7 +1245,7 @@ class WikimediaLinkIssueDetector:
                 list = self.get_list_of_disambig_fixes(location, wikidata_id)
                 error_message = "link leads to a disambig page - not a proper wikipedia link (according to Wikidata - if target is not a disambig check Wikidata entry whether it is correct)\n\n" + list
                 return ErrorReport(
-                    error_id = "link to an unlinkable article",
+                    error_id = "link to a disambiguation page",
                     error_message = error_message,
                     prerequisite = {'wikidata': wikidata_id},
                     )
@@ -1252,13 +1253,6 @@ class WikimediaLinkIssueDetector:
                 error_message = "article linked in wikipedia tag is a list, so it is very unlikely to be correct"
                 return ErrorReport(
                     error_id = "link to a list",
-                    error_message = error_message,
-                    prerequisite = {'wikidata': wikidata_id},
-                    )
-            if type_id == 'Q20136634':
-                error_message = "article linked in wikipedia tag is an overview article, so it is very unlikely to be correct"
-                return ErrorReport(
-                    error_id = "link to an unlinkable article",
                     error_message = error_message,
                     prerequisite = {'wikidata': wikidata_id},
                     )
