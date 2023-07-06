@@ -338,7 +338,7 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to an event", problem.data()['error_id'])
 
-    def test_that_linking_to_art_genre_is_preferred_to_linking_to_an_event(self):
+    def test_that_linking_to_art_genre_is_preferred_to_be_reported_to_reporting_linking_to_an_event(self):
         # https://www.wikidata.org/wiki/Q2078515 should link to something less specific than an event
         wikidata_id = "Q2078515"
         location = None
@@ -347,6 +347,19 @@ class Tests(unittest.TestCase):
         problem = self.issue_reporter().get_error_report_if_type_unlinkable_as_primary(wikidata_id, tags)
         self.assertNotEqual (None, problem)
         self.assertNotEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to an event", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking from wikipedia tag to an oration", problem.data()['error_id'])
+
+    def test_that_linking_to_tax_is_preferred_to_be_reported_to_reporting_linking_to_unspecific_activity(self):
+        # https://www.wikidata.org/wiki/Q2078515 should link to something less specific than an event
+        wikidata_id = "Q1270515"
+        location = None
+        object_description = "fake test object"
+        tags = {'wikidata': wikidata_id}
+        problem = self.issue_reporter().get_error_report_if_type_unlinkable_as_primary(wikidata_id, tags)
+        self.assertNotEqual (None, problem)
+        self.assertNotEqual ("should use a secondary wikipedia tag - linking from wikidata tag to an intentional human activity", problem.data()['error_id'])
+        self.assertEqual ("should use a secondary wikipedia tag - linking from wikidata tag to a tax", problem.data()['error_id'])
+        
 
     def test_that_military_operation_complaint_is_more_specific_than_just_an_event(self):
         # https://www.wikidata.org/wiki/Q708235 should link to something less specific than an event

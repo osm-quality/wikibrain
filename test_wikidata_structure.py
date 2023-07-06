@@ -900,6 +900,9 @@ class WikidataTests(unittest.TestCase):
     def test_that_flight_school_is_not_a_human_activity(self):
         self.is_not_a_specific_error_class('Q4654871', 'a human activity')
 
+    def test_that_mural_is_not_a_academic_discipline(self):
+        self.is_not_a_specific_error_class('Q219423', 'an academic discipline')
+
     def test_that_drug_rehabilitation_community_is_not_an_event(self):
         self.is_not_an_event('Q2219871')
 
