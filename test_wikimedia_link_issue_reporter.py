@@ -419,5 +419,26 @@ class Tests(unittest.TestCase):
         problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertEqual (None, problem)
 
+    def test_that_species_links_species(self):
+        tags = {"species:wikidata": "Q169"}
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+
+        tags = {"species:wikipedia": "en:Mango"}
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+
+    def test_that_species_links_species_not_genus(self):
+        # https://www.wikidata.org/wiki/Q42292
+        tags = {"species:wikidata": "Q42292"}
+        location = None
+        object_description = "fake test object"
+        problem = self.issue_reporter().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+
 if __name__ == '__main__':
     unittest.main()

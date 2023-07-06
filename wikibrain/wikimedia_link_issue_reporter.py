@@ -1139,6 +1139,8 @@ class WikimediaLinkIssueDetector:
             'Q5113': taxon,
             'Q38829': taxon,
             'Q55983715': taxon,
+            'Q34740': taxon,
+            'Q7432': taxon,
             'Q133182': {'what': 'a superstitution', 'replacement': 'subject:'},
             'Q42240': {'what': 'a research', 'replacement': None},
             'Q268592': {'what': 'a general industry', 'replacement': None},
@@ -1260,14 +1262,40 @@ class WikimediaLinkIssueDetector:
                     )
 
     def get_problem_based_on_wikidata_and_osm_element(self, object_description, location, effective_wikidata_id, tags):
-        if effective_wikidata_id == None:
-            # instance data not present in wikidata
-            # not fixable easily as imports from OSM to Wikidata are against rules
-            # as OSM data is protected by ODBL, and Wikidata is on CC0 license
-            # also, this problem is easy to find on Wikidata itself so it is not useful to report it
-            return None
+        if effective_wikidata_id != None:
+            error = self.get_problem_based_on_wikidata(effective_wikidata_id, tags, object_description, location)
+            if error != None:
+                return error
 
-        return self.get_problem_based_on_wikidata(effective_wikidata_id, tags, object_description, location)
+        # https://www.wikidata.org/wiki/Q7432
+        error = self.get_problem_based_on_taxon_tagging(tags, object_description, location, "species:", "Q7432")
+        if error != None:
+            return error
+
+        error = self.get_problem_based_on_taxon_tagging(tags, object_description, location, "taxon:", "Q16521")
+        if error != None:
+            return error
+
+        error = self.get_problem_based_on_taxon_tagging(tags, object_description, location, "genus:", "Q34740")
+        if error != None:
+            return error
+    
+    def get_problem_based_on_taxon_tagging(self, tags, object_description, location, prefix, expected_wikidata):
+        species_wikidata = None
+        if prefix + "wikidata" in tags:
+            species_wikidata = tags[prefix + "wikidata"]
+        if prefix + "wikipedia" in tags and species_wikidata == None:
+            species_wikidata = wikimedia_connection.get_wikidata_object_id_from_link(tags.get(prefix + "wikipedia"))
+        if species_wikidata == None:
+            return None
+        for type_id in self.wikidata_entries_classifying_entry(species_wikidata):
+            if type_id == expected_wikidata:
+                return None
+        return ErrorReport(
+            error_id = prefix.replace(":", "") + " secondary tag links something that is not species according to wikidata",
+            error_message = None,
+            prerequisite = {prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
+            )
 
     def get_problem_based_on_wikidata(self, effective_wikidata_id, tags, description, location):
         return self.get_problem_based_on_base_types(effective_wikidata_id, tags, description, location)
