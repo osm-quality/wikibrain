@@ -1190,7 +1190,6 @@ class WikimediaLinkIssueDetector:
             'Q1875621': vehicle,
             'Q37761255': vehicle,
             'Q474191': {'what': 'a diet', 'replacement':  None},
-            'Q2897903': {'what': 'goods and services', 'replacement':  None},
             'Q22222786': {'what': 'a government program', 'replacement': None},
             'Q24634210': {'what': 'a podcast', 'replacement': None},
             'Q273120': {'what': 'a protest', 'replacement': None},
