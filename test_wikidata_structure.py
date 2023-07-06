@@ -109,7 +109,6 @@ class WikidataTests(unittest.TestCase):
         # https://www.openstreetmap.org/way/452123938
         self.assert_unlinkability('Q830036')
 
-
     def test_detecting_makro_as_invalid_primary_link(self):
         self.assert_unlinkability('Q704606')
 
