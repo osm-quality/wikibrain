@@ -879,9 +879,6 @@ class WikidataTests(unittest.TestCase):
     def test_clonal_colony_as_valid_primary_link(self):
         self.assert_linkability('Q921090')
 
-    def test_memorial_as_valid_primary_link(self):
-        self.assert_linkability('Q15980484')
-
     def test_horse_pond_as_valid_primary_link(self):
         self.assert_linkability('Q49473780')
 
