@@ -1093,7 +1093,7 @@ class WikidataTests(unittest.TestCase):
     def test_another_site_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q16467716', 'an intentional human activity')
 
-    def test_some_biblical_figures_are_definitely_not_fictional_but_still_invalid(self):
+    def test_apostle_is_not_fictional_but_still_invalid(self):
         self.is_not_a_specific_error_class('Q51672', 'a fictional entity')
         tags = {"wikidata": "Q51672"}
         location = None
@@ -1102,6 +1102,7 @@ class WikidataTests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
 
+    def test_herod_is_not_fictional_but_still_invalid_link(self):
         self.is_not_a_specific_error_class('Q43945', 'a fictional entity')
         tags = {"wikidata": "Q43945"}
         location = None
