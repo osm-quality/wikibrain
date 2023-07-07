@@ -945,7 +945,7 @@ class WikidataTests(unittest.TestCase):
     def test_that_software_is_not_an_event(self):
         self.is_not_an_event('Q25874683')
 
-    def test_that_australian_administartive_area_is_valid_link(self):
+    def test_that_australian_administrative_area_is_valid_link(self):
         self.assert_linkability('Q1533526')
         self.assert_linkability('Q947334')
         self.assert_linkability('Q1030580')
