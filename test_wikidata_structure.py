@@ -45,9 +45,9 @@ class WikidataTests(unittest.TestCase):
         potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
         if potential_failure == None:
             return
-        if potential_failure.data()['error_id'] == 'should use a secondary wikipedia tag - linking from wikidata to ' + expected_error_class:
+        if potential_failure.data()['error_id'] == 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class:
             self.dump_debug_into_stdout(type_id)
-            self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata to ' + expected_error_class)
+            self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class)
 
     def dump_debug_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
