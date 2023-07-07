@@ -918,6 +918,7 @@ class WikidataTests(unittest.TestCase):
     def test_that_company_making_events_is_not_an_event(self):
         self.is_not_an_event('Q3093234')        
         self.is_not_a_behavior('Q3093234')
+        # TODO - it is not a valid link either
 
     def test_that_software_company_is_not_an_event_but_is_unlinkable_anyway(self):
         self.assert_unlinkability('Q468381') # Avira
@@ -932,6 +933,7 @@ class WikidataTests(unittest.TestCase):
     def test_that_another_company_is_not_an_event_or_behavior(self):
         self.is_not_an_event('Q3211063')
         self.is_not_a_behavior('Q3211063')
+        # TODO - it is not a valid link either
 
     def test_that_event_is_unlinkable(self):
         self.assert_unlinkability('Q4380984')
@@ -1081,11 +1083,19 @@ class WikidataTests(unittest.TestCase):
     def test_specific_battery_as_valid_primary_link(self):
         self.assert_linkability('Q15179168')
 
+    def test_squatted_building_as_valid_primary_link(self):
+        self.assert_linkability('Q15303877')
+
     def test_company_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q215392', 'an intentional human activity')
 
     def test_another_company_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q1814208', 'an intentional human activity')
+        # TODO - it is not a valid link either
+
+    def test_municipal_company_is_not_an_intentional_human_activity(self):
+        self.is_not_a_specific_error_class('Q1285495', 'an intentional human activity')
+        # TODO - it is not a valid link either
 
     def test_porcelain_manufacture_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q895625', 'an intentional human activity')
@@ -1100,7 +1110,9 @@ class WikidataTests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
-        self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
+        if "fictional" in problem.data()['error_id']:
+            print(problem.data()['error_id'])
+            self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
 
     def test_herod_is_not_fictional_but_still_invalid_link(self):
         self.is_not_a_specific_error_class('Q43945', 'a fictional entity')
@@ -1109,7 +1121,22 @@ class WikidataTests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
-        self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
+        if "fictional" in problem.data()['error_id']:
+            print(problem.data()['error_id'])
+            self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
+
+    def test_jesus_is_not_fictional_but_still_invalid_link(self):
+        # https://en.wikipedia.org/wiki/Historicity_of_Jesus
+        self.is_not_a_specific_error_class('Q302', 'a fictional entity')
+        tags = {"wikidata": "Q302"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        if "fictional" in problem.data()['error_id']:
+            print(problem.data()['error_id'])
+            self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
+
 
     def test_street_with_brothels_as_valid_primary_link(self):
         self.assert_linkability('Q1877599')
