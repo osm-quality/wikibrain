@@ -1570,6 +1570,12 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q806718')
         wikidata_bugs.append('Q219160')
         wikidata_bugs.append('Q2040532')
+        wikidata_bugs.append('Q110544132')
+        wikidata_bugs.append('Q4271324')
+        wikidata_bugs.append('Q15773347')
+        wikidata_bugs.append('Q51626')
+        wikidata_bugs.append('Q95074')
+        
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):

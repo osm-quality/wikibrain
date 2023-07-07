@@ -1340,6 +1340,14 @@ class WikidataTests(unittest.TestCase):
     def test_oil_refinery_as_valid_primary_link(self):
         self.assert_linkability('Q1260981')
 
+    def test_mountain_with_free_flight_site_as_valid_primary_link(self):
+        self.assert_linkability('Q3322275')
+        self.assert_linkability('Q16631790')
+
+        # assumed to be also freeflight mess
+        self.assert_linkability('Q3393574')
+        self.assert_linkability('Q2972416')
+
     def test_tolkien_influence_article_as_invalid_primary_link(self):
         self.assert_unlinkability('Q1237666')
 
