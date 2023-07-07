@@ -1093,6 +1093,23 @@ class WikidataTests(unittest.TestCase):
     def test_another_site_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q16467716', 'an intentional human activity')
 
+    def test_some_biblical_figures_are_definitely_not_fictional_but_still_invalid(self):
+        self.is_not_a_specific_error_class('Q51672', 'a fictional entity')
+        tags = {"wikidata": "Q51672"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
+
+        self.is_not_a_specific_error_class('Q43945', 'a fictional entity')
+        tags = {"wikidata": "Q43945"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        self.assertNotEqual (True, "fictional" in problem.data()['error_id'])
+
     def test_street_with_brothels_as_valid_primary_link(self):
         self.assert_linkability('Q1877599')
 
