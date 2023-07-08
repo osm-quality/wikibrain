@@ -1575,6 +1575,10 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q15773347')
         wikidata_bugs.append('Q51626')
         wikidata_bugs.append('Q95074')
+        # TODO after refresh here:
+        #mark as unlinkable in tests
+        #https://www.wikidata.org/wiki/Q1877267
+        #Q1877267
         
         return wikidata_bugs
 

@@ -582,6 +582,12 @@ class WikidataTests(unittest.TestCase):
         # https://www.openstreetmap.org/node/1331944863
         self.assert_unlinkability('Q7277047')
 
+    def test_detecting_mine_disaster_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q4558986')
+
+    def test_detecting_bombing_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q885225')
+
     def test_australian_administrative_boundary_as_valid_primary_link(self):
         # https://www.openstreetmap.org/relation/7032873
         self.assert_linkability('Q3179144')
@@ -896,6 +902,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_defunct_school_is_not_an_event(self):
         self.is_not_an_event('Q113019862')
+
+    def test_that_business_is_not_a_social_issue(self):
+        self.is_not_a_specific_error_class('Q110699468', 'a social issue')
 
     def test_that_flight_school_is_not_a_human_activity(self):
         self.is_not_a_specific_error_class('Q4654871', 'a human activity')
@@ -1356,3 +1365,11 @@ class WikidataTests(unittest.TestCase):
 
     def test_features_of_firefox_as_invalid_primary_link(self):
         self.assert_unlinkability('Q459708')
+
+    def test_taxon_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q159570')
+        self.assert_unlinkability('Q26899')
+        self.assert_unlinkability('Q26771')
+        
+        
+
