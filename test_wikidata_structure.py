@@ -135,6 +135,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_cropp_as_invalid_primary_link(self):
         self.assert_unlinkability('Q9196793')
 
+    def test_detecting_crash_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q1801568')
+
     def test_detecting_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2106892')
 
@@ -1391,6 +1394,4 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q159570')
         self.assert_unlinkability('Q26899')
         self.assert_unlinkability('Q26771')
-        
-        
-
+        self.assert_unlinkability('Q158746')
