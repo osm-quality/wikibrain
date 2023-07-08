@@ -50,6 +50,14 @@ class WikidataTests(unittest.TestCase):
             self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class)
 
     def dump_debug_into_stdout(self, type_id):
+        self.dump_debug_about_specific_type_id_into_stdout(type_id)
+        parent_categories = wikidata_processing.get_recursive_all_subclass_of('Q109717267', self.detector().ignored_entries_in_wikidata_ontology(), False, callback=None)
+        for subclass in parent_categories:
+            print("It is also subclassed!")
+            print(subclass)
+            self.dump_debug_about_specific_type_id_into_stdout(subclass)
+
+    def dump_debug_about_specific_type_id_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         reported = ""
         reported += "\n"
@@ -144,6 +152,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_detecting_fort_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q865131')
+
+    def test_detecting_footbridge_as_valid_primary_link(self):
+        self.assert_linkability('Q109717267')
 
     def test_detecting_fort_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q11962228')
@@ -1080,7 +1091,17 @@ class WikidataTests(unittest.TestCase):
     def test_prehistoric_settlement_as_valid_primary_link(self):
         self.assert_linkability('Q1015819')
 
-    def test_generic_bench_entry_as_invalid_primary_link(self):
+    def test_generic_bench_entry_as_invalid_primary_link_p279_should_be_used_as_indicator(self):
+        # https://www.wikidata.org/wiki/Q204776
+        # has P279
+        self.assertNotEqual(None, wikimedia_connection.get_property_from_wikidata('Q204776', 'P279'))
+        self.assertNotEqual(None, self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q204776', 'tag summary'))
+        self.assertNotEqual(None, self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used('Q204776', {'wikidata': 'Q204776'}))
+        self.assertNotEqual(None, self.detector().get_problem_based_on_wikidata_base_types(None, 'Q204776', {'wikidata': 'Q204776'}))
+        self.assertNotEqual(None, self.detector().get_problem_based_on_base_types('Q204776', {'wikidata': 'Q204776'}, 'decription', None))
+        self.assertNotEqual(None, self.detector().get_problem_based_on_wikidata('Q204776', {'wikidata': 'Q204776'}, 'decription', None))
+        self.assertNotEqual(None, self.detector().get_problem_based_on_wikidata_and_osm_element('object_description', None, 'Q204776', {'wikidata': 'Q204776'}))
+        self.assertNotEqual(None, self.detector().freely_reorderable_issue_reports('object_description', None, {'wikidata': 'Q204776'}))
         self.assert_failing_full_tests('Q204776', 'en:Bench (furniture)')
 
     def test_france_italy_border_as_valid_primary_link(self):

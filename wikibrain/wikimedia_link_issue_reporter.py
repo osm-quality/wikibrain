@@ -1308,10 +1308,6 @@ class WikimediaLinkIssueDetector:
         return self.get_problem_based_on_base_types(effective_wikidata_id, tags, description, location)
 
     def get_problem_based_on_base_types(self, effective_wikidata_id, tags, description, location):
-        base_type_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id)
-        if base_type_ids == None:
-            return None
-
         base_type_problem = self.get_problem_based_on_wikidata_base_types(location, effective_wikidata_id, tags)
         if base_type_problem != None:
             return base_type_problem
