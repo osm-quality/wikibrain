@@ -473,5 +473,28 @@ class Tests(unittest.TestCase):
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertNotEqual (None, problem)
 
+    def test_that_species_linking_species_is_fine(self):
+        # https://www.wikidata.org/wiki/Q42292
+        tags = {"species:wikidata": "Q156895"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertEqual (None, problem)
+
+    def test_that_taxon_linking_species_is_fine(self):
+        # https://www.wikidata.org/wiki/Q42292
+        tags = {"taxon:wikidata": "Q156895"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertEqual (None, problem)
+
+    def test_that_semicolon_separation_in_taxon_tags_is_not_causing_crashes(self):
+        # https://www.wikidata.org/wiki/Q42292
+        tags = {"taxon:wikidata": "Q156895;Q156895"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+
 if __name__ == '__main__':
     unittest.main()

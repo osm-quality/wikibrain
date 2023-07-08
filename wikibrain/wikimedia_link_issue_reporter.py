@@ -1285,14 +1285,17 @@ class WikimediaLinkIssueDetector:
             return error
     
     def get_problem_based_on_taxon_tagging(self, tags, object_description, location, prefix, expected_wikidata):
-        species_wikidata = None
+        wikidata = None
         if prefix + "wikidata" in tags:
-            species_wikidata = tags[prefix + "wikidata"]
-        if prefix + "wikipedia" in tags and species_wikidata == None:
-            species_wikidata = wikimedia_connection.get_wikidata_object_id_from_link(tags.get(prefix + "wikipedia"))
-        if species_wikidata == None:
+            wikidata = tags[prefix + "wikidata"]
+        if prefix + "wikipedia" in tags and wikidata == None:
+            wikidata = wikimedia_connection.get_wikidata_object_id_from_link(tags.get(prefix + "wikipedia"))
+        if wikidata == None:
             return None
-        for type_id in self.wikidata_entries_classifying_entry(species_wikidata):
+        if ";" in wikidata:
+            # TODO maybe something can/should be done here?
+            return None
+        for type_id in self.wikidata_entries_classifying_entry(wikidata):
             if type_id == expected_wikidata:
                 return None
         return ErrorReport(
