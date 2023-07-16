@@ -498,5 +498,15 @@ class Tests(unittest.TestCase):
         object_description = "fake test object"
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
 
+    def test_that_false_positive_bit_is_gone(self):
+        tags = {"wikidata": "Q4462601", "wikipedia": "ru:3-я Новоостанкинская улица"}
+        location = None
+        object_description = "fake test object"
+        object_type = 'way'
+        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        if problem != None:
+            print(problem.data()['error_id'])
+        self.assertEqual (None, problem)
+
 if __name__ == '__main__':
     unittest.main()
