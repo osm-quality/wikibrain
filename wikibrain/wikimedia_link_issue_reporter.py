@@ -1283,19 +1283,48 @@ class WikimediaLinkIssueDetector:
                 return error
 
         # https://www.wikidata.org/wiki/Q7432
-        error = self.get_problem_based_on_taxon_tagging(tags, object_description, location, "species:", "Q7432")
+        error = self.get_problem_based_on_taxon_tagging_with_p105_property(tags, object_description, location, "species:", "Q7432")
         if error != None:
             return error
 
-        error = self.get_problem_based_on_taxon_tagging(tags, object_description, location, "taxon:", "Q16521")
+        error = self.get_problem_based_on_taxon_tagging_with_regular_ontology(tags, object_description, location, "taxon:", "Q16521")
         if error != None:
             return error
 
-        error = self.get_problem_based_on_taxon_tagging(tags, object_description, location, "genus:", "Q34740")
+        error = self.get_problem_based_on_taxon_tagging_with_p105_property(tags, object_description, location, "genus:", "Q34740")
         if error != None:
             return error
+
     
-    def get_problem_based_on_taxon_tagging(self, tags, object_description, location, prefix, expected_wikidata):
+    def get_problem_based_on_taxon_tagging_with_p105_property(self, tags, object_description, location, prefix, expected_wikidata):
+        wikidata = None
+        if prefix + "wikidata" in tags:
+            wikidata = tags[prefix + "wikidata"]
+        if prefix + "wikipedia" in tags and wikidata == None:
+            wikidata = wikimedia_connection.get_wikidata_object_id_from_link(tags.get(prefix + "wikipedia"))
+        if wikidata == None:
+            return None
+        if ";" in wikidata:
+            # TODO maybe something can/should be done here?
+            return None
+        data = wikimedia_connection.get_property_from_wikidata(wikidata, 'P105')
+        if data == None:
+            return ErrorReport(
+                error_id = prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking P105)",
+                error_message = "no P105",
+                prerequisite = {prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
+                )
+        returned = []
+        for entry in data:
+            if expected_wikidata == entry['mainsnak']['datavalue']['value']['id']:
+                return None
+        return ErrorReport(
+            error_id = prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking P105)",
+            error_message = "no matching P105",
+            prerequisite = {prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
+            )
+
+    def get_problem_based_on_taxon_tagging_with_regular_ontology(self, tags, object_description, location, prefix, expected_wikidata):
         wikidata = None
         if prefix + "wikidata" in tags:
             wikidata = tags[prefix + "wikidata"]
@@ -1309,9 +1338,10 @@ class WikimediaLinkIssueDetector:
         for type_id in self.wikidata_entries_classifying_entry(wikidata):
             if type_id == expected_wikidata:
                 return None
+        message = prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking regular ontology)"
         return ErrorReport(
-            error_id = prefix.replace(":", "") + " secondary tag links something that is not species according to wikidata",
-            error_message = None,
+            error_id = message,
+            error_message = message,
             prerequisite = {prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
             )
 
