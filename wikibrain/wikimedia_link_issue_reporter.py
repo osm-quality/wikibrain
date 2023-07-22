@@ -400,11 +400,19 @@ class WikimediaLinkIssueDetector:
                                 prerequisite = {key: link},
                                 )
             elif key != "note:wikidata": # note:wikidata can have freeform format
-                return ErrorReport(
-                                error_id = "malformed secondary wikidata tag",
-                                error_message = "malformed value in " + key + " tag (" + link + ")",
-                                prerequisite = {key: link},
-                                )
+                if key.endswith(":wikidata"):
+                    prefix = key[:-len(":wikidata")]
+                    return ErrorReport(
+                                    error_id = "malformed secondary wikidata tag - for " + prefix + " prefixed tags",
+                                    error_message = "malformed value in " + key + " tag (" + link + ")",
+                                    prerequisite = {key: link},
+                                    )
+                else:
+                    return ErrorReport(
+                                    error_id = "malformed secondary wikidata tag",
+                                    error_message = "malformed value in " + key + " tag (" + link + ")",
+                                    prerequisite = {key: link},
+                                    )
         else:
             return None
 
