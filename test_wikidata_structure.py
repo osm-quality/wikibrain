@@ -46,16 +46,24 @@ class WikidataTests(unittest.TestCase):
         if potential_failure == None:
             return
         if potential_failure.data()['error_id'] == 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class:
-            self.dump_debug_into_stdout(type_id)
+            self.dump_debug_into_stdout(type_id, "is_not_a_specific_error_class failed")
             self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class)
 
-    def dump_debug_into_stdout(self, type_id):
+    def dump_debug_into_stdout(self, type_id, why):
+        print()
+        print()
+        print()
+        print("dump_debug_into_stdout", why)
         self.dump_debug_about_specific_type_id_into_stdout(type_id)
-        parent_categories = wikidata_processing.get_recursive_all_subclass_of('Q109717267', self.detector().ignored_entries_in_wikidata_ontology(), False, callback=None)
+        parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.detector().ignored_entries_in_wikidata_ontology(), False, callback=None)
         for subclass in parent_categories:
-            print("It is also subclassed!")
-            print(subclass)
-            self.dump_debug_about_specific_type_id_into_stdout(subclass)
+            if type_id == subclass:
+                continue
+            print(type_id, "is also subclassed with", subclass)
+            if subclass in wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology():
+                print("but it is in wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()")
+            else:
+                self.dump_debug_about_specific_type_id_into_stdout(subclass)
 
     def dump_debug_about_specific_type_id_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
@@ -88,13 +96,13 @@ class WikidataTests(unittest.TestCase):
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable != None:
-            self.dump_debug_into_stdout(type_id)
+            self.dump_debug_into_stdout(type_id, "assert_linkability failed")
         self.assertEqual(None, is_unlinkable)
 
     def assert_unlinkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable == None:
-            self.dump_debug_into_stdout(type_id)
+            self.dump_debug_into_stdout(type_id, "assert_unlinkability failed")
         self.assertNotEqual(None, is_unlinkable)
 
     def test_rejects_links_to_events(self):
