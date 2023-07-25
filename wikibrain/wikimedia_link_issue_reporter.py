@@ -1514,7 +1514,19 @@ class WikimediaLinkIssueDetector:
         # not interested in spending time on fixing wikidata bugs
         # maybe if everything else will become fixed
         wikidata_bugs.append('Q1528905')
-        #return wikidata_bugs # count three extra errors, I guess
+
+        # merging items
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1937087915#Project_Riese_(Q320076)_classified_as_an_intentional_human_activity
+        wikidata_bugs.append('Q170584')
+
+        # Jesus mess
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1940322493#Jesus_(Q302)_is_a_fictional_entity,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q51625')
+        wikidata_bugs.append('Q302')
+
+        # Andorra is not for a sale
+        wikidata_bugs.append('Q208500')
+        return wikidata_bugs # count six extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # following detects Wikidata mistakes for no benefit. Ignoring it silently is preferable
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
