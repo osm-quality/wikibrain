@@ -444,6 +444,25 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("wikipedia/wikidata type tag that is incorrect according to not:* tag", problem.data()['error_id'])
 
+    def test_that_specific_error_is_reported(self):
+        # https://www.openstreetmap.org/way/165659335
+        tags = {"wikidata": "Q502053"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        self.assertNotEqual ("should use a secondary wikipedia tag - linking from wikidata tag to an event", problem.data()['error_id'])
+
+    def test_that_specific_error_is_reported_b(self):
+        # https://www.openstreetmap.org/way/165659335
+        tags = {"wikidata": "Q1595342"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertNotEqual (None, problem)
+        self.assertNotEqual ("should use a secondary wikipedia tag - linking from wikidata tag to an event", problem.data()['error_id'])
+
+
     def test_that_special_manual_exclusion_list_is_respected(self):
         # in wikidata_knowledge.skipped_cases
         tags = {"wikidata": "Q97327423"}
