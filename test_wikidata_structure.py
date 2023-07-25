@@ -1231,11 +1231,27 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q1285495', 'an intentional human activity')
         # TODO - it is not a valid link either
 
+    def test_ridesharing_company_is_not_a_legal_action(self):
+        self.is_not_a_specific_error_class('Q692400', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q692400', 'a legal action')
+        # TODO - it is not a valid link either
+
+    def test_ridesharing_network_is_not_a_legal_action(self):
+        self.is_not_a_specific_error_class('Q23955689', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q23955689', 'a legal action')
+        self.assert_unlinkability('Q23955689')
+
     def test_porcelain_manufacture_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q895625', 'an intentional human activity')
 
     def test_another_site_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q16467716', 'an intentional human activity')
+
+    def test_government_office_is_not_an_intentional_human_activity_but_result_of_it(self):
+        self.is_not_a_specific_error_class('Q27479792', 'an intentional human activity')
+
+    def test_deposit_system_is_not_a_research(self):
+        self.is_not_a_specific_error_class('Q4077395', 'a research')
 
     def test_apostle_is_not_fictional_but_still_invalid(self):
         self.is_not_a_specific_error_class('Q51672', 'a fictional entity')
