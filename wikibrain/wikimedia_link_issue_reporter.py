@@ -1527,7 +1527,7 @@ class WikimediaLinkIssueDetector:
 
         # Andorra is not for a sale
         wikidata_bugs.append('Q208500')
-        return wikidata_bugs # count six extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        #return wikidata_bugs # count six extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # following detects Wikidata mistakes for no benefit. Ignoring it silently is preferable
         wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
