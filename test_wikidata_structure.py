@@ -1514,6 +1514,9 @@ class WikidataTests(unittest.TestCase):
     def test_cinema_of_europe_as_invalid_primary_link(self):
         self.assert_unlinkability('Q993246')
 
+    def test_fictional_island_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q1877267')
+
     def test_features_of_firefox_as_invalid_primary_link(self):
         self.assert_unlinkability('Q459708')
 

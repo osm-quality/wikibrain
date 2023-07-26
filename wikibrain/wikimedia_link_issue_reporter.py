@@ -1493,6 +1493,7 @@ class WikimediaLinkIssueDetector:
         too_abstract_or_wikidata_bugs.append("Q673514") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q132241") # festivals in general are exempt for now
         too_abstract_or_wikidata_bugs.append("Q11706236") # also church festivals
+        
         return too_abstract_or_wikidata_bugs
 
     @staticmethod
@@ -1527,143 +1528,7 @@ class WikimediaLinkIssueDetector:
 
         # Andorra is not for a sale
         wikidata_bugs.append('Q208500')
-        #return wikidata_bugs # count six extra errors, I guess (remember to reduce by count of open nonwikidata problems)
-
-        # following detects Wikidata mistakes for no benefit. Ignoring it silently is preferable
-        wikidata_bugs.append('Q1263068') # duplicate database entry - self-report of Wikidata ontology bug
-        wikidata_bugs.append('Q17362920') # Wikimedia duplicated page - self-report of Wikidata ontology bug
-        wikidata_bugs.append('Q21484471') # Wikipedia article covering multiple topics - self-report of Wikidata ontology bug
-        wikidata_bugs.append('Q21167233') # "Commons gallery" 
-
-        # ferry routes are not events
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782894312#Tramwaj_wodny_w_Bydgoszczy_(Q926453)_is_an_event,_according_to_Wikidata_ontology 
-        wikidata_bugs.append("Q18984099")
-        # nor industries in general
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1791129129#Woolwich_Ferry_(Q2593299)_is_a_general_industry,_according_to_Wikidata_ontology
-        wikidata_bugs.append("Q155930")
-        # etc
-        wikidata_bugs.append("Q4931513")        
-
-        # Wikidata: high school education is process that takes place without human involvement
-        # yes, really
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1789193528#high_school_education_(Q14623204)_is_process_that_takes_place_without_human_involvement
-
-        # "under contruction" marker, caused some pages to be listed as invalid - not going to investigate this Wikidata bug
-        wikidata_bugs.append("Q12377751")
-
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Ontology&oldid=1782547952#Mount_Ebenezer_(Q8293195)_is_an_event,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q13411064')
-
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1925222891#Campbelltown_(Q1030580)_is_a_human_activity,_according_to_Wikidata_ontology
-        # https://www.wikidata.org/w/index.php?title=Wikidata_talk:WikiProject_Cities_and_Towns&oldid=1925223941#How_to_model_climate_emergency_declarations
-        wikidata_bugs.append('Q104880945')
-
-        # also reported, not going to bother with linking and describing...
-        wikidata_bugs.append('Q1260022')
-        wikidata_bugs.append('Q159535')
-        wikidata_bugs.append('Q253140')
-        wikidata_bugs.append('Q846574')
-        wikidata_bugs.append('Q180538')
-        wikidata_bugs.append('Q40444998')
-        wikidata_bugs.append('Q55638')
-        wikidata_bugs.append('Q3754526')
-        wikidata_bugs.append('Q5409930')
-        wikidata_bugs.append('Q6031064')
-        wikidata_bugs.append('Q8434')
-        wikidata_bugs.append('Q2305441')
-        wikidata_bugs.append('Q170584')
-        wikidata_bugs.append('Q62832')
-        wikidata_bugs.append('Q349772')
-        wikidata_bugs.append('Q681337')
-        wikidata_bugs.append('Q7406919')
-        wikidata_bugs.append('Q184872')
-        wikidata_bugs.append('Q3481436')
-        wikidata_bugs.append('Q3217027')
-        wikidata_bugs.append('Q7406919')
-        wikidata_bugs.append('Q28877')
-        wikidata_bugs.append('Q188460')
-        wikidata_bugs.append('Q1632481')
-        wikidata_bugs.append('Q1707496')
-        wikidata_bugs.append('Q59264914')
-        wikidata_bugs.append('Q2083731')
-        wikidata_bugs.append('Q1078913')
-        wikidata_bugs.append('Q56299222')
-        wikidata_bugs.append('Q611804')
-        wikidata_bugs.append('Q11642')
-        wikidata_bugs.append('Q6047930')
-        wikidata_bugs.append('Q19361238')
-        wikidata_bugs.append('Q214519')
-        wikidata_bugs.append('Q208500')
-        wikidata_bugs.append('Q860879')
-        wikidata_bugs.append('Q464980')
-        wikidata_bugs.append('Q106783086')
-        wikidata_bugs.append('Q4006')
-        wikidata_bugs.append('Q648116')
-        wikidata_bugs.append('Q6006')
-        wikidata_bugs.append('Q2293148')
-        wikidata_bugs.append('Q557141')
-        wikidata_bugs.append('Q113986841')
-        wikidata_bugs.append('Q211382')
-        wikidata_bugs.append('Q2475641')
-        wikidata_bugs.append('Q1298668')
-        wikidata_bugs.append('Q16887380')
-        wikidata_bugs.append('Q1046088')
-        wikidata_bugs.append('Q544504')
-        wikidata_bugs.append('Q11486291')
-        wikidata_bugs.append('Q29584148')
-        wikidata_bugs.append('Q618779')
-        wikidata_bugs.append('Q99527517')
-        wikidata_bugs.append('Q337907')
-        wikidata_bugs.append('Q44854')
-        wikidata_bugs.append('Q12405827')
-        wikidata_bugs.append('Q3658341')
-        wikidata_bugs.append('Q739302')
-        wikidata_bugs.append('Q184719')
-        wikidata_bugs.append('Q187939')
-        wikidata_bugs.append('Q1951366')
-        wikidata_bugs.append('Q806718')
-        wikidata_bugs.append('Q219160')
-        wikidata_bugs.append('Q2040532')
-        wikidata_bugs.append('Q110544132')
-        wikidata_bugs.append('Q4271324')
-        wikidata_bugs.append('Q15773347')
-        wikidata_bugs.append('Q51626')
-        wikidata_bugs.append('Q95074')
-        wikidata_bugs.append('Q1985622')
-        wikidata_bugs.append('Q1004887')
-        wikidata_bugs.append('Q3577509')
-        wikidata_bugs.append('Q1058914')
-        wikidata_bugs.append('Q30682903')
-        wikidata_bugs.append('Q15275192')
-        wikidata_bugs.append('Q1824132')
-        wikidata_bugs.append('Q51647')
-        wikidata_bugs.append('Q15275192')
-        wikidata_bugs.append('Q1474636')
-        wikidata_bugs.append('Q24017465')
-        wikidata_bugs.append('Q98094425')
-        wikidata_bugs.append('Q386147')
-        wikidata_bugs.append('Q15031376')
-        wikidata_bugs.append('Q376935')
-        wikidata_bugs.append('Q914856')
-        wikidata_bugs.append('Q221620')
-        wikidata_bugs.append('Q291240')
-        wikidata_bugs.append('Q10611118')
-        wikidata_bugs.append('Q2244608')
-        wikidata_bugs.append('Q57262267')
-        wikidata_bugs.append('Q610018')
-        wikidata_bugs.append('Q5326904')
-        wikidata_bugs.append('Q87817013')
-        wikidata_bugs.append('Q73190050')
-        wikidata_bugs.append('Q368394')
-        wikidata_bugs.append('Q46825')
-        wikidata_bugs.append('Q1889')
-        wikidata_bugs.append('Q847201')
-        wikidata_bugs.append('Q2494008')
-        
-        # TODO after refresh here:
-        #mark as unlinkable in tests
-        #https://www.wikidata.org/wiki/Q1877267
-        #Q1877267
+        return wikidata_bugs # count six extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         
         return wikidata_bugs
 
