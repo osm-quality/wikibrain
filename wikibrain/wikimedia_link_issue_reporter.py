@@ -1492,6 +1492,7 @@ class WikimediaLinkIssueDetector:
         too_abstract_or_wikidata_bugs.append("Q15275719") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q673514") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q132241") # festivals in general are exempt for now
+        too_abstract_or_wikidata_bugs.append("Q11706236") # also church festivals
         return too_abstract_or_wikidata_bugs
 
     @staticmethod
