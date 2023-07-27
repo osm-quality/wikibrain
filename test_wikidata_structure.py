@@ -634,27 +634,21 @@ class WikidataTests(unittest.TestCase):
         self.assert_passing_all_tests('Q3179144', 'en:Unincorporated Far West Region')
 
     def test_pilgrimage_route_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q41150')
 
     def test_fountain_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q822122')
 
     def test_modern_artwork_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q64435838')
 
     def test_river_source_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q47037286')
 
     def test_old_house_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q31147655')
 
     def test_ferry_route_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q926453')
 
     def test_another_ferry_route_as_valid_primary_link(self):
@@ -668,11 +662,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q11143416')
 
     def test_pastoral_lease_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q8293195')
 
     def test_park_and_node_beach_as_valid_primary_link(self):
-        # not an event
         self.assert_linkability('Q5619268')
 
     def test_parish_as_valid_primary_link(self):
@@ -963,7 +955,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_defunct_school_is_not_an_event(self):
         self.is_not_an_event('Q113019862')
-
 
     def test_that_propaganda_institution_is_not_a_mental_process(self):
         self.is_not_a_specific_error_class('Q157033', 'a mental process')
