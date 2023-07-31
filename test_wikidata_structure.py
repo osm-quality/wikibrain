@@ -204,13 +204,13 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q1630')
 
     def test_detecting_expressway_as_valid_primary_link(self):
-        self.assert_linkability('Q5055176') # not an event
+        self.assert_linkability('Q5055176')
 
     def test_detecting_university_as_valid_primary_link(self):
         self.assert_linkability('Q1887879') # not a website (as "open access publisher" is using website, but is not a website)
 
     def test_detecting_university_as_valid_primary_link(self):
-        self.assert_linkability('Q1887879') # not an event (via "education")
+        self.assert_linkability('Q1887879')
 
     def test_train_line_as_valid_primary_link(self):
         self.assert_linkability('Q3720557') # train service is not a service (Q15141321) defined as "transcation..."
@@ -246,10 +246,10 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q2453469')
 
     def test_specific_tree_as_valid_primary_link_testcase_a(self):
-        self.assert_linkability('Q6703503') # not an event
+        self.assert_linkability('Q6703503')
 
     def test_specific_tree_as_valid_primary_link_testcase_b(self):
-        self.assert_linkability('Q33040885') # not a taxon
+        self.assert_linkability('Q33040885')
 
     def test_specific_tree_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q15133783')
@@ -258,10 +258,10 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q995630')
 
     def test_sheltered_information_board_as_valid_primary_link(self):
-        self.assert_linkability('Q7075518') # not an event
+        self.assert_linkability('Q7075518')
 
     def test_wind_farm_as_valid_primary_link(self):
-        self.assert_linkability('Q4102067') # not an event
+        self.assert_linkability('Q4102067')
 
     def test_farm_as_valid_primary_link(self):
         self.assert_linkability('Q99902190')
@@ -270,10 +270,10 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q180376') # not an event (hollywood sign is not an instance of signage)
 
     def test_railway_segment_as_valid_primary_link(self):
-        self.assert_linkability('Q2581240') # not a physical process
+        self.assert_linkability('Q2581240')
 
     def test_another_railway_segment_as_valid_primary_link(self):
-        self.assert_linkability('Q1126676') # not a physical process
+        self.assert_linkability('Q1126676')
 
     def test_railway_miniature_as_valid_primary_link(self):
         self.assert_linkability('Q685524')
@@ -285,23 +285,23 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q706198')
 
     def test_country_as_valid_primary_link(self):
-        self.assert_linkability('Q30') # not an event
+        self.assert_linkability('Q30')
 
     def test_aqueduct_as_valid_primary_link(self):
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=prev&oldid=1674919371
-        self.assert_linkability('Q2859225') # not an event
+        self.assert_linkability('Q2859225')
 
     def test_public_housing_as_valid_primary_link(self):
         self.assert_linkability('Q22329573') # not an event - aeolian landform (Q4687862) is not sublass of aeolian process
 
     def test_dry_lake_as_valid_primary_link(self):
-        self.assert_linkability('Q1780699') # not an event
+        self.assert_linkability('Q1780699')
 
     def test_industrial_property_as_valid_primary_link(self):
-        self.assert_linkability('Q5001422') # not an event
+        self.assert_linkability('Q5001422')
 
     def test_cemetery_as_valid_primary_link(self):
-        self.assert_linkability('Q30593659') # not an event
+        self.assert_linkability('Q30593659')
 
     def test_cholera_cemetery_as_valid_primary_link(self):
         self.assert_linkability('Q18147583')
@@ -548,15 +548,15 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q6800883')
 
     def test_chubby_male_child_sculpture_as_valid_primary_link(self):
-        self.assert_linkability('Q5475472') # not an event
+        self.assert_linkability('Q5475472')
 
     def test_geyser_as_valid_primary_link(self):
-        self.assert_linkability('Q1129264') # not an event
+        self.assert_linkability('Q1129264')
 
     def test_specific_ship_as_valid_primary_link(self):
         # https://www.wikidata.org/wiki/Wikidata:Project_chat#USS_Niagara_museum_ship_is_classified_as_%22group_of_humans%22
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=1674915580&oldid=1674914531
-        self.assert_linkability('Q7872265') # not an event
+        self.assert_linkability('Q7872265')
 
     def test_tomb_as_valid_primary_link(self):
         self.assert_linkability('Q3531157')
