@@ -1015,7 +1015,7 @@ class WikidataTests(unittest.TestCase):
     def test_that_mural_is_not_a_academic_discipline(self):
         self.is_not_a_specific_error_class('Q219423', 'an academic discipline')
 
-    def test_that_cofee_variety_is_not_a_academic_discipline_but_isinvalid_to_link_anyway(self):
+    def test_that_cofee_variety_is_not_a_academic_discipline_but_is_invalid_to_link_anyway(self):
         self.assert_unlinkability('Q97160325')
         self.is_not_a_specific_error_class('Q97160325', 'an academic discipline')
 
