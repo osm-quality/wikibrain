@@ -1143,6 +1143,8 @@ class WikimediaLinkIssueDetector:
             "Q7860962": {'what': 'a road type', 'replacement': None},
             "Q2135540": {'what': 'a legal action', 'replacement': None},
             "Q781413": {'what': 'a mental process', 'replacement': None},
+            "Q131569": {'what': 'a treaty', 'replacement': None},
+            "Q756944": {'what': 'a surface mining', 'replacement': None}, # often mistakenly applied to open pit mines on Wikidata
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
@@ -1482,6 +1484,12 @@ class WikimediaLinkIssueDetector:
         # cases with both "sculpture garden" (physical) and "sculpture gathering" (event)
         skipped.append("Q860879")
 
+        # messy, not worth dealing with, may be correct
+        # https://www.openstreetmap.org/node/9724249774
+        # https://www.openstreetmap.org/way/584197021
+        skipped.append("Q175047")
+        skipped.append("Q1415790")
+
         return skipped
 
 
@@ -1530,8 +1538,40 @@ class WikimediaLinkIssueDetector:
 
         # Andorra is not for a sale
         wikidata_bugs.append('Q208500')
-        return wikidata_bugs # count six extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+
+        # https://www.wikidata.org/wiki/Q15104297 - often applies to "open pit mine"
+        # created https://www.wikidata.org/wiki/Q1323960
+        wikidata_bugs.append('Q208500')
+
+        # theatre as art form vs theatre as a building
+        # that would be basically detecting only wikidata issues
+        # not worth it
+        # https://www.wikidata.org/wiki/Q11635
+        # https://www.wikidata.org/wiki/Q24354
+        wikidata_bugs.append("Q11635")
+
+        #return wikidata_bugs # count seven extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         
+        wikidata_bugs.append('Q786803')
+        wikidata_bugs.append('Q214334')
+        wikidata_bugs.append('Q5207064')
+        wikidata_bugs.append('Q464980')
+        wikidata_bugs.append('Q1153767')
+        wikidata_bugs.append('Q1109432')
+        wikidata_bugs.append('Q63100')
+        wikidata_bugs.append('Q876852')
+        wikidata_bugs.append('Q316870')
+        wikidata_bugs.append('Q1656724')
+        wikidata_bugs.append('Q82604')
+        wikidata_bugs.append('Q31728')
+        wikidata_bugs.append('Q159595')
+        wikidata_bugs.append('Q112074700')
+        wikidata_bugs.append('Q137773')
+        wikidata_bugs.append('Q99945381')
+        wikidata_bugs.append('Q57285129')
+        wikidata_bugs.append('Q10929914')
+        wikidata_bugs.append('Q1455871')
+        wikidata_bugs.append('Q12377751')        
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
