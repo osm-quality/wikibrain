@@ -1411,11 +1411,11 @@ class WikidataTests(unittest.TestCase):
     def test_andorra_country_as_valid_primary_link(self):
         self.assert_linkability('Q228')
 
-    def test_school_as_valid_primary_link_testcase_a(self):
+    def test_school_as_valid_primary_link(self):
+        # if something affects all schools, single report is preferable
         self.assert_linkability('Q4059246')
-
-    def test_school_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q5038462')
+        self.assert_linkability('Q7743365')
 
     def test_temple_as_valid_primary_link(self):
         self.assert_linkability('Q28058072')
