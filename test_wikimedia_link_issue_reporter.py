@@ -500,6 +500,19 @@ class Tests(unittest.TestCase):
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
         self.assertEqual (None, problem)
 
+    def test_that_mecca_cases_not_raising_annoying_warnings(self):
+        tags = {"wikidata": "Q175047"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertEqual (None, problem)
+
+        tags = {"wikidata": "Q1415790"}
+        location = None
+        object_description = "fake test object"
+        problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        self.assertEqual (None, problem)
+
     def test_that_taxon_linking_species_is_fine(self):
         # https://www.wikidata.org/wiki/Q42292
         tags = {"taxon:wikidata": "Q156895"}
@@ -519,6 +532,26 @@ class Tests(unittest.TestCase):
 
     def test_that_false_positive_bit_is_gone(self):
         tags = {"wikidata": "Q4462601", "wikipedia": "ru:3-я Новоостанкинская улица"}
+        location = None
+        object_description = "fake test object"
+        object_type = 'way'
+        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        if problem != None:
+            print(problem.data()['error_id'])
+        self.assertEqual (None, problem)
+
+    def test_that_metawikidatatags_are_not_reported(self):
+        tags = {"note:wikidata": "gibberish"}
+        location = None
+        object_description = "fake test object"
+        object_type = 'way'
+        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        if problem != None:
+            print(problem.data()['error_id'])
+        self.assertEqual (None, problem)
+
+    def test_that_metawikidatatags_are_not_reported(self):
+        tags = {"source:wikidata": "gibberish"}
         location = None
         object_description = "fake test object"
         object_type = 'way'
