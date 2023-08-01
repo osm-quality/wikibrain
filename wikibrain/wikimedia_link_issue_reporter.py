@@ -336,7 +336,7 @@ class WikimediaLinkIssueDetector:
                         )
 
     def check_is_wikidata_page_existing(self, key, present_wikidata_id):
-        if key == "note:wikidata":
+        if key in self.not_an_actual_wikidata_keys():
             # not an actual wikidata link, see https://www.openstreetmap.org/way/139505589
             return None
         if present_wikidata_id == None:
@@ -399,7 +399,7 @@ class WikimediaLinkIssueDetector:
                                 error_message = "malformed value in " + key + " tag (" + link + ")",
                                 prerequisite = {key: link},
                                 )
-            elif key != "note:wikidata": # note:wikidata can have freeform format
+            elif key not in self.not_an_actual_wikidata_keys():
                 if key.endswith(":wikidata"):
                     prefix = key[:-len(":wikidata")]
                     return ErrorReport(
@@ -415,6 +415,9 @@ class WikimediaLinkIssueDetector:
                                     )
         else:
             return None
+
+    def not_an_actual_wikidata_keys(self):
+        return ["note:wikidata", "source:wikidata"] # have freeform format
 
     def check_is_wikidata_tag_is_misssing(self, wikipedia, present_wikidata_id, wikidata_id):
         if present_wikidata_id == None and wikidata_id != None:
