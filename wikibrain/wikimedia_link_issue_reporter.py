@@ -885,6 +885,8 @@ class WikimediaLinkIssueDetector:
         if language_code != None:
             if language_code in wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance():
                 return True
+        if "?" in link:
+            return True
         return False
 
 
