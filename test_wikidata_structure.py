@@ -105,6 +105,17 @@ class WikidataTests(unittest.TestCase):
             self.dump_debug_into_stdout(type_id, "assert_unlinkability failed")
         self.assertNotEqual(None, is_unlinkable)
 
+    def brand_still_exists(self, wikidata_id, name, reference):
+        status = self.detector().check_is_object_brand_is_existing(wikidata_id)
+        if status != None:
+            print()
+            print()
+            print("== Still existing brand: " + name +" ==")
+            print("https://www.wikidata.org/wiki/" + wikidata_id + " has a blanket nonexistence claim, while it could be more specific (not applying to the brand part)")
+            print()
+            print(reference)
+        self.assertEqual(None, status)
+
     def test_rejects_links_to_events(self):
         self.assert_unlinkability('Q134301')
 
@@ -283,6 +294,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q706198')
+        self.assert_linkability('Q877800')
 
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30')
@@ -373,14 +385,11 @@ class WikidataTests(unittest.TestCase):
     def test_headquarters_landscape_area_as_valid_primary_link(self):
         self.assert_linkability('Q5578587')
 
-    def test_museum_as_valid_primary_link_testcase_a(self):
+    def test_museum_as_valid_primary_link_testcase(self):
         self.assert_linkability('Q731126')
-
-    def test_museum_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q27490233')
-
-    def test_museum_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q9337658')
+        self.assert_linkability('Q157003')
 
     def test_museum_as_valid_primary_link_testcase_with_mission_site(self):
         self.assert_linkability('Q3316762')
@@ -518,6 +527,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_subway_station_as_valid_primary_link(self):
         self.assert_linkability('Q89406786')
+        self.assert_linkability('Q65169408')
 
     def test_administrative_boundary_as_valid_primary_link(self):
         self.assert_linkability('Q912777')
@@ -604,6 +614,9 @@ class WikidataTests(unittest.TestCase):
         # https://en.wikipedia.org/wiki/Edith_Macefield
         # this pretends to be about human while it is about building
         self.assert_linkability('Q5338613')
+
+    def test_location_is_valid_primary_link(self):
+        self.assert_linkability('Q104214134')
 
     def test_event_entry_that_is_actually_strongly_about_location(self):
         self.assert_linkability('Q5371519')
@@ -841,6 +854,10 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q11939856')
         self.assert_linkability('Q170495')
 
+    def test_building_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q4583211')
+        self.assert_linkability('Q22675345')
+
     def test_church_building_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q9333671')
 
@@ -1007,6 +1024,48 @@ class WikidataTests(unittest.TestCase):
     def test_that_company_is_not_an_economic_sector_but_is_unlinkable_anyway_testcase_c(self):
         #self.assert_unlinkability('Q173941') TODO
         self.is_not_a_specific_error_class('Q173941', 'an economic sector')
+
+    def test_that_brand_is_not_a_food_but_is_unlinkable_anyway_testcase_b(self):
+        self.assert_unlinkability('Q5129551')
+        self.is_not_a_specific_error_class('Q5129551', 'a food')
+
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_b(self):
+        #self.assert_unlinkability('Q3027764') TODO
+        self.is_not_a_specific_error_class('Q3027764', 'a general industry')
+
+        #self.assert_unlinkability('Q166561') TODO
+        self.is_not_a_specific_error_class('Q166561', 'a general industry')
+        
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_c(self):
+        #self.assert_unlinkability('Q96018061') TODO
+        self.is_not_a_specific_error_class('Q96018061', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_d(self):
+        #self.assert_unlinkability('Q63327') TODO
+        self.is_not_a_specific_error_class('Q63327', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_e(self):
+        #self.assert_unlinkability('Q495943') TODO
+        self.is_not_a_specific_error_class('Q495943', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_f(self):
+        #self.assert_unlinkability('Q85866624') TODO
+        self.is_not_a_specific_error_class('Q85866624', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_g(self):
+        #self.assert_unlinkability('Q22868') TODO
+        self.is_not_a_specific_error_class('Q22868', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_h(self):
+        #self.assert_unlinkability('Q1703172') TODO
+        self.is_not_a_specific_error_class('Q1703172', 'a general industry')
+
+    def test_that_online_shop_company_is_not_a_general_industry_but_is_unlinkable_anyway(self):
+        self.assert_unlinkability('Q23827008')
+        #self.is_not_a_specific_error_class('Q23827008', 'a general industry') TODO - enable after all wikidata issues are cleaned
+
+        self.assert_unlinkability('Q95578521')
+        #self.is_not_a_specific_error_class('Q95578521', 'a general industry') TODO - enable after all wikidata issues are cleaned
 
     def test_that_mountain_rescue_organization_is_not_an_economic_sector_but_is_unlinkable_anyway(self):
         self.assert_unlinkability('Q306066')
@@ -1218,6 +1277,9 @@ class WikidataTests(unittest.TestCase):
     def test_grafitti_wall_as_valid_primary_link(self):
         self.assert_linkability('Q69689708')
 
+    def test_grafitti_as_valid_primary_link(self):
+        self.assert_linkability('Q23097882')
+
     def test_prehistoric_settlement_as_valid_primary_link(self):
         self.assert_linkability('Q1015819')
 
@@ -1261,6 +1323,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q160642')
         self.assert_linkability('Q204720')
         self.assert_linkability('Q207736')
+        self.assert_linkability('Q160642')
 
     def test_drinking_water_fountain_style_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q1062192', 'an intentional human activity')
@@ -1268,6 +1331,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_company_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q215392', 'an intentional human activity')
+        # TODO - it is not a valid link either
 
     def test_another_company_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q1814208', 'an intentional human activity')
@@ -1275,6 +1339,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_municipal_company_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q1285495', 'an intentional human activity')
+        # TODO - it is not a valid link either
+
+    def test_fair_trade_company_is_not_an_intentional_human_activity(self):
+        self.is_not_a_specific_error_class('Q896100', 'an intentional human activity')
         # TODO - it is not a valid link either
 
     def test_ridesharing_company_is_not_a_legal_action(self):
@@ -1399,6 +1467,10 @@ class WikidataTests(unittest.TestCase):
         self.is_not_an_event('Q661869')
         # TODO - it is not a valid link either
 
+    def test_ore_is_not_event_and_is_not_linkable(self):
+        self.is_not_an_event('Q102798')
+        self.assert_unlinkability('Q102798')
+
     def test_government_institution_is_not_event(self):
         self.is_not_an_event('Q8349981')
 
@@ -1469,6 +1541,9 @@ class WikidataTests(unittest.TestCase):
     def test_scammy_pseudomuseum_as_valid_primary_link(self):
         self.assert_linkability('Q19865287')
 
+    def test_amusement_monorail_as_valid_primary_link(self):
+        self.assert_linkability('Q2126693')
+
     def test_university_campus_as_valid_primary_link(self):
         self.assert_linkability('Q4066906')
 
@@ -1480,6 +1555,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_studies_center_is_not_an_event(self):
         self.is_not_an_event('Q106592334')
+
+    def test_that_motif_is_not_an_event(self):
+        self.is_not_an_event('Q447201')
 
     def test_that_association_is_not_an_event(self):
         self.is_not_an_event('Q157033')
@@ -1504,6 +1582,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_gorge_as_valid_primary_link(self):
         self.assert_linkability('Q1647633')
+
+    def test_former_city_as_valid_primary_link(self):
+        self.assert_linkability('Q608095')
 
     def test_landform_as_valid_primary_link(self):
         self.assert_linkability('Q312118')
@@ -1596,11 +1677,27 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q26771')
         self.assert_unlinkability('Q158746')
 
+    def test_nonexistence_of_defunct_brand(self):
+        # https://www.openstreetmap.org/note/3820933 see for potential valid test case
+        self.assertNotEqual(None, self.detector().check_is_object_brand_is_existing("Q7501155"))
+
     def test_existence_of_resurrected_brand(self):
-        self.assertEqual(None, self.detector().check_is_object_brand_is_existing("Q1891407"))
+        self.brand_still_exists("Q1891407", "??", "TODO: missing reference")
 
-    def test_texaco_exists_as_a_brand(self):
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Texaco_exists
-        pass # TODO - reenable if fixed on Wikidata
-        #self.assertEqual(None, self.detector().check_is_object_brand_is_existing("Q775060"))
+    def test_former_company_exists_as_a_brand_texaco(self):
+        # Texaco
+        self.brand_still_exists("Q1891407", "Texaco", "TODO: missing reference for Texaco")
 
+    def test_former_company_exists_as_a_brand_radioshack(self):
+        self.brand_still_exists("Q1195490", "RadioShack", 'https://en.wikipedia.org/w/index.php?title=RadioShack&oldid=1169051112 mentions "network of independently owned and franchised RadioShack stores"')
+        
+    def test_former_company_exists_as_a_brand_amoco(self):
+        self.brand_still_exists("Q465952", "Amoco", 'https://en.wikipedia.org/w/index.php?title=Amoco&oldid=1169009405 : Merged with BP, becoming a brand')
+        
+    def test_former_company_exists_as_a_brand_lotos(self):
+        self.brand_still_exists("Q1256909", "Lotos", 'company sold, Orlen bought fuel stations rebranded, brand active at at least some MOL-owned ones (as of 2023-08)')
+        
+    def test_former_company_exists_as_a_brand_conoco(self):
+        brand_still_exists("Q1126518", "Conoco", 'https://en.wikipedia.org/w/index.php?title=Conoco&oldid=1156282755 "Currently the name Conoco is a brand of gasoline and service station in the United States"')
+        
+        
