@@ -6,9 +6,10 @@ wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connec
 
 forced_refresh = True
 forced_refresh = False
-wikimedia_connection.get_data_from_wikidata("en", "Santa Fe 769", forced_refresh)
+article = "he:גשר יהודית".split(":")
+wikimedia_connection.get_data_from_wikidata(article[0], article[1], forced_refresh)
 
-kill = "Q6800883".split() #NOT FLUSHED YET!
+kill = "Q37754875 Q117747915 Q1787920 Q4583211 Q1714118 Q3972943 Q166561".split() #NOT FLUSHED YET!
 """
 # use like this:
 kill = ["Q45621"]
