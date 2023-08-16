@@ -1213,6 +1213,12 @@ class WikimediaLinkIssueDetector:
             'Q16335899': vehicle,
             'Q1875621': vehicle,
             'Q37761255': vehicle,
+            'Q2095': {'what': 'a food', 'replacement':  None},
+            'Q43183': {'what': 'an insurance', 'replacement':  None}, # vs insurance company - to catch and ignore wikidata issues
+            'Q1778821': {'what': 'a cuisine', 'replacement':  None},
+            'Q13414953': {'what': 'a religious denomination', 'replacement':  None},
+            # for example religious denominations
+            'Q82821': {'what': 'a tradition', 'replacement':  None, 'extremely_broad_and_unspecific': True}, 
             'Q474191': {'what': 'a diet', 'replacement':  None},
             'Q22222786': {'what': 'a government program', 'replacement': None},
             'Q24634210': {'what': 'a podcast', 'replacement': None},
