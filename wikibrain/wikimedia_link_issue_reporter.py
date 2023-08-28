@@ -288,7 +288,7 @@ class WikimediaLinkIssueDetector:
             return something_reportable
 
         if "brand:wikidata" in tags:
-            something_reportable = self.check_is_object_brand_is_existing(tags.get("brand:wikidata"))
+            something_reportable = self.check_is_object_brand_is_existing(tags)
             if something_reportable != None:
                 return something_reportable
 
@@ -482,15 +482,41 @@ class WikimediaLinkIssueDetector:
                             prerequisite = {'wikidata': present_wikidata_id}
                             )
 
-    def check_is_object_brand_is_existing(self, present_wikidata_id):
+    def check_is_object_brand_is_existing(self, tags):
+        marked_as_defunct = False
+        marked_as_active = False
+        for main_tag in ["office", "shop", "leisure"]:
+            for disused_prefix in ["disused:", "abandoned:"]:
+                if tags.get(disused_prefix + main_tag) != None:
+                    marked_as_defunct = True
+                if tags.get(main_tag) not in [None, "no", "vacant"]:
+                    marked_as_active = True
+        present_wikidata_id = tags.get("brand:wikidata")
         if present_wikidata_id == None:
             return None
         no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
         if no_longer_existing != None:
             error_general_intructions = "Wikidata claims that assigned brand object no longer exists. That means that either this shop is gone or it is rebranded. Or brand:wikidata tag is wrong. Historical, no longer existing object should not be mapped in OSM." + " " + self.wikidata_data_quality_warning()
             message = ""
+            state = "no longer existing brand (according to Wikidata)"
+            if marked_as_defunct and not marked_as_active:
+                # see say https://www.openstreetmap.org/way/80889053
+                #
+                # disused:shop = department_store
+                # brand:wikidata = <pointing at defunct brand>
+                #
+                # should not raise alarms
+                return None
+            if marked_as_defunct == False and marked_as_active == True:
+                state += " - and marked as active shop in OSM"
+            elif marked_as_defunct == True and marked_as_active == True:
+                state += " - and marked as active shop in OSM, with tagging referring to defunct one"
+            elif marked_as_defunct == False and marked_as_active == False:
+                state += " - and tag processing has not worked well"
+            else:
+                raise "supposed to be impossible"
             return ErrorReport(
-                            error_id = "no longer existing brand (according to Wikidata)",
+                            error_id = state,
                             error_general_intructions = error_general_intructions,
                             error_message = message,
                             prerequisite = {'wikidata': present_wikidata_id}
@@ -1431,10 +1457,10 @@ class WikimediaLinkIssueDetector:
             print("(((((((((((((()))))))))))))) dump_base_types_of_object_in_stdout")
             print("https://www.wikidata.org/wiki/" + wikidata_id)
             print("{{Q|" + wikidata_id + "}}")
-        types = wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id)
-        if types == None:
-            print(wikidata_id, "entry has no types (may still have subclasses)")
-            return
+        types = wikidata_processing.get_wikidata_type_ids_of_entry_via_both_instance_of_and_subclasses(wikidata_id)
+        #if types == None:
+        #    print(wikidata_id, "entry has no types (may still have subclasses)")
+        #    return
 
         any_banned = False
         # if any values is banned and we need debug info, then

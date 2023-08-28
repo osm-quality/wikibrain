@@ -97,7 +97,7 @@ class WikidataTests(unittest.TestCase):
         self.assertNotEqual(None, is_unlinkable)
 
     def brand_still_exists(self, wikidata_id, name, reference):
-        status = self.detector().check_is_object_brand_is_existing(wikidata_id)
+        status = self.detector().check_is_object_brand_is_existing({"brand:wikidata": wikidata_id})
         if status != None:
             print()
             print()
