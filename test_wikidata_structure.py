@@ -24,8 +24,6 @@ class WikidataTests(unittest.TestCase):
         object_type = "node"
         object_description = "test"
         report = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
-        if report != None:
-            print(report.data())
         self.assertNotEqual(None, report)
 
     def is_unlinkable_check(self, type_id):
