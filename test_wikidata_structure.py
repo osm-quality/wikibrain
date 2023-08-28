@@ -55,15 +55,6 @@ class WikidataTests(unittest.TestCase):
         print()
         print("dump_debug_into_stdout", why)
         self.dump_debug_about_specific_type_id_into_stdout(type_id)
-        parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.detector().ignored_entries_in_wikidata_ontology(), False, callback=None)
-        for subclass in parent_categories:
-            if type_id == subclass:
-                continue
-            print(type_id, "is also subclassed with", subclass)
-            if subclass in wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology():
-                print("but it is in wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()")
-            else:
-                self.dump_debug_about_specific_type_id_into_stdout(subclass)
 
     def dump_debug_about_specific_type_id_into_stdout(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
