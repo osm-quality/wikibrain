@@ -1007,6 +1007,9 @@ class WikidataTests(unittest.TestCase):
     def test_that_defunct_monastery_is_not_an_event(self):
         self.is_not_an_event('Q28976876')
 
+    def test_that_organization_is_not_an_event(self):
+        self.is_not_an_event('Q2457448')
+
     def test_that_bmw_ad_buildings_is_valid_primary_link(self):
         self.assert_linkability('Q699614')
 
