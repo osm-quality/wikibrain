@@ -416,6 +416,9 @@ class WikidataTests(unittest.TestCase):
     def test_community_garden_as_valid_primary_link(self):
         self.assert_linkability('Q49493599')
 
+    def test_community_garden_as_valid_primary_link_tescase_b(self):
+        self.assert_linkability('Q110407892')
+
     def test_people_mover_as_valid_primary_link(self):
         self.assert_linkability('Q2908764')
 
@@ -625,6 +628,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q4508631')
         self.assert_passing_all_tests('Q4508631', 'pl:Cziłter-Koba') # https://pl.wikipedia.org/wiki/Czi%C5%82ter-Koba
 
+    def test_bridge_with_phantom_disambig_as_valid_primary_link(self):
+        self.assert_passing_all_tests('Q55648855', 'he:גשר יהודית')
+
     def test_detecting_weapon_model_as_invalid_primary_link(self):
         # https://www.openstreetmap.org/node/3014280721
         self.assert_unlinkability('Q266837')
@@ -649,6 +655,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_house_used_as_movie_filming_location_as_valid_primary_link(self):
         self.assert_linkability('Q60059405')
+
+    def test_stairs_used_as_movie_filming_location_as_valid_primary_link(self):
+        self.assert_linkability('Q74077989')
 
     def test_detecting_bombing_as_invalid_primary_link(self):
         self.assert_unlinkability('Q885225')
@@ -719,6 +728,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_district_with_specific_history_as_valid_primary_link(self):
         self.assert_linkability('Q64124')
+
+    def test_unfinished_skyscraper_as_valid_primary_link(self):
+        self.assert_linkability('Q25379780')
 
     def test_skyspace_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q63066124')
@@ -847,6 +859,12 @@ class WikidataTests(unittest.TestCase):
     def test_exhibition_as_valid_primary_link(self):
         self.assert_linkability('Q63208613')
 
+    def test_exhibition_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q2397171')
+
+    def test_exhibition_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q105817457')
+
     def test_building_complex_as_valid_primary_link(self):
         self.assert_linkability('Q2319878')
 
@@ -922,6 +940,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_coastal_defense_fort_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q22084285')
+
+    def test_coastal_defense_fort_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q5472172')
+        # maybe "instance of coastal defence and fortification (Q5138347)" should just be silenced?
 
     def test_railing_as_valid_primary_link(self):
         self.assert_linkability('Q37818361')
@@ -1003,6 +1025,10 @@ class WikidataTests(unittest.TestCase):
     def test_that_business_is_not_a_social_issue(self):
         self.is_not_a_specific_error_class('Q110699468', 'a social issue')
 
+    def test_that_business_involved_in_software_is_not_a_software_but_is_unlinkable_anyway(self):
+        self.is_not_a_specific_error_class('Q18349346', 'a software')
+        #self.assert_unlinkability('Q18349346') TODO
+
     def test_that_data_protection_institution_is_not_a_profession(self):
         self.is_not_a_specific_error_class('Q55499784', 'a profession')
 
@@ -1012,6 +1038,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_flight_school_is_not_a_human_activity(self):
         self.is_not_a_specific_error_class('Q4654871', 'a human activity')
+
+    def test_that_flight_rescue_is_not_a_human_activity(self):
+        self.is_not_a_specific_error_class('Q4043199', 'a human activity')
 
     def test_that_company_is_not_an_economic_sector_but_is_unlinkable_anyway(self):
         #self.assert_unlinkability('Q1655072') TODO
@@ -1283,6 +1312,9 @@ class WikidataTests(unittest.TestCase):
     def test_prehistoric_settlement_as_valid_primary_link(self):
         self.assert_linkability('Q1015819')
 
+    def test_historic_site_as_valid_primary_link(self):
+        self.assert_linkability('Q104868895')
+
     def test_generic_bench_entry_as_invalid_primary_link_p279_should_be_used_as_indicator(self):
         # https://www.wikidata.org/wiki/Q204776
         # has P279
@@ -1316,6 +1348,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_children_center_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q706474', 'an intentional human activity')
+
+    def test_shop_is_not_an_intentional_human_activity(self):
+        self.is_not_a_specific_error_class('Q24693696', 'an intentional human activity')
 
     def test_settlement_is_linkable(self):
         self.is_not_a_specific_error_class('Q1012502', 'an award')
@@ -1436,6 +1471,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q445256')
         self.assert_linkability('Q108343850')
 
+    def test_destroyed_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q1109523')        
+
     def test_telescope_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q1632481')
 
@@ -1469,7 +1507,11 @@ class WikidataTests(unittest.TestCase):
 
     def test_ore_is_not_event_and_is_not_linkable(self):
         self.is_not_an_event('Q102798')
-        self.assert_unlinkability('Q102798')
+        self.assert_failing_full_tests('Q102798', 'en:Ore')
+
+    def test_mineral_is_not_event_and_is_not_linkable(self):
+        self.is_not_an_event('Q7946')
+        self.assert_failing_full_tests('Q7946', 'en:Mineral')
 
     def test_government_institution_is_not_event(self):
         self.is_not_an_event('Q8349981')
@@ -1601,6 +1643,9 @@ class WikidataTests(unittest.TestCase):
     def test_heretical_sect_is_not_a_conflict(self):
         self.is_not_a_specific_error_class('Q958306', 'a conflict')
 
+    def test_holocaust_is_not_a_physical_process(self):
+        self.is_not_a_specific_error_class('Q2763', 'a physical process')
+
     def test_refinery_as_valid_primary_link(self):
         self.assert_linkability('Q3417387')
 
@@ -1677,9 +1722,12 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q26771')
         self.assert_unlinkability('Q158746')
 
+    def test_artist_colony_as_valid_primary_link(self):
+        self.assert_linkability('Q2598870')
+
     def test_nonexistence_of_defunct_brand(self):
         # https://www.openstreetmap.org/note/3820933 see for potential valid test case
-        self.assertNotEqual(None, self.detector().check_is_object_brand_is_existing("Q7501155"))
+        self.assertNotEqual(None, self.detector().check_is_object_brand_is_existing({"brand:wikidata": "Q7501155"}))
 
     def test_existence_of_resurrected_brand(self):
         self.brand_still_exists("Q1891407", "??", "TODO: missing reference")
@@ -1698,6 +1746,7 @@ class WikidataTests(unittest.TestCase):
         self.brand_still_exists("Q1256909", "Lotos", 'company sold, Orlen bought fuel stations rebranded, brand active at at least some MOL-owned ones (as of 2023-08)')
         
     def test_former_company_exists_as_a_brand_conoco(self):
-        brand_still_exists("Q1126518", "Conoco", 'https://en.wikipedia.org/w/index.php?title=Conoco&oldid=1156282755 "Currently the name Conoco is a brand of gasoline and service station in the United States"')
+        self.brand_still_exists("Q1126518", "Conoco", 'https://en.wikipedia.org/w/index.php?title=Conoco&oldid=1156282755 "Currently the name Conoco is a brand of gasoline and service station in the United States"')
         
-        
+    def test_unexplained_closure_claim(self):
+        self.brand_still_exists("Q3888718", "Paddy Power", 'https://en.wikipedia.org/wiki/en:Paddy_Power seems to describe it as existing and operational')

@@ -1126,6 +1126,11 @@ class WikimediaLinkIssueDetector:
         vehicle = {'what': 'a vehicle model or class', 'replacement': 'model:'}
         generic_event = {'what': 'an event', 'replacement': None, 'extremely_broad_and_unspecific': True}
         return {
+            # may be silenced to stop reports that are almost entirely about fixing Wikidata
+            "Q756944": {'what': 'a surface mining', 'replacement': None}, # often mistakenly applied to open pit mines on Wikidata
+            "Q5472172": {'what': 'a coastal defence and fortification', 'replacement': None}, # often mistakenly added to forts, see https://www.wikidata.org/w/index.php?title=Q5472172&action=history
+            'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313 (a physical sign)
+
             'Q11483816':  {'what': 'an annual event', 'replacement': None}, # maybe not an actual problem?
 
             'Q3958441': {'what': 'an economic sector', 'replacement': None},
@@ -1147,7 +1152,6 @@ class WikimediaLinkIssueDetector:
             "Q2135540": {'what': 'a legal action', 'replacement': None},
             "Q781413": {'what': 'a mental process', 'replacement': None},
             "Q131569": {'what': 'a treaty', 'replacement': None},
-            "Q756944": {'what': 'a surface mining', 'replacement': None}, # often mistakenly applied to open pit mines on Wikidata
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
@@ -1157,6 +1161,9 @@ class WikimediaLinkIssueDetector:
             'Q55983715': taxon,
             'Q34740': taxon,
             'Q7432': taxon,
+            'Q26883973': {'what': 'a lost sculpture', 'replacement': 'subject:'},
+            'Q4140840': {'what': 'a lost artwork', 'replacement': 'subject:'},
+            'Q21752591': {'what': 'a lost work', 'replacement': 'subject:'},
             'Q7625093': {'what': 'a structure fire', 'replacement': 'subject:'},
             'Q61509': {'what': 'a travel', 'replacement': 'subject:'},
             'Q133182': {'what': 'a superstitution', 'replacement': 'subject:'},
@@ -1165,7 +1172,6 @@ class WikimediaLinkIssueDetector:
             'Q1344': {'what': 'an opera', 'replacement': None},
             'Q618779': {'what': 'an award', 'replacement': None},
             'Q35127': {'what': 'a website', 'replacement': None},
-            'Q17320256': {'what': 'a physical process', 'replacement': None},
             'Q5398426': {'what': 'a television series', 'replacement': None},
             'Q3026787': {'what': 'a saying', 'replacement': None},
             'Q18534542': {'what': 'a restaurant chain', 'replacement': 'brand:'},
@@ -1194,14 +1200,15 @@ class WikimediaLinkIssueDetector:
             'Q13406554': {'what': 'a sports competition', 'replacement': None},
             'Q18608583': {'what': 'a recurring sports event', 'replacement': None},
             'Q13414953': {'what': 'a religious denomination', 'replacement': None},
-            'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313
             'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
             'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
             'Q451967': {'what': 'an intentional human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q61788060': {'what': 'a human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q3769299': {'what': 'a human behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q9332': {'what': 'a behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},
-            
+            # for example Holocaust is instance of a physical process - and very, very technically it is true
+            'Q17320256': {'what': 'a physical process', 'replacement': None, 'extremely_broad_and_unspecific': True},
+
             'Q179057': {'what': 'an explosion', 'replacement':  None},
             'Q28640': {'what': 'a profession', 'replacement':  None},
             'Q1914636': {'what': 'an activity', 'replacement':  None},
@@ -1559,28 +1566,8 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/wiki/Q24354
         wikidata_bugs.append("Q11635")
 
-        #return wikidata_bugs # count seven extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        return wikidata_bugs # count seven extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         
-        wikidata_bugs.append('Q786803')
-        wikidata_bugs.append('Q214334')
-        wikidata_bugs.append('Q5207064')
-        wikidata_bugs.append('Q464980')
-        wikidata_bugs.append('Q1153767')
-        wikidata_bugs.append('Q1109432')
-        wikidata_bugs.append('Q63100')
-        wikidata_bugs.append('Q876852')
-        wikidata_bugs.append('Q316870')
-        wikidata_bugs.append('Q1656724')
-        wikidata_bugs.append('Q82604')
-        wikidata_bugs.append('Q31728')
-        wikidata_bugs.append('Q159595')
-        wikidata_bugs.append('Q112074700')
-        wikidata_bugs.append('Q137773')
-        wikidata_bugs.append('Q99945381')
-        wikidata_bugs.append('Q57285129')
-        wikidata_bugs.append('Q10929914')
-        wikidata_bugs.append('Q1455871')
-        wikidata_bugs.append('Q12377751')        
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):

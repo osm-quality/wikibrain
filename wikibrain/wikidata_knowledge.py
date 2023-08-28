@@ -1,8 +1,11 @@
 def skipped_cases():
+    # exceptions/whitelist
     return [
         # in test category, but requiring survey on the ground
-        'Q97327423', # https://www.openstreetmap.org/note/3537021
         "Q106617236", # https://www.openstreetmap.org/node/10974264904 may actually qualify as a tourism attraction
+
+        # exception to a general category
+        "Q279012", # https://www.openstreetmap.org/node/5071422202 copyright trap that got famous enough to be mappable 
     ]
 
 def blacklisted_and_unfixable_ids():
