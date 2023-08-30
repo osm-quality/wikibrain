@@ -485,7 +485,7 @@ class WikimediaLinkIssueDetector:
     def check_is_object_brand_is_existing(self, tags):
         marked_as_defunct = False
         marked_as_active = False
-        for main_tag in ["office", "shop", "leisure"]:
+        for main_tag in ["office", "shop", "leisure", "amenity"]:
             for disused_prefix in ["disused:", "abandoned:"]:
                 if tags.get(disused_prefix + main_tag) != None:
                     marked_as_defunct = True
