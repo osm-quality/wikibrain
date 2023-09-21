@@ -1154,7 +1154,7 @@ class WikimediaLinkIssueDetector:
         return {
             # may be silenced to stop reports that are almost entirely about fixing Wikidata
             "Q756944": {'what': 'a surface mining', 'replacement': None}, # often mistakenly applied to open pit mines on Wikidata
-            "Q5472172": {'what': 'a coastal defence and fortification', 'replacement': None}, # often mistakenly added to forts, see https://www.wikidata.org/w/index.php?title=Q5472172&action=history
+            "Q5138347": {'what': 'a coastal defence and fortification', 'replacement': None}, # often mistakenly added to forts, see https://www.wikidata.org/w/index.php?title=Q5472172&action=history
             'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313 (a physical sign)
 
             'Q11483816':  {'what': 'an annual event', 'replacement': None}, # maybe not an actual problem?
@@ -1592,8 +1592,18 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/wiki/Q24354
         wikidata_bugs.append("Q11635")
 
-        return wikidata_bugs # count seven extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        #return wikidata_bugs # count seven extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         
+        # reported https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        
+        wikidata_bugs.append("Q914856")
+        wikidata_bugs.append("Q15974921")
+        wikidata_bugs.append("Q5333576")
+        wikidata_bugs.append("Q378427")
+        wikidata_bugs.append("Q11862829")
+        wikidata_bugs.append("Q9174")
+        
+
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):

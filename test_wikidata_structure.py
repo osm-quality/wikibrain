@@ -196,6 +196,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_detecting_fountain_as_valid_primary_link(self):
         self.assert_linkability('Q992764')
+        self.assert_linkability('Q684661')
 
     def test_detecting_wastewater_plant_as_valid_primary_link(self):
         self.assert_linkability('Q11795812')
@@ -284,6 +285,7 @@ class WikidataTests(unittest.TestCase):
     def test_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q706198')
         self.assert_linkability('Q877800')
+        self.assert_passing_all_tests('Q877800', 'de:Bahnstrecke Hochstadt-Marktzeuln–Probstzella')
 
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30')
@@ -874,6 +876,9 @@ class WikidataTests(unittest.TestCase):
     def test_church_building_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q9167731')
 
+    def test_church_building_as_valid_primary_link_testcase_d(self):
+        self.assert_linkability('Q29890907')
+
     def test_snowpack_as_valid_primary_link(self):
         self.assert_linkability('Q11762336')
 
@@ -1024,6 +1029,11 @@ class WikidataTests(unittest.TestCase):
     def test_that_data_protection_institution_is_not_a_profession(self):
         self.is_not_a_specific_error_class('Q55499784', 'a profession')
 
+    def test_that_specific_position_is_not_a_profession(self):
+        self.is_not_a_specific_error_class('Q7583851', 'a profession')
+        self.is_not_a_specific_error_class('Q449319', 'a profession')   
+        self.is_not_a_specific_error_class('Q3368517', 'a profession')   
+
     def test_that_russian_war_company_is_not_a_profession_but_is_unlinkable_anyway(self):
         self.is_not_a_specific_error_class('Q188508', 'a profession')
         #self.assert_unlinkability('Q188508') TODO
@@ -1094,6 +1104,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_mural_is_not_a_academic_discipline(self):
         self.is_not_a_specific_error_class('Q219423', 'an academic discipline')
+
+    def test_that_organisation_is_not_a_academic_discipline(self):
+        self.is_not_a_specific_error_class('Q7817', 'an academic discipline')
+
+    def test_that_organisation_is_not_an_award(self):
+        self.is_not_a_specific_error_class('Q856355', 'an award')
 
     def test_that_cofee_variety_is_not_a_academic_discipline_but_is_invalid_to_link_anyway(self):
         self.assert_unlinkability('Q97160325')
@@ -1463,9 +1479,6 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q445256')
         self.assert_linkability('Q108343850')
 
-    def test_destroyed_sculpture_as_valid_primary_link(self):
-        self.assert_linkability('Q1109523')        
-
     def test_telescope_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q1632481')
 
@@ -1736,9 +1749,34 @@ class WikidataTests(unittest.TestCase):
         
     def test_former_company_exists_as_a_brand_lotos(self):
         self.brand_still_exists("Q1256909", "Lotos", 'company sold, Orlen bought fuel stations rebranded, brand active at at least some MOL-owned ones (as of 2023-08)')
+
+    def test_agip_apparently_exists(self):
+        pass
+        # reported at
+        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        # supressed here until Wikidata community fixes it
+        #self.brand_still_exists("Q377915", "Agip", 'branding reported to be in use - see https://www.openstreetmap.org/note/3821330')
         
     def test_former_company_exists_as_a_brand_conoco(self):
-        self.brand_still_exists("Q1126518", "Conoco", 'https://en.wikipedia.org/w/index.php?title=Conoco&oldid=1156282755 "Currently the name Conoco is a brand of gasoline and service station in the United States"')
-        
+        pass
+        # reported at
+        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        # supressed here until Wikidata community fixes it
+        #self.brand_still_exists("Q1126518", "Conoco", 'https://en.wikipedia.org/w/index.php?title=Conoco&oldid=1156282755 "Currently the name Conoco is a brand of gasoline and service station in the United States"')
+
+    def test_former_company_exists_as_a_brand_gulf(self):
+        pass
+        # reported at
+        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        # supressed here until Wikidata community fixes it
+        #self.brand_still_exists("Q1296860", "Gulf Oil", 'https://en.wikipedia.org/wiki/en:Gulf Oil "In Spain and Portugal, the Gulf brand is now owned by TotalEnergies SE.[5]"')
+
     def test_unexplained_closure_claim(self):
         self.brand_still_exists("Q3888718", "Paddy Power", 'https://en.wikipedia.org/wiki/en:Paddy_Power seems to describe it as existing and operational')
+
+    def test_such_surveillance_is_not_illegal_in_all_cases(self):
+        self.is_not_a_specific_error_class('Q387115', 'a violation of law')
+    
+    def test_decide_is_it_about_site_or_pseudarchelogy_case(self):
+        self.is_not_a_specific_error_class('Q1267546', 'a social issue')
+    
