@@ -279,7 +279,7 @@ class WikimediaLinkIssueDetector:
             else:
                 return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
-        something_reportable = self.get_wikipedia_language_issues(object_description, tags, effective_wikipedia, effective_wikidata_id)
+        something_reportable = self.get_wikipedia_language_issues(object_description, tags, tags.get("wikipedia"), effective_wikipedia, effective_wikidata_id)
         if something_reportable != None:
             return something_reportable
 
@@ -724,8 +724,8 @@ class WikimediaLinkIssueDetector:
             links.append(link)
         return list(set(links))
 
-    def get_wikidata_id_after_redirect(self, wikidata_id):
-        wikidata_data = wikimedia_connection.get_data_from_wikidata_by_id(wikidata_id)
+    def get_wikidata_id_after_redirect(self, wikidata_id, forced_refresh=False):
+        wikidata_data = wikimedia_connection.get_data_from_wikidata_by_id(wikidata_id, forced_refresh)
         try:
             return wikidata_data['entities'][wikidata_id]['id']
         except (TypeError, KeyError) as e:
@@ -935,31 +935,88 @@ class WikimediaLinkIssueDetector:
             return True
         return False
 
-    def get_wikipedia_language_issues(self, object_description, tags, wikipedia, wikidata_id):
+    def get_wikipedia_language_issues(self, object_description, tags, wikipedia, effective_wikipedia, effective_wikidata_id):
+        botpedia_message = None
+        prerequisite = {'wikipedia': wikipedia, 'wikidata': tags.get("wikidata")}
+
         # complains when Wikipedia page is not in the preferred language,
         # in cases when it is possible
-        if wikipedia == None:
+        if effective_wikipedia == None:
             return # there may be just a Wikidata entry, without a Wikipedia article
-        article_name = wikimedia_connection.get_article_name_from_link(wikipedia)
-        language_code = wikimedia_connection.get_language_code_from_link(wikipedia)
-        if self.expected_language_code is None:
+        
+        current_article_name = None
+        current_language_code = None
+        if wikipedia != None:
+            current_article_name = wikimedia_connection.get_article_name_from_link(wikipedia)
+            current_language_code = wikimedia_connection.get_language_code_from_link(wikipedia)
+            botpedia_message = "wikipedia page in unexpected language - " + current_language_code + " is a low quality, bot generated wikipedia - it should not be linked"
+
+        bot_wikipedias = ["ceb"]
+        if self.expected_language_code == None:
+            if current_language_code in bot_wikipedias:
+                return ErrorReport(
+                    error_id = "wikipedia tag links bot wikipedia",
+                    error_message = botpedia_message,
+                    prerequisite = prerequisite,
+                    )
+            # further checks are useless
+            return
+
+        recommended_article_name = wikimedia_connection.get_interwiki_article_name_by_id(effective_wikidata_id, self.expected_language_code, self.forced_refresh)
+        if recommended_article_name == None:
+            if current_language_code in bot_wikipedias:
+                return ErrorReport(
+                    error_id = "wikipedia tag links bot wikipedia",
+                    error_message = botpedia_message,
+                    prerequisite = prerequisite,
+                    )
+            return
+        recommended_language_code = self.expected_language_code
+        good_link = recommended_language_code + ":" + recommended_article_name
+        if self.expected_language_code == current_language_code:
+            # everything is fine
             return None
-        if self.expected_language_code == language_code:
-            return None
-        prerequisite = {'wikipedia': language_code+":"+article_name}
-        reason = self.why_object_is_allowed_to_have_foreign_language_label(object_description, wikidata_id)
+
+        if recommended_language_code in bot_wikipedias:
+            if recommended_language_code == self.expected_language_code:
+                pass
+            else:
+                raise Exception("why botpedia got recommended?")
+                
+        reason = self.why_object_is_allowed_to_have_foreign_language_label(object_description, effective_wikidata_id)
         if reason != None:
             if self.additional_debug:
                 print(object_description + " is allowed to have foreign wikipedia link, because " + reason)
+            if current_language_code in bot_wikipedias:
+                # not a real Wikipedia
+                if current_language_code != recommended_language_code:
+                    return ErrorReport(
+                        error_id = "wikipedia tag links bot wikipedia in border region, can be changed to alternative",
+                        error_message = botpedia_message,
+                        prerequisite = prerequisite,
+                        )
+                else:
+                    return ErrorReport(
+                        error_id = "wikipedia tag links bot wikipedia in border region",
+                        error_message = botpedia_message,
+                        prerequisite = prerequisite,
+                        )
             return None
-        correct_article = wikimedia_connection.get_interwiki_article_name(language_code, article_name, self.expected_language_code, self.forced_refresh)
-        if correct_article != None:
+
+        if recommended_article_name != None:
             error_message = "wikipedia page in unexpected language - " + self.expected_language_code + " was expected:"
-            good_link = self.expected_language_code + ":" + correct_article
+            if current_language_code in bot_wikipedias:
+                # not a real Wikipedia
+                return ErrorReport(
+                    error_id = "wikipedia tag links bot wikipedia",
+                    error_message = botpedia_message + " fortunately, in this case, a potential replacement exists",
+                    proposed_tagging_changes = [{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
+                    prerequisite = prerequisite,
+                    )
             return ErrorReport(
                 error_id = "wikipedia tag unexpected language",
                 error_message = error_message,
-                proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": good_link}}],
+                proposed_tagging_changes = [{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
                 prerequisite = prerequisite,
                 )
         else:
@@ -968,6 +1025,12 @@ class WikimediaLinkIssueDetector:
             if not self.allow_false_positives:
                 return None
             error_message = "wikipedia page in unexpected language - " + self.expected_language_code + " was expected, no page in that language was found:"
+            if language_code in bot_wikipedias:
+                return ErrorReport(
+                    error_id = "wikipedia tag links bot wikipedia",
+                    error_message = botpedia_message,
+                    prerequisite = prerequisite,
+                    )
             return ErrorReport(
                 error_id = "wikipedia tag unexpected language, article missing",
                 error_message = error_message,
