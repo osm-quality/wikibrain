@@ -179,6 +179,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_fast_tram_as_valid_primary_link(self):
         self.assert_linkability('Q1814872')
 
+    def test_detecting_school_as_valid_primary_link(self):
+        self.assert_linkability('Q5060518')
+
     def test_detecting_summer_school_as_valid_primary_link(self):
         self.assert_linkability('Q5150387')
 
@@ -1029,9 +1032,13 @@ class WikidataTests(unittest.TestCase):
     def test_that_data_protection_institution_is_not_a_profession(self):
         self.is_not_a_specific_error_class('Q55499784', 'a profession')
 
-    def test_that_specific_position_is_not_a_profession(self):
+    def test_that_specific_position_is_not_a_profession_testcase_a(self):
         self.is_not_a_specific_error_class('Q7583851', 'a profession')
+
+    def test_that_specific_position_is_not_a_profession_testcase_b(self):
         self.is_not_a_specific_error_class('Q449319', 'a profession')   
+
+    def test_that_specific_position_is_not_a_profession_testcase_c(self):
         self.is_not_a_specific_error_class('Q3368517', 'a profession')   
 
     def test_that_russian_war_company_is_not_a_profession_but_is_unlinkable_anyway(self):
@@ -1772,7 +1779,11 @@ class WikidataTests(unittest.TestCase):
         #self.brand_still_exists("Q1296860", "Gulf Oil", 'https://en.wikipedia.org/wiki/en:Gulf Oil "In Spain and Portugal, the Gulf brand is now owned by TotalEnergies SE.[5]"')
 
     def test_unexplained_closure_claim(self):
-        self.brand_still_exists("Q3888718", "Paddy Power", 'https://en.wikipedia.org/wiki/en:Paddy_Power seems to describe it as existing and operational')
+        pass
+        # was/will be reported at
+        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        # supressed here until Wikidata community fixes it
+        #self.brand_still_exists("Q3888718", "Paddy Power", 'https://en.wikipedia.org/wiki/en:Paddy_Power seems to describe it as existing and operational')
 
     def test_such_surveillance_is_not_illegal_in_all_cases(self):
         self.is_not_a_specific_error_class('Q387115', 'a violation of law')
