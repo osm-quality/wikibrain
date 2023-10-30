@@ -1658,16 +1658,10 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count seven extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         
         # reported https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        
-        wikidata_bugs.append("Q914856")
-        wikidata_bugs.append("Q15974921")
-        wikidata_bugs.append("Q5333576")
-        wikidata_bugs.append("Q378427")
-        wikidata_bugs.append("Q11862829")
-        wikidata_bugs.append("Q9174")
+        wikidata_bugs.append("Q541394")
         wikidata_bugs.append("Q169180")
+        wikidata_bugs.append("Q600751")
         wikidata_bugs.append("Q3368517")
-
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
