@@ -64,6 +64,12 @@ class Tests(unittest.TestCase):
     def test_malformed_secondary_wikidata_is_malformed(self):
         self.assertNotEqual (None, self.detector().critical_structural_issue_report('node', {'operator:wikidata': '#'}))
 
+    def test_getting_redirected_wikidata_on_one_without_redirect(self):
+        self.assertEqual("Q42", self.detector().get_wikidata_id_after_redirect("Q42"))
+
+    def test_getting_redirecting_wikidata_on_one_with_redirect(self):
+        self.assertEqual("Q30168242", self.detector().get_wikidata_id_after_redirect("Q86673356"))
+
     def test_allow_trailing_semicolon_with_multiple_elements(self):
         # https://t.me/osmhr/17923
         # https://www.openstreetmap.org/way/365519518
