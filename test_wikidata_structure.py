@@ -179,8 +179,11 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_fast_tram_as_valid_primary_link(self):
         self.assert_linkability('Q1814872')
 
-    def test_detecting_school_as_valid_primary_link(self):
+    def test_detecting_school_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q5060518')
+
+    def test_detecting_school_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q828763')
 
     def test_detecting_summer_school_as_valid_primary_link(self):
         self.assert_linkability('Q5150387')
@@ -190,6 +193,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_walk_of_fame_as_valid_primary_link(self):
         self.assert_linkability('Q2345775')
+
+    def test_hall_of_fame_as_valid_primary_link(self):
+        self.assert_linkability('Q8027203')
 
     def test_detecting_high_school_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q85652366')
@@ -201,8 +207,16 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q992764')
         self.assert_linkability('Q684661')
 
+    def test_detecting_fountain_as_valid_primary_link_testcase_b(self):
+        # seems to complain about https://www.wikidata.org/wiki/Q483453
+        self.assert_linkability('Q104836694')
+        self.assert_linkability('Q684661')
+
     def test_detecting_wastewater_plant_as_valid_primary_link(self):
         self.assert_linkability('Q11795812')
+
+    def test_detecting_waste_heap_as_valid_primary_link(self):
+        self.assert_linkability('Q1526711')
 
     def test_detecting_burough_as_valid_primary_link(self):
         self.assert_linkability('Q1630')
@@ -210,11 +224,14 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_expressway_as_valid_primary_link(self):
         self.assert_linkability('Q5055176')
 
-    def test_detecting_university_as_valid_primary_link(self):
+    def test_detecting_university_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q1887879') # not a website (as "open access publisher" is using website, but is not a website)
 
-    def test_detecting_university_as_valid_primary_link(self):
+    def test_detecting_university_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q1887879')
+
+    def test_detecting_university_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q178848')
 
     def test_train_line_as_valid_primary_link(self):
         self.assert_linkability('Q3720557') # train service is not a service (Q15141321) defined as "transcation..."
@@ -285,10 +302,22 @@ class WikidataTests(unittest.TestCase):
     def test_railway_station_as_valid_primary_link(self):
         self.assert_linkability('Q2016811')
 
+    def test_sinkhole_as_valid_primary_link(self):
+        self.assert_linkability('Q1409355')
+
+    def test_door_knob_as_valid_primary_link(self):
+        self.assert_linkability('Q618385')
+
     def test_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q706198')
         self.assert_linkability('Q877800')
         self.assert_passing_all_tests('Q877800', 'de:Bahnstrecke Hochstadt-Marktzeuln–Probstzella')
+
+    def test_privilidged_railway_line_as_valid_primary_link(self):
+        self.assert_linkability('Q259992')
+
+    def test_dinner_theater_as_valid_primary_link(self):
+        self.assert_linkability('Q16920269')
 
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30')
@@ -340,6 +369,9 @@ class WikidataTests(unittest.TestCase):
     def test_monument_as_valid_primary_link(self):
         self.assert_linkability('Q11823211')
 
+    def test_plastic_monument_as_valid_primary_link(self):
+        self.assert_linkability('Q101608972')
+
     def test_holocaust_memorial_monument_as_valid_primary_link(self):
         self.assert_linkability('Q570442')
 
@@ -363,6 +395,11 @@ class WikidataTests(unittest.TestCase):
 
     def test_hiking_trail_as_valid_primary_link(self):
         self.assert_linkability('Q783074')
+
+    def test_hiking_trail_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q3613097')
+
+
 
     def test_peak_as_valid_primary_link(self):
         self.assert_linkability('Q31792598')
@@ -560,6 +597,9 @@ class WikidataTests(unittest.TestCase):
     def test_chubby_male_child_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q5475472')
 
+    def test_saint_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q818035')
+
     def test_geyser_as_valid_primary_link(self):
         self.assert_linkability('Q1129264')
 
@@ -750,6 +790,9 @@ class WikidataTests(unittest.TestCase):
     def test_specific_shop_as_valid_primary_link(self):
         self.assert_linkability('Q104698108')
 
+    def test_specific_christmas_shop_as_valid_primary_link(self):
+        self.assert_linkability('Q1752539')
+
     def test_specific_observation_tower_as_valid_primary_link(self):
         self.assert_linkability('Q116445748')
         self.assert_linkability('Q113115337')
@@ -882,6 +925,15 @@ class WikidataTests(unittest.TestCase):
     def test_church_building_as_valid_primary_link_testcase_d(self):
         self.assert_linkability('Q29890907')
 
+    def test_aisleless_church_building_as_valid_primary_link_testcase_e(self):
+        self.assert_linkability('Q1714172')
+        self.assert_linkability('Q1742629')
+        self.assert_linkability('Q1244438')
+
+    def test_land_art_as_valid_primary_link(self):
+        self.assert_linkability('Q55723212')
+        self.assert_linkability('Q99484886')
+        
     def test_snowpack_as_valid_primary_link(self):
         self.assert_linkability('Q11762336')
 
@@ -911,6 +963,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_city_as_valid_primary_link(self):
         self.assert_linkability('Q13298')
+
+    def test_city_with_award_as_valid_primary_link(self):
+        self.assert_linkability('Q1720')
 
     def test_excavation_as_valid_primary_link(self):
         self.assert_linkability('Q398648')
@@ -948,6 +1003,9 @@ class WikidataTests(unittest.TestCase):
     def test_monastery_with_peat_bath_as_valid_primary_link(self):
         self.assert_linkability('Q27914521')
 
+    def test_monastery_town_as_valid_primary_link(self):
+        self.assert_linkability('Q1265519')
+
     def test_green_belt_as_valid_primary_link(self):
         self.assert_linkability('Q883390')
 
@@ -971,6 +1029,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_power_plant_under_construction_as_valid_primary_link(self):
         self.assert_linkability('Q1630042')
+
+    def test_railway_under_construction_as_valid_primary_link(self):
+        self.assert_linkability('Q7985674')
 
     def test_power_station_with_cogeneration_as_valid_primary_link(self):
         self.assert_linkability('Q106674849')
@@ -1117,6 +1178,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_organisation_is_not_an_award(self):
         self.is_not_a_specific_error_class('Q856355', 'an award')
+        self.is_not_a_specific_error_class('Q5324438', 'an award')
+
+    def test_that_minister_is_not_an_award(self):
+        self.is_not_a_specific_error_class('Q107919654', 'an award')
 
     def test_that_cofee_variety_is_not_a_academic_discipline_but_is_invalid_to_link_anyway(self):
         self.assert_unlinkability('Q97160325')
@@ -1133,6 +1198,11 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q37156') # IBM
         self.is_not_an_event('Q37156')
         self.is_not_a_behavior('Q37156')
+
+    def test_that_railway_operator_is_not_behavior_but_is_unlinkable_anyway(self):
+        self.assert_unlinkability('Q1814208')
+        self.is_not_an_event('Q1814208')
+        self.is_not_a_behavior('Q1814208')
 
     def test_that_postal_delivery_company_is_not_an_event_but_is_unlinkable_anyway(self):
         self.assert_unlinkability('Q1093368')
@@ -1196,6 +1266,9 @@ class WikidataTests(unittest.TestCase):
         
     def test_that_building_group_is_valid_link(self):
         self.assert_linkability('Q16886821')
+
+    def test_that_gondola_lift_is_valid_link(self):
+        self.assert_linkability('Q16589533')
 
     def test_that_specific_waterfront_development_is_valid_link(self):
         self.assert_linkability('Q5363395')
@@ -1330,6 +1403,9 @@ class WikidataTests(unittest.TestCase):
     def test_historic_site_as_valid_primary_link(self):
         self.assert_linkability('Q104868895')
 
+    def test_historic_site_apparently_technical_one_as_valid_primary_link(self):
+        self.assert_linkability('Q98581751')
+
     def test_generic_bench_entry_as_invalid_primary_link_p279_should_be_used_as_indicator(self):
         # https://www.wikidata.org/wiki/Q204776
         # has P279
@@ -1352,17 +1428,43 @@ class WikidataTests(unittest.TestCase):
     def test_specific_battery_as_valid_primary_link(self):
         self.assert_linkability('Q15179168')
 
+    def test_apparatus_as_valid_primary_link(self):
+        self.assert_linkability('Q316053')
+
+    def test_post_office_building_as_valid_primary_link(self):
+        self.assert_linkability('Q49593062')
+
     def test_squatted_building_as_valid_primary_link(self):
         self.assert_linkability('Q15303877')
 
     def test_town_as_valid_primary_link(self):
         self.assert_linkability('Q16106')
 
+    def test_folklore_related_town_as_valid_primary_link(self):
+        self.assert_linkability('Q569625')
+
+    def test_seaport_town_as_valid_primary_link(self):
+        self.assert_linkability('Q935686')
+
+    def test_seaport_as_valid_primary_link(self):
+        self.assert_linkability('Q883613')
+
+    def test_petroglyph_as_valid_primary_link(self):
+        self.assert_linkability('Q552106')
+        self.assert_linkability('Q1637649')
+        self.assert_linkability('Q16334471')
+
     def test_research_center_as_valid_primary_link(self):
         self.assert_linkability('Q12062400')
 
     def test_children_center_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q706474', 'an intentional human activity')
+
+    def test_company_is_not_industry_by_itself(self):
+        self.is_not_a_specific_error_class('Q18914701', 'an intentional human activity')
+
+    def test_puppet_theater_is_not_puppetry(self):
+        self.is_not_a_specific_error_class('Q293894', 'an intentional human activity')
 
     def test_shop_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q24693696', 'an intentional human activity')
@@ -1400,6 +1502,9 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q692400', 'a legal action')
         # TODO - it is not a valid link either
 
+    def test_letter_is_not_tradition(self):
+        self.is_not_a_specific_error_class('Q9963', 'a tradition')
+
     def test_hosting_company_is_not_a_legal_action(self):
         self.is_not_a_specific_error_class('Q6554704', 'an intentional human activity')
         self.is_not_a_specific_error_class('Q6554704', 'a legal action')
@@ -1421,6 +1526,15 @@ class WikidataTests(unittest.TestCase):
 
     def test_deposit_system_is_not_a_research(self):
         self.is_not_a_specific_error_class('Q4077395', 'a research')
+
+    def test_railway_troops_are_not_a_research(self):
+        self.is_not_a_specific_error_class('Q1256346', 'a research')
+
+    def test_abandoned_village_is_not_a_research(self):
+        self.is_not_a_specific_error_class('Q1977339', 'a research')
+
+    def test_roman_fort_is_not_a_research(self):
+        self.is_not_a_specific_error_class('Q1243550', 'a research')
 
     def test_apostle_is_not_fictional_but_still_invalid(self):
         self.is_not_a_specific_error_class('Q51672', 'a fictional entity')
@@ -1543,6 +1657,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q5038462')
         self.assert_linkability('Q7743365')
 
+    def test_state_school_as_valid_primary_link(self):
+        self.assert_linkability('Q1201799')
+
     def test_temple_as_valid_primary_link(self):
         self.assert_linkability('Q28058072')
 
@@ -1557,6 +1674,15 @@ class WikidataTests(unittest.TestCase):
 
     def test_ruined_cottage_as_valid_primary_link(self):
         self.assert_linkability('Q108459640')
+
+    def test_ruined_castle_as_valid_primary_link(self):
+        self.assert_linkability('Q1663659')
+
+    def test_ruined_rock_as_valid_primary_link(self):
+        self.assert_linkability('Q7101413')
+
+    def test_gravity_hill_optical_illusion_as_valid_primary_link(self):
+        self.assert_linkability('Q9156011')
 
     def test_library_as_valid_primary_link(self):
         self.assert_linkability('Q11551945')
@@ -1597,6 +1723,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_amusement_monorail_as_valid_primary_link(self):
         self.assert_linkability('Q2126693')
+
+    def test_summer_camp_as_valid_primary_link(self):
+        self.assert_linkability('Q5027247')
 
     def test_university_campus_as_valid_primary_link(self):
         self.assert_linkability('Q4066906')
@@ -1669,6 +1798,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_military_base_as_valid_primary_link(self):
         self.assert_linkability('Q62092177')
+
+    def test_recreation_area_as_valid_primary_link(self):
+        self.assert_linkability('Q7324253')
+
+    def test_theater_as_valid_primary_link(self):
+        self.assert_linkability('Q16879523')
 
     def test_fish_weir_official_recognised_as_heritage_asset_as_valid_primary_link(self):
         self.assert_linkability('Q26207149')
