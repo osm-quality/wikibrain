@@ -1223,6 +1223,21 @@ class WikimediaLinkIssueDetector:
 
             'Q11483816':  {'what': 'an annual event', 'replacement': None}, # maybe not an actual problem?
 
+
+            'Q12128':  {'what': 'a dentistry', 'replacement': None},
+            'Q190637':  {'what': 'a web design', 'replacement': None},
+            'Q930752':  {'what': 'a medical specialty', 'replacement': None},
+            'Q31629':  {'what': 'a type of sport', 'replacement': None},
+            'Q349':  {'what': 'a sport', 'replacement': None},
+            'Q4':  {'what': 'a death', 'replacement': None},
+            'Q17550579':  {'what': 'a feeding', 'replacement': None},
+            'Q2860334':  {'what': 'a church architecture', 'replacement': None},
+            'Q385378':  {'what': 'a construction (as economic activity)', 'replacement': None},
+            'Q132821':  {'what': 'a murder', 'replacement': None},
+            'Q1800545':  {'what': 'a migration', 'replacement': None},
+            'Q1379672':  {'what': 'an evaluation', 'replacement': None},
+            'Q1309431':  {'what': 'a structural failure', 'replacement': None},
+
             'Q3958441': {'what': 'an economic sector', 'replacement': None},
             'Q5': {'what': 'a human', 'replacement': 'name:'},
             'Q14897293': {'what': 'a fictional entity', 'replacement': 'name:etymology:'},
@@ -1242,6 +1257,7 @@ class WikimediaLinkIssueDetector:
             "Q2135540": {'what': 'a legal action', 'replacement': None},
             "Q781413": {'what': 'a mental process', 'replacement': None},
             "Q131569": {'what': 'a treaty', 'replacement': None},
+            "Q9788": {'what': 'a letter', 'replacement': None},
             'Q18786396': taxon,
             'Q16521': taxon,
             'Q55983715': taxon,
@@ -1339,6 +1355,7 @@ class WikimediaLinkIssueDetector:
             'Q60797': {'what': 'a sermon', 'replacement': None},
             'Q861911': {'what': 'an oration', 'replacement': None},
             'Q11424': {'what': 'a film', 'replacement': None},
+            'Q11417': {'what': 'a martial art', 'replacement': None},
             'Q1792379': {'what': 'an art genre', 'replacement': None},
             'Q2634583': {'what': 'a stampede', 'replacement': None},
             'Q3839081': {'what': 'a disaster', 'replacement': None},
@@ -1662,7 +1679,16 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q541394")
         wikidata_bugs.append("Q169180")
         wikidata_bugs.append("Q600751")
+        wikidata_bugs.append("Q882022")
         wikidata_bugs.append("Q3368517")
+        wikidata_bugs.append("Q3918409")
+        wikidata_bugs.append("Q5707594")
+        wikidata_bugs.append("Q8434")
+        wikidata_bugs.append("Q174923")
+        wikidata_bugs.append("Q179177")
+        wikidata_bugs.append("Q3565868")
+        wikidata_bugs.append("Q481609")
+        wikidata_bugs.append("Q5246046")
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
