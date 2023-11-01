@@ -570,9 +570,8 @@ class Tests(unittest.TestCase):
         object_description = "test"
         tags = {}
         wikipedia = None
-        effective_wikipedia = None
         effective_wikidata_id = None
-        problem = self.detector().get_wikipedia_language_issues(object_description, tags, wikipedia, effective_wikipedia, effective_wikidata_id)
+        problem = self.detector().get_wikipedia_language_issues(object_description, tags, wikipedia, effective_wikidata_id)
         self.assertEqual (None, 1)
 
 if __name__ == '__main__':

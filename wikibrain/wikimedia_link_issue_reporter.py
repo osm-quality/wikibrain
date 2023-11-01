@@ -279,7 +279,7 @@ class WikimediaLinkIssueDetector:
             else:
                 return self.replace_prerequisites_to_match_actual_tags(something_reportable, tags)
 
-        something_reportable = self.get_wikipedia_language_issues(object_description, tags, tags.get("wikipedia"), effective_wikipedia, effective_wikidata_id)
+        something_reportable = self.get_wikipedia_language_issues(object_description, tags, tags.get("wikipedia"), effective_wikidata_id)
         if something_reportable != None:
             return something_reportable
 
@@ -935,21 +935,20 @@ class WikimediaLinkIssueDetector:
             return True
         return False
 
-    def get_wikipedia_language_issues(self, object_description, tags, wikipedia, effective_wikipedia, effective_wikidata_id):
+    def get_wikipedia_language_issues(self, object_description, tags, wikipedia, effective_wikidata_id):
         botpedia_message = None
         prerequisite = {'wikipedia': wikipedia, 'wikidata': tags.get("wikidata")}
 
         # complains when Wikipedia page is not in the preferred language,
         # in cases when it is possible
-        if effective_wikipedia == None:
+        if wikipedia == None:
             return # there may be just a Wikidata entry, without a Wikipedia article
         
         current_article_name = None
         current_language_code = None
-        if wikipedia != None:
-            current_article_name = wikimedia_connection.get_article_name_from_link(wikipedia)
-            current_language_code = wikimedia_connection.get_language_code_from_link(wikipedia)
-            botpedia_message = "wikipedia page in unexpected language - " + current_language_code + " is a low quality, bot generated wikipedia - it should not be linked"
+        current_article_name = wikimedia_connection.get_article_name_from_link(wikipedia)
+        current_language_code = wikimedia_connection.get_language_code_from_link(wikipedia)
+        botpedia_message = "wikipedia page in unexpected language - " + current_language_code + " is a low quality, bot generated wikipedia - it should not be linked"
 
         bot_wikipedias = ["ceb"]
         if self.expected_language_code == None:
