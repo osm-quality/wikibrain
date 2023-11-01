@@ -489,6 +489,8 @@ class WikimediaLinkIssueDetector:
             for disused_prefix in ["disused:", "abandoned:"]:
                 if tags.get(disused_prefix + main_tag) != None:
                     marked_as_defunct = True
+                if main_tag == "shop" and tags.get(main_tag) == "vacant":
+                    marked_as_defunct = True
                 if tags.get(main_tag) not in [None, "no", "vacant"]:
                     marked_as_active = True
         present_wikidata_id = tags.get("brand:wikidata")
