@@ -1349,7 +1349,6 @@ class WikimediaLinkIssueDetector:
             'Q17127659': {'what': 'a terrorist organisation', 'replacement': None},
             'Q11822042': {'what': 'a transport accident', 'replacement': None},
             'Q178561': {'what': 'a battle', 'replacement': None},
-            'Q13418847': {'what': 'a historical event', 'replacement': None},
             'Q53706': {'what': 'a robbery', 'replacement': None},
             'Q83267': {'what': 'a crime', 'replacement': None},
             'Q1920219': {'what': 'a social issue', 'replacement': None},
