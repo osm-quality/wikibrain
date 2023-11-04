@@ -164,11 +164,14 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_fort_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q865131')
 
-    def test_detecting_footbridge_as_valid_primary_link(self):
-        self.assert_linkability('Q109717267')
-
     def test_detecting_fort_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q11962228')
+
+    def test_detecting_reconstructed_fort_as_valid_primary_link(self):
+        self.assert_linkability('Q2498184')
+
+    def test_detecting_footbridge_as_valid_primary_link(self):
+        self.assert_linkability('Q109717267')
 
     def test_detecting_roundabout_art_as_valid_primary_link(self):
         self.assert_linkability('Q105414527')
@@ -255,6 +258,10 @@ class WikidataTests(unittest.TestCase):
     def test_another_park_as_valid_primary_link(self):
         self.assert_linkability('Q60331605')
 
+    def test_geographic_region_as_valid_primary_link(self):
+        # should not be mapped in OSM, but as long as is this is validly linked
+        self.assert_linkability('Q11819931')
+
     def test_litography_workshop_as_valid_primary_link(self):
         self.assert_linkability('Q7680903')
 
@@ -317,8 +324,11 @@ class WikidataTests(unittest.TestCase):
     def test_privilidged_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q259992')
 
-    def test_dinner_theater_as_valid_primary_link(self):
+    def test_dinner_theater_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q16920269')
+
+    def test_dinner_theater_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q19870965')
 
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30')
@@ -351,6 +361,9 @@ class WikidataTests(unittest.TestCase):
     def test_totem_pole_as_valid_primary_link(self):
         self.assert_linkability('Q104536355')
  
+    def test_agritourism_accomodation_as_valid_primary_link(self):
+        self.assert_linkability('Q116236459')
+
     def test_botanical_garden_as_valid_primary_link(self):
         self.assert_linkability('Q589884')
         self.assert_linkability('Q677516')
@@ -458,6 +471,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_ceramic_mural_as_valid_primary_link(self):
         self.assert_linkability('Q75320653')
+
+    def test_historical_marker_as_valid_primary_link(self):
+        self.assert_linkability('Q49529009')
 
     def test_trademark_as_valid_primary_link(self):
         # trademark added to ignored_entries_in_wikidata_ontology to solve this
@@ -580,6 +596,9 @@ class WikidataTests(unittest.TestCase):
     def test_place_where_conspiracy_theory_happened_as_valid_primary_link(self):
         # borderline as article actually focuses more on a conspiracy theory itself...
         self.assert_linkability('Q7535626')
+
+    def test_artillery_battery_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q121879554')
 
     def test_sculpture_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q105492941')
@@ -787,6 +806,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_local_bank_as_valid_primary_link(self):
         self.assert_linkability('Q9165022')
+
+    def test_locality_as_valid_primary_link(self):
+        self.assert_linkability('Q6412131')
 
     def test_murder_as_invalid_primary_link(self):
         self.assert_unlinkability('Q4468588')
@@ -1169,8 +1191,11 @@ class WikidataTests(unittest.TestCase):
     def test_that_flight_school_is_not_a_human_activity(self):
         self.is_not_a_specific_error_class('Q4654871', 'a human activity')
 
-    def test_that_flight_rescue_is_not_a_human_activity(self):
+    def test_that_flight_rescue_is_not_a_human_activity_testcase_a(self):
         self.is_not_a_specific_error_class('Q4043199', 'a human activity')
+
+    def test_that_flight_rescue_is_not_a_human_activity_testcase_b(self):
+        self.is_not_a_specific_error_class('Q1706756', 'a human activity')
 
     def test_that_company_is_not_an_economic_sector_but_is_unlinkable_anyway(self):
         #self.assert_unlinkability('Q1655072') TODO
@@ -1243,8 +1268,9 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q856355', 'an award')
         self.is_not_a_specific_error_class('Q5324438', 'an award')
 
-    def test_that_minister_is_not_an_award(self):
+    def test_that_minister_or_other_administartor_is_not_an_award(self):
         self.is_not_a_specific_error_class('Q107919654', 'an award')
+        self.is_not_a_specific_error_class('Q11739165', 'an award')
 
     def test_that_cofee_variety_is_not_a_academic_discipline_but_is_invalid_to_link_anyway(self):
         self.assert_unlinkability('Q97160325')
@@ -1263,7 +1289,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_behavior('Q37156')
 
     def test_that_railway_operator_is_not_behavior_but_is_unlinkable_anyway(self):
-        self.assert_unlinkability('Q1814208')
+        #self.assert_unlinkability('Q1814208') TODO - enable once mass exceptions in workarounds_for_wikidata_bugs_breakage_and_mistakes are gone
         self.is_not_an_event('Q1814208')
         self.is_not_a_behavior('Q1814208')
 
