@@ -1734,8 +1734,6 @@ class WikimediaLinkIssueDetector:
         return wikidata_bugs
 
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
-        # print entire inheritance set
-        show_debug = True
         callback = self.callback_reporting_banned_categories
 
         found = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(type_id, self.ignored_entries_in_wikidata_ontology())
@@ -1758,6 +1756,13 @@ class WikimediaLinkIssueDetector:
                         with open("wikidata_report.txt", "a") as myfile:
                             myfile.write(header + to_show + "\n\n")
         else:
+            for index, entry in enumerate(found):
+                category_id = entry["id"]
+                depth = entry["depth"]
+                note = self.callback_reporting_banned_categories(category_id)
+                print(":"*depth + wikidata_processing.wikidata_description(category_id) + note)
+            # print entire inheritance set
+            show_debug = True
             parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.ignored_entries_in_wikidata_ontology(), show_debug, callback)
             #for parent_category in parent_categories:
             #    print("if type_id == '" + parent_category + "':")
