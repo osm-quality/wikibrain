@@ -1636,16 +1636,20 @@ class WikimediaLinkIssueDetector:
 
 
     @staticmethod
-    def ignored_entries_in_wikidata_ontology():
+    def ignored_entries_in_wikidata_ontology_without_skipping_known_bugs():
         too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
         too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology()
-        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
         too_abstract_or_wikidata_bugs.append("Q13930359") # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q15275719") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q673514") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
         too_abstract_or_wikidata_bugs.append("Q132241") # festivals in general are exempt for now
         too_abstract_or_wikidata_bugs.append("Q11706236") # also church festivals
-        
+        return too_abstract_or_wikidata_bugs
+
+    @staticmethod
+    def ignored_entries_in_wikidata_ontology():
+        too_abstract_or_wikidata_bugs = WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology_without_skipping_known_bugs()
+        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
         return too_abstract_or_wikidata_bugs
 
     @staticmethod
