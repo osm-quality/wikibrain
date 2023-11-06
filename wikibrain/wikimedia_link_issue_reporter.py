@@ -1160,8 +1160,25 @@ class WikimediaLinkIssueDetector:
     def wikidata_entries_classifying_entry(self, effective_wikidata_id):
         parent_categories = wikidata_processing.get_recursive_all_subclass_of(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
         for base_type_id in (parent_categories + [effective_wikidata_id]):
-            for type_id in wikidata_processing.get_all_types_describing_wikidata_object(base_type_id, self.ignored_entries_in_wikidata_ontology()):
-                yield type_id
+            yield base_type_id
+            # TODO is this used: get_all_types_describing_wikidata_object
+            instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
+            if instance_ids != None:
+                for instance_id in instance_ids:
+                    if instance_id not in self.ignored_entries_in_wikidata_ontology():
+                        yield instance_id
+
+    def wikidata_entries_classifying_entry_with_depth_data(self, effective_wikidata_id):
+        parent_categories_entries = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
+        for base_type_id_entry in (parent_categories_entries + [{"id": effective_wikidata_id, "depth": 0}]):
+            yield base_type_id_entry
+            base_type_id = base_type_id_entry["id"]
+            base_type_id_depth = base_type_id_entry["depth"]
+            instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
+            if instance_ids != None:
+                for instance_id in instance_ids:
+                    if instance_id not in self.ignored_entries_in_wikidata_ontology():
+                        yield {"id": instance_id, "depth": base_type_id_depth + 1}
 
     def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
         # https://en.wikipedia.org/wiki/Edith_Macefield
@@ -1736,7 +1753,8 @@ class WikimediaLinkIssueDetector:
     def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
         callback = self.callback_reporting_banned_categories
 
-        found = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(type_id, self.ignored_entries_in_wikidata_ontology())
+        # is get_recursive_all_subclass_of_with_depth_data needed anywhere?
+        found = self.wikidata_entries_classifying_entry_with_depth_data(type_id)
 
         to_show = ""
         if show_only_banned:
