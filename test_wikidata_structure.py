@@ -47,14 +47,14 @@ class WikidataTests(unittest.TestCase):
             self.dump_debug_into_stdout(type_id, "is_not_a_specific_error_class failed")
             self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class)
 
-    def dump_debug_into_stdout(self, type_id, why):
+    def dump_debug_into_stdout(self, type_id, why, show_only_banned=False):
         print()
         print()
         print()
         print("dump_debug_into_stdout", why)
-        self.dump_debug_about_specific_type_id_into_stdout(type_id)
+        self.dump_debug_into_stdout_internal(type_id, show_only_banned)
 
-    def dump_debug_about_specific_type_id_into_stdout(self, type_id):
+    def dump_debug_into_stdout_internal(self, type_id, show_only_banned):
         is_unlinkable = self.is_unlinkable_check(type_id)
         reported = ""
         reported += "\n"
@@ -79,7 +79,7 @@ class WikidataTests(unittest.TestCase):
         else:
             pass
         print(reported)
-        self.detector().dump_base_types_of_object_in_stdout(type_id, 'tests')
+        self.detector().describe_unexpected_wikidata_structure(type_id, show_only_banned)
         print()
 
     def assert_linkability(self, type_id):

@@ -1158,27 +1158,37 @@ class WikimediaLinkIssueDetector:
             return self.get_should_use_subject_error('an uncoordinable generic object', 'name:', wikidata_id, tag_summary)
 
     def wikidata_entries_classifying_entry(self, effective_wikidata_id):
-        parent_categories = wikidata_processing.get_recursive_all_subclass_of(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
-        for base_type_id in (parent_categories + [effective_wikidata_id]):
-            yield base_type_id
-            # TODO is this used: get_all_types_describing_wikidata_object
-            instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
-            if instance_ids != None:
-                for instance_id in instance_ids:
-                    if instance_id not in self.ignored_entries_in_wikidata_ontology():
-                        yield instance_id
+        returned = []
+
+        root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id) + [effective_wikidata_id]
+        for root in root_instance_ids:
+            parent_categories = wikidata_processing.get_recursive_all_subclass_of(root, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
+            for base_type_id in (parent_categories + [root]):
+                returned.append(base_type_id)
+                # TODO is this used: get_all_types_describing_wikidata_object
+                instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
+                if instance_ids != None:
+                    for instance_id in instance_ids:
+                        if instance_id not in self.ignored_entries_in_wikidata_ontology():
+                            returned.append(instance_id)
+        
+        return returned
 
     def wikidata_entries_classifying_entry_with_depth_data(self, effective_wikidata_id):
-        parent_categories_entries = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
-        for base_type_id_entry in (parent_categories_entries + [{"id": effective_wikidata_id, "depth": 0}]):
-            yield base_type_id_entry
-            base_type_id = base_type_id_entry["id"]
-            base_type_id_depth = base_type_id_entry["depth"]
-            instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
-            if instance_ids != None:
-                for instance_id in instance_ids:
-                    if instance_id not in self.ignored_entries_in_wikidata_ontology():
-                        yield {"id": instance_id, "depth": base_type_id_depth + 1}
+        returned = []
+        root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id) + [effective_wikidata_id]
+        for root in root_instance_ids:
+            parent_categories_entries = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(root, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
+            for base_type_id_entry in (parent_categories_entries + [{"id": root, "depth": 0}]):
+                returned.append( base_type_id_entry )
+                base_type_id = base_type_id_entry["id"]
+                base_type_id_depth = base_type_id_entry["depth"]
+                instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
+                if instance_ids != None:
+                    for instance_id in instance_ids:
+                        if instance_id not in self.ignored_entries_in_wikidata_ontology():
+                            returned.append( {"id": instance_id, "depth": base_type_id_depth + 1} )
+        return returned
 
     def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
         # https://en.wikipedia.org/wiki/Edith_Macefield
@@ -1552,33 +1562,6 @@ class WikimediaLinkIssueDetector:
         print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()))
         self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
 
-    def dump_base_types_of_object_in_stdout(self, wikidata_id, description_of_source):
-        if description_of_source != "tests": # make copying to Wikidata easier - TODO - eliminate this hack
-            print("(((((((((((((()))))))))))))) dump_base_types_of_object_in_stdout")
-            print("https://www.wikidata.org/wiki/" + wikidata_id)
-            print("{{Q|" + wikidata_id + "}}")
-        types = wikidata_processing.get_wikidata_type_ids_of_entry_via_both_instance_of_and_subclasses(wikidata_id)
-        #if types == None:
-        #    print(wikidata_id, "entry has no types (may still have subclasses)")
-        #    return
-
-        any_banned = False
-        # if any values is banned and we need debug info, then
-        # assuming that only info about banned entries needs to be provided
-        # likely makes sense
-        for type_id in types:
-            found = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(type_id, self.ignored_entries_in_wikidata_ontology())
-            for entry in found:
-                ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(entry["id"])
-                if ban_reason != None:
-                    any_banned = True
-        for type_id in types:
-            if description_of_source != "tests": # make copying to Wikidata easier TODO - eliminate this hack
-                print("^^^^^^^ - show only banned:", any_banned)
-                print("source:", description_of_source)
-                print("type " + "https://www.wikidata.org/wiki/" + type_id)
-            self.describe_unexpected_wikidata_type(wikidata_id, type_id, show_only_banned=any_banned)
-
     def callback_reporting_banned_categories(self, category_id):
         ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
         if ban_reason != None:
@@ -1754,7 +1737,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q15116915")
         return wikidata_bugs
 
-    def describe_unexpected_wikidata_type(self, object_id_where_it_is_present, type_id, show_only_banned):
+    def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):
         callback = self.callback_reporting_banned_categories
 
         # is get_recursive_all_subclass_of_with_depth_data needed anywhere?
@@ -1774,7 +1757,7 @@ class WikimediaLinkIssueDetector:
                     to_show += ":"*depth + "{{Q|" + category_id + "}}" + "\n"
                     ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
                     if ban_reason != None:
-                        header = "== {{Q|" + object_id_where_it_is_present + "}} classified as " + ban_reason['what'] + " ==\n"
+                        header = "== {{Q|" + type_id + "}} classified as " + ban_reason['what'] + " ==\n"
                         with open("wikidata_report.txt", "a") as myfile:
                             myfile.write(header + to_show + "\n\n")
         else:
