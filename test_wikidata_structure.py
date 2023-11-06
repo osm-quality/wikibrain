@@ -597,8 +597,16 @@ class WikidataTests(unittest.TestCase):
         # borderline as article actually focuses more on a conspiracy theory itself...
         self.assert_linkability('Q7535626')
 
-    def test_artillery_battery_as_valid_primary_link_testcase_a(self):
+    def test_artillery_battery_as_valid_primary_link(self):
+        # coastal artillery gets classified directly as
+        # https://www.wikidata.org/wiki/Q1358324
+        # lets see how it will be fixed at https://www.wikidata.org/wiki/Q121879554
         self.assert_linkability('Q121879554')
+        self.assert_linkability('Q121879591')
+        self.assert_linkability('Q121879557')
+        self.assert_linkability('Q114736345')
+        self.assert_linkability('Q121879384')
+        self.assert_linkability('Q121879386')
 
     def test_sculpture_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q105492941')
@@ -1216,6 +1224,14 @@ class WikidataTests(unittest.TestCase):
     def test_that_forest_kindegarten_is_valid_primary_link(self):
         self.assert_linkability('Q106974829')
 
+    def test_that_community_fridge_is_not_a_general_industry_but_is_unlinkable_anyway(self):
+        self.assert_unlinkability('Q42417254')
+        self.is_not_a_specific_error_class('Q42417254', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_a(self):
+        #self.assert_unlinkability('Q1703172') TODO
+        self.is_not_a_specific_error_class('Q1703172', 'a general industry')
+
     def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_b(self):
         #self.assert_unlinkability('Q3027764') TODO
         self.is_not_a_specific_error_class('Q3027764', 'a general industry')
@@ -1242,10 +1258,6 @@ class WikidataTests(unittest.TestCase):
     def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_g(self):
         #self.assert_unlinkability('Q22868') TODO
         self.is_not_a_specific_error_class('Q22868', 'a general industry')
-
-    def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_h(self):
-        #self.assert_unlinkability('Q1703172') TODO
-        self.is_not_a_specific_error_class('Q1703172', 'a general industry')
 
     def test_that_online_shop_company_is_not_a_general_industry_but_is_unlinkable_anyway(self):
         self.assert_unlinkability('Q23827008')
