@@ -1160,34 +1160,53 @@ class WikimediaLinkIssueDetector:
     def wikidata_entries_classifying_entry(self, effective_wikidata_id):
         returned = []
 
-        root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id) + [effective_wikidata_id]
+        # instances of subclasses - also of indirect subclasses
+        parent_categories = wikidata_processing.get_recursive_all_subclass_of(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
+        for base_type_id in (parent_categories):
+            returned.append(base_type_id)
+            # TODO is this used: get_all_types_describing_wikidata_object
+            instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
+            if instance_ids != None:
+                for instance_id in instance_ids:
+                    if instance_id not in self.ignored_entries_in_wikidata_ontology():
+                        returned.append(instance_id)
+
+        # subclasses, of "is instance of"
+        root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id)
+        if root_instance_ids == None:
+            root_instance_ids = []
         for root in root_instance_ids:
+            if root in self.ignored_entries_in_wikidata_ontology():
+                continue
             parent_categories = wikidata_processing.get_recursive_all_subclass_of(root, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
-            for base_type_id in (parent_categories + [root]):
+            for base_type_id in (parent_categories):
                 returned.append(base_type_id)
-                # TODO is this used: get_all_types_describing_wikidata_object
-                instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
-                if instance_ids != None:
-                    for instance_id in instance_ids:
-                        if instance_id not in self.ignored_entries_in_wikidata_ontology():
-                            returned.append(instance_id)
         
         return returned
 
     def wikidata_entries_classifying_entry_with_depth_data(self, effective_wikidata_id):
         returned = []
-        root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id) + [effective_wikidata_id]
+
+        parent_categories_entries = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
+        for base_type_id_entry in parent_categories_entries:
+            returned.append( base_type_id_entry )
+            base_type_id = base_type_id_entry["id"]
+            base_type_id_depth = base_type_id_entry["depth"]
+            instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
+            if instance_ids != None:
+                for instance_id in instance_ids:
+                    if instance_id not in self.ignored_entries_in_wikidata_ontology():
+                        returned.append( {"id": instance_id, "depth": base_type_id_depth + 1} )
+
+        root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id)
+        if root_instance_ids == None:
+            root_instance_ids = []
         for root in root_instance_ids:
+            if root in self.ignored_entries_in_wikidata_ontology():
+                continue
             parent_categories_entries = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(root, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
             for base_type_id_entry in (parent_categories_entries + [{"id": root, "depth": 0}]):
                 returned.append( base_type_id_entry )
-                base_type_id = base_type_id_entry["id"]
-                base_type_id_depth = base_type_id_entry["depth"]
-                instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
-                if instance_ids != None:
-                    for instance_id in instance_ids:
-                        if instance_id not in self.ignored_entries_in_wikidata_ontology():
-                            returned.append( {"id": instance_id, "depth": base_type_id_depth + 1} )
         return returned
 
     def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
