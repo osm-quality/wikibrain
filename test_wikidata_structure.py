@@ -47,7 +47,7 @@ class WikidataTests(unittest.TestCase):
             self.dump_debug_into_stdout(type_id, "is_not_a_specific_error_class failed")
             self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class)
 
-    def dump_debug_into_stdout(self, type_id, why, show_only_banned=False):
+    def dump_debug_into_stdout(self, type_id, why, show_only_banned=True):
         print()
         print()
         print()
