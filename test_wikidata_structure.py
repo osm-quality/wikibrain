@@ -91,7 +91,7 @@ class WikidataTests(unittest.TestCase):
     def assert_unlinkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable == None:
-            self.dump_debug_into_stdout(type_id, "assert_unlinkability failed")
+            self.dump_debug_into_stdout(type_id, "assert_unlinkability failed", show_only_banned=False)
         self.assertNotEqual(None, is_unlinkable)
 
     def brand_still_exists(self, wikidata_id, name, reference):
