@@ -1754,6 +1754,8 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q1571929")
         wikidata_bugs.append("Q73190050")
         wikidata_bugs.append("Q15116915")
+        wikidata_bugs.append("Q2143522")
+        wikidata_bugs.append("Q7400159")
         return wikidata_bugs
 
     def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):

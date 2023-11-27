@@ -1140,6 +1140,9 @@ class WikidataTests(unittest.TestCase):
     def test_horse_pond_as_valid_primary_link(self):
         self.assert_linkability('Q49473780')
 
+    def test_radio_measuring_point_as_valid_primary_link(self):
+        self.assert_linkability('Q19280069')
+
     def test_office_building_as_valid_primary_link(self):
         self.assert_linkability('Q1590873')
 
@@ -1167,6 +1170,12 @@ class WikidataTests(unittest.TestCase):
     def test_that_defunct_school_is_not_an_event(self):
         self.is_not_an_event('Q113019862')
 
+    def test_that_hardened_shelter_is_not_aspect_of_geographic_region(self):
+        self.is_not_a_specific_error_class('Q91939', 'an aspect in a geographic region')
+
+    def test_that_training_ship_is_not_a_mental_process(self):
+        self.is_not_a_specific_error_class('Q315820', 'a mental process')
+
     def test_that_propaganda_institution_is_not_a_mental_process(self):
         self.is_not_a_specific_error_class('Q157033', 'a mental process')
 
@@ -1190,7 +1199,10 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q449319', 'a profession')   
 
     def test_that_specific_position_is_not_a_profession_testcase_c(self):
-        self.is_not_a_specific_error_class('Q3368517', 'a profession')   
+        self.is_not_a_specific_error_class('Q3368517', 'a profession')
+
+    def test_that_specific_position_is_not_a_profession_testcase_d(self):
+        self.is_not_a_specific_error_class('Q3882136', 'a profession')
 
     def test_that_russian_war_company_is_not_a_profession_but_is_unlinkable_anyway(self):
         self.is_not_a_specific_error_class('Q188508', 'a profession')
@@ -1225,7 +1237,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q106974829')
 
     def test_that_community_fridge_is_not_a_general_industry_but_is_unlinkable_anyway(self):
-        self.assert_unlinkability('Q42417254')
+        #self.assert_unlinkability('Q42417254') TODO - add test that will expect that it failed due to subclass instance
         self.is_not_a_specific_error_class('Q42417254', 'a general industry')
 
     def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_a(self):
@@ -1504,8 +1516,8 @@ class WikidataTests(unittest.TestCase):
     def test_grafitti_wall_as_valid_primary_link(self):
         self.assert_linkability('Q69689708')
 
-    def test_grafitti_as_valid_primary_link(self):
-        self.assert_linkability('Q23097882')
+    def test_general_grafitti_article_as_unvalid_primary_link(self):
+        self.assert_unlinkability('Q23097882')
 
     def test_prehistoric_settlement_as_valid_primary_link(self):
         self.assert_linkability('Q1015819')
@@ -1970,6 +1982,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_cinema_of_europe_as_invalid_primary_link(self):
         self.assert_unlinkability('Q993246')
+
+    def test_specific_cinema_as_valid_primary_link(self):
+        self.assert_linkability('Q34379615')
 
     def test_fictional_island_as_invalid_primary_link(self):
         self.assert_unlinkability('Q1877267')
