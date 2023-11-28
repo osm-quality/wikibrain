@@ -380,6 +380,9 @@ class WikidataTests(unittest.TestCase):
     def test_grave_as_valid_primary_link(self):
         self.assert_linkability('Q11789060')
 
+    def test_grave_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q4199484')
+
     def test_monument_as_valid_primary_link(self):
         self.assert_linkability('Q11823211')
 
@@ -1221,6 +1224,16 @@ class WikidataTests(unittest.TestCase):
         #self.assert_unlinkability('Q1655072') TODO
         self.is_not_a_specific_error_class('Q1655072', 'an economic sector')
 
+    # broken output, not sure why TODO
+    #def test_that_literature_in_north_frisian_is_not_an_economic_sector_but_is_unlinkable_anyway(self):
+    #    self.is_not_a_specific_error_class('Q28548', 'an economic sector')
+    #    self.assert_unlinkability('Q28548')
+
+    # broken output, not sure why TODO
+    #def test_that_martial_art_is_not_an_economic_sector_but_is_unlinkable_anyway(self):
+    #    self.is_not_a_specific_error_class('Q2279163', 'an economic sector')
+    #    self.assert_unlinkability('Q2279163')
+
     def test_that_company_is_not_an_economic_sector_but_is_unlinkable_anyway_testcase_b(self):
         #self.assert_unlinkability('Q552581') TODO
         self.is_not_a_specific_error_class('Q552581', 'an economic sector')
@@ -1232,6 +1245,24 @@ class WikidataTests(unittest.TestCase):
     def test_that_brand_is_not_a_food_but_is_unlinkable_anyway_testcase_b(self):
         self.assert_unlinkability('Q5129551')
         self.is_not_a_specific_error_class('Q5129551', 'a food')
+
+    def test_that_insurance_company_is_not_insurance_but_is_unlinkable_anyway_testcase_a(self):
+        #self.assert_unlinkability('Q5708804') # TODO
+        self.is_not_a_specific_error_class('Q5708804', 'an insurance')
+
+    def test_that_insurance_company_is_not_insurance_but_is_unlinkable_anyway_testcase_b(self):
+        #self.assert_unlinkability('Q5723049') # TODO
+        self.is_not_a_specific_error_class('Q5723049', 'an insurance')
+
+    def test_that_insurance_company_is_not_insurance_but_is_unlinkable_anyway_testcase_c(self):
+        #self.assert_unlinkability('Q657359') # TODO
+        self.is_not_a_specific_error_class('Q657359', 'an insurance')
+        
+
+    def test_that_social_insurance_institution_is_not_insurance_but_is_unlinkable_anyway(self):
+        #self.assert_unlinkability('Q1458480') # TODO
+        self.is_not_a_specific_error_class('Q1458480', 'an insurance')
+
 
     def test_that_forest_kindegarten_is_valid_primary_link(self):
         self.assert_linkability('Q106974829')
