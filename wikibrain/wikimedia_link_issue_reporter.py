@@ -1362,6 +1362,7 @@ class WikimediaLinkIssueDetector:
             'Q179057': {'what': 'an explosion', 'replacement':  None},
             'Q28640': {'what': 'a profession', 'replacement':  None},
             'Q1914636': {'what': 'an activity', 'replacement':  None},
+            'Q20162172': {'what': 'a human language', 'replacement':  None},
             'Q2000908': weapon,
             'Q15142894': weapon,
             'Q15142889': weapon,
@@ -1759,6 +1760,10 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q5708804")
         wikidata_bugs.append("Q43183")
         wikidata_bugs.append("Q331055")
+        wikidata_bugs.append("Q2990593")
+        wikidata_bugs.append("Q34770")
+        wikidata_bugs.append("Q2994466")
+        wikidata_bugs.append("Q2539159")
         return wikidata_bugs
 
     def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):
