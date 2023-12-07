@@ -1659,6 +1659,21 @@ class WikimediaLinkIssueDetector:
     def workarounds_for_wikidata_bugs_breakage_and_mistakes():
         wikidata_bugs = []
 
+        # Potentially fixable, but it is widespread problem affecting wikidata, not OSM
+        # so extremely low priority
+
+        # theatre as art form vs theatre as a building
+        # that would be basically detecting only wikidata issues
+        # not worth it
+        # https://www.wikidata.org/wiki/Q11635
+        # https://www.wikidata.org/wiki/Q24354
+        wikidata_bugs.append("Q11635")
+
+        # systematic confusion of newsagent as profession and newsagent as shop
+        # not interested in spending time on fixing wikidata bugs
+        # maybe if everything else will become fixed
+        wikidata_bugs.append('Q1528905')
+
         # Considered as unfixable:
 
         # conflating two distinct things
@@ -1671,14 +1686,11 @@ class WikimediaLinkIssueDetector:
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1927584762#Walk_of_Fame_of_Cabaret_(Q2345775)_is_an_award,_according_to_Wikidata_ontology
         wikidata_bugs.append('Q47502370')
 
-        # systematic confusion of newsagent as profession and newsagent as shop
-        # not interested in spending time on fixing wikidata bugs
-        # maybe if everything else will become fixed
-        wikidata_bugs.append('Q1528905')
-
         # merging items
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1937087915#Project_Riese_(Q320076)_classified_as_an_intentional_human_activity
         wikidata_bugs.append('Q170584')
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2025970960#KATRIN_(Q316053)_is_a_human_activity,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q101965')
 
         # Jesus mess
         # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1940322493#Jesus_(Q302)_is_a_fictional_entity,_according_to_Wikidata_ontology
@@ -1692,78 +1704,18 @@ class WikimediaLinkIssueDetector:
         # created https://www.wikidata.org/wiki/Q1323960
         wikidata_bugs.append('Q208500')
 
-        # theatre as art form vs theatre as a building
-        # that would be basically detecting only wikidata issues
-        # not worth it
-        # https://www.wikidata.org/wiki/Q11635
-        # https://www.wikidata.org/wiki/Q24354
-        wikidata_bugs.append("Q11635")
-
-        #return wikidata_bugs # count seven extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        # merging entries about general prosecutor office and general prosecutor as person and as profession
+        # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Profession_or_office?
+        wikidata_bugs.append('Q3368517')
+        wikidata_bugs.append('Q169180')
+ 
+        #return wikidata_bugs # count 12 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         
-        # reported https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append("Q541394")
-        wikidata_bugs.append("Q169180")
-        wikidata_bugs.append("Q600751")
-        wikidata_bugs.append("Q882022")
-        wikidata_bugs.append("Q3368517")
-        wikidata_bugs.append("Q3918409")
-        wikidata_bugs.append("Q5707594")
-        wikidata_bugs.append("Q8434")
-        wikidata_bugs.append("Q174923")
-        wikidata_bugs.append("Q179177")
-        wikidata_bugs.append("Q3565868")
-        wikidata_bugs.append("Q481609")
-        wikidata_bugs.append("Q5246046")
-        wikidata_bugs.append("Q162324")
-        wikidata_bugs.append("Q326478")
-        wikidata_bugs.append("Q1567542")
-        wikidata_bugs.append("Q167903")
-        wikidata_bugs.append("Q1078913")
-        wikidata_bugs.append("Q40446")
-        wikidata_bugs.append("Q1595171")
-        wikidata_bugs.append("Q717040")
-        wikidata_bugs.append("Q16533")
-        wikidata_bugs.append("Q40348")
-        wikidata_bugs.append("Q5154924")
-        wikidata_bugs.append("Q15852218")
-        wikidata_bugs.append("Q3399515")
-        wikidata_bugs.append("Q187939")
-        wikidata_bugs.append("Q45739400")
-        wikidata_bugs.append("Q1936626")
-        wikidata_bugs.append("Q8434")
-        wikidata_bugs.append("Q3565868")
-        wikidata_bugs.append("Q5707594")
-        wikidata_bugs.append("Q618779")
-        wikidata_bugs.append("Q4364339")
-        wikidata_bugs.append("Q53997260")
-        wikidata_bugs.append("Q49845")
-        wikidata_bugs.append("Q417633")
-        wikidata_bugs.append("Q170539")
-        wikidata_bugs.append("Q3577509")
-        wikidata_bugs.append("Q255848")
-        wikidata_bugs.append("Q189819")
-        wikidata_bugs.append("Q42195")
-        wikidata_bugs.append("Q1792321")
-        wikidata_bugs.append("Q622772")
-        wikidata_bugs.append("Q101965")
-        wikidata_bugs.append("Q41554881")
-        wikidata_bugs.append("Q1370468")
-        wikidata_bugs.append("Q52109")
-        wikidata_bugs.append("Q1116728")
-        wikidata_bugs.append("Q49389")
-        wikidata_bugs.append("Q1571929")
-        wikidata_bugs.append("Q73190050")
-        wikidata_bugs.append("Q15116915")
-        wikidata_bugs.append("Q2143522")
-        wikidata_bugs.append("Q7400159")
-        wikidata_bugs.append("Q5708804")
-        wikidata_bugs.append("Q43183")
-        wikidata_bugs.append("Q331055")
-        wikidata_bugs.append("Q2990593")
-        wikidata_bugs.append("Q34770")
-        wikidata_bugs.append("Q2994466")
-        wikidata_bugs.append("Q2539159")
+        # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        wikidata_bugs.append('Q659396')
+        wikidata_bugs.append('Q872181')
+        wikidata_bugs.append('Q1078913')
+ 
         return wikidata_bugs
 
     def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):
