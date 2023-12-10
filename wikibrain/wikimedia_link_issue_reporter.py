@@ -521,7 +521,7 @@ class WikimediaLinkIssueDetector:
             elif marked_as_defunct == False and marked_as_active == False:
                 state += " - and tag processing has not worked well"
             else:
-                raise "supposed to be impossible"
+                raise Exception("supposed to be impossible")
             return ErrorReport(
                 error_id=state,
                 error_general_intructions=error_general_intructions,
@@ -1307,7 +1307,6 @@ class WikimediaLinkIssueDetector:
             'Q12045585': taxon,
             'Q5113': taxon,
             'Q38829': taxon,
-            'Q55983715': taxon,
             'Q34740': taxon,
             'Q7432': taxon,
             'Q26883973': {'what': 'a lost sculpture', 'replacement': 'subject:'},
