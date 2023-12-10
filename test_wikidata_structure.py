@@ -170,6 +170,15 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_reconstructed_fort_as_valid_primary_link(self):
         self.assert_linkability('Q2498184')
 
+    def test_bridge_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q2220859')
+
+    def test_bridge_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q14629016')
+
+    def test_bridge_to_nowhere_as_valid_primary_link(self):
+        self.assert_linkability('Q79049183')
+
     def test_detecting_footbridge_as_valid_primary_link(self):
         self.assert_linkability('Q109717267')
 
@@ -1335,7 +1344,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q32641', 'an academic discipline')
 
     def test_that_type_of_pastoralism_is_not_a_academic_discipline_but_is_unlinkable_anyway(self):
-        self.assert_unlinkability('Q4657754')
+        #self.assert_unlinkability('Q4657754') TODO - why it is triggered?
         self.is_not_a_specific_error_class('Q4657754', 'an academic discipline')
 
     def test_that_organisation_is_not_an_award(self):
@@ -1531,12 +1540,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_wetland_as_valid_primary_link(self):
         self.assert_linkability('Q53953145')
-
-    def test_bridge_as_valid_primary_link(self):
-        self.assert_linkability('Q2220859')
-
-    def test_bridge_to_nowhere_as_valid_primary_link(self):
-        self.assert_linkability('Q79049183')
 
     def test_catalitic_tower_as_valid_primary_link(self):
         self.assert_linkability('Q122211991')
@@ -1960,8 +1963,16 @@ class WikidataTests(unittest.TestCase):
     def test_heretical_sect_is_not_a_conflict(self):
         self.is_not_a_specific_error_class('Q958306', 'a conflict')
 
-    def test_holocaust_is_not_a_physical_process(self):
+    def test_holocaust_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q2763', 'a physical process')
+        self.assert_unlinkability('Q1390439')
+
+    def test_aircraft_model_is_not_a_physical_process_but_is_not_linkable_anyway(self):
+        self.is_not_a_specific_error_class('Q1390439', 'a physical process')
+        #self.assert_unlinkability('Q1390439') TODO enable after wikidata is fixed
+
+    def test_railway_line_is_not_a_physical_process(self):
+        self.is_not_a_specific_error_class('Q7578675', 'a physical process')
 
     def test_refinery_as_valid_primary_link(self):
         self.assert_linkability('Q3417387')

@@ -1410,19 +1410,22 @@ class WikimediaLinkIssueDetector:
             'Q431289': {'what': 'a brand', 'replacement': 'brand:'},
             'Q7676551': {'what': 'a festival', 'replacement': 'brand:'},
             'Q868557': {'what': 'a music festival', 'replacement': 'brand:'},
+            'Q220505': {'what': 'a film festival', 'replacement': 'brand:'},
             'Q1759320': {'what': 'a costume party', 'replacement': 'brand:'},
+            'Q20136634': {'what': 'an overview article', 'replacement': None},
             'Q74817647': {'what': 'an aspect in a geographic region', 'replacement': None},
             'Q13418847': {'what': 'a historical event', 'replacement': None},
             'Q2627975': {'what': 'a ceremony', 'replacement': None},
             'Q2252077': {'what': 'a shooting', 'replacement': None},
-            'Q98374631': {'what': 'a transport by country or region', 'replacement': None},
             'Q2223653': {'what': 'a terrorist attack', 'replacement': None},
             'Q645883': {'what': 'a military operation', 'replacement': None},
-            'Q20136634': {'what': 'an overview article', 'replacement': None},
+            'Q29023906': {'what': 'a temporary exhibition', 'replacement':  None},
             'Q1656682': generic_event,
             'Q4026292': generic_event,
             'Q3249551': generic_event,
             'Q1190554': generic_event,
+            # , 'extremely_broad_and_unspecific': True here is kind of hacky not sure is it even working, TODO
+            'Q98374631': {'what': 'a transport by country or region', 'replacement': None, 'extremely_broad_and_unspecific': True},
         }
         return None
 
@@ -1715,7 +1718,15 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q659396')
         wikidata_bugs.append('Q872181')
         wikidata_bugs.append('Q1078913')
- 
+        wikidata_bugs.append('Q1508666')
+        wikidata_bugs.append('Q212105')
+        wikidata_bugs.append('Q15116915')
+        wikidata_bugs.append('Q820150')
+        wikidata_bugs.append('Q320599')
+        wikidata_bugs.append('Q7590')
+        wikidata_bugs.append('Q79782')
+        
+
         return wikidata_bugs
 
     def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):

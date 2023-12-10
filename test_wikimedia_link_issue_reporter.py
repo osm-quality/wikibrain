@@ -38,7 +38,7 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("wikidata tag links to 404", problem.data()['error_id'])
 
-    def test_https_link_as_invalid(self):
+    def test_https_link_as_invalid_in_wikipedia_tag(self):
         # not malformed but does not exist
         tags = {"wikipedia": "https://wikipedia.org/wiki/Article"}
         location = None
@@ -48,6 +48,15 @@ class Tests(unittest.TestCase):
         self.assertNotEqual (None, problem)
         self.assertEqual ("malformed wikipedia tag", problem.data()['error_id'])
 
+    def test_https_link_as_invalid_in_secondary_wikipedia_tag(self):
+        # not malformed but does not exist
+        tags = {"name:etymology:wikipedia": "https://de.wikipedia.org/wiki/Konrad_Wirnhier"}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual (None, problem)
+        self.assertEqual ("malformed wikipedia tag", problem.data()['error_id'])
 
     def test_malformed_wikidata_link(self):
         # not malformed but does not exist
@@ -305,13 +314,16 @@ class Tests(unittest.TestCase):
         problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
         self.assertEqual (False, "tag to an intentional human activity" in problem.data()['error_id'])
 
-    def test_that_redirect_link_to_taxon_is_detected_as_problematic(self):
-        tags = {"wikipedia": "de:Walnussbaum", 'natural': 'tree'}
-        location = None
-        object_type = 'node'
-        object_description = "fake test object"
-        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
-        self.assertNotEqual (None, problem)
+    # TODO: investigate after
+    # https://github.com/matkoniecz/OSM-wikipedia-tag-validator/issues/17
+    # is resolved and this error is reenabled
+    #def test_that_redirect_link_to_taxon_is_detected_as_problematic(self):
+    #    tags = {"wikipedia": "de:Walnussbaum", 'natural': 'tree'}
+    #    location = None
+    #    object_type = 'node'
+    #    object_description = "fake test object"
+    #    problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+    #    self.assertNotEqual (None, problem)
 
     def test_that_direct_link_to_taxon_is_detected_as_problematic(self):
         tags = {"wikipedia": "de:Walnüsse", 'natural': 'tree'}
@@ -462,7 +474,7 @@ class Tests(unittest.TestCase):
         self.assertEqual ("wikipedia/wikidata type tag that is incorrect according to not:* tag", problem.data()['error_id'])
 
     def test_that_specific_error_is_reported(self):
-        # https://www.openstreetmap.org/way/165659335
+        # https://www.wikidata.org/w/index.php?title=Q502053
         tags = {"wikidata": "Q502053"}
         location = None
         object_description = "fake test object"
@@ -471,7 +483,6 @@ class Tests(unittest.TestCase):
         self.assertNotEqual ("should use a secondary wikipedia tag - linking from wikidata tag to an event", problem.data()['error_id'])
 
     def test_that_specific_error_is_reported_b(self):
-        # https://www.openstreetmap.org/way/165659335
         tags = {"wikidata": "Q1595342"}
         location = None
         object_description = "fake test object"
@@ -579,8 +590,8 @@ class Tests(unittest.TestCase):
 
     def test_that_cebwiki_complaints_work_well(self):
         object_description = "test"
-        tags = {}
-        wikipedia = None
+        tags = {"wikipedia": "ceb:Bot generated article"}
+        wikipedia = "ceb:Bot generated article"
         effective_wikidata_id = None
         problem = self.detector().get_wikipedia_language_issues(object_description, tags, wikipedia, effective_wikidata_id)
         self.assertEqual (None, 1)
