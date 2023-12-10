@@ -1165,11 +1165,6 @@ class WikimediaLinkIssueDetector:
         for base_type_id in (parent_categories):
             returned.append(base_type_id)
             # TODO is this used: get_all_types_describing_wikidata_object
-            instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
-            if instance_ids != None:
-                for instance_id in instance_ids:
-                    if instance_id not in self.ignored_entries_in_wikidata_ontology():
-                        returned.append(instance_id)
 
         # subclasses, of "is instance of"
         root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id)
