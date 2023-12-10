@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/matkoniecz/wikibrain",
     packages=setuptools.find_packages(),
-    install_requires = [
+    install_requires=[
         'geopy>=1.11.0',
         'nose>=1.3.7',
         'wikimedia-connection>=0.0.2',

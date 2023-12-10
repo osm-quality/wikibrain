@@ -6,14 +6,14 @@ def main():
 
     # official_languages_from_wikidata.csv obtained from Wikidata
     # https://www.wikidata.org/w/index.php?title=Wikidata:Request_a_query&oldid=1776349815#Listing_countries_where_languages_have_status_of_an_official_language
-    
+
     with open('official_languages_from_wikidata.csv') as csvfile:
         reader = csv.reader(csvfile)
         headers = next(reader, None)
         for row in reader:
             language_name = row[1]
             wikidata_id = row[5].replace("http://www.wikidata.org/entity/", "")
-            if wikidata_id == "Q504081": # Greek military junta of 1967–1974 (yes, Wikidata as source was a mistake)
+            if wikidata_id == "Q504081":  # Greek military junta of 1967–1974 (yes, Wikidata as source was a mistake)
                 continue
             if "Sign Language" in language_name:
                 continue
@@ -41,6 +41,7 @@ def main():
             returned += prefix + tab + "return [\"" + country_wikidata_where_language_is_official + "\"] # " + rows[0][6] + "\n"
         print(returned)
 
+
 def get_language_code_from_row(row):
     language_codes = []
     if row[2] != "":
@@ -50,5 +51,6 @@ def get_language_code_from_row(row):
     if row[4] != "":
         language_codes.append(row[4])
     return language_codes[0]
+
 
 main()

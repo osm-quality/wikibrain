@@ -2,6 +2,7 @@ import unittest
 from wikibrain.apply_changes import apply_changes
 from wikibrain.apply_changes import PrerequisiteFailedError
 
+
 class Tests(unittest.TestCase):
     def test_for_apply_changes_function_presence(self):
         tags = {}
@@ -49,6 +50,7 @@ class Tests(unittest.TestCase):
         change = [{'from': {'new_key': None}, 'to': {'new_key': 'qweert'}}]
         tags = apply_changes({'key': 'value'}, change)
         self.assertEqual({'key': 'value', 'new_key': 'qweert'}, tags)
+
 
 if __name__ == '__main__':
     unittest.main()

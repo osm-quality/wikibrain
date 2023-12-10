@@ -2,21 +2,23 @@ def skipped_cases():
     # exceptions/whitelist
     return [
         # in test category, but requiring survey on the ground
-        "Q106617236", # https://www.openstreetmap.org/node/10974264904 may actually qualify as a tourism attraction
+        "Q106617236",  # https://www.openstreetmap.org/node/10974264904 may actually qualify as a tourism attraction
 
         # exception to a general category
-        "Q279012", # https://www.openstreetmap.org/node/5071422202 copyright trap that got famous enough to be mappable 
+        "Q279012",  # https://www.openstreetmap.org/node/5071422202 copyright trap that got famous enough to be mappable
     ]
+
 
 def blacklisted_and_unfixable_ids():
     return [
         'Q1456883',
-        'Q98272514', # "Falling stones protection nets" https://www.wikidata.org/wiki/Q98272514
-        'Q3591778', # dew pond
-        'Q17172602', # monumental cross
-        'Q937114', # ghost bike https://www.wikidata.org/wiki/Q937114
-        'Q3993741', # https://www.openstreetmap.org/note/3453837
+        'Q98272514',  # "Falling stones protection nets" https://www.wikidata.org/wiki/Q98272514
+        'Q3591778',  # dew pond
+        'Q17172602',  # monumental cross
+        'Q937114',  # ghost bike https://www.wikidata.org/wiki/Q937114
+        'Q3993741',  # https://www.openstreetmap.org/note/3453837
     ]
+
 
 def blacklist_of_unlinkable_entries():
     return {
@@ -167,7 +169,7 @@ def blacklist_of_unlinkable_entries():
         'Q17026595': {'prefix': 'brand:', 'expected_tags': {'shop': 'tiles'}, 'name': 'Topps Tiles'},
 
         'Q48881': {'prefix': 'brand:', 'expected_tags': {'shop': 'paint'}, 'name': 'Sherwin-Williams'},
-        
+
         'Q7191691': {'prefix': 'brand:', 'expected_tags': {'shop': 'interior_decoration'}, 'name': 'Pier 1 Imports'},
         'Q1017972': {'prefix': 'brand:', 'expected_tags': {'shop': 'interior_decoration'}, 'name': 'Butlers'},
         'Q10730152': {'prefix': 'brand:', 'expected_tags': {'shop': 'interior_decoration'}, 'name': 'Søstrene Grene'},
@@ -464,7 +466,7 @@ def blacklist_of_unlinkable_entries():
         'Q1941209': {'prefix': 'brand:', 'expected_tags': {}, 'name': 'Mlekpol'},
 
         'Q564213': {'prefix': 'brand:', 'expected_tags': {'shop': 'coffee'}, 'name': 'Tchibo'},
-        
+
         'Q7996831': {'prefix': 'brand:', 'expected_tags': {'shop': 'tea'}, 'name': 'Whittard of Chelsea'},
 
         'Q37158': {'prefix': 'brand:', 'expected_tags': {'amenity': 'cafe'}, 'name': 'Starbucks'},
@@ -505,8 +507,8 @@ def blacklist_of_unlinkable_entries():
         'Q8054428': {'prefix': 'brand:', 'expected_tags': {'amenity': 'ice_cream'}, 'name': 'Yogurtland'},
 
         'Q4207246': {'prefix': 'brand:', 'expected_tags': {'shop': 'herbalist'}, 'name': 'Eu Yan Seng'},
- 
-         'Q15178238': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Adyar Ananda Bhavan'},
+
+        'Q15178238': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Adyar Ananda Bhavan'},
         'Q17123688': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Hussel'},
         'Q61742027': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'Красный пищевик'},
         'Q11307696': {'prefix': 'brand:', 'expected_tags': {'shop': 'confectionery'}, 'name': 'シャトレーゼ'},
@@ -858,7 +860,7 @@ def blacklist_of_unlinkable_entries():
         'Q18385014': {'prefix': 'brand:', 'expected_tags': {'shop': 'stationery'}, 'name': 'Bureau Vallée'},
         'Q1915329': {'prefix': 'brand:', 'expected_tags': {'shop': 'stationery'}, 'name': 'McPaper'},
         'Q7079486': {'prefix': 'brand:', 'expected_tags': {'shop': 'stationery'}, 'name': 'Officeworks'},
-        
+
         'Q5874938': {'prefix': 'brand:', 'expected_tags': {'shop': 'craft'}, 'name': 'Hobby Lobby'},
         'Q22026341': {'prefix': 'brand:', 'expected_tags': {'shop': 'craft'}, 'name': 'Woodcraft'},
         'Q890317': {'prefix': 'brand:', 'expected_tags': {'shop': 'craft'}, 'name': 'Boesner'},
@@ -887,7 +889,7 @@ def blacklist_of_unlinkable_entries():
         'Q4854069': {'prefix': 'brand:', 'expected_tags': {'amenity': 'atm'}, 'name': 'Branco24Horas'},
         'Q5412010': {'prefix': 'brand:', 'expected_tags': {'amenity': 'atm'}, 'name': 'Euronet'},
         'Q74051230': {'prefix': 'brand:', 'expected_tags': {'amenity': 'atm'}, 'name': 'Geldmaat'},
-            
+
         'Q2040264': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'City Union Bank'},
         'Q1160928': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'mBank'},
         'Q2003549': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Axis Bank', 'allowed_tags': {'name:en': 'Axis Bank'}},
@@ -1179,14 +1181,14 @@ def blacklist_of_unlinkable_entries():
         'Q11580676': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': '百五銀行'},
         'Q806620': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Bank Bukopin'},
         'Q916185': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'MKB Bank'},
-        #'Q806950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque de France'}, # some are quite tricky
+        # 'Q806950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bank'}, 'name': 'Banque de France'}, # some are quite tricky
 
         'Q5141641': {'prefix': 'brand:', 'expected_tags': {'amenity': 'payment_terminal'}, 'name': 'Coinstar'},
         'Q4047736': {'prefix': 'brand:', 'expected_tags': {'amenity': 'payment_terminal'}, 'name': 'Qiwi'},
 
         'Q3045894': {'prefix': 'brand:', 'expected_tags': {'amenity': 'parking'}, 'name': 'Effia'},
         'Q11089693': {'prefix': 'brand:', 'expected_tags': {'amenity': 'parking'}, 'name': 'タイムズ'},
-        
+
         'Q971649': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Orlen'},
         'Q154950': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Shell'},
         'Q7072824': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Opet'},
@@ -1282,7 +1284,7 @@ def blacklist_of_unlinkable_entries():
         'Q27225809': {'prefix': 'brand:', 'expected_tags': {'shop': 'bicycle'}, 'name': 'Zweirad-Center Stadler'},
 
         # valid for Århus Kommune itself
-        #'Q240262': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bicycle_rental'}, 'name': 'Århus Kommune'},
+        # 'Q240262': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bicycle_rental'}, 'name': 'Århus Kommune'},
         'Q3142157': {'prefix': 'brand:', 'expected_tags': {'amenity': 'bicycle_rental'}, 'name': 'Bluebikes'},
 
         'Q4826087': {'prefix': 'brand:', 'expected_tags': {'shop': 'car_parts'}, 'name': 'AutoZone'},
@@ -1517,10 +1519,10 @@ def blacklist_of_unlinkable_entries():
         'Q3380773': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Marrybrown'},
         'Q15715284': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'TKK Fried Chicken'},
         'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Burger King'},
-        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Бургер Кинг'},
-        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'バーガーキング'},
-        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '汉堡王'},
-        #'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '漢堡王'},
+        # 'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Бургер Кинг'},
+        # 'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'バーガーキング'},
+        # 'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '汉堡王'},
+        # 'Q177054': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': '漢堡王'},
         'Q1397976': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Fatburger'},
         'Q2589409': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'Sbarro'},
         'Q10846129': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fast_food'}, 'name': 'The Halal Guys'},
@@ -1802,8 +1804,8 @@ def blacklist_of_unlinkable_entries():
         'Q1273099': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'HanseMerkur'},
         'Q1792071': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Nürnberger'},
         'Q2285066': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'Signal Iduna'},
-        #weird school case
-        #'Q835141': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'AOK'},
+        # weird school case
+        # 'Q835141': {'prefix': 'brand:', 'expected_tags': {'office': 'insurance'}, 'name': 'AOK'},
 
         'Q6943861': {'prefix': 'brand:', 'expected_tags': {'office': 'financial'}, 'name': 'Muthoot Finance'},
 
@@ -1826,10 +1828,10 @@ def blacklist_of_unlinkable_entries():
         'Q353494': {'prefix': 'brand:', 'expected_tags': {'office': 'employment_agency'}, 'name': 'Adecco'},
         'Q1472539': {'prefix': 'brand:', 'expected_tags': {'office': 'employment_agency'}, 'name': 'Manpower'},
         'Q267840': {'prefix': 'brand:', 'expected_tags': {'office': 'employment_agency'}, 'name': 'Randstad'},
-        
+
         'Q493751': {'prefix': 'brand:', 'expected_tags': {'office': 'consulting'}, 'name': 'KPMG'},
         'Q488048': {'prefix': 'brand:', 'expected_tags': {'office': 'consulting'}, 'name': 'PwC'},
-        
+
         'Q19995004': {'prefix': 'brand:', 'expected_tags': {'office': 'coworking'}, 'name': 'WeWork'},
         'Q761072': {'prefix': 'brand:', 'expected_tags': {'office': 'coworking'}, 'name': 'Regus'},
 
@@ -1877,7 +1879,7 @@ def blacklist_of_unlinkable_entries():
         'Q3736439': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Duck'}}, # "common name for numerous species in the waterfowl family Anatidae which also includes swans and geese. Ducks are divided among several subfamilies in the family Anatidae; they do not represent a monophyletic group (the group of all descendants of a single common ancestral species) but a form taxon, since swans and geese are not considered ducks."
         'Q41050': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Orangutan'}},
         'Q23390': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Deer'}},
-        'Q25894': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'antelope'}}, # term referring to many even-toed ungulate species
+        'Q25894': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'antelope'}},  # term referring to many even-toed ungulate species
         'Q34718': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
         'Q677014': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
         'Q848656': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
@@ -1885,7 +1887,7 @@ def blacklist_of_unlinkable_entries():
         'Q3887135': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
         'Q858264': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
         'Q21755': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},
-        'Q5452918': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}}, # infraorder of mammals: "higher primates": New World monkeys, Old World monkeys and apes, including humans
+        'Q5452918': {'prefix': 'genus:', 'expected_tags': {'attraction': 'animal'}},  # infraorder of mammals: "higher primates": New World monkeys, Old World monkeys and apes, including humans
 
         # https://bs.wikipedia.org/wiki/Razgovor:Lipa_(biljka) - duplicate reported
         'Q127849': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Lipa', 'genus:bs': 'Lipa'}},
@@ -1906,7 +1908,7 @@ def blacklist_of_unlinkable_entries():
         'Q161253': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Quercus palustris', 'name:pl': 'Dąb błotny'}},
         'Q25243': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Brzoza', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q128887': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus:pl': 'Jesion', 'genus:en': 'Ash', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-        'Q18674606': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jabłoń domowa', 'species': 'Malus domestic', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},        
+        'Q18674606': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jabłoń domowa', 'species': 'Malus domestic', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q161364': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'Red maple', 'species': 'Acer rubrum', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q156907': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:pl': 'Jesion wyniosły', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
 
@@ -1927,7 +1929,7 @@ def blacklist_of_unlinkable_entries():
         'Q200339': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q190294': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q159857': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
-        'Q2934': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},        
+        'Q2934': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q79803': {'prefix': 'breed:', 'expected_tags': {'attraction': 'animal'}},
         'Q121439': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q25882': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
@@ -2029,20 +2031,20 @@ def blacklist_of_unlinkable_entries():
         'Q834329': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
 
 
-        #breeds, subspecies, varieties - not sure about their handling
+        # breeds, subspecies, varieties - not sure about their handling
         'Q58903': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q787': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Domestic pig'}},
         'Q2305786': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:pl': 'Osły'}},
         'Q19707': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Domestic donkey', 'name:pl': 'Osioł'}},
-        'Q2605752': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # goat breed
-        'Q2293037': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # sheep breed
-        'Q1469688': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # sheep breed
-        'Q486745': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # sheep breed
-        'Q314363': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # sheep breed
-        'Q220213': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # sheep breed
-        'Q818254': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # breed
-        'Q767508': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # group of small breeds (carious small pigs)
-        'Q182573': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Liger'}}, # Lion + tiger hybrid
+        'Q2605752': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # goat breed
+        'Q2293037': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # sheep breed
+        'Q1469688': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # sheep breed
+        'Q486745': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # sheep breed
+        'Q314363': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # sheep breed
+        'Q220213': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # sheep breed
+        'Q818254': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # breed
+        'Q767508': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # group of small breeds (carious small pigs)
+        'Q182573': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Liger'}},  # Lion + tiger hybrid
         'Q780': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Chicken'}},
         'Q848706': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Domesticated turkey'}},
         'Q149017': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Domestic rabbit'}},
@@ -2051,10 +2053,10 @@ def blacklist_of_unlinkable_entries():
         'Q11338316': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q869140': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q80952': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
-        'Q516612': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # horse breed
-        'Q2169710': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Miniature horse'}}, # horse type
-        'Q1988192': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # subspecies
-        'Q729713': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}}, # subspecies of leopard
+        'Q516612': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # horse breed
+        'Q2169710': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Miniature horse'}},  # horse type
+        'Q1988192': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # subspecies
+        'Q729713': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # subspecies of leopard
         'Q192967': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q993274': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q216441': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},

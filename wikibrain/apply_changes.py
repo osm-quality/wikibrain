@@ -1,6 +1,7 @@
 class PrerequisiteFailedError(Exception):
     pass
 
+
 def apply_changes(tags, tagging_changes):
     for change in tagging_changes:
         for removed in change["from"]:

@@ -9,7 +9,7 @@ forced_refresh = False
 article = "he:גשר יהודית".split(":")
 wikimedia_connection.get_data_from_wikidata(article[0], article[1], forced_refresh)
 
-kill = "".split() #NOT FLUSHED YET!
+kill = "".split()  # NOT FLUSHED YET!
 """
 # use like this:
 kill = ["Q45621"]

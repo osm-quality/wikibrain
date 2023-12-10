@@ -7,6 +7,7 @@ import yaml
 from wikibrain import wikipedia_knowledge
 from wikibrain import wikidata_knowledge
 
+
 class ErrorReport:
     def __init__(self, error_message=None, error_general_intructions=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
         # to include something in serialization - modify data function
@@ -15,7 +16,7 @@ class ErrorReport:
         self.error_general_intructions = error_general_intructions
         self.debug_log = debug_log
         self.prerequisite = prerequisite
-        self.extra_data = extra_data # TODO - replace by more specific
+        self.extra_data = extra_data  # TODO - replace by more specific
         self.proposed_tagging_changes = proposed_tagging_changes
         self.osm_object_url = None
         self.location = None
@@ -31,20 +32,22 @@ class ErrorReport:
 
     def data(self):
         return dict(
-            error_id = self.error_id,
-            error_message = self.error_message,
-            error_general_intructions = self.error_general_intructions,
-            debug_log = self.debug_log,
-            osm_object_url = self.osm_object_url,
-            proposed_tagging_changes = self.proposed_tagging_changes,
-            extra_data = self.extra_data,
-            prerequisite = self.prerequisite,
-            location = self.location,
-            tags = self.tags,
+            error_id=self.error_id,
+            error_message=self.error_message,
+            error_general_intructions=self.error_general_intructions,
+            debug_log=self.debug_log,
+            osm_object_url=self.osm_object_url,
+            proposed_tagging_changes=self.proposed_tagging_changes,
+            extra_data=self.extra_data,
+            prerequisite=self.prerequisite,
+            location=self.location,
+            tags=self.tags,
         )
+
     def yaml_output(self, filepath):
         with open(filepath, 'a') as outfile:
             yaml.dump([self.data()], outfile, default_flow_style=False)
+
 
 class WikimediaLinkIssueDetector:
     def __init__(self, forced_refresh=False, expected_language_code=None, languages_ordered_by_preference=[], additional_debug=False, allow_requesting_edits_outside_osm=False, allow_false_positives=False):
@@ -69,7 +72,7 @@ class WikimediaLinkIssueDetector:
     def get_the_most_important_problem_generic(self, tags, location, object_type, object_description):
         if self.object_should_be_deleted_not_repaired(object_type, tags):
             return None
-        
+
         something_reportable = self.use_special_properties_allowing_to_ignore_wikipedia_tags(tags)
         if something_reportable != None:
             return something_reportable
@@ -99,12 +102,15 @@ class WikimediaLinkIssueDetector:
                     return None
                 wikidata_simc = wikidata_simc_object[0]['mainsnak']['datavalue']['value']
                 if wikidata_simc != tags.get("teryt:simc"):
-                    message = "mismatching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") where " + str(wikidata_simc) + " is declared and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared. TERYT database may be searched at http://eteryt.stat.gov.pl/eTeryt/rejestr_teryt/udostepnianie_danych/baza_teryt/uzytkownicy_indywidualni/wyszukiwanie/wyszukiwanie.aspx?contrast=default (switch to SIMC tab) "
+                    message = "mismatching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") where " + str(wikidata_simc)
+                    message += " is declared and in osm element, where teryt:simc="
+                    message += tags.get("teryt:simc")
+                    message += " is declared. TERYT database may be searched at http://eteryt.stat.gov.pl/eTeryt/rejestr_teryt/udostepnianie_danych/baza_teryt/uzytkownicy_indywidualni/wyszukiwanie/wyszukiwanie.aspx?contrast=default (switch to SIMC tab) "
                     return ErrorReport(
-                                    error_id = "mismatching teryt:simc codes in wikidata and in osm element",
-                                    error_message = message,
-                                    prerequisite = {'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc")},
-                                    )
+                        error_id="mismatching teryt:simc codes in wikidata and in osm element",
+                        error_message=message,
+                        prerequisite={'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc")},
+                    )
                 wikipedia_expected = self.get_best_interwiki_link_by_id(tags.get("wikidata"))
                 all_languages = wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance()
                 if (self.languages_ordered_by_preference == []):
@@ -116,17 +122,17 @@ class WikimediaLinkIssueDetector:
                     if wikipedia_expected != None:
                         message = "new wikipedia tag " + wikipedia_expected + " proposed based on matching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
                         return ErrorReport(
-                                        error_id = "wikipedia needs to be updated based on wikidata code and teryt:simc identifier",
-                                        error_message = message,
-                                        prerequisite = {'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc"), 'wikipedia': tags.get("wikipedia"), },
-                                        )
+                            error_id="wikipedia needs to be updated based on wikidata code and teryt:simc identifier",
+                            error_message=message,
+                            prerequisite={'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc"), 'wikipedia': tags.get("wikipedia"), },
+                        )
                     else:
                         message = " it seems that wikipedia tag should be removed given matching teryt:simc codes in wikidata (" + tags.get("wikidata") + ") and in osm element, where teryt:simc=" + tags.get("teryt:simc") + " is declared"
                         return ErrorReport(
-                                        error_id = "wikipedia tag needs to be removed based on wikidata code and teryt:simc identifier",
-                                        error_message = message,
-                                        prerequisite = {'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc"), 'wikipedia': tags.get("wikipedia"), },
-                                        )
+                            error_id="wikipedia tag needs to be removed based on wikidata code and teryt:simc identifier",
+                            error_message=message,
+                            prerequisite={'wikidata': tags.get("wikidata"), "teryt:simc": tags.get("teryt:simc"), 'wikipedia': tags.get("wikipedia"), },
+                        )
         return None
 
     def critical_structural_issue_report(self, object_type, tags):
@@ -211,7 +217,7 @@ class WikimediaLinkIssueDetector:
     def replace_prerequisites_to_match_actual_tags(self, something_reportable, tags):
         """
         hack necessary in some cases :(
-        
+
         object may have no wikidata tag at all, but it may be calculated from wikipedia tag
         in such case report may be made about wikidata_id indicating a clear issue, such as link to a disambig page
 
@@ -232,12 +238,12 @@ class WikimediaLinkIssueDetector:
         effective_wikipedia = self.get_effective_wikipedia_tag(tags)
         effective_wikidata_id = self.get_effective_wikidata_tag(tags)
         # Note that wikipedia may be None - maybe there is just a Wikidata entry!
-        # Note that effective_wikidata_id may be None - maybe it was not created yet! 
+        # Note that effective_wikidata_id may be None - maybe it was not created yet!
 
         # IDEA links from buildings to parish are wrong - but from religious admin are OK https://www.wikidata.org/wiki/Q11808149
 
         if effective_wikidata_id in wikidata_knowledge.skipped_cases():
-            return None # manually excluded
+            return None  # manually excluded
 
         something_reportable = self.get_problem_based_on_wikidata_blacklist(effective_wikidata_id, tags.get('wikidata'), effective_wikipedia)
         if something_reportable != None:
@@ -246,17 +252,17 @@ class WikimediaLinkIssueDetector:
         if tags.get("information") == "board":
             if tags.get("wikipedia") != None:
                 return ErrorReport(
-                    error_id = "information board with wikipedia tag, not subject:wikipedia",
-                    error_message = "information board topic must be tagged with subject:wikipedia tag - not with wikipedia tag",
-                    prerequisite = {'wikipedia': tags.get("wikipedia"), "information": tags.get("information")},
-                    )
+                    error_id="information board with wikipedia tag, not subject:wikipedia",
+                    error_message="information board topic must be tagged with subject:wikipedia tag - not with wikipedia tag",
+                    prerequisite={'wikipedia': tags.get("wikipedia"), "information": tags.get("information")},
+                )
             if tags.get("wikidata") != None:
                 return ErrorReport(
-                    error_id = "information board with wikidata tag, not subject:wikidata",
-                    error_message = "information board topic must be tagged with subject:wikidata tag - not with wikipedia tag",
-                    prerequisite = {'wikidata': tags.get("wikidata"), "information": tags.get("information")},
-                    )
-        
+                    error_id="information board with wikidata tag, not subject:wikidata",
+                    error_message="information board topic must be tagged with subject:wikidata tag - not with wikipedia tag",
+                    prerequisite={'wikidata': tags.get("wikidata"), "information": tags.get("information")},
+                )
+
         for key in tags.keys():
             if key.find("not:") == 0:
                 being_checked_key = key[4:]
@@ -264,10 +270,10 @@ class WikimediaLinkIssueDetector:
                     if tags[being_checked_key] == tags[key]:
                         if "wikipedia" in key or "wikidata" in key:
                             return ErrorReport(
-                                error_id = "wikipedia/wikidata type tag that is incorrect according to not:* tag",
-                                error_message = being_checked_key + "=" + tags.get(being_checked_key) +  " is present despite that " + key + "=" + tags[key] + " is also present - at least one of them is wrong",
-                                prerequisite = {being_checked_key: tags.get(being_checked_key), key: tags.get(key)},
-                                )
+                                error_id="wikipedia/wikidata type tag that is incorrect according to not:* tag",
+                                error_message=being_checked_key + "=" + tags.get(being_checked_key) + " is present despite that " + key + "=" + tags[key] + " is also present - at least one of them is wrong",
+                                prerequisite={being_checked_key: tags.get(being_checked_key), key: tags.get(key)},
+                            )
                         else:
                             print("not: key (not concerning wikipedia/wikidata) is being ignored in", object_description)
 
@@ -294,25 +300,24 @@ class WikimediaLinkIssueDetector:
 
         if "bridge:wikipedia" and "bridge:wikidata" in tags:
             return ErrorReport(
-                        error_id = "bridge:wikipedia and bridge:wikidata - move to bridge outline",
-                        error_message = "bridge:wikipedia and bridge:wikidata links should be tagged on man_made=bridge outline - without prefixes as wikipedia=* and wikidata=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
-                        prerequisite = {'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
-                        )
+                error_id="bridge:wikipedia and bridge:wikidata - move to bridge outline",
+                error_message="bridge:wikipedia and bridge:wikidata links should be tagged on man_made=bridge outline - without prefixes as wikipedia=* and wikidata=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
+                prerequisite={'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
+            )
 
         if "bridge:wikipedia" in tags:
             return ErrorReport(
-                        error_id = "bridge:wikipedia - move to bridge outline",
-                        error_message = "bridge:wikipedia link should be tagged on man_made=bridge outline - without prefix, as just wikipedia=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
-                        prerequisite = {'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
-                        )
+                error_id="bridge:wikipedia - move to bridge outline",
+                error_message="bridge:wikipedia link should be tagged on man_made=bridge outline - without prefix, as just wikipedia=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
+                prerequisite={'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
+            )
 
         if "bridge:wikidata" in tags:
             return ErrorReport(
-                        error_id = "bridge:wikipedia and bridge:wikidata - move to bridge outline",
-                        error_message = "bridge:wikidata link should be tagged on man_made=bridge outline - without prefix, as just wikidata=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
-                        prerequisite = {'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
-                        )
-
+                error_id="bridge:wikipedia and bridge:wikidata - move to bridge outline",
+                error_message="bridge:wikidata link should be tagged on man_made=bridge outline - without prefix, as just wikidata=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
+                prerequisite={'bridge:wikipedia': tags.get("bridge:wikipedia"), 'bridge:wikidata': tags.get("bridge:wikipedia")},
+            )
 
         return None
 
@@ -326,14 +331,14 @@ class WikimediaLinkIssueDetector:
             return None
 
         message = ("it is a typical wrong link and it has an obvious replacement, " +
-            prefix + "wikipedia/" + prefix + "wikidata should be used instead")
+                   prefix + "wikipedia/" + prefix + "wikidata should be used instead")
 
         return ErrorReport(
-                        error_id = "blacklisted connection with known replacement",
-                        error_message = message,
-                        prerequisite = {'wikipedia': link, 'wikidata': present_wikidata_id},
-                        extra_data = prefix
-                        )
+            error_id="blacklisted connection with known replacement",
+            error_message=message,
+            prerequisite={'wikipedia': link, 'wikidata': present_wikidata_id},
+            extra_data=prefix
+        )
 
     def check_is_wikidata_page_existing(self, key, present_wikidata_id):
         if key in self.not_an_actual_wikidata_keys():
@@ -355,77 +360,77 @@ class WikimediaLinkIssueDetector:
                 return None
         link = wikimedia_connection.wikidata_url(present_wikidata_id)
         return ErrorReport(
-                        error_id = error_id_description,
-                        error_message = key + " tag present on element points to not existing element (" + link + ")",
-                        prerequisite = {key: present_wikidata_id},
-                        )
+            error_id=error_id_description,
+            error_message=key + " tag present on element points to not existing element (" + link + ")",
+            prerequisite={key: present_wikidata_id},
+        )
 
     def check_is_wikipedia_link_clearly_malformed(self, link):
         if self.is_wikipedia_tag_clearly_broken(link):
             return ErrorReport(
-                            error_id = "malformed wikipedia tag",
-                            error_message = "malformed value in wikipedia tag (" + link + ")",
-                            prerequisite = {'wikipedia': link},
-                            )
+                error_id="malformed wikipedia tag",
+                error_message="malformed value in wikipedia tag (" + link + ")",
+                prerequisite={'wikipedia': link},
+            )
         else:
             language_code = wikimedia_connection.get_language_code_from_link(link)
             if language_code in wikipedia_knowledge.WikipediaKnowledge.wikipedia_language_code_redirects():
                 return ErrorReport(
-                                error_id = "wikipedia tag using redirecting language code",
-                                error_message = "language code (" + language_code + ") in wikipedia tag (" + link + ") points to redirecting language code, see https://en.wikipedia.org/wiki/List_of_Wikipedias#Redirects",
-                                prerequisite = {'wikipedia': link},
-                                )
+                    error_id="wikipedia tag using redirecting language code",
+                    error_message="language code (" + language_code + ") in wikipedia tag (" + link + ") points to redirecting language code, see https://en.wikipedia.org/wiki/List_of_Wikipedias#Redirects",
+                    prerequisite={'wikipedia': link},
+                )
             if language_code not in wikimedia_connection.interwiki_language_codes():
                 return ErrorReport(
-                                error_id = "malformed wikipedia tag - nonexisting language code",
-                                error_message = "language code (" + language_code + ") in wikipedia tag (" + link + ") points to nonexisting Wikipedia",
-                                prerequisite = {'wikipedia': link},
-                                )
+                    error_id="malformed wikipedia tag - nonexisting language code",
+                    error_message="language code (" + language_code + ") in wikipedia tag (" + link + ") points to nonexisting Wikipedia",
+                    prerequisite={'wikipedia': link},
+                )
             return None
 
     def check_is_wikidata_link_clearly_malformed(self, key, link):
         if key == "name:etymology:wikidata:missing":
             if link == "yes":
                 return ErrorReport(
-                                error_id = "name:etymology:wikidata:missing",
-                                error_message = "name:etymology:wikidata:missing with value '" + link + "' - a really dubious tagging scheme, just create missing wikidata entries if you really need them. See also https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1800873697#Is_someone_who_is_a_patron_of_a_street_always_notable_enough_for_Wikidata_identifier?",
-                                prerequisite = {key: link},
-                                )
+                    error_id="name:etymology:wikidata:missing",
+                    error_message="name:etymology:wikidata:missing with value '" + link + "' - a really dubious tagging scheme, just create missing wikidata entries if you really need them. See also https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1800873697#Is_someone_who_is_a_patron_of_a_street_always_notable_enough_for_Wikidata_identifier?",
+                    prerequisite={key: link},
+                )
 
         if self.is_wikidata_tag_clearly_broken(link):
             if key == "wikidata":
                 return ErrorReport(
-                                error_id = "malformed wikidata tag",
-                                error_message = "malformed value in " + key + " tag (" + link + ")",
-                                prerequisite = {key: link},
-                                )
+                    error_id="malformed wikidata tag",
+                    error_message="malformed value in " + key + " tag (" + link + ")",
+                    prerequisite={key: link},
+                )
             elif key not in self.not_an_actual_wikidata_keys():
                 if key.endswith(":wikidata"):
                     prefix = key[:-len(":wikidata")]
                     return ErrorReport(
-                                    error_id = "malformed secondary wikidata tag - for " + prefix + " prefixed tags",
-                                    error_message = "malformed value in " + key + " tag (" + link + ")",
-                                    prerequisite = {key: link},
-                                    )
+                        error_id="malformed secondary wikidata tag - for " + prefix + " prefixed tags",
+                        error_message="malformed value in " + key + " tag (" + link + ")",
+                        prerequisite={key: link},
+                    )
                 else:
                     return ErrorReport(
-                                    error_id = "malformed secondary wikidata tag",
-                                    error_message = "malformed value in " + key + " tag (" + link + ")",
-                                    prerequisite = {key: link},
-                                    )
+                        error_id="malformed secondary wikidata tag",
+                        error_message="malformed value in " + key + " tag (" + link + ")",
+                        prerequisite={key: link},
+                    )
         else:
             return None
 
     def not_an_actual_wikidata_keys(self):
-        return ["note:wikidata", "source:wikidata"] # have freeform format
+        return ["note:wikidata", "source:wikidata"]  # have freeform format
 
     def check_is_wikidata_tag_is_misssing(self, wikipedia, present_wikidata_id, wikidata_id):
         if present_wikidata_id == None and wikidata_id != None:
             return ErrorReport(
-                            error_id = "wikidata from wikipedia tag",
-                            error_message = wikidata_id + " may be added as wikidata tag based on wikipedia tag",
-                            prerequisite = {'wikipedia': wikipedia, 'wikidata': None}
-                            )
+                error_id="wikidata from wikipedia tag",
+                error_message=wikidata_id + " may be added as wikidata tag based on wikipedia tag",
+                prerequisite={'wikipedia': wikipedia, 'wikidata': None}
+            )
         else:
             return None
 
@@ -458,12 +463,12 @@ class WikimediaLinkIssueDetector:
         if proposed_new_target != None:
             message += " wikidata tag present on element points to an existing article"
         return ErrorReport(
-                    error_id = "wikipedia tag links to 404",
-                    error_general_intructions = error_general_intructions,
-                    error_message = message,
-                    prerequisite = {'wikipedia': language_code+":"+article_name},
-                    proposed_tagging_changes = [{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": proposed_new_target}}],
-                    )
+            error_id="wikipedia tag links to 404",
+            error_general_intructions=error_general_intructions,
+            error_message=message,
+            prerequisite={'wikipedia': language_code+":"+article_name},
+            proposed_tagging_changes=[{"from": {"wikipedia": language_code+":"+article_name}, "to": {"wikipedia": proposed_new_target}}],
+        )
 
     def wikidata_data_quality_warning(self):
         return "REMEMBER TO VERIFY! WIKIDATA QUALITY MAY BE POOR! WIKIDATA MUST NOT BE USED AS SOURCE! ALWAYS VERIFY!"
@@ -476,11 +481,11 @@ class WikimediaLinkIssueDetector:
             error_general_intructions = "Wikidata claims that this object no longer exists. Historical, no longer existing object should not be mapped in OSM (except temporary marking to avoid remapping them from aerial imagery or similar sources) - so it means that either Wikidata is mistaken or has only partial data - for example it is fine to link ruins of a church to its wikipedia entry ( see https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1361617968#Tagging_ruins/remains_left_after_object ) or wikipedia/wikidata tag is wrong or OSM has an outdated object that should be removed." + " " + self.wikidata_data_quality_warning()
             message = ""
             return ErrorReport(
-                            error_id = "no longer existing object (according to Wikidata)",
-                            error_general_intructions = error_general_intructions,
-                            error_message = message,
-                            prerequisite = {'wikidata': present_wikidata_id}
-                            )
+                error_id="no longer existing object (according to Wikidata)",
+                error_general_intructions=error_general_intructions,
+                error_message=message,
+                prerequisite={'wikidata': present_wikidata_id}
+            )
 
     def check_is_object_brand_is_existing(self, tags):
         marked_as_defunct = False
@@ -518,11 +523,11 @@ class WikimediaLinkIssueDetector:
             else:
                 raise "supposed to be impossible"
             return ErrorReport(
-                            error_id = state,
-                            error_general_intructions = error_general_intructions,
-                            error_message = message,
-                            prerequisite = {'wikidata': present_wikidata_id}
-                            )
+                error_id=state,
+                error_general_intructions=error_general_intructions,
+                error_message=message,
+                prerequisite={'wikidata': present_wikidata_id}
+            )
 
     def tag_from_wikidata(self, present_wikidata_id, wikidata_property):
         from_wikidata = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, wikidata_property)
@@ -534,23 +539,23 @@ class WikimediaLinkIssueDetector:
             return None
         return returned
 
-    def generate_error_report_for_tag_from_wikidata(self, from_wikidata, present_wikidata_id, osm_key, element, id_suffix="", message_suffix = ""):
+    def generate_error_report_for_tag_from_wikidata(self, from_wikidata, present_wikidata_id, osm_key, element, id_suffix="", message_suffix=""):
         if element.get_tag_value(osm_key) == None:
-                return ErrorReport(
-                            error_id = "tag may be added based on wikidata" + id_suffix,
-                            error_message = str(from_wikidata) + " may be added as " + osm_key + " tag based on wikidata entry" + message_suffix + " " + self.wikidata_data_quality_warning(),
-                            prerequisite = {'wikidata': present_wikidata_id, osm_key: None}
-                            )
+            return ErrorReport(
+                error_id="tag may be added based on wikidata" + id_suffix,
+                error_message=str(from_wikidata) + " may be added as " + osm_key + " tag based on wikidata entry" + message_suffix + " " + self.wikidata_data_quality_warning(),
+                prerequisite={'wikidata': present_wikidata_id, osm_key: None}
+            )
         elif element.get_tag_value(osm_key) != from_wikidata:
-                if not self.allow_requesting_edits_outside_osm:
-                    # typically Wikidata is wrong, not OSM
-                    return None
-                message = str(from_wikidata) + " conflicts with " + element.get_tag_value(osm_key) + " for " + osm_key + " tag based on wikidata entry - note that OSM value may be OK and Wikidata entry is wrong, in that case one may either ignore this error or fix Wikidata entry" + message_suffix + " " + self.wikidata_data_quality_warning()
-                return ErrorReport(
-                            error_id = "tag conflict with wikidata value" + id_suffix,
-                            error_message = message,
-                            prerequisite = {'wikidata': present_wikidata_id, osm_key: element.get_tag_value(osm_key)}
-                            )
+            if not self.allow_requesting_edits_outside_osm:
+                # typically Wikidata is wrong, not OSM
+                return None
+            message = str(from_wikidata) + " conflicts with " + element.get_tag_value(osm_key) + " for " + osm_key + " tag based on wikidata entry - note that OSM value may be OK and Wikidata entry is wrong, in that case one may either ignore this error or fix Wikidata entry" + message_suffix + " " + self.wikidata_data_quality_warning()
+            return ErrorReport(
+                error_id="tag conflict with wikidata value" + id_suffix,
+                error_message=message,
+                prerequisite={'wikidata': present_wikidata_id, osm_key: element.get_tag_value(osm_key)}
+            )
 
     def get_old_style_wikipedia_keys(self, tags):
         old_style_wikipedia_tags = []
@@ -574,10 +579,10 @@ class WikimediaLinkIssueDetector:
         for key in old_style_wikipedia_tags:
             if not self.check_is_it_valid_key_for_old_style_wikipedia_tag(key):
                 return ErrorReport(
-                    error_id = "invalid old-style wikipedia tag",
-                    error_message = "wikipedia tag in outdated form (" + key + "), is not using any known language code",
-                    prerequisite = {key: tags[key]},
-                    )
+                    error_id="invalid old-style wikipedia tag",
+                    error_message="wikipedia tag in outdated form (" + key + "), is not using any known language code",
+                    prerequisite={key: tags[key]},
+                )
         return None
 
     def check_is_it_valid_key_for_old_style_wikipedia_tag(self, key):
@@ -587,7 +592,7 @@ class WikimediaLinkIssueDetector:
         return False
 
     def normalized_id_with_conflicts_list(self, links, wikidata_id):
-        normalized_link_form = wikidata_id #may be None
+        normalized_link_form = wikidata_id  # may be None
         conflict_list = []
         for link in links:
             if link == None:
@@ -646,28 +651,28 @@ class WikimediaLinkIssueDetector:
         normalized, conflicts = self.normalized_id_with_conflicts_list(links, tags.get('wikidata'))
         if conflicts != []:
             return ErrorReport(
-                error_id = "wikipedia tag in outdated form and there is mismatch between links",
-                error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + ", with following conflicts: " + str(conflicts) + "). Mismatch between different links happened and requires human judgment to solve.",
-                prerequisite = prerequisite,
-                )
+                error_id="wikipedia tag in outdated form and there is mismatch between links",
+                error_message="wikipedia tag in outdated form (" + str(wikipedia_type_keys) + ", with following conflicts: " + str(conflicts) + "). Mismatch between different links happened and requires human judgment to solve.",
+                prerequisite=prerequisite,
+            )
         elif tags.get('wikipedia') == None:
             new_wikipedia = self.get_best_interwiki_link_by_id(normalized)
             return ErrorReport(
-                error_id = "wikipedia tag from wikipedia tag in an outdated form",
-                error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "), wikipedia tag may be added",
-                prerequisite = prerequisite,
-                proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": new_wikipedia}}],
-                )
+                error_id="wikipedia tag from wikipedia tag in an outdated form",
+                error_message="wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "), wikipedia tag may be added",
+                prerequisite=prerequisite,
+                proposed_tagging_changes=[{"from": {"wikipedia": None}, "to": {"wikipedia": new_wikipedia}}],
+            )
         else:
             from_tags = {}
             for key in wikipedia_type_keys:
                 from_tags[key] = tags.get(key)
             return ErrorReport(
-                error_id = "wikipedia tag in an outdated form for removal",
-                error_message = "wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "), with wikipedia and wikidata tag present and may be safely removed",
-                prerequisite = prerequisite,
-                proposed_tagging_changes = [{"from": from_tags, "to": {}}],
-                )
+                error_id="wikipedia tag in an outdated form for removal",
+                error_message="wikipedia tag in outdated form (" + str(wikipedia_type_keys) + "), with wikipedia and wikidata tag present and may be safely removed",
+                prerequisite=prerequisite,
+                proposed_tagging_changes=[{"from": from_tags, "to": {}}],
+            )
 
     def get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(self, present_wikidata_id, tags):
         location = (None, None)
@@ -681,26 +686,26 @@ class WikimediaLinkIssueDetector:
             return None
         language_code = wikimedia_connection.get_language_code_from_link(link)
         if language_code in ["ceb"]:
-            return None # not a real Wikipedia
+            return None  # not a real Wikipedia
         elif language_code == self.expected_language_code:
             return ErrorReport(
-                error_id = "wikipedia from wikidata tag",
-                error_message = "without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article, article language is not surprising",
-                prerequisite = {'wikipedia': None, 'wikidata': present_wikidata_id},
-                proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
-                )
+                error_id="wikipedia from wikidata tag",
+                error_message="without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article, article language is not surprising",
+                prerequisite={'wikipedia': None, 'wikidata': present_wikidata_id},
+                proposed_tagging_changes=[{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
+            )
         else:
             return ErrorReport(
-                error_id = "wikipedia from wikidata tag, unexpected language",
-                error_message = "without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article",
-                prerequisite = {'wikipedia': None, 'wikidata': present_wikidata_id},
-                proposed_tagging_changes = [{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
-                )
+                error_id="wikipedia from wikidata tag, unexpected language",
+                error_message="without wikipedia tag, without wikipedia:language tags, with wikidata tag present that provides article",
+                prerequisite={'wikipedia': None, 'wikidata': present_wikidata_id},
+                proposed_tagging_changes=[{"from": {"wikipedia": None}, "to": {"wikipedia": link}}],
+            )
 
     def wikipedia_candidates_based_on_old_style_wikipedia_keys(self, tags, wikipedia_type_keys):
         links = []
         for key in wikipedia_type_keys:
-            language_code = wikimedia_connection.get_text_after_first_colon(key) # wikipedia:pl -> pl
+            language_code = wikimedia_connection.get_text_after_first_colon(key)  # wikipedia:pl -> pl
             article_name = tags.get(key)
             article_link_from_old_style_tag = language_code + ":" + article_name
             if ":" in article_name:
@@ -756,9 +761,9 @@ class WikimediaLinkIssueDetector:
         error_id_suffix = ""
         if wikidata_key != "wikidata":
             error_id_suffix = " - for " + prefix + " prefixed tags"
-        
+
         if prefix == "not":
-            return None # not really worth validating TODO: maybe enable after basically everything else is fixed
+            return None  # not really worth validating TODO: maybe enable after basically everything else is fixed
 
         if present_wikidata_id == None:
             return None
@@ -780,21 +785,21 @@ class WikimediaLinkIssueDetector:
         if maybe_redirected_wikidata_id != present_wikidata_id:
             if maybe_redirected_wikidata_id == wikidata_id_from_article:
                 return ErrorReport(
-                    error_id = "wikipedia wikidata mismatch - follow wikidata redirect" + error_id_suffix,
-                    error_general_intructions = common_message,
-                    error_message = message,
-                    prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
-                    )
+                    error_id="wikipedia wikidata mismatch - follow wikidata redirect" + error_id_suffix,
+                    error_general_intructions=common_message,
+                    error_message=message,
+                    prerequisite={wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
+                )
 
         title_after_possible_redirects = article_name
         try:
             title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
         except wikimedia_connection.TitleViolatesKnownLimits:
             return ErrorReport(
-                            error_id = "malformed wikipedia tag" + error_id_suffix,
-                            error_message = "malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
-                            prerequisite = {wikipedia_key: language_code + ":" + article_name },
-                            )
+                error_id="malformed wikipedia tag" + error_id_suffix,
+                error_message="malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
+                prerequisite={wikipedia_key: language_code + ":" + article_name},
+            )
 
         is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
         if is_article_redirected:
@@ -805,23 +810,23 @@ class WikimediaLinkIssueDetector:
                 message += " article redirects from " + language_code + ":" + article_name + " to " + language_code + ":" + title_after_possible_redirects
                 new_wikipedia_link = language_code+":"+title_after_possible_redirects
                 return ErrorReport(
-                    error_id = "wikipedia wikidata mismatch - follow wikipedia redirect" + error_id_suffix,
-                    error_general_intructions = common_message,
-                    error_message = message,
-                    prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
-                    proposed_tagging_changes = [{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia_link}}],
-                    )
+                    error_id="wikipedia wikidata mismatch - follow wikipedia redirect" + error_id_suffix,
+                    error_general_intructions=common_message,
+                    error_message=message,
+                    prerequisite={wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
+                    proposed_tagging_changes=[{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia_link}}],
+                )
 
         if(self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_id_from_article, present_wikidata_id)):
             new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
             message = "article claims to point to disambig, " + wikidata_key + " does not. " + wikidata_key + " tag is likely to be correct, " + wikipedia_key + " tag almost certainly is not"
             return ErrorReport(
-                error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not" + error_id_suffix,
-                error_general_intructions = common_message,
-                error_message = message,
-                prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
-                proposed_tagging_changes = [{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia}}],
-                )
+                error_id="wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not" + error_id_suffix,
+                error_general_intructions=common_message,
+                error_message=message,
+                prerequisite={wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
+                proposed_tagging_changes=[{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia}}],
+            )
         redirected = self.get_article_name_after_redirect(language_code, article_name)
         if redirected != None:
             link = language_code + ":" + article_name
@@ -832,27 +837,27 @@ class WikimediaLinkIssueDetector:
                 new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
                 message = "article claims to redirect to disambig, " + wikidata_key + " does not. " + wikidata_key + " tag is likely to be correct, " + wikipedia_key + " tag almost certainly is not"
                 return ErrorReport(
-                    error_id = "wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not" + error_id_suffix,
-                    error_general_intructions = common_message,
-                    error_message = message,
-                    prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
-                    proposed_tagging_changes = [{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia}}],
-                    )
+                    error_id="wikipedia wikidata mismatch - wikipedia points to disambiguation page and wikidata does not" + error_id_suffix,
+                    error_general_intructions=common_message,
+                    error_message=message,
+                    prerequisite={wikidata_key: present_wikidata_id, wikipedia_key: language_code+":"+article_name},
+                    proposed_tagging_changes=[{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia}}],
+                )
 
         message = (base_message + " (" +
                    self.compare_wikidata_ids(present_wikidata_id, wikidata_id_from_article) +
                    " wikidata id assigned to linked Wikipedia article)")
         if maybe_redirected_wikidata_id != present_wikidata_id:
             message += " Note that this OSM object has " + wikidata_key + " tag links a redirect ("
-            message += present_wikidata_id  + " to " + maybe_redirected_wikidata_id + ")."
+            message += present_wikidata_id + " to " + maybe_redirected_wikidata_id + ")."
         if is_article_redirected:
             message += " Note that this OSM object has " + wikipedia_key + " tag that links redirect ('"
-            message += article_name  + "' to '" + title_after_possible_redirects + "')."
+            message += article_name + "' to '" + title_after_possible_redirects + "')."
         return ErrorReport(
-            error_id = "wikipedia wikidata mismatch" + error_id_suffix,
-            error_message = message,
-            prerequisite = {wikidata_key: present_wikidata_id, wikipedia_key: language_code + ":" + article_name},
-            )
+            error_id="wikipedia wikidata mismatch" + error_id_suffix,
+            error_message=message,
+            prerequisite={wikidata_key: present_wikidata_id, wikipedia_key: language_code + ":" + article_name},
+        )
 
     def is_first_wikidata_disambig_while_second_points_to_something_not_disambig(self, first, second):
         if first == None:
@@ -901,7 +906,7 @@ class WikimediaLinkIssueDetector:
             return True
         if link[0] != "Q":
             return True
-        if re.search(r"^\d+\Z",link[1:]) == None:
+        if re.search(r"^\d+\Z", link[1:]) == None:
             return True
         return False
 
@@ -917,7 +922,6 @@ class WikimediaLinkIssueDetector:
             return True
         return False
 
-
     def is_language_code_clearly_broken(self, language_code):
         # detects missing language code
         #         unusually long language code
@@ -930,7 +934,7 @@ class WikimediaLinkIssueDetector:
             return False
         if language_code.__len__() > 3:
             return True
-        if re.search("^[a-z]+\Z",language_code) == None:
+        if re.search("^[a-z]+\Z", language_code) == None:
             return True
         return False
 
@@ -941,8 +945,8 @@ class WikimediaLinkIssueDetector:
         # complains when Wikipedia page is not in the preferred language,
         # in cases when it is possible
         if wikipedia == None:
-            return # there may be just a Wikidata entry, without a Wikipedia article
-        
+            return  # there may be just a Wikidata entry, without a Wikipedia article
+
         current_article_name = None
         current_language_code = None
         current_article_name = wikimedia_connection.get_article_name_from_link(wikipedia)
@@ -953,10 +957,10 @@ class WikimediaLinkIssueDetector:
         if self.expected_language_code == None:
             if current_language_code in bot_wikipedias:
                 return ErrorReport(
-                    error_id = "wikipedia tag links bot wikipedia",
-                    error_message = botpedia_message,
-                    prerequisite = prerequisite,
-                    )
+                    error_id="wikipedia tag links bot wikipedia",
+                    error_message=botpedia_message,
+                    prerequisite=prerequisite,
+                )
             # further checks are useless
             return
 
@@ -964,10 +968,10 @@ class WikimediaLinkIssueDetector:
         if recommended_article_name == None:
             if current_language_code in bot_wikipedias:
                 return ErrorReport(
-                    error_id = "wikipedia tag links bot wikipedia",
-                    error_message = botpedia_message,
-                    prerequisite = prerequisite,
-                    )
+                    error_id="wikipedia tag links bot wikipedia",
+                    error_message=botpedia_message,
+                    prerequisite=prerequisite,
+                )
             return
         recommended_language_code = self.expected_language_code
         good_link = recommended_language_code + ":" + recommended_article_name
@@ -980,7 +984,7 @@ class WikimediaLinkIssueDetector:
                 pass
             else:
                 raise Exception("why botpedia got recommended?")
-                
+
         reason = self.why_object_is_allowed_to_have_foreign_language_label(object_description, effective_wikidata_id)
         if reason != None:
             if self.additional_debug:
@@ -989,16 +993,16 @@ class WikimediaLinkIssueDetector:
                 # not a real Wikipedia
                 if current_language_code != recommended_language_code:
                     return ErrorReport(
-                        error_id = "wikipedia tag links bot wikipedia in border region, can be changed to alternative",
-                        error_message = botpedia_message,
-                        prerequisite = prerequisite,
-                        )
+                        error_id="wikipedia tag links bot wikipedia in border region, can be changed to alternative",
+                        error_message=botpedia_message,
+                        prerequisite=prerequisite,
+                    )
                 else:
                     return ErrorReport(
-                        error_id = "wikipedia tag links bot wikipedia in border region",
-                        error_message = botpedia_message,
-                        prerequisite = prerequisite,
-                        )
+                        error_id="wikipedia tag links bot wikipedia in border region",
+                        error_message=botpedia_message,
+                        prerequisite=prerequisite,
+                    )
             return None
 
         if recommended_article_name != None:
@@ -1006,17 +1010,17 @@ class WikimediaLinkIssueDetector:
             if current_language_code in bot_wikipedias:
                 # not a real Wikipedia
                 return ErrorReport(
-                    error_id = "wikipedia tag links bot wikipedia",
-                    error_message = botpedia_message + " fortunately, in this case, a potential replacement exists",
-                    proposed_tagging_changes = [{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
-                    prerequisite = prerequisite,
-                    )
-            return ErrorReport(
-                error_id = "wikipedia tag unexpected language",
-                error_message = error_message,
-                proposed_tagging_changes = [{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
-                prerequisite = prerequisite,
+                    error_id="wikipedia tag links bot wikipedia",
+                    error_message=botpedia_message + " fortunately, in this case, a potential replacement exists",
+                    proposed_tagging_changes=[{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
+                    prerequisite=prerequisite,
                 )
+            return ErrorReport(
+                error_id="wikipedia tag unexpected language",
+                error_message=error_message,
+                proposed_tagging_changes=[{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
+                prerequisite=prerequisite,
+            )
         else:
             if not self.allow_requesting_edits_outside_osm:
                 return None
@@ -1025,15 +1029,15 @@ class WikimediaLinkIssueDetector:
             error_message = "wikipedia page in unexpected language - " + self.expected_language_code + " was expected, no page in that language was found:"
             if language_code in bot_wikipedias:
                 return ErrorReport(
-                    error_id = "wikipedia tag links bot wikipedia",
-                    error_message = botpedia_message,
-                    prerequisite = prerequisite,
-                    )
-            return ErrorReport(
-                error_id = "wikipedia tag unexpected language, article missing",
-                error_message = error_message,
-                prerequisite = prerequisite,
+                    error_id="wikipedia tag links bot wikipedia",
+                    error_message=botpedia_message,
+                    prerequisite=prerequisite,
                 )
+            return ErrorReport(
+                error_id="wikipedia tag unexpected language, article missing",
+                error_message=error_message,
+                prerequisite=prerequisite,
+            )
         assert(False)
 
     def should_use_subject_message(self, type, special_prefix, wikidata_id):
@@ -1064,10 +1068,10 @@ class WikimediaLinkIssueDetector:
 
     def get_should_use_subject_error(self, type, special_prefix, wikidata_id, summary_of_tags_in_use):
         return ErrorReport(
-            error_id = "should use a secondary wikipedia tag - linking from " + summary_of_tags_in_use + " tag to " + type,
-            error_message = self.should_use_subject_message(type, special_prefix, wikidata_id),
-            prerequisite = {'wikidata': wikidata_id},
-            )
+            error_id="should use a secondary wikipedia tag - linking from " + summary_of_tags_in_use + " tag to " + type,
+            error_message=self.should_use_subject_message(type, special_prefix, wikidata_id),
+            prerequisite={'wikidata': wikidata_id},
+        )
 
     def get_list_of_links_from_disambig(self, wikidata_id):
         link = self.get_best_interwiki_link_by_id(wikidata_id)
@@ -1113,14 +1117,14 @@ class WikimediaLinkIssueDetector:
 
     def get_list_of_disambig_fixes(self, target_location, element_wikidata_id):
         # target_location is (latititude, longitude) tuple
-        #TODO open all pages, merge duplicates using wikidata and list them as currently
+        # TODO open all pages, merge duplicates using wikidata and list them as currently
         links = self.get_list_of_links_from_disambig(element_wikidata_id)
         if element_wikidata_id == None:
             return "page without wikidata element, unable to load link data. Please, create wikidata element (TODO: explain how it can be done)"
         if links == None:
             return "TODO improve language handling on foreign disambigs"
         return self.string_with_list_of_distances_to_locations(target_location, links)
-        
+
     def string_with_list_of_distances_to_locations(self, target_location, links):
         # target_location is (latititude, longitude) tuple
         """
@@ -1176,7 +1180,7 @@ class WikimediaLinkIssueDetector:
             parent_categories = wikidata_processing.get_recursive_all_subclass_of(root, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
             for base_type_id in (parent_categories):
                 returned.append(base_type_id)
-        
+
         return returned
 
     def wikidata_entries_classifying_entry_with_depth_data(self, effective_wikidata_id):
@@ -1184,14 +1188,14 @@ class WikimediaLinkIssueDetector:
 
         parent_categories_entries = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(effective_wikidata_id, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
         for base_type_id_entry in parent_categories_entries:
-            returned.append( base_type_id_entry )
+            returned.append(base_type_id_entry)
             base_type_id = base_type_id_entry["id"]
             base_type_id_depth = base_type_id_entry["depth"]
             instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(base_type_id)
             if instance_ids != None:
                 for instance_id in instance_ids:
                     if instance_id not in self.ignored_entries_in_wikidata_ontology():
-                        returned.append( {"id": instance_id, "depth": base_type_id_depth + 1} )
+                        returned.append({"id": instance_id, "depth": base_type_id_depth + 1})
 
         root_instance_ids = wikidata_processing.get_wikidata_type_ids_of_entry(effective_wikidata_id)
         if root_instance_ids == None:
@@ -1201,7 +1205,7 @@ class WikimediaLinkIssueDetector:
                 continue
             parent_categories_entries = wikidata_processing.get_recursive_all_subclass_of_with_depth_data(root, self.ignored_entries_in_wikidata_ontology(), False, callback=None)
             for base_type_id_entry in (parent_categories_entries + [{"id": root, "depth": 0}]):
-                returned.append( base_type_id_entry )
+                returned.append(base_type_id_entry)
         return returned
 
     def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
@@ -1255,11 +1259,11 @@ class WikimediaLinkIssueDetector:
         generic_event = {'what': 'an event', 'replacement': None, 'extremely_broad_and_unspecific': True}
         return {
             # may be silenced to stop reports that are almost entirely about fixing Wikidata
-            "Q756944": {'what': 'a surface mining', 'replacement': None}, # often mistakenly applied to open pit mines on Wikidata
-            "Q5138347": {'what': 'a coastal defence and fortification', 'replacement': None}, # often mistakenly added to forts, see https://www.wikidata.org/w/index.php?title=Q5472172&action=history
-            'Q1211272': {'what': 'a signage', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q105449313 (a physical sign)
+            "Q756944": {'what': 'a surface mining', 'replacement': None},  # often mistakenly applied to open pit mines on Wikidata
+            "Q5138347": {'what': 'a coastal defence and fortification', 'replacement': None},  # often mistakenly added to forts, see https://www.wikidata.org/w/index.php?title=Q5472172&action=history
+            'Q1211272': {'what': 'a signage', 'replacement': None},  # very often it should be https://www.wikidata.org/wiki/Q105449313 (a physical sign)
 
-            'Q11483816':  {'what': 'an annual event', 'replacement': None}, # maybe not an actual problem?
+            'Q11483816':  {'what': 'an annual event', 'replacement': None},  # maybe not an actual problem?
 
 
             'Q12128':  {'what': 'a dentistry', 'replacement': None},
@@ -1345,8 +1349,8 @@ class WikimediaLinkIssueDetector:
             'Q13406554': {'what': 'a sports competition', 'replacement': None},
             'Q18608583': {'what': 'a recurring sports event', 'replacement': None},
             'Q13414953': {'what': 'a religious denomination', 'replacement': None},
-            'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
-            'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None}, # very often it should be https://www.wikidata.org/wiki/Q544504
+            'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None},  # very often it should be https://www.wikidata.org/wiki/Q544504
+            'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None},  # very often it should be https://www.wikidata.org/wiki/Q544504
             'Q451967': {'what': 'an intentional human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q61788060': {'what': 'a human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q3769299': {'what': 'a human behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},
@@ -1367,11 +1371,11 @@ class WikimediaLinkIssueDetector:
             'Q1875621': vehicle,
             'Q37761255': vehicle,
             'Q2095': {'what': 'a food', 'replacement':  None},
-            'Q43183': {'what': 'an insurance', 'replacement':  None}, # vs insurance company - to catch and ignore wikidata issues
+            'Q43183': {'what': 'an insurance', 'replacement':  None},  # vs insurance company - to catch and ignore wikidata issues
             'Q1778821': {'what': 'a cuisine', 'replacement':  None},
             'Q13414953': {'what': 'a religious denomination', 'replacement':  None},
             # for example religious denominations
-            'Q82821': {'what': 'a tradition', 'replacement':  None, 'extremely_broad_and_unspecific': True}, 
+            'Q82821': {'what': 'a tradition', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q474191': {'what': 'a diet', 'replacement':  None},
             'Q22222786': {'what': 'a government program', 'replacement': None},
             'Q24634210': {'what': 'a podcast', 'replacement': None},
@@ -1438,17 +1442,17 @@ class WikimediaLinkIssueDetector:
                 list = self.get_list_of_disambig_fixes(location, wikidata_id)
                 error_message = "link leads to a disambig page - not a proper wikipedia link (according to Wikidata - if target is not a disambig check Wikidata entry whether it is correct)\n\n" + list
                 return ErrorReport(
-                    error_id = "link to a disambiguation page",
-                    error_message = error_message,
-                    prerequisite = {'wikidata': wikidata_id},
-                    )
+                    error_id="link to a disambiguation page",
+                    error_message=error_message,
+                    prerequisite={'wikidata': wikidata_id},
+                )
             if type_id == 'Q13406463':
                 error_message = "article linked in wikipedia tag is a list, so it is very unlikely to be correct"
                 return ErrorReport(
-                    error_id = "link to a list",
-                    error_message = error_message,
-                    prerequisite = {'wikidata': wikidata_id},
-                    )
+                    error_id="link to a list",
+                    error_message=error_message,
+                    prerequisite={'wikidata': wikidata_id},
+                )
 
     def get_problem_based_on_wikidata_and_osm_element(self, object_description, location, effective_wikidata_id, tags):
         if effective_wikidata_id != None:
@@ -1469,7 +1473,6 @@ class WikimediaLinkIssueDetector:
         if error != None:
             return error
 
-    
     def get_problem_based_on_taxon_tagging_with_p105_property(self, tags, object_description, location, prefix, expected_wikidata):
         wikidata = None
         if prefix + "wikidata" in tags:
@@ -1484,19 +1487,19 @@ class WikimediaLinkIssueDetector:
         data = wikimedia_connection.get_property_from_wikidata(wikidata, 'P105')
         if data == None:
             return ErrorReport(
-                error_id = prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking P105)",
-                error_message = "no P105",
-                prerequisite = {prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
-                )
+                error_id=prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking P105)",
+                error_message="no P105",
+                prerequisite={prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
+            )
         returned = []
         for entry in data:
             if expected_wikidata == entry['mainsnak']['datavalue']['value']['id']:
                 return None
         return ErrorReport(
-            error_id = prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking P105)",
-            error_message = "no matching P105",
-            prerequisite = {prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
-            )
+            error_id=prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking P105)",
+            error_message="no matching P105",
+            prerequisite={prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
+        )
 
     def get_problem_based_on_taxon_tagging_with_regular_ontology(self, tags, object_description, location, prefix, expected_wikidata):
         wikidata = None
@@ -1514,10 +1517,10 @@ class WikimediaLinkIssueDetector:
                 return None
         message = prefix.replace(":", "") + " secondary tag links something that is not " + prefix.replace(":", "") + " according to wikidata (checking regular ontology)"
         return ErrorReport(
-            error_id = message,
-            error_message = message,
-            prerequisite = {prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
-            )
+            error_id=message,
+            error_message=message,
+            prerequisite={prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
+        )
 
     def get_problem_based_on_wikidata(self, effective_wikidata_id, tags, description, location):
         return self.get_problem_based_on_base_types(effective_wikidata_id, tags, description, location)
@@ -1555,14 +1558,14 @@ class WikimediaLinkIssueDetector:
         except KeyError:
             pass
         return (None, None)
-    
+
     def headquaters_location_indicate_invalid_connection(self, location, wikidata_id, tag_summary):
         if location == (None, None):
             return None
         headquarters_location_data = wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P159')
         area_of_object = wikimedia_connection.get_property_from_wikidata(wikidata_id, 'P2046')
         if area_of_object != None:
-            return None # for example administrative boundaries such as https://www.wikidata.org/wiki/Q1364786
+            return None  # for example administrative boundaries such as https://www.wikidata.org/wiki/Q1364786
         if headquarters_location_data == None:
             return None
         for option in headquarters_location_data:
@@ -1609,7 +1612,7 @@ class WikimediaLinkIssueDetector:
 
         # again, anything may be symbol of anything
         skipped.append("Q80071")
-        
+
         # allow meridian linking due to meridian markers
         skipped.append("Q32099")
 
@@ -1635,16 +1638,15 @@ class WikimediaLinkIssueDetector:
 
         return skipped
 
-
     @staticmethod
     def ignored_entries_in_wikidata_ontology_without_skipping_known_bugs():
         too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
         too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology()
-        too_abstract_or_wikidata_bugs.append("Q13930359") # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
-        too_abstract_or_wikidata_bugs.append("Q15275719") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
-        too_abstract_or_wikidata_bugs.append("Q673514") # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
-        too_abstract_or_wikidata_bugs.append("Q132241") # festivals in general are exempt for now
-        too_abstract_or_wikidata_bugs.append("Q11706236") # also church festivals
+        too_abstract_or_wikidata_bugs.append("Q13930359")  # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q15275719")  # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q673514")  # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q132241")  # festivals in general are exempt for now
+        too_abstract_or_wikidata_bugs.append("Q11706236")  # also church festivals
         return too_abstract_or_wikidata_bugs
 
     @staticmethod
@@ -1723,7 +1725,6 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q320599')
         wikidata_bugs.append('Q7590')
         wikidata_bugs.append('Q79782')
-        
 
         return wikidata_bugs
 
@@ -1741,7 +1742,7 @@ class WikimediaLinkIssueDetector:
                 if self.new_banned_entry_in_this_branch(found, index):
                     note = self.callback_reporting_banned_categories(category_id)
                     print(":"*depth + wikidata_processing.wikidata_description(category_id) + note)
-                    
+
                     #print(":"*depth + "{{Q|" + category_id + "}}")
 
                     to_show += ":"*depth + "{{Q|" + category_id + "}}" + "\n"
