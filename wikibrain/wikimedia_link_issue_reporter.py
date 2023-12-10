@@ -113,7 +113,7 @@ class WikimediaLinkIssueDetector:
                     )
                 wikipedia_expected = self.get_best_interwiki_link_by_id(tags.get("wikidata"))
                 all_languages = wikipedia_knowledge.WikipediaKnowledge.all_wikipedia_language_codes_order_by_importance()
-                if (self.languages_ordered_by_preference == []):
+                if self.languages_ordered_by_preference == []:
                     raise Exception("WAT, simc found and languages_ordered_by_preference is unset? Polish was expected")
                 if (self.languages_ordered_by_preference + all_languages)[0] != "pl":
                     print(self.languages_ordered_by_preference)
@@ -1330,7 +1330,6 @@ class WikimediaLinkIssueDetector:
             'Q34394': {'what': 'a belief', 'replacement': 'name:'},
             'Q60075825': {'what': 'a Christian holy day', 'replacement': None},
             'Q2915444': {'what': 'a fireworks event', 'replacement': None},
-            'Q650711': {'what': 'a combat', 'replacement': None},
             'Q650711': {'what': 'a military operation', 'replacement': None},
             'Q1707496': {'what': 'a police operation', 'replacement': None},
             'Q180684': {'what': 'a conflict', 'replacement': None},
@@ -1373,7 +1372,6 @@ class WikimediaLinkIssueDetector:
             'Q2095': {'what': 'a food', 'replacement':  None},
             'Q43183': {'what': 'an insurance', 'replacement':  None},  # vs insurance company - to catch and ignore wikidata issues
             'Q1778821': {'what': 'a cuisine', 'replacement':  None},
-            'Q13414953': {'what': 'a religious denomination', 'replacement':  None},
             # for example religious denominations
             'Q82821': {'what': 'a tradition', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q474191': {'what': 'a diet', 'replacement':  None},
@@ -1439,8 +1437,8 @@ class WikimediaLinkIssueDetector:
                 # it does not require wikidata entry
                 # wikidata entry may be wrong
                 # https://pl.wikipedia.org/w/api.php?action=query&format=json&prop=pageprops&redirects=&titles=Java%20(ujednoznacznienie)
-                list = self.get_list_of_disambig_fixes(location, wikidata_id)
-                error_message = "link leads to a disambig page - not a proper wikipedia link (according to Wikidata - if target is not a disambig check Wikidata entry whether it is correct)\n\n" + list
+                disambig_list = self.get_list_of_disambig_fixes(location, wikidata_id)
+                error_message = "link leads to a disambig page - not a proper wikipedia link (according to Wikidata - if target is not a disambig check Wikidata entry whether it is correct)\n\n" + disambig_list
                 return ErrorReport(
                     error_id="link to a disambiguation page",
                     error_message=error_message,
