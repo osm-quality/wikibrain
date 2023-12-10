@@ -38,7 +38,7 @@ See also and [my step by step list](https://www.wikidata.org/wiki/User:Mateusz_K
 
 `pylint **/*.py --include-naming-hint=y --variable-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --argument-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --disable=C0103,C0301,C0114,C0115,C0116,C0121,W0612,W0613,R0904,R0911,R0912,R0913,R0914,R0915,C1803`
 
-It includes a workaround for bug [#2018](https://github.com/PyCQA/pylint/issues/2018) and disables rule `C0103` with many false positives (too eager to convert variables into constants).
+Disables rule `C0103` with many false positives (too eager to convert variables into constants).
 
 Disables C1803 as unwanted syntactic sugar (reconsider after pressing issues are eliminated)
 
