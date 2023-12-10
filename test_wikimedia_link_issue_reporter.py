@@ -194,31 +194,31 @@ class Tests(unittest.TestCase):
             "wikidata": "Q6496859",
             "place": "hamlet",
             "name": "Калілы",
-            }
+        }
         location = None
         object_type = 'node'
         object_description = "fake test object"
         problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
-        self.assertEqual (None, problem)
+        self.assertEqual(None, problem)
 
     def test_be_x_old_unusual_lang_code_is_not_considered_as_utterly_broken_in_wikipedia_tag(self):
         # https://www.openstreetmap.org/node/243011151 0 version 15
-        self.assertEqual (False, self.detector().is_wikipedia_tag_clearly_broken("be-x-old:Пятроўшчына (прадмесьце)"))
+        self.assertEqual(False, self.detector().is_wikipedia_tag_clearly_broken("be-x-old:Пятроўшчына (прадмесьце)"))
 
     def test_be_tarask_unusual_lang_code_is_not_considered_as_utterly_broken(self):
-        self.assertEqual (False, self.detector().is_language_code_clearly_broken("be-x-old"))
+        self.assertEqual(False, self.detector().is_language_code_clearly_broken("be-x-old"))
 
     def test_detector_of_old_style_wikipedia_links_accepts_valid(self):
         key = 'wikipedia:pl'
-        self.assertEqual (True, self.detector().check_is_it_valid_key_for_old_style_wikipedia_tag(key))
+        self.assertEqual(True, self.detector().check_is_it_valid_key_for_old_style_wikipedia_tag(key))
         tags = {key: 'Kościół Najświętszego Serca Pana Jezusa'}
-        self.assertEqual (None, self.detector().check_is_invalid_old_style_wikipedia_tag_present(tags, tags))
+        self.assertEqual(None, self.detector().check_is_invalid_old_style_wikipedia_tag_present(tags, tags))
 
     def test_detector_of_old_style_wikipedia_links_refuses_invalid(self):
         key = 'wikipedia:fixme'
-        self.assertEqual (False, self.detector().check_is_it_valid_key_for_old_style_wikipedia_tag(key))
+        self.assertEqual(False, self.detector().check_is_it_valid_key_for_old_style_wikipedia_tag(key))
         tags = {key: 'Kościół Najświętszego Serca Pana Jezusa'}
-        self.assertNotEqual (None, self.detector().check_is_invalid_old_style_wikipedia_tag_present(tags, tags))
+        self.assertNotEqual(None, self.detector().check_is_invalid_old_style_wikipedia_tag_present(tags, tags))
 
     def test_presence_of_fields_in_blacklist_of_unlinkable_entries(self):
         blacklist = wikibrain.wikidata_knowledge.blacklist_of_unlinkable_entries()
@@ -313,7 +313,7 @@ class Tests(unittest.TestCase):
         object_type = 'way'
         object_description = "fake test object"
         problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
-        self.assertEqual (False, "tag to an intentional human activity" in problem.data()['error_id'])
+        self.assertEqual(False, "tag to an intentional human activity" in problem.data()['error_id'])
 
     # TODO: investigate after
     # https://github.com/matkoniecz/OSM-wikipedia-tag-validator/issues/17
@@ -428,7 +428,7 @@ class Tests(unittest.TestCase):
     #def test_576_in_future(self):
     #    wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
     #    self.assertEqual(self.detector().check_is_object_is_existing('Q650270'), None)
-        
+
     def test_that_indian_teritory_is_considered_as_linkable_by_passing_tags(self):
         wikidata_id = 'Q1516298'
         passed_tags = {'wikidata': wikidata_id}

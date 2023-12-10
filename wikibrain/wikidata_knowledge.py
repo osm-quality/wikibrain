@@ -1218,7 +1218,7 @@ def blacklist_of_unlinkable_entries():
         'Q1283291': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Valero'},
         'Q4781944': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Exxon'},
         'Q319642': {'prefix': 'brand:',
-         'expected_tags': {'amenity': 'fuel'}, 'name': 'Chevron'},
+                    'expected_tags': {'amenity': 'fuel'}, 'name': 'Chevron'},
         'Q549181': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'MOL'},
         'Q2836957': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Couche-Tard'},
         'Q300147': {'prefix': 'brand:', 'expected_tags': {'amenity': 'fuel'}, 'name': 'Avia'},
