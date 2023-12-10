@@ -1280,8 +1280,12 @@ class WikidataTests(unittest.TestCase):
         #self.assert_unlinkability('Q42417254') TODO - add test that will expect that it failed due to subclass instance
         self.is_not_a_specific_error_class('Q42417254', 'a general industry')
 
-    def test_that_company_is_not_a_general_industry(self):
+    def test_that_company_is_not_a_general_industry_testcase_a(self):
         self.is_not_a_specific_error_class('Q2539159', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_testcase_b(self):
+        self.is_not_a_specific_error_class('Q114324216', 'a general industry')
+        
 
     def test_that_bombing_is_not_a_general_industry_but_is_unlinkable_anyway(self):
         self.assert_unlinkability('Q1875563')

@@ -568,7 +568,7 @@ class Tests(unittest.TestCase):
             print(problem.data()['error_id'])
         self.assertEqual (None, problem)
 
-    def test_that_metawikidatatags_are_not_reported(self):
+    def test_that_metawikidatatags_are_not_reported_for_note_prefix(self):
         tags = {"note:wikidata": "gibberish"}
         location = None
         object_description = "fake test object"
@@ -578,7 +578,7 @@ class Tests(unittest.TestCase):
             print(problem.data()['error_id'])
         self.assertEqual (None, problem)
 
-    def test_that_metawikidatatags_are_not_reported(self):
+    def test_that_metawikidatatags_are_not_reported_for_source_prefix(self):
         tags = {"source:wikidata": "gibberish"}
         location = None
         object_description = "fake test object"
