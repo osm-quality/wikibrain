@@ -492,7 +492,8 @@ class Tests(unittest.TestCase):
 
     def test_that_special_manual_exclusion_list_is_respected(self):
         # in wikidata_knowledge.skipped_cases
-        tags = {"wikidata": "Q97327423"}
+        # https://www.wikidata.org/wiki/Q106617236
+        tags = {"wikidata": "Q106617236"}
         location = None
         object_description = "fake test object"
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
@@ -532,12 +533,16 @@ class Tests(unittest.TestCase):
         location = None
         object_description = "fake test object"
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        if problem != None:
+            print(problem.data())
         self.assertEqual(None, problem)
 
         tags = {"wikidata": "Q1415790"}
         location = None
         object_description = "fake test object"
         problem = self.detector().freely_reorderable_issue_reports(object_description, location, tags)
+        if problem != None:
+            print(problem.data())
         self.assertEqual(None, problem)
 
     def test_that_taxon_linking_species_is_fine(self):
