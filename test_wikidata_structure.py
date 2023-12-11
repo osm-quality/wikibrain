@@ -1965,7 +1965,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_holocaust_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q2763', 'a physical process')
-        self.assert_unlinkability('Q1390439')
+        self.assert_unlinkability('Q2763')
 
     def test_aircraft_model_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q1390439', 'a physical process')
