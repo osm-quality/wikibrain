@@ -1631,7 +1631,7 @@ class WikimediaLinkIssueDetector:
         # https://www.openstreetmap.org/node/9724249774
         # https://www.openstreetmap.org/way/584197021
         skipped.append("Q175047")
-        skipped.append("Q1415790")
+        skipped.append("Q1415790") # also in skipped_cases() to ensure full removal
 
         return skipped
 
