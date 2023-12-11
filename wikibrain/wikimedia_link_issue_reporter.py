@@ -817,7 +817,7 @@ class WikimediaLinkIssueDetector:
                     proposed_tagging_changes=[{"from": {wikipedia_key: language_code+":"+article_name}, "to": {wikipedia_key: new_wikipedia_link}}],
                 )
 
-        if(self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_id_from_article, present_wikidata_id)):
+        if self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_id_from_article, present_wikidata_id):
             new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
             message = "article claims to point to disambig, " + wikidata_key + " does not. " + wikidata_key + " tag is likely to be correct, " + wikipedia_key + " tag almost certainly is not"
             return ErrorReport(
@@ -932,7 +932,7 @@ class WikimediaLinkIssueDetector:
             return False
         if language_code in wikipedia_knowledge.WikipediaKnowledge.wikipedia_language_code_redirects():
             return False
-        if language_code.__len__() > 3:
+        if len(language_code) > 3:
             return True
         if re.search("^[a-z]+\Z", language_code) == None:
             return True
@@ -1578,7 +1578,7 @@ class WikimediaLinkIssueDetector:
         print("starting output_debug_about_wikidata_item")
         print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
         print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()))
-        self.dump_base_types_of_object_in_stdout(wikidata_id, "tests")
+        self.dump_base_types_of_object_in_stdout(wikidata_id, "from output_debug_about_wikidata_item")
 
     def callback_reporting_banned_categories(self, category_id):
         ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
@@ -1707,8 +1707,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q83307') # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
-        
- 
+
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
