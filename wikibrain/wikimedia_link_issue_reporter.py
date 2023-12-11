@@ -81,7 +81,7 @@ class WikimediaLinkIssueDetector:
         if something_reportable != None:
             if something_reportable.error_id == "wikipedia wikidata mismatch":
                 if "#" in tags.get("wikipedia"):
-                    something_reportable.error_id == "wikipedia wikidata mismatch, wikipedia links to section - high risk of false positive"
+                    something_reportable.error_id = "wikipedia wikidata mismatch, wikipedia links to section - high risk of false positive"
             return something_reportable
 
         something_reportable = self.freely_reorderable_issue_reports(object_description, location, tags)
