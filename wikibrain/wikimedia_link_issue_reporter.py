@@ -1336,7 +1336,9 @@ class WikimediaLinkIssueDetector:
             'Q2761147': {'what': 'a meeting', 'replacement': None},
             'Q331055': {'what': 'a burial', 'replacement': None},
             'Q1437361': {'what': 'a form of art', 'replacement': None},
-            'Q11862829': {'what': 'an academic discipline', 'replacement': None},
+            'Q12128': {'what': 'a dentistry', 'replacement': None},
+            # an academic discipline is often unclear and false positive, vast majority comes from dentistry spam covered by above
+            'Q11862829': {'what': 'an academic discipline', 'replacement': None, 'extremely_broad_and_unspecific': True},
             'Q1298668': {'what': 'a research project', 'replacement': None},
             'Q7397': {'what': 'a software', 'replacement': None},
             'Q1270515': {'what': 'a tax', 'replacement': None},

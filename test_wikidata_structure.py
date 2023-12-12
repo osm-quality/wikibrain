@@ -209,6 +209,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_hall_of_fame_as_valid_primary_link(self):
         self.assert_linkability('Q8027203')
+        self.assert_linkability('Q1366018')
 
     def test_detecting_high_school_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q85652366')
