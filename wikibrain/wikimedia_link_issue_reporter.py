@@ -181,6 +181,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q83307') # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
 
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        # and also extra errors for disabled tests - 7 right now
         
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
         wikidata_bugs.append('Q659396')
@@ -217,7 +218,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q42303986')
         wikidata_bugs.append('Q2806437')
         wikidata_bugs.append('Q17853087')
-        
+        wikidata_bugs.append('Q5503')
         
         return wikidata_bugs
 
