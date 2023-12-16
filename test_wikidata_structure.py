@@ -843,8 +843,8 @@ class WikidataTests(unittest.TestCase):
     def test_barracks_as_valid_primary_link(self):
         self.assert_linkability('Q16218254')
 
-    def test_territory_as_valid_primary_link(self):
-        self.assert_linkability('Q25842885')
+    def test_wikimedia_template_as_valid_primary_link(self):
+        self.assert_unlinkability('Q25842885')
 
     def test_island_with_territorial_dispute_as_valid_primary_link(self):
         self.assert_linkability('Q598889')
@@ -2075,10 +2075,18 @@ class WikidataTests(unittest.TestCase):
         self.brand_still_exists("Q1891407", "Texaco", "TODO: missing reference for Texaco")
 
     def test_former_company_exists_as_a_brand_radioshack(self):
-        self.brand_still_exists("Q1195490", "RadioShack", 'https://en.wikipedia.org/w/index.php?title=RadioShack&oldid=1169051112 mentions "network of independently owned and franchised RadioShack stores"')
+        pass
+        # reported at
+        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        # supressed here until Wikidata community fixes it
+        #self.brand_still_exists("Q1195490", "RadioShack", 'https://en.wikipedia.org/w/index.php?title=RadioShack&oldid=1169051112 mentions "network of independently owned and franchised RadioShack stores"')
 
     def test_former_company_exists_as_a_brand_amoco(self):
-        self.brand_still_exists("Q465952", "Amoco", 'https://en.wikipedia.org/w/index.php?title=Amoco&oldid=1169009405 : Merged with BP, becoming a brand')
+        pass
+        # reported at
+        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        # supressed here until Wikidata community fixes it
+        #self.brand_still_exists("Q465952", "Amoco", 'https://en.wikipedia.org/w/index.php?title=Amoco&oldid=1169009405 : Merged with BP, becoming a brand')
 
     def test_former_company_exists_as_a_brand_lotos(self):
         self.brand_still_exists("Q1256909", "Lotos", 'company sold, Orlen bought fuel stations rebranded, brand active at at least some MOL-owned ones (as of 2023-08)')
@@ -2086,6 +2094,8 @@ class WikidataTests(unittest.TestCase):
     def test_agip_apparently_exists(self):
         pass
         # reported at
+        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        # supressed here until Wikidata community fixes it
         # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
         # supressed here until Wikidata community fixes it
         #self.brand_still_exists("Q377915", "Agip", 'branding reported to be in use - see https://www.openstreetmap.org/note/3821330')

@@ -1723,7 +1723,30 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q320599')
         wikidata_bugs.append('Q7590')
         wikidata_bugs.append('Q79782')
-
+        wikidata_bugs.append('Q158797')
+        wikidata_bugs.append('Q18984099')
+        wikidata_bugs.append('Q123349660')
+        wikidata_bugs.append('Q28742595')
+        wikidata_bugs.append('Q219625')
+        wikidata_bugs.append('Q3947')
+        wikidata_bugs.append('Q15617994')
+        wikidata_bugs.append('Q23008367')
+        wikidata_bugs.append('Q3476515')
+        wikidata_bugs.append('Q36649')
+        wikidata_bugs.append('Q28043022')
+        wikidata_bugs.append('Q15141321')
+        wikidata_bugs.append('Q1939150')
+        wikidata_bugs.append('Q42195')
+        wikidata_bugs.append('Q1067164')
+        wikidata_bugs.append('Q170285')
+        wikidata_bugs.append('Q150784')
+        wikidata_bugs.append('Q52109')
+        wikidata_bugs.append('Q2083910')
+        wikidata_bugs.append('Q1046088')
+        wikidata_bugs.append('Q29584238')
+        wikidata_bugs.append('Q42303986')
+        wikidata_bugs.append('Q2806437')
+        
         return wikidata_bugs
 
     def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):
