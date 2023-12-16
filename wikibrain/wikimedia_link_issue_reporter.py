@@ -58,6 +58,167 @@ class WikimediaLinkIssueDetector:
         self.allow_requesting_edits_outside_osm = allow_requesting_edits_outside_osm
         self.allow_false_positives = allow_false_positives
 
+    @staticmethod
+    def reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology():
+        skipped = []
+        # proposed road https://www.wikidata.org/wiki/Q30106829
+        # skipping this as sadly some proposed roads are actually mapped in OSM :(
+        # and in this case there is no agreement to delete them :(
+        skipped.append('Q30106829')
+
+        # trademark is ignored as even hamlet can be trademarked
+        # so it provides no extra info and detangling architecture here is too tricky
+        # see https://www.wikidata.org/wiki/Q1392479
+        skipped.append("Q167270")
+
+        # physical object can be cultural symbols
+        # https://www.wikidata.org/wiki/Q180376
+        skipped.append("Q3139104")
+
+        # or part of heritage
+        # https://www.wikidata.org/wiki/Q10356475
+        skipped.append("Q210272")
+
+        # again, anything may be symbol of anything
+        skipped.append("Q80071")
+
+        # allow meridian linking due to meridian markers
+        skipped.append("Q32099")
+
+        # landslides are fine (despite being subclass of disaster that is subclass of an event)
+        # there was weird associated behaviour but I am not going to
+        # debug Wikidata structure and discover why landlide is classified
+        # as a social issue
+        # https://www.wikidata.org/wiki/Q167903
+        skipped.append("Q167903")
+
+        # https://www.wikidata.org/wiki/Q860863
+        # merges event that created it and sculpture garden
+        # likely unfixable
+        # and if fixable then it should be fixed on my side by accepting
+        # cases with both "sculpture garden" (physical) and "sculpture gathering" (event)
+        skipped.append("Q860879")
+
+        # messy, not worth dealing with, may be correct
+        # https://www.openstreetmap.org/node/9724249774
+        # https://www.openstreetmap.org/way/584197021
+        skipped.append("Q175047")
+        skipped.append("Q1415790") # also in skipped_cases() to ensure full removal
+
+        return skipped
+
+    @staticmethod
+    def ignored_entries_in_wikidata_ontology_without_skipping_known_bugs():
+        too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
+        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology()
+        too_abstract_or_wikidata_bugs.append("Q13930359")  # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q15275719")  # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q673514")  # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
+        too_abstract_or_wikidata_bugs.append("Q132241")  # festivals in general are exempt for now
+        too_abstract_or_wikidata_bugs.append("Q11706236")  # also church festivals
+        return too_abstract_or_wikidata_bugs
+
+    @staticmethod
+    def ignored_entries_in_wikidata_ontology():
+        too_abstract_or_wikidata_bugs = WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology_without_skipping_known_bugs()
+        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
+        return too_abstract_or_wikidata_bugs
+
+    @staticmethod
+    def workarounds_for_wikidata_bugs_breakage_and_mistakes():
+        wikidata_bugs = []
+
+        # Potentially fixable, but it is widespread problem affecting wikidata, not OSM
+        # so extremely low priority
+
+        # theatre as art form vs theatre as a building
+        # that would be basically detecting only wikidata issues
+        # not worth it
+        # https://www.wikidata.org/wiki/Q11635
+        # https://www.wikidata.org/wiki/Q24354
+        wikidata_bugs.append("Q11635")
+
+        # systematic confusion of newsagent as profession and newsagent as shop
+        # not interested in spending time on fixing wikidata bugs
+        # maybe if everything else will become fixed
+        wikidata_bugs.append('Q1528905')
+
+        # Considered as unfixable:
+
+        # conflating two distinct things
+        # but for tidal races there is no good solution
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1921440592#The_Bitches_(Q878769)_(set_of_rocks)_is_a_physical_process,_according_to_Wikidata_ontology
+
+        wikidata_bugs.append('Q495844')
+
+        # walk of fame mess
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1927584762#Walk_of_Fame_of_Cabaret_(Q2345775)_is_an_award,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q47502370')
+
+        # merging items
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1937087915#Project_Riese_(Q320076)_classified_as_an_intentional_human_activity
+        wikidata_bugs.append('Q170584')
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2025970960#KATRIN_(Q316053)_is_a_human_activity,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q101965')
+
+        # Jesus mess
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1940322493#Jesus_(Q302)_is_a_fictional_entity,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q51625')
+        wikidata_bugs.append('Q302')
+
+        # Andorra is not for a sale
+        wikidata_bugs.append('Q208500')
+
+        # https://www.wikidata.org/wiki/Q15104297 - often applies to "open pit mine"
+        # created https://www.wikidata.org/wiki/Q1323960
+        wikidata_bugs.append('Q208500')
+
+        # merging entries about general prosecutor office and general prosecutor as person and as profession
+        # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Profession_or_office?
+        wikidata_bugs.append('Q3368517')
+        wikidata_bugs.append('Q169180')
+        wikidata_bugs.append('Q169180')
+        wikidata_bugs.append('Q83307') # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
+
+        #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        
+        # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        wikidata_bugs.append('Q659396')
+        wikidata_bugs.append('Q872181')
+        wikidata_bugs.append('Q1078913')
+        wikidata_bugs.append('Q1508666')
+        wikidata_bugs.append('Q212105')
+        wikidata_bugs.append('Q15116915')
+        wikidata_bugs.append('Q820150')
+        wikidata_bugs.append('Q320599')
+        wikidata_bugs.append('Q7590')
+        wikidata_bugs.append('Q79782')
+        wikidata_bugs.append('Q158797')
+        wikidata_bugs.append('Q18984099')
+        wikidata_bugs.append('Q123349660')
+        wikidata_bugs.append('Q28742595')
+        wikidata_bugs.append('Q219625')
+        wikidata_bugs.append('Q3947')
+        wikidata_bugs.append('Q15617994')
+        wikidata_bugs.append('Q23008367')
+        wikidata_bugs.append('Q3476515')
+        wikidata_bugs.append('Q36649')
+        wikidata_bugs.append('Q28043022')
+        wikidata_bugs.append('Q15141321')
+        wikidata_bugs.append('Q1939150')
+        wikidata_bugs.append('Q42195')
+        wikidata_bugs.append('Q1067164')
+        wikidata_bugs.append('Q170285')
+        wikidata_bugs.append('Q150784')
+        wikidata_bugs.append('Q52109')
+        wikidata_bugs.append('Q2083910')
+        wikidata_bugs.append('Q1046088')
+        wikidata_bugs.append('Q29584238')
+        wikidata_bugs.append('Q42303986')
+        wikidata_bugs.append('Q2806437')
+        
+        return wikidata_bugs
+
     def get_problem_for_given_element(self, element):
         tags = element.get_tag_dictionary()
         object_type = element.get_element().tag
@@ -1587,167 +1748,6 @@ class WikimediaLinkIssueDetector:
         if ban_reason != None:
             return " this was unexpected here as it indicates " + ban_reason['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
         return ""
-
-    @staticmethod
-    def reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology():
-        skipped = []
-        # proposed road https://www.wikidata.org/wiki/Q30106829
-        # skipping this as sadly some proposed roads are actually mapped in OSM :(
-        # and in this case there is no agreement to delete them :(
-        skipped.append('Q30106829')
-
-        # trademark is ignored as even hamlet can be trademarked
-        # so it provides no extra info and detangling architecture here is too tricky
-        # see https://www.wikidata.org/wiki/Q1392479
-        skipped.append("Q167270")
-
-        # physical object can be cultural symbols
-        # https://www.wikidata.org/wiki/Q180376
-        skipped.append("Q3139104")
-
-        # or part of heritage
-        # https://www.wikidata.org/wiki/Q10356475
-        skipped.append("Q210272")
-
-        # again, anything may be symbol of anything
-        skipped.append("Q80071")
-
-        # allow meridian linking due to meridian markers
-        skipped.append("Q32099")
-
-        # landslides are fine (despite being subclass of disaster that is subclass of an event)
-        # there was weird associated behaviour but I am not going to
-        # debug Wikidata structure and discover why landlide is classified
-        # as a social issue
-        # https://www.wikidata.org/wiki/Q167903
-        skipped.append("Q167903")
-
-        # https://www.wikidata.org/wiki/Q860863
-        # merges event that created it and sculpture garden
-        # likely unfixable
-        # and if fixable then it should be fixed on my side by accepting
-        # cases with both "sculpture garden" (physical) and "sculpture gathering" (event)
-        skipped.append("Q860879")
-
-        # messy, not worth dealing with, may be correct
-        # https://www.openstreetmap.org/node/9724249774
-        # https://www.openstreetmap.org/way/584197021
-        skipped.append("Q175047")
-        skipped.append("Q1415790") # also in skipped_cases() to ensure full removal
-
-        return skipped
-
-    @staticmethod
-    def ignored_entries_in_wikidata_ontology_without_skipping_known_bugs():
-        too_abstract_or_wikidata_bugs = wikidata_processing.wikidata_entries_for_abstract_or_very_broad_concepts()
-        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology()
-        too_abstract_or_wikidata_bugs.append("Q13930359")  # many Volkfest are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
-        too_abstract_or_wikidata_bugs.append("Q15275719")  # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
-        too_abstract_or_wikidata_bugs.append("Q673514")  # many recurring events are mapped in OSM - opened some probing notes for now, not sure whether they will be deleted
-        too_abstract_or_wikidata_bugs.append("Q132241")  # festivals in general are exempt for now
-        too_abstract_or_wikidata_bugs.append("Q11706236")  # also church festivals
-        return too_abstract_or_wikidata_bugs
-
-    @staticmethod
-    def ignored_entries_in_wikidata_ontology():
-        too_abstract_or_wikidata_bugs = WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology_without_skipping_known_bugs()
-        too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
-        return too_abstract_or_wikidata_bugs
-
-    @staticmethod
-    def workarounds_for_wikidata_bugs_breakage_and_mistakes():
-        wikidata_bugs = []
-
-        # Potentially fixable, but it is widespread problem affecting wikidata, not OSM
-        # so extremely low priority
-
-        # theatre as art form vs theatre as a building
-        # that would be basically detecting only wikidata issues
-        # not worth it
-        # https://www.wikidata.org/wiki/Q11635
-        # https://www.wikidata.org/wiki/Q24354
-        wikidata_bugs.append("Q11635")
-
-        # systematic confusion of newsagent as profession and newsagent as shop
-        # not interested in spending time on fixing wikidata bugs
-        # maybe if everything else will become fixed
-        wikidata_bugs.append('Q1528905')
-
-        # Considered as unfixable:
-
-        # conflating two distinct things
-        # but for tidal races there is no good solution
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1921440592#The_Bitches_(Q878769)_(set_of_rocks)_is_a_physical_process,_according_to_Wikidata_ontology
-
-        wikidata_bugs.append('Q495844')
-
-        # walk of fame mess
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1927584762#Walk_of_Fame_of_Cabaret_(Q2345775)_is_an_award,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q47502370')
-
-        # merging items
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1937087915#Project_Riese_(Q320076)_classified_as_an_intentional_human_activity
-        wikidata_bugs.append('Q170584')
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2025970960#KATRIN_(Q316053)_is_a_human_activity,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q101965')
-
-        # Jesus mess
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1940322493#Jesus_(Q302)_is_a_fictional_entity,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q51625')
-        wikidata_bugs.append('Q302')
-
-        # Andorra is not for a sale
-        wikidata_bugs.append('Q208500')
-
-        # https://www.wikidata.org/wiki/Q15104297 - often applies to "open pit mine"
-        # created https://www.wikidata.org/wiki/Q1323960
-        wikidata_bugs.append('Q208500')
-
-        # merging entries about general prosecutor office and general prosecutor as person and as profession
-        # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Profession_or_office?
-        wikidata_bugs.append('Q3368517')
-        wikidata_bugs.append('Q169180')
-        wikidata_bugs.append('Q169180')
-        wikidata_bugs.append('Q83307') # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
-
-        #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
-        
-        # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append('Q659396')
-        wikidata_bugs.append('Q872181')
-        wikidata_bugs.append('Q1078913')
-        wikidata_bugs.append('Q1508666')
-        wikidata_bugs.append('Q212105')
-        wikidata_bugs.append('Q15116915')
-        wikidata_bugs.append('Q820150')
-        wikidata_bugs.append('Q320599')
-        wikidata_bugs.append('Q7590')
-        wikidata_bugs.append('Q79782')
-        wikidata_bugs.append('Q158797')
-        wikidata_bugs.append('Q18984099')
-        wikidata_bugs.append('Q123349660')
-        wikidata_bugs.append('Q28742595')
-        wikidata_bugs.append('Q219625')
-        wikidata_bugs.append('Q3947')
-        wikidata_bugs.append('Q15617994')
-        wikidata_bugs.append('Q23008367')
-        wikidata_bugs.append('Q3476515')
-        wikidata_bugs.append('Q36649')
-        wikidata_bugs.append('Q28043022')
-        wikidata_bugs.append('Q15141321')
-        wikidata_bugs.append('Q1939150')
-        wikidata_bugs.append('Q42195')
-        wikidata_bugs.append('Q1067164')
-        wikidata_bugs.append('Q170285')
-        wikidata_bugs.append('Q150784')
-        wikidata_bugs.append('Q52109')
-        wikidata_bugs.append('Q2083910')
-        wikidata_bugs.append('Q1046088')
-        wikidata_bugs.append('Q29584238')
-        wikidata_bugs.append('Q42303986')
-        wikidata_bugs.append('Q2806437')
-        
-        return wikidata_bugs
 
     def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):
         callback = self.callback_reporting_banned_categories
