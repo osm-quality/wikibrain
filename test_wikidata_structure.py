@@ -296,6 +296,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_tree_as_valid_primary_link_testcase_d(self):
         self.assert_linkability('Q995630')
+        
+    def test_specific_tree_as_valid_primary_link_testcase_e(self):
+        self.assert_linkability('Q1958003')
 
     def test_sheltered_information_board_as_valid_primary_link(self):
         self.assert_linkability('Q7075518')
@@ -1020,11 +1023,35 @@ class WikidataTests(unittest.TestCase):
     def test_church_building_as_valid_primary_link_testcase_d(self):
         self.assert_linkability('Q29890907')
 
-    def test_aisleless_church_building_as_valid_primary_link_testcase_e(self):
+    def test_aisleless_church_building_as_valid_primary_link(self):
         self.assert_linkability('Q1714172')
         self.assert_linkability('Q1742629')
         self.assert_linkability('Q1244438')
         self.assert_linkability('Q20754433')
+
+    def test_swiss_church_building_as_valid_primary_link(self):
+        # some botched mass edit in wikidata tagged buildings as religions
+        self.assert_linkability('Q29211231')
+        self.assert_linkability('Q3586114')
+        self.assert_linkability('Q29891487')
+        self.assert_linkability('Q29890700')
+        self.assert_linkability('Q29890681')
+        self.assert_linkability('Q29890885')
+        self.assert_linkability('Q29890928')
+        self.assert_linkability('Q29890731')
+        self.assert_linkability('Q29890788')
+        self.assert_linkability('Q29890752')
+        self.assert_linkability('Q3585906')
+        self.assert_linkability('Q29891095')
+        self.assert_linkability('Q29890915')
+        self.assert_linkability('Q29891087')
+        self.assert_linkability('Q29891008')
+        self.assert_linkability('Q1323184')
+        self.assert_linkability('Q29890738')
+        self.assert_linkability('Q2334476')
+        self.assert_linkability('Q16266364')
+        self.assert_linkability('Q1742845')
+        self.assert_linkability('Q2137110')        
 
     def test_land_art_as_valid_primary_link(self):
         self.assert_linkability('Q55723212')
