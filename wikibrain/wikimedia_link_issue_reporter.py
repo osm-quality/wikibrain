@@ -588,7 +588,13 @@ class WikimediaLinkIssueDetector:
             return None
 
     def not_an_actual_wikidata_keys(self):
-        return ["note:wikidata", "source:wikidata"]  # have freeform format
+        return [
+            # have freeform format
+            "note:wikidata", "source:wikidata", "source:species:wikidata",
+
+            # not worth a special support
+            "image:license:wikidata"
+        ]
 
     def check_is_wikidata_tag_is_misssing(self, wikipedia, present_wikidata_id, wikidata_id):
         if present_wikidata_id == None and wikidata_id != None:
@@ -929,7 +935,10 @@ class WikimediaLinkIssueDetector:
             error_id_suffix = " - for " + prefix + " prefixed tags"
 
         if prefix == "not":
-            return None  # not really worth validating TODO: maybe enable after basically everything else is fixed
+            return None  # not really worth validating, various assumprions are not applying
+                         # technically even not:wikidata=ogórek is valid tag
+                         # not:wikidata and not:wikipedia may mismatch
+                         # and so on
 
         if present_wikidata_id == None:
             return None
