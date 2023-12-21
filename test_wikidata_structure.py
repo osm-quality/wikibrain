@@ -591,6 +591,12 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q115691031')
         self.assert_linkability('Q121811317')
 
+    def test_specific_garden_centre_as_valid_primary_link(self):
+        # https://www.wikidata.org/w/index.php?title=Q260569&diff=2033544461&oldid=1926943045
+        self.assert_linkability('Q67202863')
+        self.assert_linkability('Q110538508')
+        self.assert_linkability('Q7201474')        
+
     def test_artwork_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q57838673')
 
