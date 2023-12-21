@@ -580,7 +580,7 @@ class WikimediaLinkIssueDetector:
                     )
                 else:
                     return ErrorReport(
-                        error_id="malformed secondary wikidata tag",
+                        error_id="malformed secondary wikidata tag for " + key + " tag",
                         error_message="malformed value in " + key + " tag (" + link + ")",
                         prerequisite={key: link},
                     )
