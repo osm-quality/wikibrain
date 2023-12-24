@@ -7,7 +7,7 @@ def skipped_cases():
         # exception to a general category
         "Q279012",  # https://www.openstreetmap.org/node/5071422202 copyright trap that got famous enough to be mappable
 
-        "Q1415790", # confusing religious term
+        "Q1415790",  # confusing religious term
     ]
 
 

@@ -299,7 +299,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_tree_as_valid_primary_link_testcase_d(self):
         self.assert_linkability('Q995630')
-        
+
     def test_specific_tree_as_valid_primary_link_testcase_e(self):
         self.assert_linkability('Q1958003')
 
@@ -601,7 +601,7 @@ class WikidataTests(unittest.TestCase):
         # https://www.wikidata.org/w/index.php?title=Q260569&diff=2033544461&oldid=1926943045
         self.assert_linkability('Q67202863')
         self.assert_linkability('Q110538508')
-        self.assert_linkability('Q7201474')        
+        self.assert_linkability('Q7201474')
 
     def test_artwork_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q57838673')
@@ -1067,7 +1067,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q2334476')
         self.assert_linkability('Q16266364')
         self.assert_linkability('Q1742845')
-        self.assert_linkability('Q2137110')        
+        self.assert_linkability('Q2137110')
 
     def test_land_art_as_valid_primary_link(self):
         self.assert_linkability('Q55723212')

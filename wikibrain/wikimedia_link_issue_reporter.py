@@ -103,7 +103,7 @@ class WikimediaLinkIssueDetector:
         # https://www.openstreetmap.org/node/9724249774
         # https://www.openstreetmap.org/way/584197021
         skipped.append("Q175047")
-        skipped.append("Q1415790") # also in skipped_cases() to ensure full removal
+        skipped.append("Q1415790")  # also in skipped_cases() to ensure full removal
 
         return skipped
 
@@ -178,11 +178,11 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q3368517')
         wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q169180')
-        wikidata_bugs.append('Q83307') # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
+        wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
 
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         # and also extra errors for disabled tests - 7 right now
-        
+
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
         wikidata_bugs.append('Q659396')
         wikidata_bugs.append('Q872181')
@@ -225,9 +225,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q601401')
         wikidata_bugs.append('Q43450')
         wikidata_bugs.append('Q5398426')
-        
-        
-        
+
         return wikidata_bugs
 
     def get_problem_for_given_element(self, element):
