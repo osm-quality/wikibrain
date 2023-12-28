@@ -9,8 +9,7 @@ class WikidataTests(unittest.TestCase):
     def detector(self):
         return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
 
-    def assert_passing_all_tests(self, wikidata, wikipedia):
-        tags = {'wikidata': wikidata, 'wikipedia': wikipedia}
+    def assert_passing_all_tests(self, tags):
         location = (0, 0)
         object_type = "node"
         object_description = "test"
@@ -337,12 +336,12 @@ class WikidataTests(unittest.TestCase):
     def test_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q706198')
         self.assert_linkability('Q877800')
-        self.assert_passing_all_tests('Q877800', 'de:Bahnstrecke Hochstadt-Marktzeuln–Probstzella')
+        self.assert_passing_all_tests({'wikidata': 'Q877800', 'wikipedia': 'de:Bahnstrecke Hochstadt-Marktzeuln–Probstzella'})
 
     def test_railway_line_redirect_as_valid_primary_link(self):
         # https://www.openstreetmap.org/way/436798487
         self.assert_linkability('Q802652')
-        self.assert_passing_all_tests('Q802652', 'de:Württembergische Allgäubahn')
+        self.assert_passing_all_tests({'wikipedia': 'de:Württembergische Allgäubahn'})
         
 
     def test_privilidged_railway_line_as_valid_primary_link(self):
@@ -725,7 +724,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_locomotive_as_valid_primary_link(self):
         self.assert_linkability('Q113278632')
-        self.assert_passing_all_tests('Q113278632', 'en:Santa Fe 769')
+        self.assert_passing_all_tests({'wikidata': 'Q113278632', 'wikipedia': 'en:Santa Fe 769'})
 
     def test_cave_as_valid_primary_link(self):
         self.assert_linkability('Q1275277')
@@ -760,10 +759,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_monastery_as_valid_primary_link(self):
         self.assert_linkability('Q4508631')
-        self.assert_passing_all_tests('Q4508631', 'pl:Cziłter-Koba')  # https://pl.wikipedia.org/wiki/Czi%C5%82ter-Koba
+        self.assert_passing_all_tests({'wikidata': 'Q4508631', 'wikipedia': 'pl:Cziłter-Koba'})  # https://pl.wikipedia.org/wiki/Czi%C5%82ter-Koba
 
     def test_bridge_with_phantom_disambig_as_valid_primary_link(self):
-        self.assert_passing_all_tests('Q55648855', 'he:גשר יהודית')
+        self.assert_passing_all_tests({'wikidata': 'Q55648855', 'wikipedia': 'he:גשר יהודית'})
 
     def test_detecting_weapon_model_as_invalid_primary_link(self):
         # https://www.openstreetmap.org/node/3014280721
@@ -804,7 +803,7 @@ class WikidataTests(unittest.TestCase):
         report = self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', "wikipedia")
         if report != None:
             self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', "wikipedia", show_debug=True)
-        self.assert_passing_all_tests('Q3179144', 'en:Unincorporated Far West Region')
+        self.assert_passing_all_tests({'wikidata': 'Q3179144', 'wikipedia': 'en:Unincorporated Far West Region'})
 
     def test_pilgrimage_route_as_valid_primary_link(self):
         self.assert_linkability('Q41150')
