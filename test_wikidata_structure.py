@@ -213,6 +213,7 @@ class WikidataTests(unittest.TestCase):
     def test_hall_of_fame_as_valid_primary_link(self):
         self.assert_linkability('Q8027203')
         self.assert_linkability('Q1366018')
+        self.assert_linkability('Q258100') # award and musem in one object        
 
     def test_detecting_high_school_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q85652366')
@@ -337,6 +338,12 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q706198')
         self.assert_linkability('Q877800')
         self.assert_passing_all_tests('Q877800', 'de:Bahnstrecke Hochstadt-Marktzeuln–Probstzella')
+
+    def test_railway_line_redirect_as_valid_primary_link(self):
+        # https://www.openstreetmap.org/way/436798487
+        self.assert_linkability('Q802652')
+        self.assert_passing_all_tests('Q802652', 'de:Württembergische Allgäubahn')
+        
 
     def test_privilidged_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q259992')
@@ -1198,6 +1205,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_office_building_as_valid_primary_link(self):
         self.assert_linkability('Q1590873')
+        self.assert_linkability('Q123510810')
 
     def test_station_of_a_cross_as_valid_primary_link(self):
         self.assert_linkability('Q98488381')
@@ -1725,6 +1733,12 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q692400', 'an intentional human activity')
         self.is_not_a_specific_error_class('Q692400', 'a legal action')
         # TODO - it is not a valid link either
+
+    def test_endowed_organization_is_not_a_legal_action(self):
+        self.is_not_a_specific_error_class('Q1205496', 'a legal action')
+
+    def testcity_garm_is_not_a_legal_action(self):
+        self.is_not_a_specific_error_class('Q75172691', 'a legal action')
 
     def test_letter_is_not_tradition(self):
         self.is_not_a_specific_error_class('Q9963', 'a tradition')
