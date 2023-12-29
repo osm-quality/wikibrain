@@ -36,7 +36,9 @@ See also and [my step by step list](https://www.wikidata.org/wiki/User:Mateusz_K
 
 ## Detect code style issues
 
-`pylint **/*.py --include-naming-hint=y --variable-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --argument-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --disable=C0103,C0301,C0114,C0115,C0116,C0121,W0612,W0613,R0904,R0911,R0912,R0913,R0914,R0915,C0302,C1803,R1710,W0719,R1705,C0411`
+`pylint **/*.py --include-naming-hint=y --variable-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --argument-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --disable=C0103,C0301,C0114,C0115,C0116,C0121,W0612,W0613,R0904,R0911,R0912,R0913,R0914,R0915,C0302,C1803,R1710,W0719,R1705,C0411,E1136`
+
+E1136 is hopelessly buggy, see https://github.com/pylint-dev/pylint/issues/1498#issuecomment-1872189118
 
 Disables rule `C0103` with many false positives (too eager to convert variables into constants).
 
