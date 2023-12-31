@@ -452,6 +452,10 @@ class Tests(unittest.TestCase):
     def test_simplest_passing_case_for_why_object_is_allowed_to_have_foreign_language_label(self):
         self.assertNotEqual(None, self.detector().why_object_is_allowed_to_have_foreign_language_label("dummy description", 'Q205547'))
 
+    def test_that_object_with_part_of_indicating_border_is_allowed_to_have_foreign_language_label(self):
+        # https://www.wikidata.org/w/index.php?title=Q2124428&diff=prev&oldid=1015357102
+        self.assertNotEqual(None, self.detector().why_object_is_allowed_to_have_foreign_language_label("part of", 'Q2124428'))
+
     def test_that_wikipedia_wikidata_conflict_is_detected_for_secondary_tags(self):
         # https://www.wikidata.org/wiki/Q2743499 - that bank
         matching_tags = {"brand:wikidata": "Q2743499", "brand:wikipedia": "en:Punjab National Bank"}
