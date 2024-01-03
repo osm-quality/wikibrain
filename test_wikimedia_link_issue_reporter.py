@@ -454,7 +454,12 @@ class Tests(unittest.TestCase):
 
     def test_that_object_with_part_of_indicating_border_is_allowed_to_have_foreign_language_label(self):
         # https://www.wikidata.org/w/index.php?title=Q2124428&diff=prev&oldid=1015357102
-        self.assertNotEqual(None, self.detector().why_object_is_allowed_to_have_foreign_language_label("part of", 'Q2124428'))
+        object_description = "part of"
+        self.assertNotEqual(None, self.detector().why_object_is_allowed_to_have_foreign_language_label(object_description, 'Q2124428'))
+        tags = {"wikidata": "Q2124428", 'wikipedia': "en:Mont d'Ambin"}
+        location = None
+        problem = self.detector().get_wikipedia_language_issues(object_description, tags, "en:Mont d'Ambin", "Q2124428")
+        self.assertEqual(None, problem)
 
     def test_that_wikipedia_wikidata_conflict_is_detected_for_secondary_tags(self):
         # https://www.wikidata.org/wiki/Q2743499 - that bank
