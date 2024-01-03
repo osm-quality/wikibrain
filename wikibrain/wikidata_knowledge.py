@@ -89,8 +89,6 @@ def blacklist_of_unlinkable_entries():
 
         'Q474379': {'prefix': 'brand:', 'expected_tags': {'shop': 'copyshop'}, 'name': 'FedEx Office'},
 
-        'Q7807658': {'prefix': 'brand:', 'expected_tags': {'shop': 'locksmith'}, 'name': 'Timpson'},
-
         'Q889624': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Leroy Merlin'},
         'Q10541151': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Jula'},
         'Q1373493': {'prefix': 'brand:', 'expected_tags': {'shop': 'doityourself'}, 'name': 'Lowe\'s'},
@@ -241,7 +239,7 @@ def blacklist_of_unlinkable_entries():
         'Q1477012': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'Ростелеком'},
         'Q1505321': {'prefix': 'brand:', 'expected_tags': {'shop': 'telecommunication'}, 'name': 'Укртелеком'},
         'Q402880': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': 'Beeline'},
-        'Q402880': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': 'Билайн'},
+        #'Q402880': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': 'Билайн'},
         'Q741618': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': '中国移动'},
         'Q1073540': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': '中国电信'},
         'Q1068485': {'prefix': 'brand:', 'expected_tags': {'office': 'telecommunication'}, 'name': '中国联通'},
@@ -1683,6 +1681,7 @@ def blacklist_of_unlinkable_entries():
         'Q7579310': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'Sport Clips'},
         'Q1737304': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'Klipp'},
         'Q11297528': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'QBハウス'},
+        'Q7807658': {'prefix': 'brand:', 'expected_tags': {'shop': 'locksmith'}, 'name': 'Timpson'},
         'Q7807658': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'Barbershop by Timpson'},
         'Q18352685': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'Drybar'},
         'Q7880076': {'prefix': 'brand:', 'expected_tags': {'shop': 'hairdresser'}, 'name': 'The Salon at Ulta Beauty'},
@@ -1703,7 +1702,7 @@ def blacklist_of_unlinkable_entries():
         'Q28730390': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Becker + Flöge'},
         'Q22671892': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Optiker Bode'},
         'Q2231148': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Pearle'},
-        'Q2231148': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Pearle Vision'},
+        #'Q2231148': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Pearle Vision'},
         'Q10687541': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Synoptik'},
         'Q11308974': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'ジンズ'},
         'Q27313697': {'prefix': 'brand:', 'expected_tags': {'shop': 'optician'}, 'name': 'Mister Spex'},
@@ -1865,7 +1864,7 @@ def blacklist_of_unlinkable_entries():
         'Q2989971': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
         'Q2989977': {'prefix': 'former_operator:', 'expected_tags': {'abandoned:man_made': 'mineshaft'}},
 
-        'Q157739': {'prefix': 'species:', 'expected_tags': {'species': 'Platanus occidentalis', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved', 'species:pl': "Platan klonolistny"}},
+        'Q157739': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Platanus occidentalis', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved', 'species:pl': "Platan klonolistny"}},
         'Q161374': {'prefix': 'genus:', 'expected_tags': {'species': 'Platanus acerifolia', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved', 'species:pl': "Platan klonolistny"}},
         'Q163025': {'prefix': 'genus:', 'expected_tags': {'genus': 'Platanus', 'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q131113': {'prefix': 'genus:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'genus': 'Ulmuss', 'genus:pl': 'Wiąz'}},
@@ -1904,7 +1903,6 @@ def blacklist_of_unlinkable_entries():
         'Q2710065': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Embothrium coccineum', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q714180': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Ficus microcarpa', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
         'Q161105': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Platanus orientalis', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
-        'Q157739': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Platanus occidentalis', 'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q692162': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species:en': 'California Bay Leaf', 'leaf_cycle': 'evergreen', 'leaf_type': 'broadleaved'}},
         'Q3266951': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'leaf_cycle': 'deciduous', 'leaf_type': 'broadleaved'}},
         'Q158301': {'prefix': 'species:', 'expected_tags': {'natural': 'tree'}, 'allowed_tags': {'species': 'Acer saccharinum'}},
