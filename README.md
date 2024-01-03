@@ -24,6 +24,8 @@ pip3 install -r requirements.txt
 
 # Fixing Wikidata
 
+[There is page at Wikidata](https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases) listing Wikidata issues and provided for Wikidata community so they can fix oproblematic cases.
+
 Search for `too_abstract_or_wikidata_bugs` and disable that to get more errors caused by Wikidata.
 
 See also and [my step by step list](https://www.wikidata.org/wiki/User:Mateusz_Konieczny#Ontology_on_Wikidata_is_systematically_broken)
