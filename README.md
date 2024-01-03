@@ -28,6 +28,12 @@ Search for `too_abstract_or_wikidata_bugs` and disable that to get more errors c
 
 See also and [my step by step list](https://www.wikidata.org/wiki/User:Mateusz_Konieczny#Ontology_on_Wikidata_is_systematically_broken)
 
+# Development
+
+`bash reinstall.sh`
+
+can be used to run linter, tests and reinstall it
+
 ## Reformat code to follow Python coding standards
 
 `autopep8 --in-place --max-line-length=420 --recursive .`
