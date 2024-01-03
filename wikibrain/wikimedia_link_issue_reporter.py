@@ -1457,9 +1457,9 @@ class WikimediaLinkIssueDetector:
             'Q11483816':  {'what': 'an annual event', 'replacement': None},  # maybe not an actual problem?
 
 
-            'Q12128':  {'what': 'a dentistry', 'replacement': None},
             'Q190637':  {'what': 'a web design', 'replacement': None},
             'Q930752':  {'what': 'a medical specialty', 'replacement': None},
+            'Q12128':  {'what': 'a dentistry', 'replacement': None},
             'Q31629':  {'what': 'a type of sport', 'replacement': None},
             'Q349':  {'what': 'a sport', 'replacement': None},
             'Q4':  {'what': 'a death', 'replacement': None},
@@ -1526,7 +1526,6 @@ class WikimediaLinkIssueDetector:
             'Q2761147': {'what': 'a meeting', 'replacement': None},
             'Q331055': {'what': 'a burial', 'replacement': None},
             'Q1437361': {'what': 'a form of art', 'replacement': None},
-            'Q12128': {'what': 'a dentistry', 'replacement': None},
             # an academic discipline is often unclear and false positive, vast majority comes from dentistry spam covered by above
             'Q11862829': {'what': 'an academic discipline', 'replacement': None, 'extremely_broad_and_unspecific': True},
             'Q1298668': {'what': 'a research project', 'replacement': None},
