@@ -2567,7 +2567,7 @@ class WikimediaLinkIssueDetector:
     def element_can_be_reduced_to_position_at_single_location(self, element):
         if element.get_element().tag == "relation":
             relation_type = element.get_tag_value("type")
-            if relation_type == "person" or relation_type == "route":
+            if relation_type in ('person', 'route'):
                 return False
         if element.get_tag_value("waterway") == "river":
             return False
