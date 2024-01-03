@@ -213,6 +213,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q8027203')
         self.assert_linkability('Q1366018')
         self.assert_linkability('Q258100') # award and musem in one object        
+    
+    def test_plaque_as_valid_primary_link(self):
+        self.assert_linkability('Q1364556')
 
     def test_detecting_high_school_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q85652366')

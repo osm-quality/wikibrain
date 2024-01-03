@@ -105,6 +105,9 @@ class WikimediaLinkIssueDetector:
         skipped.append("Q175047")
         skipped.append("Q1415790")  # also in skipped_cases() to ensure full removal
 
+        # awards are often closely linked to physical manifestations
+        # see https://www.wikidata.org/wiki/Q1364556
+        skipped.append("Q618779")
         return skipped
 
     @staticmethod
@@ -1505,7 +1508,6 @@ class WikimediaLinkIssueDetector:
             'Q42240': {'what': 'a research', 'replacement': None},
             'Q268592': {'what': 'a general industry', 'replacement': None},
             'Q1344': {'what': 'an opera', 'replacement': None},
-            'Q618779': {'what': 'an award', 'replacement': None},
             'Q35127': {'what': 'a website', 'replacement': None},
             'Q5398426': {'what': 'a television series', 'replacement': None},
             'Q3026787': {'what': 'a saying', 'replacement': None},
