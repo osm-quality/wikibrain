@@ -188,8 +188,8 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_funicular_as_valid_primary_link(self):
         self.assert_linkability('Q5614426')
 
-    def test_detecting_fast_tram_as_valid_primary_link(self):
-        self.assert_linkability('Q1814872')
+    def test_detecting_fast_tram_network_as_invalid_primary_link(self):
+        self.assert_unlinkability('Q1814872')
 
     def test_detecting_school_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q5060518')
