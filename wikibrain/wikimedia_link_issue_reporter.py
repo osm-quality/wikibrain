@@ -108,6 +108,10 @@ class WikimediaLinkIssueDetector:
         # awards are often closely linked to physical manifestations
         # see https://www.wikidata.org/wiki/Q1364556
         skipped.append("Q618779")
+
+        # are ferry routes instances of intentional human activity?
+        # see https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2046224482#Woolwich_Ferry_(Q2593299)_is_intentional_human_activity,_according_to_Wikidata_ontology
+        skipped.append("Q18984099")    
         return skipped
 
     @staticmethod
@@ -182,7 +186,12 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
 
-        #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        # hall of fame (list of outstanding individuals in a particular group, 
+        # which may or may not be embodied in a literal physical structure)
+        # "may or may not be" blocks it from being useful
+        wikidata_bugs.append('Q1046088')
+
+        #return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
         # and also extra errors for disabled tests - 7 right now
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
