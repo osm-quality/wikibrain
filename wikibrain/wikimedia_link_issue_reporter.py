@@ -180,7 +180,6 @@ class WikimediaLinkIssueDetector:
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Profession_or_office?
         wikidata_bugs.append('Q3368517')
         wikidata_bugs.append('Q169180')
-        wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
 
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
