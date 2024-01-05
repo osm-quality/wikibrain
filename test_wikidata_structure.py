@@ -2140,51 +2140,25 @@ class WikidataTests(unittest.TestCase):
         self.brand_still_exists("Q1891407", "Texaco", "TODO: missing reference for Texaco")
 
     def test_former_company_exists_as_a_brand_radioshack(self):
-        pass
-        # reported at
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        # supressed here until Wikidata community fixes it
-        #self.brand_still_exists("Q1195490", "RadioShack", 'https://en.wikipedia.org/w/index.php?title=RadioShack&oldid=1169051112 mentions "network of independently owned and franchised RadioShack stores"')
+        self.brand_still_exists("Q1195490", "RadioShack", 'https://en.wikipedia.org/w/index.php?title=RadioShack&oldid=1169051112 mentions "network of independently owned and franchised RadioShack stores"')
 
     def test_former_company_exists_as_a_brand_amoco(self):
-        pass
-        # reported at
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        # supressed here until Wikidata community fixes it
-        #self.brand_still_exists("Q465952", "Amoco", 'https://en.wikipedia.org/w/index.php?title=Amoco&oldid=1169009405 : Merged with BP, becoming a brand')
+        self.brand_still_exists("Q465952", "Amoco", 'https://en.wikipedia.org/w/index.php?title=Amoco&oldid=1169009405 : Merged with BP, becoming a brand')
 
     def test_former_company_exists_as_a_brand_lotos(self):
         self.brand_still_exists("Q1256909", "Lotos", 'company sold, Orlen bought fuel stations rebranded, brand active at at least some MOL-owned ones (as of 2023-08)')
 
     def test_agip_apparently_exists(self):
-        pass
-        # reported at
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        # supressed here until Wikidata community fixes it
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        # supressed here until Wikidata community fixes it
-        #self.brand_still_exists("Q377915", "Agip", 'branding reported to be in use - see https://www.openstreetmap.org/note/3821330')
+        self.brand_still_exists("Q377915", "Agip", 'branding reported to be in use - see https://www.openstreetmap.org/note/3821330')
 
     def test_former_company_exists_as_a_brand_conoco(self):
-        pass
-        # reported at
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        # supressed here until Wikidata community fixes it
-        #self.brand_still_exists("Q1126518", "Conoco", 'https://en.wikipedia.org/w/index.php?title=Conoco&oldid=1156282755 "Currently the name Conoco is a brand of gasoline and service station in the United States"')
+        self.brand_still_exists("Q1126518", "Conoco", 'https://en.wikipedia.org/w/index.php?title=Conoco&oldid=1156282755 "Currently the name Conoco is a brand of gasoline and service station in the United States"')
 
     def test_former_company_exists_as_a_brand_gulf(self):
-        pass
-        # reported at
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        # supressed here until Wikidata community fixes it
-        #self.brand_still_exists("Q1296860", "Gulf Oil", 'https://en.wikipedia.org/wiki/en:Gulf Oil "In Spain and Portugal, the Gulf brand is now owned by TotalEnergies SE.[5]"')
+        self.brand_still_exists("Q1296860", "Gulf Oil", 'https://en.wikipedia.org/wiki/en:Gulf Oil "In Spain and Portugal, the Gulf brand is now owned by TotalEnergies SE.[5]"')
 
     def test_unexplained_closure_claim(self):
-        pass
-        # was/will be reported at
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        # supressed here until Wikidata community fixes it
-        #self.brand_still_exists("Q3888718", "Paddy Power", 'https://en.wikipedia.org/wiki/en:Paddy_Power seems to describe it as existing and operational')
+        self.brand_still_exists("Q3888718", "Paddy Power", 'https://en.wikipedia.org/wiki/en:Paddy_Power seems to describe it as existing and operational')
 
     def test_such_surveillance_is_not_illegal_in_all_cases(self):
         self.is_not_a_specific_error_class('Q387115', 'a violation of law')

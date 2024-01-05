@@ -6,7 +6,7 @@ import re
 import yaml
 from wikibrain import wikipedia_knowledge
 from wikibrain import wikidata_knowledge
-
+import json
 
 class ErrorReport:
     def __init__(self, error_message=None, error_general_intructions=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
@@ -192,7 +192,6 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q1046088')
 
         #return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
-        # and also extra errors for disabled tests - 7 right now
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
         wikidata_bugs.append('Q169180')
@@ -640,6 +639,19 @@ class WikimediaLinkIssueDetector:
                 prerequisite={'wikidata': present_wikidata_id}
             )
 
+    def is_brand_nonexisting(self, present_wikidata_id):
+        no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
+        if no_longer_existing != None:
+            for existence_blockade in no_longer_existing:
+                #print(present_wikidata_id, json.dumps(existence_blockade, indent=4))
+                try:
+                    excluding = existence_blockade['qualifiers']['P1011']
+                    continue
+                except KeyError:
+                    # P1011 is missing, therefore it is not marked as a statement partially excluded
+                    return True
+        return False
+
     def check_is_object_brand_is_existing(self, tags):
         marked_as_defunct = False
         marked_as_active = False
@@ -654,8 +666,7 @@ class WikimediaLinkIssueDetector:
         present_wikidata_id = tags.get("brand:wikidata")
         if present_wikidata_id == None:
             return None
-        no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
-        if no_longer_existing != None:
+        if self.is_brand_nonexisting(present_wikidata_id):
             error_general_intructions = "Wikidata claims that assigned brand object no longer exists. That means that either this shop is gone or it is rebranded. Or brand:wikidata tag is wrong. Historical, no longer existing object should not be mapped in OSM." + " " + self.wikidata_data_quality_warning()
             message = ""
             state = "no longer existing brand (according to Wikidata)"
