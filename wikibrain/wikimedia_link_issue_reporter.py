@@ -65,6 +65,9 @@ class WikimediaLinkIssueDetector:
         # skipping this as sadly some proposed roads are actually mapped in OSM :(
         # and in this case there is no agreement to delete them :(
         skipped.append('Q30106829')
+        # proposed rail infrastructure - applied to in-construction one
+        # see https://www.wikidata.org/wiki/Q7985674
+        skipped.append('Q28043022')
 
         # trademark is ignored as even hamlet can be trademarked
         # so it provides no extra info and detangling architecture here is too tricky
