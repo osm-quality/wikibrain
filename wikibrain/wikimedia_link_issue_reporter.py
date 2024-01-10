@@ -1401,6 +1401,10 @@ class WikimediaLinkIssueDetector:
             return None
         remembered_potential_failure = None
         for type_id in self.wikidata_entries_classifying_entry(effective_wikidata_id):
+            if type_id in [
+                "Q122754124", # ambiguous Wikidata item - so known to be broken
+            ]:
+                return None # maybe can be reported as worth handling on Wikidata?
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
             if potential_failure != None:
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
