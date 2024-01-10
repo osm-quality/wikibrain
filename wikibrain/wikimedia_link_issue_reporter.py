@@ -449,7 +449,7 @@ class WikimediaLinkIssueDetector:
             if something_reportable != None:
                 return something_reportable
 
-        if "bridge:wikipedia" and "bridge:wikidata" in tags:
+        if "bridge:wikipedia" in tags and "bridge:wikidata" in tags:
             return ErrorReport(
                 error_id="bridge:wikipedia and bridge:wikidata - move to bridge outline",
                 error_message="bridge:wikipedia and bridge:wikidata links should be tagged on man_made=bridge outline - without prefixes as wikipedia=* and wikidata=*, not on way across bridge. man_made=bridge object may be missing and it may be necessary to draw it, it may be useful to move also some other bridge tags",
