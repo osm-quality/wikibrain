@@ -640,16 +640,17 @@ class WikimediaLinkIssueDetector:
             )
 
     def is_brand_nonexisting(self, present_wikidata_id):
-        no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
-        if no_longer_existing != None:
-            for existence_blockade in no_longer_existing:
-                #print(present_wikidata_id, json.dumps(existence_blockade, indent=4))
-                try:
-                    excluding = existence_blockade['qualifiers']['P1011']
-                    continue
-                except KeyError:
-                    # P1011 is missing, therefore it is not marked as a statement partially excluded
-                    return True
+        for part in present_wikidata_id.split(";"):
+            no_longer_existing = wikimedia_connection.get_property_from_wikidata(part, 'P576')
+            if no_longer_existing is not None:
+                for existence_blockade in no_longer_existing:
+                    #print(present_wikidata_id, json.dumps(existence_blockade, indent=4))
+                    try:
+                        excluding = existence_blockade['qualifiers']['P1011']
+                        continue
+                    except KeyError:
+                        # P1011 is missing, therefore it is not marked as a statement partially excluded
+                        return True
         return False
 
     def check_is_object_brand_is_existing(self, tags):
