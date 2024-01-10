@@ -1410,7 +1410,7 @@ class WikimediaLinkIssueDetector:
                     # bother with it after USA report page is empty and Wikidata Ontology has run out of things to fix
                     # AKA never
 
-                if potential_failure['what'] == " a bicycle sharing system" and tags.get('type') == 'network':
+                if potential_failure['what'] == "a bicycle sharing system" and tags.get('type') == 'network':
                     continue # for relations like https://www.openstreetmap.org/relation/6409389 it seems fine
                              # though not sure is relation itself is fine
                              # but lets skip and focus on blatantly bad things
