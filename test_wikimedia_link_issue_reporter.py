@@ -473,6 +473,38 @@ class Tests(unittest.TestCase):
         self.assertEqual(None, should_be_fine)
         self.assertNotEqual(None, should_be_failing)
 
+    def test_that_wikidata_works_with_multiple_brands(self):
+        # https://www.wikidata.org/wiki/Q53268
+        matching_tags = {"brand:wikidata": "Q53268;Q6746;Q27597;Q40966;Q30113"}
+        location = None
+        object_description = "fake test object"
+        should_be_fine = self.detector().get_the_most_important_problem_generic(matching_tags, location, "node", object_description)
+        self.assertEqual(None, should_be_fine)
+
+    def test_is_brand_nonexisting(self):
+        # Basic test against Q4746
+        self.assertFalse(
+            self.detector().is_brand_nonexisting('Q6746'),
+            'Q6746 is marked as non existing but expected to be valid'
+        )
+        self.assertFalse(
+            self.detector().is_brand_nonexisting('Q53268;Q6746'),
+            'Q53268 and Q6746 is marked as non existing but expected to be valid'
+        )
+
+        self.assertTrue(
+            self.detector().is_brand_nonexisting('Q7501155'),
+            'Q7501155 is marked as valid but expected to be non existing'
+        )
+        self.assertTrue(
+            self.detector().is_brand_nonexisting('Q7501155;Q6746'),
+            'Q7501155 is marked as valid but expected to be non existing'
+        )
+        self.assertTrue(
+            self.detector().is_brand_nonexisting('Q6746;Q7501155'),
+            'Q7501155 is marked as valid but expected to be non existing'
+        )
+
     def test_that_not_prefixes_are_respected(self):
         # https://www.openstreetmap.org/way/165659335
         tags = {"not:brand:wikidata": "Q177054", "brand:wikidata": "Q177054"}
