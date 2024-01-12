@@ -1208,7 +1208,7 @@ class WikimediaLinkIssueDetector:
             if not self.allow_false_positives:
                 return None
             error_message = "wikipedia page in unexpected language - " + self.expected_language_code + " was expected, no page in that language was found:"
-            if language_code in bot_wikipedias:
+            if current_language_code in bot_wikipedias:
                 return ErrorReport(
                     error_id="wikipedia tag links bot wikipedia",
                     error_message=botpedia_message,
