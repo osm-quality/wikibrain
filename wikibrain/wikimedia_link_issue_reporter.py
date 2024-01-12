@@ -639,18 +639,22 @@ class WikimediaLinkIssueDetector:
                 prerequisite={'wikidata': present_wikidata_id}
             )
 
-    def is_brand_nonexisting(self, present_wikidata_id):
-        no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
-        if no_longer_existing != None:
+    @staticmethod
+    def get_dissolved_brands(present_wikidata_ids: list):
+        dissolved_brands = []
+        for present_wikidata_id in present_wikidata_ids:
+            no_longer_existing = wikimedia_connection.get_property_from_wikidata(present_wikidata_id, 'P576')
+            if no_longer_existing is None:
+                continue
+
             for existence_blockade in no_longer_existing:
-                #print(present_wikidata_id, json.dumps(existence_blockade, indent=4))
                 try:
                     excluding = existence_blockade['qualifiers']['P1011']
                     continue
                 except KeyError:
                     # P1011 is missing, therefore it is not marked as a statement partially excluded
-                    return True
-        return False
+                    dissolved_brands.append(present_wikidata_id)
+        return dissolved_brands
 
     def check_is_object_brand_is_existing(self, tags):
         marked_as_defunct = False
@@ -666,9 +670,11 @@ class WikimediaLinkIssueDetector:
         present_wikidata_id = tags.get("brand:wikidata")
         if present_wikidata_id == None:
             return None
-        if self.is_brand_nonexisting(present_wikidata_id):
+
+        dissolved_brands = self.get_dissolved_brands(present_wikidata_id.split(';'))
+        if dissolved_brands:
             error_general_intructions = "Wikidata claims that assigned brand object no longer exists. That means that either this shop is gone or it is rebranded. Or brand:wikidata tag is wrong. Historical, no longer existing object should not be mapped in OSM." + " " + self.wikidata_data_quality_warning()
-            message = ""
+            message = "wikidata ID " + ", ".join(dissolved_brands) + "is marked as dissolved"
             state = "no longer existing brand (according to Wikidata)"
             if marked_as_defunct and not marked_as_active:
                 # see say https://www.openstreetmap.org/way/80889053
