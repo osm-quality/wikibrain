@@ -412,7 +412,8 @@ class WikidataTests(unittest.TestCase):
     def test_monument_as_valid_primary_link(self):
         self.assert_linkability('Q11823211')
 
-    def test_monument_as_valid_primary_link(self):
+    def test_monument_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q11823211')
         # "plastic arts"
         self.assert_linkability('Q101608972')
         self.assert_linkability('Q110518230')
@@ -502,7 +503,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_trademark_as_valid_primary_link(self):
         # trademark added to ignored_entries_in_wikidata_ontology to solve this
-        self.assert_linkability('Q1392479')  # everything can be trademarked, even hamlet and it does not make it an event
+        self.assert_linkability('Q1392479')  # everything can be trademarked, even hamlet, and it does not make it an event
 
     def test_community_garden_as_valid_primary_link(self):
         self.assert_linkability('Q49493599')
@@ -581,7 +582,7 @@ class WikidataTests(unittest.TestCase):
     def test_pipeline_as_valid_primary_link(self):
         self.assert_linkability('Q7700085')
 
-    def test_submarine_cable_as_valid_primary_link(self):
+    def test_submarine_cable_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q7118902')
 
     def test_country_club_as_valid_primary_link(self):
@@ -725,7 +726,7 @@ class WikidataTests(unittest.TestCase):
     def test_wayside_shrine_as_valid_primary_link(self):
         self.assert_linkability('Q41318154')
 
-    def test_specific_locomotive_as_valid_primary_link(self):
+    def test_specific_locomotive_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q113278632')
         self.assert_passing_all_tests({'wikidata': 'Q113278632', 'wikipedia': 'en:Santa Fe 769'})
 
@@ -1452,7 +1453,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_an_event('Q468381')
         self.is_not_a_behavior('Q468381')
 
-    def test_that_software_company_is_not_an_event_but_is_unlinkable_anyway(self):
+    def test_that_software_company_is_not_an_event_but_is_unlinkable_anyway_testcase_b(self):
         self.assert_unlinkability('Q468381')
         self.is_not_an_event('Q468381')
         self.is_not_a_behavior('Q468381')
@@ -1889,9 +1890,6 @@ class WikidataTests(unittest.TestCase):
     def test_detect_battle_more_specifically_than_generic_event_testcase_b(self):
         self.is_not_an_event('Q677959')
 
-    def test_andorra_country_as_valid_primary_link(self):
-        self.assert_linkability('Q228')
-
     def test_school_as_valid_primary_link(self):
         # if something affects all schools, single report is preferable
         self.assert_linkability('Q4059246')
@@ -1931,9 +1929,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_library_as_valid_primary_link(self):
         self.assert_linkability('Q11551945')
-
-    def test_location_with_optical_illusion_as_valid_primary_link(self):
-        self.assert_linkability('Q1325829')
 
     def test_location_with_optical_illusion_as_valid_primary_link(self):
         self.assert_linkability('Q1325829')
@@ -1999,7 +1994,7 @@ class WikidataTests(unittest.TestCase):
     def test_geotope_as_valid_primary_link(self):
         self.assert_linkability('Q48261221')
 
-    def test_archeological_site_as_valid_primary_link(self):
+    def test_archeological_site_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q66815081')
 
     def test_arty_pedestrian_bridge_as_valid_primary_link(self):
