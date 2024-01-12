@@ -696,7 +696,7 @@ class WikimediaLinkIssueDetector:
                 error_id=state,
                 error_general_intructions=error_general_intructions,
                 error_message=message,
-                prerequisite={'wikidata': ';'.join(dissolved_brands)}
+                prerequisite={'wikidata': present_wikidata_id}
             )
 
     def tag_from_wikidata(self, present_wikidata_id, wikidata_property):
