@@ -4,7 +4,6 @@ import wikibrain.wikidata_knowledge
 import wikibrain.wikimedia_link_issue_reporter
 import wikibrain
 import wikimedia_connection.wikimedia_connection as wikimedia_connection
-import wikimedia_connection.wikidata_processing as wikidata_processing
 import osm_handling_config.global_config as osm_handling_config
 
 
@@ -482,12 +481,16 @@ class Tests(unittest.TestCase):
         self.assertEqual(None, should_be_fine)
 
     def test_that_wikidata_works_with_multiple_brands_one_invalid(self):
-        # https://www.wikidata.org/wiki/Q53268
+        # https://www.wikidata.org/wiki/Q7501155
         matching_tags = {"brand:wikidata": "Q7501155;Q6746"}
         location = None
         object_description = "fake test object"
-        should_be_fine = self.detector().get_the_most_important_problem_generic(matching_tags, location, "node", object_description)
-        self.assertIsNone(should_be_fine)
+        should_not_be_fine = self.detector().get_the_most_important_problem_generic(matching_tags, location, "node", object_description)
+        self.assertEqual(
+            should_not_be_fine.error_message,
+            'wikidata Q7501155 is marked as dissolved',
+            'Shopko is reported as being active but it should be reported as being dissolved'
+        )
 
     def test_get_dissolved_brands(self):
         # Basic test against Q4746
