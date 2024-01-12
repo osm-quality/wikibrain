@@ -1,6 +1,6 @@
 import wikimedia_connection
-import wikimedia_connection.wikimedia_connection as wikimedia_connection
-import wikimedia_connection.wikidata_processing as wikidata_processing
+from wikimedia_connection import wikimedia_connection
+from wikimedia_connection import wikidata_processing
 import geopy.distance
 import re
 import yaml
@@ -1014,7 +1014,7 @@ class WikimediaLinkIssueDetector:
             language_code_redirected = wikimedia_connection.get_language_code_from_link(link)
             article_name_redirected = wikimedia_connection.get_article_name_from_link(link)
             wikidata_of_redirected = wikimedia_connection.get_wikidata_object_id_from_article(language_code_redirected, article_name_redirected, self.forced_refresh)
-            if(self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_of_redirected, present_wikidata_id)):
+            if self.is_first_wikidata_disambig_while_second_points_to_something_not_disambig(wikidata_of_redirected, present_wikidata_id):
                 new_wikipedia = self.get_best_interwiki_link_by_id(present_wikidata_id)
                 message = "article claims to redirect to disambig, " + wikidata_key + " does not. " + wikidata_key + " tag is likely to be correct, " + wikipedia_key + " tag almost certainly is not"
                 return ErrorReport(
