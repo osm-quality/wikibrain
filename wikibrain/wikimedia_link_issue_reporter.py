@@ -683,7 +683,7 @@ class WikimediaLinkIssueDetector:
         dissolved_brands = self.get_dissolved_brands(present_wikidata_id.split(';'))
         if dissolved_brands:
             error_general_intructions = "Wikidata claims that assigned brand object no longer exists. That means that either this shop is gone or it is rebranded. Or brand:wikidata tag is wrong. Historical, no longer existing object should not be mapped in OSM." + " " + self.wikidata_data_quality_warning()
-            message = "wikidata ID " + ", ".join(dissolved_brands) + "is marked as dissolved"
+            message = "wikidata " + ", ".join(dissolved_brands) + " is marked as dissolved"
             state = "no longer existing brand (according to Wikidata)"
             if marked_as_defunct and not marked_as_active:
                 # see say https://www.openstreetmap.org/way/80889053
