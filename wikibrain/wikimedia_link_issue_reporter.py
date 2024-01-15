@@ -1609,7 +1609,6 @@ class WikimediaLinkIssueDetector:
             # , 'extremely_broad_and_unspecific': True here is kind of hacky not sure is it even working, TODO
             'Q98374631': {'what': 'a transport by country or region', 'replacement': None, 'extremely_broad_and_unspecific': True},
         }
-        return None
 
     def disambig_type_id(self):
         return 'Q4167410'
