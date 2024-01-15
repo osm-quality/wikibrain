@@ -6,7 +6,6 @@ import re
 import yaml
 from wikibrain import wikipedia_knowledge
 from wikibrain import wikidata_knowledge
-import json
 
 class ErrorReport:
     def __init__(self, error_message=None, error_general_intructions=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
