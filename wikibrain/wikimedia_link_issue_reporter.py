@@ -309,17 +309,25 @@ class WikimediaLinkIssueDetector:
                 if something_reportable != None:
                     return something_reportable
 
+            if "wikipedia" in key:
+                something_reportable = self.check_is_wikipedia_link_clearly_malformed(key, tags.get(key))
+                if something_reportable != None:
+                    return something_reportable
+
+                language_code = wikimedia_connection.get_language_code_from_link(tags.get(key))
+                article_name = wikimedia_connection.get_article_name_from_link(tags.get(key))
+
+                if key == "wikipedia":
+                    something_reportable = self.check_is_wikipedia_page_existing(language_code, article_name)
+                    if something_reportable != None:
+                        return something_reportable
+                else:
+                    pass # TODO, make check_is_wikipedia_page_existing support also secondary wikipedia tags
+
         if tags.get("wikipedia") != None:
             language_code = wikimedia_connection.get_language_code_from_link(tags.get("wikipedia"))
             article_name = wikimedia_connection.get_article_name_from_link(tags.get("wikipedia"))
 
-            something_reportable = self.check_is_wikipedia_link_clearly_malformed(tags.get("wikipedia"))
-            if something_reportable != None:
-                return something_reportable
-
-            something_reportable = self.check_is_wikipedia_page_existing(language_code, article_name)
-            if something_reportable != None:
-                return something_reportable
 
             # early to ensure that passing later wikidata_id of article is not going to be confusing
             if tags.get("wikidata") != None: # in case of completely missing wikidata tag it is not a critical issue and will be solved 
@@ -520,13 +528,9 @@ class WikimediaLinkIssueDetector:
             prerequisite={key: present_wikidata_id},
         )
 
-    def check_is_wikipedia_link_clearly_malformed(self, link):
+    def check_is_wikipedia_link_clearly_malformed(self, key, link):
         if self.is_wikipedia_tag_clearly_broken(link):
-            return ErrorReport(
-                error_id="malformed wikipedia tag",
-                error_message="malformed value in wikipedia tag (" + link + ")",
-                prerequisite={'wikipedia': link},
-            )
+            return self.malformed_secondary_link_error("wikipedia", key, link)
         else:
             language_code = wikimedia_connection.get_language_code_from_link(link)
             if language_code in wikipedia_knowledge.WikipediaKnowledge.wikipedia_language_code_redirects():
@@ -553,28 +557,32 @@ class WikimediaLinkIssueDetector:
                 )
 
         if self.is_wikidata_tag_clearly_broken(link):
-            if key == "wikidata":
-                return ErrorReport(
-                    error_id="malformed wikidata tag",
-                    error_message="malformed value in " + key + " tag (" + link + ")",
-                    prerequisite={key: link},
-                )
-            elif key not in self.not_an_actual_wikidata_keys():
-                if key.endswith(":wikidata"):
-                    prefix = key[:-len(":wikidata")]
-                    return ErrorReport(
-                        error_id="malformed secondary wikidata tag - for " + prefix + " prefixed tags",
-                        error_message="malformed value in " + key + " tag (" + link + ")",
-                        prerequisite={key: link},
-                    )
-                else:
-                    return ErrorReport(
-                        error_id="malformed secondary wikidata tag for " + key + " tag",
-                        error_message="malformed value in " + key + " tag (" + link + ")",
-                        prerequisite={key: link},
-                    )
+            return self.malformed_secondary_link_error("wikidata", key, link)
         else:
             return None
+    
+    def malformed_secondary_link_error(self, wikidata_or_wikipedia, key, link):
+        if key == wikidata_or_wikipedia:
+            return ErrorReport(
+                error_id="malformed " + wikidata_or_wikipedia + " tag",
+                error_message="malformed value in " + key + " tag (" + link + ")",
+                prerequisite={key: link},
+            )
+        if key in self.not_an_actual_wikidata_keys():
+            return None
+        if key.endswith(":" + wikidata_or_wikipedia):
+            prefix = key[:-len(":" + wikidata_or_wikipedia)]
+            return ErrorReport(
+                error_id="malformed secondary " + wikidata_or_wikipedia + " tag - for " + prefix + " prefixed tags",
+                error_message="malformed value in " + key + " tag (" + link + ")",
+                prerequisite={key: link},
+            )
+        else:
+            return ErrorReport(
+                error_id="malformed secondary " + wikidata_or_wikipedia + " tag for " + key + " tag",
+                error_message="malformed value in " + key + " tag (" + link + ")",
+                prerequisite={key: link},
+            )
 
     def not_an_actual_wikidata_keys(self):
         return [

@@ -48,15 +48,34 @@ class Tests(unittest.TestCase):
         self.assertNotEqual(None, problem)
         self.assertEqual("malformed wikipedia tag", problem.data()['error_id'])
 
+    def test_nonexisting_secondary_wikipedia_link(self):
+        # not malformed but does not exist
+        tags = {"species:wikipedia": "en:djiosdfjiopfjiofjiowfjiofjiowefjiowfjio"}
+        location = None
+        object_type = 'node'
+        object_description = "fake test object"
+        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual(None, problem)
+        self.assertEqual("secondary wikipedia tag links to 404", problem.data()['error_id'])
+
     def test_https_link_as_invalid_in_secondary_wikipedia_tag(self):
         # not malformed but does not exist
         tags = {"name:etymology:wikipedia": "https://de.wikipedia.org/wiki/Konrad_Wirnhier"}
         location = None
         object_type = 'node'
         object_description = "fake test object"
+
+        problem = self.detector().check_is_wikipedia_link_clearly_malformed("name:etymology:wikipedia", tags.get("name:etymology:wikipedia"))
+        self.assertNotEqual(None, problem)
+        self.assertEqual("malformed secondary wikipedia tag - for name:etymology prefixed tags", problem.data()['error_id'])
+
+        problem = self.detector().critical_structural_issue_report(object_type, tags)
+        self.assertNotEqual(None, problem)
+        self.assertEqual("malformed secondary wikipedia tag - for name:etymology prefixed tags", problem.data()['error_id'])
+        
         problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
         self.assertNotEqual(None, problem)
-        self.assertEqual("malformed wikipedia tag", problem.data()['error_id'])
+        self.assertEqual("malformed secondary wikipedia tag - for name:etymology prefixed tags", problem.data()['error_id'])
 
     def test_malformed_wikidata_link(self):
         # not malformed but does not exist
