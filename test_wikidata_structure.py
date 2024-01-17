@@ -2160,3 +2160,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_decide_is_it_about_site_or_pseuodarchelogy_case(self):
         self.is_not_a_specific_error_class('Q1267546', 'a social issue')
+
+    def test_plantation_as_valid_primary_link(self):
+        self.assert_linkability('Q23734811')
