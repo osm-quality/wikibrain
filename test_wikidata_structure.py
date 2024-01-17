@@ -2158,5 +2158,5 @@ class WikidataTests(unittest.TestCase):
     def test_such_surveillance_is_not_illegal_in_all_cases(self):
         self.is_not_a_specific_error_class('Q387115', 'a violation of law')
 
-    def test_decide_is_it_about_site_or_pseudarchelogy_case(self):
+    def test_decide_is_it_about_site_or_pseuodarchelogy_case(self):
         self.is_not_a_specific_error_class('Q1267546', 'a social issue')
