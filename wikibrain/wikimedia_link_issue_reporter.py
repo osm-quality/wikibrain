@@ -113,7 +113,7 @@ class WikimediaLinkIssueDetector:
 
         # are ferry routes instances of intentional human activity?
         # see https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2046224482#Woolwich_Ferry_(Q2593299)_is_intentional_human_activity,_according_to_Wikidata_ontology
-        skipped.append("Q18984099")    
+        skipped.append("Q18984099")
         return skipped
 
     @staticmethod
@@ -188,7 +188,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
 
-        # hall of fame (list of outstanding individuals in a particular group, 
+        # hall of fame (list of outstanding individuals in a particular group,
         # which may or may not be embodied in a literal physical structure)
         # "may or may not be" blocks it from being useful
         wikidata_bugs.append('Q1046088')
@@ -330,7 +330,7 @@ class WikimediaLinkIssueDetector:
 
 
             # early to ensure that passing later wikidata_id of article is not going to be confusing
-            if tags.get("wikidata") != None: # in case of completely missing wikidata tag it is not a critical issue and will be solved 
+            if tags.get("wikidata") != None: # in case of completely missing wikidata tag it is not a critical issue and will be solved
                                              # by add_wikipedia_and_wikidata_based_on_each_other
                 something_reportable = self.check_for_wikipedia_wikidata_collision(tags, "wikidata", "wikipedia")
                 if something_reportable != None:
@@ -560,7 +560,7 @@ class WikimediaLinkIssueDetector:
             return self.malformed_secondary_link_error("wikidata", key, link)
         else:
             return None
-    
+
     def malformed_secondary_link_error(self, wikidata_or_wikipedia, key, link):
         if key == wikidata_or_wikipedia:
             return ErrorReport(
@@ -804,7 +804,7 @@ class WikimediaLinkIssueDetector:
                     if is_article_redirected:
                         id_from_link = wikimedia_connection.get_wikidata_object_id_from_article(language_code, title_after_possible_redirects, self.forced_refresh)
                 except wikimedia_connection.TitleViolatesKnownLimits:
-                    pass # redirected link is invalied and not reported as noexsiting - typically due to "feature" of special handling invalid ling with lang: prefixes 
+                    pass # redirected link is invalied and not reported as noexsiting - typically due to "feature" of special handling invalid ling with lang: prefixes
                          # for example asking about en:name article on Polish-language will return info whethere "name" article exists on enwiki!
                          # as result special check and throwing this exception is done on invalid ones
                          # and in case of link leading nowhere nothing special needs to be done and it can be silently swallowed

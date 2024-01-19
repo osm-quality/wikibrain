@@ -1,9 +1,7 @@
 import unittest
 from wikibrain import wikimedia_link_issue_reporter
-import wikimedia_connection.wikimedia_connection as wikimedia_connection
+from wikimedia_connection import wikimedia_connection, wikidata_processing
 import osm_handling_config.global_config as osm_handling_config
-import wikimedia_connection.wikidata_processing as wikidata_processing
-
 
 class WikidataTests(unittest.TestCase):
     def detector(self):
@@ -31,7 +29,7 @@ class WikidataTests(unittest.TestCase):
         return self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikipedia': 'dummy'})
         # get_error_report_if_type_unlinkable_as_primary
         #return self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(type_id, {'wikipedia': 'dummy'})
-    
+
     def is_not_an_event(self, type_id):
         self.is_not_a_specific_error_class(type_id, 'an event')
 
@@ -212,8 +210,8 @@ class WikidataTests(unittest.TestCase):
     def test_hall_of_fame_as_valid_primary_link(self):
         self.assert_linkability('Q8027203')
         self.assert_linkability('Q1366018')
-        self.assert_linkability('Q258100') # award and musem in one object        
-    
+        self.assert_linkability('Q258100')  # award and museum in one object
+
     def test_plaque_as_valid_primary_link(self):
         self.assert_linkability('Q1364556')
 
@@ -345,7 +343,7 @@ class WikidataTests(unittest.TestCase):
         # https://www.openstreetmap.org/way/436798487
         self.assert_linkability('Q802652')
         self.assert_passing_all_tests({'wikipedia': 'de:Württembergische Allgäubahn'})
-        
+
 
     def test_privilidged_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q259992')
@@ -1322,7 +1320,7 @@ class WikidataTests(unittest.TestCase):
     def test_that_insurance_company_is_not_insurance_but_is_unlinkable_anyway_testcase_c(self):
         #self.assert_unlinkability('Q657359') # TODO
         self.is_not_a_specific_error_class('Q657359', 'an insurance')
-        
+
 
     def test_that_social_insurance_institution_is_not_insurance_but_is_unlinkable_anyway(self):
         #self.assert_unlinkability('Q1458480') # TODO
@@ -1341,7 +1339,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_company_is_not_a_general_industry_testcase_b(self):
         self.is_not_a_specific_error_class('Q114324216', 'a general industry')
-        
+
     def test_that_organisation_is_not_a_general_industry_testcase_a(self):
         self.is_not_a_specific_error_class('Q1201729', 'a general industry')
 
@@ -1359,7 +1357,7 @@ class WikidataTests(unittest.TestCase):
 
         #self.assert_unlinkability('Q166561') TODO
         self.is_not_a_specific_error_class('Q166561', 'a general industry')
-        
+
     def test_that_company_is_not_a_general_industry_but_is_unlinkable_anyway_testcase_c(self):
         #self.assert_unlinkability('Q96018061') TODO
         self.is_not_a_specific_error_class('Q96018061', 'a general industry')
