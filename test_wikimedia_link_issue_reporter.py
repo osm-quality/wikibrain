@@ -3,7 +3,7 @@ import wikibrain.wikipedia_knowledge
 import wikibrain.wikidata_knowledge
 import wikibrain.wikimedia_link_issue_reporter
 import wikibrain
-import wikimedia_connection.wikimedia_connection as wikimedia_connection
+from wikimedia_connection import wikimedia_connection
 import osm_handling_config.global_config as osm_handling_config
 
 
@@ -72,7 +72,7 @@ class Tests(unittest.TestCase):
         problem = self.detector().critical_structural_issue_report(object_type, tags)
         self.assertNotEqual(None, problem)
         self.assertEqual("malformed secondary wikipedia tag - for name:etymology prefixed tags", problem.data()['error_id'])
-        
+
         problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
         self.assertNotEqual(None, problem)
         self.assertEqual("malformed secondary wikipedia tag - for name:etymology prefixed tags", problem.data()['error_id'])
@@ -676,7 +676,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(None, problem)
 
     def test_that_metawikidatatags_are_not_reported_for_markers_of_missing_wikidatas_missing_suffix(self):
-        # see 
+        # see
         # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#apparently_missing_wikidata_entries
         tags = {"name:etymology:wikidata:missing": "gibberish"}
         location = None
@@ -688,7 +688,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(None, problem)
 
     def test_that_metawikidatatags_are_not_reported_for_markers_of_missing_wikidatas_fixme_suffix(self):
-        # see 
+        # see
         # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#apparently_missing_wikidata_entries
         tags = {"name:etymology:wikidata:fixme": "gibberish"}
         location = None
