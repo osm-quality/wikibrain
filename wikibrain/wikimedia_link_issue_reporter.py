@@ -587,7 +587,8 @@ class WikimediaLinkIssueDetector:
     def not_an_actual_wikidata_keys(self):
         return [
             # have freeform format
-            "note:wikidata", "source:wikidata", "source:species:wikidata",
+            "note:wikidata", "wikidata:note", "source:wikidata", "source:species:wikidata",
+            "name:etymology:wikidata:fixme",
 
             # not worth a special support
             "image:license:wikidata"

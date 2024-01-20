@@ -675,19 +675,7 @@ class Tests(unittest.TestCase):
             print(problem.data()['error_id'])
         self.assertEqual(None, problem)
 
-    def test_that_metawikidatatags_are_not_reported_for_markers_of_missing_wikidatas_missing_suffix(self):
-        # see
-        # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#apparently_missing_wikidata_entries
-        tags = {"name:etymology:wikidata:missing": "gibberish"}
-        location = None
-        object_description = "fake test object"
-        object_type = 'way'
-        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
-        if problem != None:
-            print(problem.data()['error_id'])
-        self.assertEqual(None, problem)
-
-    def test_that_metawikidatatags_are_not_reported_for_markers_of_missing_wikidatas_fixme_suffix(self):
+    def test_that_metawikidatatags_are_not_reported_for_etymology_wikidatas__with_fixme_suffix(self):
         # see
         # https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#apparently_missing_wikidata_entries
         tags = {"name:etymology:wikidata:fixme": "gibberish"}
