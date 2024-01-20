@@ -195,7 +195,11 @@ class WikimediaLinkIssueDetector:
         # "may or may not be" blocks it from being useful
         wikidata_bugs.append('Q1046088')
 
-        #return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        # Summer camp is not an intentional human activity
+        # Report: https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Artek_(Q706474)_classified_as_an_intentional_human_activity
+        wikidata_bugs.append('Q706474')
+
+        # return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
         wikidata_bugs.append('Q169180')

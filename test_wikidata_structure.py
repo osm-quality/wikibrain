@@ -39,6 +39,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class(type_id, 'a human behavior')
 
     def is_not_a_specific_error_class(self, type_id, expected_error_class):
+        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
         if potential_failure == None:
             return
