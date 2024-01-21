@@ -1902,6 +1902,35 @@ class WikidataTests(unittest.TestCase):
     def test_special_education_school_as_valid_primary_link(self):
         self.assert_linkability('Q97737556')
 
+    def test_education_institution_as_valid_primary_link(self):
+        # education institutions are intended to be place where education takes place
+        # these are not education itself
+        self.assert_linkability('Q5978689')
+        self.assert_linkability('Q360587')
+        self.assert_linkability('Q66474866')
+        self.assert_linkability('Q116457733')
+        self.assert_linkability('Q3152131')
+        self.assert_linkability('Q6811806')
+        self.assert_linkability('Q7659985')
+        self.assert_linkability('Q108212962')
+        self.assert_linkability('Q8004456')
+        self.assert_linkability('Q5328452')
+        self.assert_linkability('Q781571')
+        self.assert_linkability('Q108055825')
+        self.assert_linkability('Q7305597')
+        self.assert_linkability('Q5585346')
+        self.assert_linkability('Q7058747')
+        self.assert_linkability('Q6978829')
+        self.assert_linkability('Q2264750')
+        self.assert_linkability('Q4951533')
+        self.assert_linkability('Q10876415')
+        self.assert_linkability('Q55625437')
+        self.assert_linkability('Q6978829')
+        self.assert_linkability('Q4951533')
+        self.assert_linkability('Q42710912')
+        self.assert_linkability('Q4887091')
+        self.assert_linkability('Q5099770')
+
     def test_temple_as_valid_primary_link(self):
         self.assert_linkability('Q28058072')
 
