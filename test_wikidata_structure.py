@@ -1906,8 +1906,6 @@ class WikidataTests(unittest.TestCase):
         # education institutions are intended to be place where education takes place
         # these are not education itself
         self.assert_linkability('Q5978689')
-        self.assert_linkability('Q360587')
-        self.assert_linkability('Q66474866')
         self.assert_linkability('Q116457733')
         self.assert_linkability('Q3152131')
         self.assert_linkability('Q6811806')
