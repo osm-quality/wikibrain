@@ -59,6 +59,7 @@ class WikidataTests(unittest.TestCase):
         reported += "\n"
         reported += "https://www.wikidata.org/wiki/" + type_id + "\n"
         reported += "https://www.wikidata.org/wiki/Wikidata_talk:WikiProject_Ontology\n"
+        reported += "https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases\n"
         reported += "\n"
         if is_unlinkable != None:
             invalid_groups = self.detector().invalid_types()
