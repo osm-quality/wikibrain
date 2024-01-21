@@ -9,6 +9,9 @@ def setup_module():
     wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
 
 
+def setupModule():
+    setup_module()
+
 class WikidataTests(unittest.TestCase):
     def detector(self):
         return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
