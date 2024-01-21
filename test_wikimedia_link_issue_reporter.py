@@ -7,9 +7,12 @@ from wikimedia_connection import wikimedia_connection
 import osm_handling_config.global_config as osm_handling_config
 
 
+def setup_module():
+    wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+
+
 class Tests(unittest.TestCase):
     def detector(self):
-        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         return wikibrain.wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
 
     def test_old_style_be_tarask_link(self):
@@ -284,7 +287,6 @@ class Tests(unittest.TestCase):
 
     def ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary(self, wikidata_id):
         passed_tags = {'wikipedia': 'dummy_filler'}
-        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         primary_linkability_status = self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
         if primary_linkability_status == None:
             self.detector().output_debug_about_wikidata_item(wikidata_id)
@@ -444,13 +446,11 @@ class Tests(unittest.TestCase):
 
     # TODO: implement this at certain point
     #def test_576_in_future(self):
-    #    wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
     #    self.assertEqual(self.detector().check_is_object_is_existing('Q650270'), None)
 
     def test_that_indian_teritory_is_considered_as_linkable_by_passing_tags(self):
         wikidata_id = 'Q1516298'
         passed_tags = {'wikidata': wikidata_id}
-        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         primary_linkability_status = self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
         # somehow changed on its own? well, I will not protest...
         # stopped being merged with another entity, see for example
@@ -461,7 +461,6 @@ class Tests(unittest.TestCase):
 
         wikidata_id = 'Q1516298'
         passed_tags = {'boundary': 'aboriginal_lands', 'wikidata': wikidata_id}
-        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         primary_linkability_status = self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(wikidata_id, passed_tags)
         if primary_linkability_status != None:
             self.detector().output_debug_about_wikidata_item(wikidata_id)
