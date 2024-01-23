@@ -1784,41 +1784,45 @@ class WikimediaLinkIssueDetector:
             return " this was unexpected here as it indicates " + ban_reason['what'] + " !!!!!!!!!!!!!!!!!!!!!!!!!!"
         return ""
 
-    def describe_unexpected_wikidata_structure(self, type_id, show_only_banned):
+    def show_in_stdout_and_in_log_file_unexpected_wikidata_structure(self, type_id, show_only_banned):
+        structure = self.get_list_describing_unexpected_wikidata_structure(type_id, show_only_banned)
+        to_show_in_log_file = ""
+        for entry in structure:
+            to_show_in_log_file += ":"*entry["depth"] + "{{Q|" + entry["category_id"] + "}}" + "\n"
+            if entry["ban_reason"] != None:
+                header = "== {{Q|" + type_id + "}} classified as " + entry["ban_reason"]['what'] + " ==\n"
+                with open("wikidata_report.txt", "a") as myfile:
+                    myfile.write(header + to_show_in_log_file + "\n\n")
+            print(":"*entry["depth"] + wikidata_processing.wikidata_description(entry["category_id"]) + entry["note"])
+
+    def get_list_describing_unexpected_wikidata_structure(self, type_id, show_only_banned):
         callback = self.callback_reporting_banned_categories
 
         # is get_recursive_all_subclass_of_with_depth_data needed anywhere?
         found = self.wikidata_entries_classifying_entry_with_depth_data(type_id)
 
-        to_show = ""
+        entries_to_show = []
         if show_only_banned:
             for index, entry in enumerate(found):
                 category_id = entry["id"]
                 depth = entry["depth"]
                 if self.new_banned_entry_in_this_branch(found, index):
                     note = self.callback_reporting_banned_categories(category_id)
-                    print(":"*depth + wikidata_processing.wikidata_description(category_id) + note)
-
-                    #print(":"*depth + "{{Q|" + category_id + "}}")
-
-                    to_show += ":"*depth + "{{Q|" + category_id + "}}" + "\n"
                     ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
-                    if ban_reason != None:
-                        header = "== {{Q|" + type_id + "}} classified as " + ban_reason['what'] + " ==\n"
-                        with open("wikidata_report.txt", "a") as myfile:
-                            myfile.write(header + to_show + "\n\n")
+                    entries_to_show.append({"depth": depth, "category_id": category_id, "note": note, "ban_reason": ban_reason})
         else:
             for index, entry in enumerate(found):
                 category_id = entry["id"]
                 depth = entry["depth"]
                 note = self.callback_reporting_banned_categories(category_id)
-                print(":"*depth + wikidata_processing.wikidata_description(category_id) + note)
+                entries_to_show.append({"depth": depth, "category_id": category_id, "note": note})
             # print entire inheritance set
             show_debug = True
             parent_categories = wikidata_processing.get_recursive_all_subclass_of(type_id, self.ignored_entries_in_wikidata_ontology(), show_debug, callback)
             #for parent_category in parent_categories:
             #    print("if type_id == '" + parent_category + "':")
             #    print(wikidata_processing.wikidata_description(parent_category))
+        return entries_to_show
 
     def new_banned_entry_in_this_branch(self, data, checked_position):
         index = checked_position - 1

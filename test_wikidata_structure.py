@@ -2,6 +2,7 @@ import unittest
 from wikibrain import wikimedia_link_issue_reporter
 from wikimedia_connection import wikimedia_connection, wikidata_processing
 import osm_handling_config.global_config as osm_handling_config
+import os
 
 class WikidataTests(unittest.TestCase):
     def detector(self):
@@ -78,12 +79,20 @@ class WikidataTests(unittest.TestCase):
         else:
             pass
         print(reported)
-        self.detector().describe_unexpected_wikidata_structure(type_id, show_only_banned)
+        self.detector().show_in_stdout_and_in_log_file_unexpected_wikidata_structure(type_id, show_only_banned)
         print()
 
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable != None:
+            show_only_banned = True
+            listed = self.detector().get_list_describing_unexpected_wikidata_structure(type_id, show_only_banned)
+            os.remove(wikimedia_connection.get_filename_with_wikidata_entity_by_id(type_id))
+            for entry in listed:
+                print("should clear cache for", entry)
+                os.remove(wikimedia_connection.get_filename_with_wikidata_entity_by_id(entry["category_id"]))
+            if self.is_unlinkable_check(type_id) == None:
+                return
             self.dump_debug_into_stdout(type_id, "assert_linkability failed")
         self.assertEqual(None, is_unlinkable)
 
