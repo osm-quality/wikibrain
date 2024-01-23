@@ -1235,7 +1235,7 @@ class WikimediaLinkIssueDetector:
             )
         assert(False)
 
-    def should_use_subject_message(self, type, special_prefix, wikidata_id):
+    def should_use_subject_message(self, topic, special_prefix, wikidata_id):
         link = self.get_best_interwiki_link_by_id(wikidata_id)
         linked_object = "wikidata entry (" + wikidata_id + ")"
         if link != None:
@@ -1244,7 +1244,7 @@ class WikimediaLinkIssueDetector:
         special_prefix_text = ""
         if special_prefix != None:
             special_prefix_text = "or " + special_prefix + "wikipedia"
-        message = "linked " + linked_object + " is about """ + type + \
+        message = "linked " + linked_object + " is about """ + topic + \
             ", so it is very unlikely to be correct \n\
         subject:wikipedia=* " + special_prefix_text + " tag would be probably better \
         (see https://wiki.openstreetmap.org/wiki/Key:wikipedia#Secondary_Wikipedia_links for full list of what else may be applicable) \n\
@@ -1261,10 +1261,10 @@ class WikimediaLinkIssueDetector:
             return "wikipedia"
         raise Exception("what is going on")
 
-    def get_should_use_subject_error(self, type, special_prefix, wikidata_id, summary_of_tags_in_use):
+    def get_should_use_subject_error(self, topic, special_prefix, wikidata_id, summary_of_tags_in_use):
         return ErrorReport(
-            error_id="should use a secondary wikipedia tag - linking from " + summary_of_tags_in_use + " tag to " + type,
-            error_message=self.should_use_subject_message(type, special_prefix, wikidata_id),
+            error_id="should use a secondary wikipedia tag - linking from " + summary_of_tags_in_use + " tag to " + topic,
+            error_message=self.should_use_subject_message(topic, special_prefix, wikidata_id),
             prerequisite={'wikidata': wikidata_id},
         )
 
@@ -1280,9 +1280,9 @@ class WikimediaLinkIssueDetector:
         language_code = wikimedia_connection.get_language_code_from_link(link)
         links_from_disambig_page = wikimedia_connection.get_from_wikipedia_api(language_code, "&prop=links", article_name)['links']
         returned = []
-        for link in links_from_disambig_page:
-            if link['ns'] == 0:
-                returned.append({'title': link['title'], 'language_code': language_code})
+        for link_on_disambig_page in links_from_disambig_page:
+            if link_on_disambig_page['ns'] == 0:
+                returned.append({'title': link_on_disambig_page['title'], 'language_code': language_code})
         return returned
 
     def distance_in_km_to_string(self, distance_in_km):
@@ -1834,7 +1834,7 @@ class WikimediaLinkIssueDetector:
                     return False
             index -= 1
 
-        for index, id in enumerate(data, start=checked_position):
+        for index, _id in enumerate(data, start=checked_position):
             ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(data[index]["id"])
             if ban_reason != None:
                 #print("returning True")
