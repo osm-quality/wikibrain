@@ -30,18 +30,18 @@ class ErrorReport:
             self.location = (element.get_coords().lat, element.get_coords().lon)
 
     def data(self):
-        return dict(
-            error_id=self.error_id,
-            error_message=self.error_message,
-            error_general_intructions=self.error_general_intructions,
-            debug_log=self.debug_log,
-            osm_object_url=self.osm_object_url,
-            proposed_tagging_changes=self.proposed_tagging_changes,
-            extra_data=self.extra_data,
-            prerequisite=self.prerequisite,
-            location=self.location,
-            tags=self.tags,
-        )
+        return {
+            "error_id": self.error_id,
+            "error_message": self.error_message,
+            "error_general_intructions": self.error_general_intructions,
+            "debug_log": self.debug_log,
+            "osm_object_url": self.osm_object_url,
+            "proposed_tagging_changes": self.proposed_tagging_changes,
+            "extra_data": self.extra_data,
+            "prerequisite": self.prerequisite,
+            "location": self.location,
+            "tags": self.tags,
+        }
 
     def yaml_output(self, filepath):
         with open(filepath, 'a') as outfile:
@@ -49,7 +49,9 @@ class ErrorReport:
 
 
 class WikimediaLinkIssueDetector:
-    def __init__(self, forced_refresh=False, expected_language_code=None, languages_ordered_by_preference=[], additional_debug=False, allow_requesting_edits_outside_osm=False, allow_false_positives=False):
+    def __init__(self, forced_refresh=False, expected_language_code=None, languages_ordered_by_preference=None, additional_debug=False, allow_requesting_edits_outside_osm=False, allow_false_positives=False):
+        if languages_ordered_by_preference == None:
+            languages_ordered_by_preference = []
         self.forced_refresh = forced_refresh
         self.expected_language_code = expected_language_code
         self.languages_ordered_by_preference = languages_ordered_by_preference
@@ -1129,7 +1131,7 @@ class WikimediaLinkIssueDetector:
             return False
         if len(language_code) > 3:
             return True
-        if re.search("^[a-z]+\Z", language_code) == None:
+        if re.search("^[a-z]+$", language_code) == None:
             return True
         return False
 
