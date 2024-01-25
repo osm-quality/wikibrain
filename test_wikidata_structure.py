@@ -119,6 +119,8 @@ class WikidataTests(unittest.TestCase):
             print()
             print("== Still existing brand: " + name + " ==")
             print("https://www.wikidata.org/wiki/" + wikidata_id + " has a blanket nonexistence claim, while it could be more specific (not applying to the brand part)")
+            print("Can be resolved by adding qualifier excluding (P1011) = brand name (Q168678)")
+            print("Resolved by adding qualifier {{P|1011}} = {{Q|168678}}")
             print()
             print(reference)
         self.assertEqual(None, status)
