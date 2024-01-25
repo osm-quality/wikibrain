@@ -1235,7 +1235,7 @@ class WikimediaLinkIssueDetector:
                 error_message=error_message,
                 prerequisite=prerequisite,
             )
-        assert(False)
+        assert False
 
     def should_use_subject_message(self, topic, special_prefix, wikidata_id):
         link = self.get_best_interwiki_link_by_id(wikidata_id)
