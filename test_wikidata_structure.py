@@ -105,6 +105,9 @@ class WikidataTests(unittest.TestCase):
     def brand_still_exists(self, wikidata_id, name, reference):
         status = self.detector().check_is_object_brand_is_existing({"brand:wikidata": wikidata_id})
         if status != None:
+            os.remove(wikimedia_connection.get_filename_with_wikidata_entity_by_id(wikidata_id))
+            if self.detector().check_is_object_brand_is_existing({"brand:wikidata": wikidata_id}) == None:
+                return
             print()
             print()
             print("== Still existing brand: " + name + " ==")
