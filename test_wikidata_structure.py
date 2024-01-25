@@ -2170,7 +2170,6 @@ class WikidataTests(unittest.TestCase):
         self.brand_still_exists("Q1891407", "??", "TODO: missing reference")
 
     def test_former_company_exists_as_a_brand_texaco(self):
-        # Texaco
         self.brand_still_exists("Q1891407", "Texaco", "TODO: missing reference for Texaco")
         
     def test_former_company_exists_as_a_brand_dodge(self):
