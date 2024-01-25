@@ -356,6 +356,7 @@ class WikidataTests(unittest.TestCase):
     def test_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q706198')
         self.assert_linkability('Q877800')
+        self.assert_linkability('Q7079933')
         self.assert_passing_all_tests({'wikidata': 'Q877800', 'wikipedia': 'de:Bahnstrecke Hochstadt-Marktzeuln–Probstzella'})
 
     def test_railway_line_redirect_as_valid_primary_link(self):
@@ -2177,6 +2178,9 @@ class WikidataTests(unittest.TestCase):
     def test_former_company_exists_as_a_brand_texaco(self):
         # Texaco
         self.brand_still_exists("Q1891407", "Texaco", "TODO: missing reference for Texaco")
+        
+    def test_former_company_exists_as_a_brand_dodge(self):
+        self.brand_still_exists("Q27564", "Dodge", "https://en.wikipedia.org/wiki/Dodge")
 
     def test_former_company_exists_as_a_brand_radioshack(self):
         self.brand_still_exists("Q1195490", "RadioShack", 'https://en.wikipedia.org/w/index.php?title=RadioShack&oldid=1169051112 mentions "network of independently owned and franchised RadioShack stores"')
