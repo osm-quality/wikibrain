@@ -996,11 +996,18 @@ class WikimediaLinkIssueDetector:
         try:
             title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
         except wikimedia_connection.TitleViolatesKnownLimits:
-            return ErrorReport(
-                error_id="malformed wikipedia tag" + error_id_suffix,
-                error_message="malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
-                prerequisite={wikipedia_key: language_code + ":" + article_name},
-            )
+            if error_id_suffix != "":
+                return ErrorReport(
+                    error_id="malformed secondary wikipedia tag" + error_id_suffix,
+                    error_message="malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
+                    prerequisite={wikipedia_key: language_code + ":" + article_name},
+                )
+            else:
+                return ErrorReport(
+                    error_id="malformed wikipedia tag",
+                    error_message="malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
+                    prerequisite={wikipedia_key: language_code + ":" + article_name},
+                )
 
         is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
         if is_article_redirected:
