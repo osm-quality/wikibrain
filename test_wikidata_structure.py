@@ -1,16 +1,17 @@
 import unittest
+
+from test_helper import helper_setup_module
 from wikibrain import wikimedia_link_issue_reporter
 from wikimedia_connection import wikimedia_connection, wikidata_processing
-import osm_handling_config.global_config as osm_handling_config
 import os
 
 
 def setup_module():
-    wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+    helper_setup_module()
 
 
 def setupModule():
-    setup_module()
+    helper_setup_module()
 
 class WikidataTests(unittest.TestCase):
     def detector(self):

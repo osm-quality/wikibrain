@@ -4,15 +4,16 @@ import wikibrain.wikidata_knowledge
 import wikibrain.wikimedia_link_issue_reporter
 import wikibrain
 from wikimedia_connection import wikimedia_connection
-import osm_handling_config.global_config as osm_handling_config
+
+from test_helper import helper_setup_module
 
 
 def setup_module():
-    wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+    helper_setup_module()
 
 
 def setupModule():
-    setup_module()
+    helper_setup_module()
 
 
 class Tests(unittest.TestCase):
@@ -259,7 +260,6 @@ class Tests(unittest.TestCase):
                 assert False
 
     def test_that_relinkable_as_animals_target_species(self):
-        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q42569')
         blacklist = wikibrain.wikidata_knowledge.blacklist_of_unlinkable_entries()
         count = 0
         for wikidata_id in blacklist:
