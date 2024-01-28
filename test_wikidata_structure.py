@@ -894,6 +894,9 @@ class WikidataTests(unittest.TestCase):
     def test_unfinished_skyscraper_as_valid_primary_link(self):
         self.assert_linkability('Q25379780')
 
+    def test_unfinished_stadium_as_valid_primary_link(self):
+        self.assert_linkability('Q4315106')
+
     def test_skyspace_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q63066124')
 
@@ -1216,6 +1219,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_horse_pond_as_valid_primary_link(self):
         self.assert_linkability('Q49473780')
+
+    def test_sundial_as_valid_primary_link(self):
+        self.assert_linkability('Q116044928')
 
     def test_radio_measuring_point_as_valid_primary_link(self):
         self.assert_linkability('Q19280069')
@@ -2151,6 +2157,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_fictional_island_as_invalid_primary_link(self):
         self.assert_unlinkability('Q1877267')
+
+    def test_real_island_as_valid_primary_link(self):
+        self.assert_linkability('Q15726597')
 
     def test_features_of_firefox_as_invalid_primary_link(self):
         self.assert_unlinkability('Q459708')
