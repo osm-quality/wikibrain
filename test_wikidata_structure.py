@@ -2155,6 +2155,9 @@ class WikidataTests(unittest.TestCase):
     def test_specific_cinema_as_valid_primary_link(self):
         self.assert_linkability('Q34379615')
 
+    def test_specific_restaurant_as_valid_primary_link(self):
+        self.assert_linkability('2678783479')
+
     def test_fictional_island_as_invalid_primary_link(self):
         self.assert_unlinkability('Q1877267')
 
