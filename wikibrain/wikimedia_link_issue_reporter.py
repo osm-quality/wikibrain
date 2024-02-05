@@ -1780,7 +1780,7 @@ class WikimediaLinkIssueDetector:
         print("starting output_debug_about_wikidata_item")
         print(wikidata_processing.get_wikidata_type_ids_of_entry(wikidata_id))
         print(wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()))
-        self.describe_unexpected_wikidata_structure(wikidata_id, show_only_banned=False)
+        self.show_in_stdout_and_in_log_file_unexpected_wikidata_structure(wikidata_id, show_only_banned=False)
 
     def callback_reporting_banned_categories(self, category_id):
         ban_reason = self.get_reason_why_type_makes_object_invalid_primary_link(category_id)
