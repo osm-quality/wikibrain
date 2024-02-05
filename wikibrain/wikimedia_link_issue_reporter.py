@@ -116,6 +116,8 @@ class WikimediaLinkIssueDetector:
         # are ferry routes instances of intentional human activity?
         # see https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2046224482#Woolwich_Ferry_(Q2593299)_is_intentional_human_activity,_according_to_Wikidata_ontology
         skipped.append("Q18984099")
+
+        skipped.append("Q1567542") # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
         return skipped
 
     @staticmethod
