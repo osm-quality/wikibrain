@@ -8,6 +8,8 @@ def skipped_cases():
         "Q279012",  # https://www.openstreetmap.org/node/5071422202 copyright trap that got famous enough to be mappable
 
         "Q1415790",  # confusing religious term
+
+        "Q19870965", # https://en.wikipedia.org/wiki/Australian_Outback_Spectacular - is it a recurring event or place? Or even bound to specific place? Neither OSM nor Wikidata seems clearly broken, so diabling it.
     ]
 
 

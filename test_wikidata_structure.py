@@ -349,6 +349,10 @@ class WikidataTests(unittest.TestCase):
     def test_door_knob_as_valid_primary_link(self):
         self.assert_linkability('Q618385')
 
+    # whitelisted
+    def test_dinner_theater_as_valid_primary_link_despite_wikidata_due_to_being_in_skipped_cases(self):
+        self.assert_passing_all_tests({'wikidata': 'Q19870965', 'wikipedia': 'en:Australian Outback Spectacular'})
+
     def test_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q706198')
         self.assert_linkability('Q877800')
@@ -366,9 +370,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_dinner_theater_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q16920269')
-
-    def test_dinner_theater_as_valid_primary_link_testcase_b(self):
-        self.assert_linkability('Q19870965')
 
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30')
