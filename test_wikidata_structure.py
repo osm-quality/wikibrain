@@ -1,8 +1,17 @@
 import unittest
+
+from test_helper import helper_setup_module
 from wikibrain import wikimedia_link_issue_reporter
 from wikimedia_connection import wikimedia_connection, wikidata_processing
-import osm_handling_config.global_config as osm_handling_config
 import os
+
+
+def setup_module():
+    helper_setup_module()
+
+
+def setupModule():
+    helper_setup_module()
 
 class WikidataTests(unittest.TestCase):
     def detector(self):
@@ -26,7 +35,6 @@ class WikidataTests(unittest.TestCase):
         self.assertNotEqual(None, report)
 
     def is_unlinkable_check(self, type_id):
-        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         return self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikipedia': 'dummy'})
         # get_error_report_if_type_unlinkable_as_primary
         #return self.detector().get_error_report_if_secondary_wikipedia_tag_should_be_used(type_id, {'wikipedia': 'dummy'})
@@ -128,7 +136,6 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q663435')
 
     def test_rejects_links_to_spacecraft(self):
-        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
         self.assertNotEqual(None, self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q2513', "wikipedia"))
 
     def test_reject_links_to_humans(self):

@@ -22,6 +22,9 @@ pip3 install -r requirements.txt
 
 `python3 -m unittest`
 
+## Clearing unit tests
+This repository is using a local cache for unit tests located in `tests_cache`, this directory can be deleted to clear your local cache
+
 # Fixing Wikidata
 
 [There is page at Wikidata](https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases) listing Wikidata issues and provided for Wikidata community so they can fix oproblematic cases.

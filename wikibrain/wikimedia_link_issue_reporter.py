@@ -197,7 +197,11 @@ class WikimediaLinkIssueDetector:
         # "may or may not be" blocks it from being useful
         wikidata_bugs.append('Q1046088')
 
-        #return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+        # Summer camp is not an intentional human activity
+        # Report: https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Artek_(Q706474)_classified_as_an_intentional_human_activity
+        wikidata_bugs.append('Q706474')
+
+        # return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
         wikidata_bugs.append('Q169180')
@@ -996,11 +1000,18 @@ class WikimediaLinkIssueDetector:
         try:
             title_after_possible_redirects = self.get_article_name_after_redirect(language_code, article_name)
         except wikimedia_connection.TitleViolatesKnownLimits:
-            return ErrorReport(
-                error_id="malformed wikipedia tag" + error_id_suffix,
-                error_message="malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
-                prerequisite={wikipedia_key: language_code + ":" + article_name},
-            )
+            if error_id_suffix != "":
+                return ErrorReport(
+                    error_id="malformed secondary wikipedia tag" + error_id_suffix,
+                    error_message="malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
+                    prerequisite={wikipedia_key: language_code + ":" + article_name},
+                )
+            else:
+                return ErrorReport(
+                    error_id="malformed wikipedia tag",
+                    error_message="malformed " + wikipedia_key + " tag (" + language_code + ":" + article_name + ")",
+                    prerequisite={wikipedia_key: language_code + ":" + article_name},
+                )
 
         is_article_redirected = (article_name != title_after_possible_redirects and article_name.find("#") == -1)
         if is_article_redirected:

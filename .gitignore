@@ -171,3 +171,4 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/linux,python,windows
+/tests_cache/
