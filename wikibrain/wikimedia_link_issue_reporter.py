@@ -202,6 +202,7 @@ class WikimediaLinkIssueDetector:
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
         wikidata_bugs.append('Q53997260')
         wikidata_bugs.append('Q9166713')
+        wikidata_bugs.append('Q1145397')
 
         return wikidata_bugs
 

@@ -159,6 +159,12 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_crash_as_invalid_primary_link(self):
         self.assert_unlinkability('Q1801568')
 
+    def test_detecting_ship_burial_as_valid_primary_link(self):
+        self.assert_linkability('Q1799877')
+
+    def test_detecting_cemetery_as_valid_primary_link(self):
+        self.assert_linkability('Q230150812')
+
     def test_detecting_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2106892')
 
@@ -2183,7 +2189,8 @@ class WikidataTests(unittest.TestCase):
 
     def test_former_company_exists_as_a_brand_texaco(self):
         self.brand_still_exists("Q1891407", "Texaco", "TODO: missing reference for Texaco")
-        
+        self.assert_passing_all_tests({'amenity': 'fuel', 'brand': 'Texaco', 'brand:wikidata': 'Q775060'})
+
     def test_former_company_exists_as_a_brand_dodge(self):
         self.brand_still_exists("Q27564", "Dodge", "https://en.wikipedia.org/wiki/Dodge")
 
