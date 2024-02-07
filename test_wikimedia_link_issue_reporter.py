@@ -707,6 +707,16 @@ class Tests(unittest.TestCase):
             print(problem.data()['error_id'])
         self.assertEqual(None, problem)
 
+    def test_skip_fixme_prefixed_wikipedia_tags(self):
+        tags = {"fixme:wikipedia": "something something"}
+        location = None
+        object_description = "fake test object"
+        object_type = 'way'
+        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        if problem != None:
+            print(problem.data()['error_id'])
+        self.assertEqual(None, problem)
+
     def test_that_cebwiki_complaints_work_well(self):
         object_description = "test"
         tags = {"wikipedia": "ceb:Bot generated article"}
