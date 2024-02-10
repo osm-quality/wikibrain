@@ -391,6 +391,13 @@ class WikimediaLinkIssueDetector:
         return something_reportable
 
     def freely_reorderable_issue_reports(self, object_description, location, tags):
+        if "fixme:wikipedia" in tags:
+            return ErrorReport(
+                error_id="something is wrong with wikipedia tag - fixme:wikipedia is present",
+                error_message="see fixme:wikipedia tag for hints",
+                prerequisite={'fixme:wikipedia': tags.get("wikipedia")},
+            )
+
         effective_wikipedia = self.get_effective_wikipedia_tag(tags)
         effective_wikidata_id = self.get_effective_wikidata_tag(tags)
         # Note that wikipedia may be None - maybe there is just a Wikidata entry!
@@ -579,9 +586,7 @@ class WikimediaLinkIssueDetector:
 
     def not_an_actual_wikidata_or_wikipedia_keys(self):
         return [
-            # weird fixme format
-            # TODO maybe list these as "something is wrong with wikipedia tag - fixme:wikipedia is present" ?
-            'fixme:wikipedia',
+            'fixme:wikipedia', # note "something is wrong with wikipedia tag - fixme:wikipedia is present" report
 
             # have freeform format
             "note:wikidata", "wikidata:note", "source:wikidata", "source:species:wikidata",
