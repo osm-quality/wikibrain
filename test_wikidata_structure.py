@@ -2190,10 +2190,10 @@ class WikidataTests(unittest.TestCase):
         self.assertNotEqual(None, self.detector().check_is_object_brand_is_existing({"brand:wikidata": "Q7501155"}))
 
     def test_existence_of_resurrected_brand(self):
-        self.brand_still_exists("Q1891407", "??", "TODO: missing reference")
+        self.brand_still_exists("Q1891407", "Intertoys", "TODO: missing reference")
 
     def test_former_company_exists_as_a_brand_texaco(self):
-        self.brand_still_exists("Q1891407", "Texaco", "TODO: missing reference for Texaco")
+        self.brand_still_exists("Q775060", "Texaco", "TODO: missing reference for Texaco")
         self.assert_passing_all_tests({'amenity': 'fuel', 'brand': 'Texaco', 'brand:wikidata': 'Q775060'})
 
     def test_former_company_exists_as_a_brand_dodge(self):
