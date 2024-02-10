@@ -165,6 +165,11 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_cemetery_as_valid_primary_link(self):
         self.assert_linkability('Q230150812')
 
+    def test_detecting_cemetery_variant_as_valid_primary_link(self):
+        self.assert_linkability('Q97955490')
+        self.assert_linkability('Q111371477')
+        self.assert_linkability('Q117485825')
+
     def test_detecting_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2106892')
 
