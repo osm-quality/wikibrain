@@ -859,6 +859,9 @@ class WikidataTests(unittest.TestCase):
     def test_another_ferry_route_as_valid_primary_link(self):
         self.assert_linkability('Q2593299')
 
+    def test_rail_ferry_route_as_valid_primary_link(self):
+        self.assert_linkability('Q5011009')
+
     def test_tram_system_as_valid_primary_link(self):
         # it is not a behavior...
         self.assert_linkability('Q9360797')
@@ -951,6 +954,11 @@ class WikidataTests(unittest.TestCase):
 
     def test_general_article_about_cycling_in_belarus_as_invalid_primary_link(self):
         self.assert_unlinkability('Q97007609')
+    
+    def test_cycling_route_as_valid_primary_link(self):
+        self.assert_linkability('Q104897961')
+        self.assert_linkability('Q104897812')
+        self.assert_linkability('Q104897961')
 
     def test_forest_as_valid_primary_link(self):
         self.assert_linkability('Q20713832')
@@ -2093,6 +2101,9 @@ class WikidataTests(unittest.TestCase):
     def test_aircraft_model_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q1390439', 'a physical process')
         #self.assert_unlinkability('Q1390439') TODO enable after wikidata is fixed
+
+    def test_vertical_takeoff_aircraft_is_not_an_intentional_human_activity(self):
+        self.is_not_a_specific_error_class('Q1390439', 'an intentional human activity')
 
     def test_railway_line_is_not_a_physical_process(self):
         self.is_not_a_specific_error_class('Q7578675', 'a physical process')
