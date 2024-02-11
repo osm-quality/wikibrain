@@ -278,9 +278,6 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_university_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q178848')
 
-    def test_train_line_as_valid_primary_link(self):
-        self.assert_linkability('Q3720557')  # train service is not a service (Q15141321) defined as "transcation..."
-
     def test_narrow_gauge_train_line_as_valid_primary_link(self):
         self.assert_linkability('Q1642426')
 
@@ -375,6 +372,15 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q802652')
         self.assert_passing_all_tests({'wikipedia': 'de:Württembergische Allgäubahn'})
 
+    def test_train_line_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q3720557')  # train service is not a service (Q15141321) defined as "transcation..."
+
+    def test_train_line_as_valid_primary_link_testcase_b(self):
+        # railway line
+        # railway_line
+        self.assert_linkability('Q756538')
+        self.assert_linkability('Q770386')
+       
 
     def test_privilidged_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q259992')
@@ -388,6 +394,15 @@ class WikidataTests(unittest.TestCase):
     def test_aqueduct_as_valid_primary_link(self):
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=prev&oldid=1674919371
         self.assert_linkability('Q2859225')
+
+    def test_interbasin_aqueduct_as_valid_primary_link(self):
+        self.assert_linkability('Q15725492')
+
+    def test_interbasin_canal_as_valid_primary_link(self):
+        self.assert_linkability('Q5594492')
+
+    def test_interbasin_tunnel_as_valid_primary_link(self):
+        self.assert_linkability('Q5619278')
 
     def test_public_housing_as_valid_primary_link(self):
         self.assert_linkability('Q22329573')  # not an event - aeolian landform (Q4687862) is not sublass of aeolian process
@@ -713,6 +728,9 @@ class WikidataTests(unittest.TestCase):
     def test_tram_yard_as_valid_primary_link(self):
         self.assert_linkability('Q9346796')
 
+    def test_tram_route_as_valid_primary_link(self):
+        self.assert_linkability('Q23308659')
+
     def test_existing_section_of_proposed_motorway_as_valid_primary_link(self):
         # https://www.openstreetmap.org/way/414708185#map=16/52.0582/21.4617
         self.assert_linkability('Q68683422')
@@ -956,9 +974,12 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q97007609')
     
     def test_cycling_route_as_valid_primary_link(self):
+        # bicycle route
+        # bicycle_route
         self.assert_linkability('Q104897961')
         self.assert_linkability('Q104897812')
         self.assert_linkability('Q104897961')
+        self.assert_linkability('Q108040368')
 
     def test_forest_as_valid_primary_link(self):
         self.assert_linkability('Q20713832')
@@ -2101,6 +2122,9 @@ class WikidataTests(unittest.TestCase):
     def test_aircraft_model_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q1390439', 'a physical process')
         #self.assert_unlinkability('Q1390439') TODO enable after wikidata is fixed
+
+    def test_drawing_class_as_attraction_type_is_not_education(self):
+        self.is_not_a_specific_error_class('Q11320084', 'an education (transmission of knowledge and skills)')
 
     def test_vertical_takeoff_aircraft_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q1390439', 'an intentional human activity')
