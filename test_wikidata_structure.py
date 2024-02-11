@@ -749,6 +749,9 @@ class WikidataTests(unittest.TestCase):
     def test_cave_church_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q99590884')
 
+    def test_apse_as_valid_primary_link(self):
+        self.assert_linkability('Q24207145')
+
     def test_wayside_shrine_as_valid_primary_link(self):
         self.assert_linkability('Q41318154')
 

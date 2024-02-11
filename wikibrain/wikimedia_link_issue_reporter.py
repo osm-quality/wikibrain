@@ -200,9 +200,7 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append('Q53997260')
-        wikidata_bugs.append('Q9166713')
-        wikidata_bugs.append('Q1145397')
+        wikidata_bugs.append('Q826949')
 
         return wikidata_bugs
 
