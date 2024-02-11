@@ -60,6 +60,78 @@ class WikimediaLinkIssueDetector:
         self.allow_false_positives = allow_false_positives
 
     @staticmethod
+    def workarounds_for_wikidata_bugs_breakage_and_mistakes():
+        wikidata_bugs = []
+        wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_long_term_wikidata_bugs_breakage_and_mistakes()
+        #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
+
+        # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        wikidata_bugs.append('Q826949')
+
+        return wikidata_bugs
+
+    @staticmethod
+    def workarounds_for_long_term_wikidata_bugs_breakage_and_mistakes():
+        wikidata_bugs = []
+        # Potentially fixable, but it is widespread problem affecting wikidata, not OSM
+        # so extremely low priority
+
+        # theatre as art form vs theatre as a building
+        # that would be basically detecting only wikidata issues
+        # not worth it
+        # https://www.wikidata.org/wiki/Q11635
+        # https://www.wikidata.org/wiki/Q24354
+        wikidata_bugs.append("Q11635")
+
+        # systematic confusion of newsagent as profession and newsagent as shop
+        # not interested in spending time on fixing wikidata bugs
+        # maybe if everything else will become fixed
+        wikidata_bugs.append('Q1528905')
+
+        # Considered as unfixable:
+
+        # conflating two distinct things
+        # but for tidal races there is no good solution
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1921440592#The_Bitches_(Q878769)_(set_of_rocks)_is_a_physical_process,_according_to_Wikidata_ontology
+
+        wikidata_bugs.append('Q495844')
+
+        # walk of fame mess
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1927584762#Walk_of_Fame_of_Cabaret_(Q2345775)_is_an_award,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q47502370')
+
+        # merging items
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1937087915#Project_Riese_(Q320076)_classified_as_an_intentional_human_activity
+        wikidata_bugs.append('Q170584')
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2025970960#KATRIN_(Q316053)_is_a_human_activity,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q101965')
+
+        # Jesus mess
+        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1940322493#Jesus_(Q302)_is_a_fictional_entity,_according_to_Wikidata_ontology
+        wikidata_bugs.append('Q51625')
+        wikidata_bugs.append('Q302')
+
+        # Andorra is not for a sale
+        wikidata_bugs.append('Q208500')
+
+        # https://www.wikidata.org/wiki/Q15104297 - often applies to "open pit mine"
+        # created https://www.wikidata.org/wiki/Q1323960
+        wikidata_bugs.append('Q208500')
+
+        # merging entries about general prosecutor office and general prosecutor as person and as profession
+        # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Profession_or_office?
+        wikidata_bugs.append('Q3368517')
+        wikidata_bugs.append('Q169180')
+        wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
+
+        # hall of fame (list of outstanding individuals in a particular group,
+        # which may or may not be embodied in a literal physical structure)
+        # "may or may not be" blocks it from being useful
+        wikidata_bugs.append('Q1046088')
+
+        return wikidata_bugs
+
+    @staticmethod
     def reality_is_to_complicated_so_lets_ignore_that_parts_of_wikidata_ontology():
         skipped = []
         # proposed road https://www.wikidata.org/wiki/Q30106829
@@ -136,73 +208,6 @@ class WikimediaLinkIssueDetector:
         too_abstract_or_wikidata_bugs = WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology_without_skipping_known_bugs()
         too_abstract_or_wikidata_bugs += WikimediaLinkIssueDetector.workarounds_for_wikidata_bugs_breakage_and_mistakes()
         return too_abstract_or_wikidata_bugs
-
-    @staticmethod
-    def workarounds_for_wikidata_bugs_breakage_and_mistakes():
-        wikidata_bugs = []
-
-        # Potentially fixable, but it is widespread problem affecting wikidata, not OSM
-        # so extremely low priority
-
-        # theatre as art form vs theatre as a building
-        # that would be basically detecting only wikidata issues
-        # not worth it
-        # https://www.wikidata.org/wiki/Q11635
-        # https://www.wikidata.org/wiki/Q24354
-        wikidata_bugs.append("Q11635")
-
-        # systematic confusion of newsagent as profession and newsagent as shop
-        # not interested in spending time on fixing wikidata bugs
-        # maybe if everything else will become fixed
-        wikidata_bugs.append('Q1528905')
-
-        # Considered as unfixable:
-
-        # conflating two distinct things
-        # but for tidal races there is no good solution
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1921440592#The_Bitches_(Q878769)_(set_of_rocks)_is_a_physical_process,_according_to_Wikidata_ontology
-
-        wikidata_bugs.append('Q495844')
-
-        # walk of fame mess
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1927584762#Walk_of_Fame_of_Cabaret_(Q2345775)_is_an_award,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q47502370')
-
-        # merging items
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1937087915#Project_Riese_(Q320076)_classified_as_an_intentional_human_activity
-        wikidata_bugs.append('Q170584')
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2025970960#KATRIN_(Q316053)_is_a_human_activity,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q101965')
-
-        # Jesus mess
-        # https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=1940322493#Jesus_(Q302)_is_a_fictional_entity,_according_to_Wikidata_ontology
-        wikidata_bugs.append('Q51625')
-        wikidata_bugs.append('Q302')
-
-        # Andorra is not for a sale
-        wikidata_bugs.append('Q208500')
-
-        # https://www.wikidata.org/wiki/Q15104297 - often applies to "open pit mine"
-        # created https://www.wikidata.org/wiki/Q1323960
-        wikidata_bugs.append('Q208500')
-
-        # merging entries about general prosecutor office and general prosecutor as person and as profession
-        # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Profession_or_office?
-        wikidata_bugs.append('Q3368517')
-        wikidata_bugs.append('Q169180')
-        wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
-
-        # hall of fame (list of outstanding individuals in a particular group,
-        # which may or may not be embodied in a literal physical structure)
-        # "may or may not be" blocks it from being useful
-        wikidata_bugs.append('Q1046088')
-
-        #return wikidata_bugs # count 15 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
-
-        # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append('Q826949')
-
-        return wikidata_bugs
 
     def get_problem_for_given_element(self, element):
         tags = element.get_tag_dictionary()
