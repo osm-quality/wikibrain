@@ -66,14 +66,8 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append('Q826949')
-        wikidata_bugs.append('Q102307360')
-        wikidata_bugs.append('Q1193453')
-        wikidata_bugs.append('Q9089593')
-        wikidata_bugs.append('Q600134')
-        wikidata_bugs.append('Q178512')
-        wikidata_bugs.append('Q1067164')
-        wikidata_bugs.append('Q811683')
+        wikidata_bugs.append("Q320599")
+        wikidata_bugs.append("Q9089593")
 
         return wikidata_bugs
 
@@ -148,6 +142,10 @@ class WikimediaLinkIssueDetector:
         # proposed rail infrastructure - applied to in-construction one
         # see https://www.wikidata.org/wiki/Q7985674
         skipped.append('Q28043022')
+        # proposed building or structure
+        skipped.append('Q811683')
+        # proposed features in general
+        skipped.append('Q64728694')
 
         # trademark is ignored as even hamlet can be trademarked
         # so it provides no extra info and detangling architecture here is too tricky
@@ -196,6 +194,9 @@ class WikimediaLinkIssueDetector:
         # see https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2046224482#Woolwich_Ferry_(Q2593299)_is_intentional_human_activity,_according_to_Wikidata_ontology
         skipped.append("Q18984099")
         skipped.append("Q20180855")
+        # what about train routes?
+        skipped.append("Q67454740")
+        skipped.append("Q91908084")
 
         skipped.append("Q1567542") # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
         return skipped
