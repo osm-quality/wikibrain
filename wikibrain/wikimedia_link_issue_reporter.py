@@ -604,7 +604,7 @@ class WikimediaLinkIssueDetector:
             "name:etymology:wikidata:fixme",
 
             # not worth a special support
-            "image:license:wikidata"
+            "image:license:wikidata",
 
             #per lane
             'destination:ref:wikidata:lanes',
