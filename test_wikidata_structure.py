@@ -738,6 +738,9 @@ class WikidataTests(unittest.TestCase):
     def test_existing_section_of_proposed_railway_as_valid_primary_link(self):
         self.assert_linkability('Q444771')
 
+    def test_existing_section_of_proposed_pipeline_as_valid_primary_link(self):
+        self.assert_linkability('Q22980068')
+
     def test_sign_as_valid_primary_link(self):
         self.assert_linkability('Q6800883')
 
