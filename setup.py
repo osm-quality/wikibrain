@@ -18,9 +18,9 @@ setuptools.setup(
         'nose>=1.3.7',
         'wikimedia-connection>=0.0.2',
     ],
-    classifiers=(
+    classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-    ),
+    ],
 )
