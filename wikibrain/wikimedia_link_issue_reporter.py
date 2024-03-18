@@ -1164,9 +1164,6 @@ class WikimediaLinkIssueDetector:
         if wikipedia == None:
             return  # there may be just a Wikidata entry, without a Wikipedia article
 
-        current_article_name = None
-        current_language_code = None
-        current_article_name = wikimedia_connection.get_article_name_from_link(wikipedia)
         current_language_code = wikimedia_connection.get_language_code_from_link(wikipedia)
         botpedia_message = "wikipedia page in unexpected language - " + current_language_code + " is a low quality, bot generated wikipedia - it should not be linked"
 
@@ -1260,14 +1257,16 @@ class WikimediaLinkIssueDetector:
     def should_use_subject_message(self, topic, special_prefix, wikidata_id):
         link = self.get_best_interwiki_link_by_id(wikidata_id)
         linked_object = "wikidata entry (" + wikidata_id + ")"
+        about_article = ""
         if link != None:
             article_name = wikimedia_connection.get_article_name_from_link(link)
+            about_article = "(" + article_name + " article)"
 
         special_prefix_text = ""
         if special_prefix != None:
             special_prefix_text = "or " + special_prefix + "wikipedia"
-        message = "linked " + linked_object + " is about """ + topic + \
-            ", so it is very unlikely to be correct \n\
+        about = "linked " + linked_object + about_article + " is about """ + topic
+        message = about + ", so it is very unlikely to be correct \n\
         subject:wikipedia=* " + special_prefix_text + " tag would be probably better \
         (see https://wiki.openstreetmap.org/wiki/Key:wikipedia#Secondary_Wikipedia_links for full list of what else may be applicable) \n\
         in case of change remember to remove wikidata tag if it is present \n\
@@ -1708,7 +1707,6 @@ class WikimediaLinkIssueDetector:
                 error_message="no P105",
                 prerequisite={prefix + 'wikidata': tags.get(prefix + "wikidata"), prefix + "wikipedia": tags.get(prefix + "wikipedia")},
             )
-        returned = []
         for entry in data:
             if expected_wikidata == entry['mainsnak']['datavalue']['value']['id']:
                 return None
