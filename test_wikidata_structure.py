@@ -90,7 +90,11 @@ class WikidataTests(unittest.TestCase):
             os.remove(wikimedia_connection.get_filename_with_wikidata_entity_by_id(type_id))
             for entry in listed:
                 print("should clear cache for", entry)
-                os.remove(wikimedia_connection.get_filename_with_wikidata_entity_by_id(entry["category_id"]))
+                filename = wikimedia_connection.get_filename_with_wikidata_entity_by_id(entry["category_id"])
+                try:
+                    os.remove(filename)
+                except FileNotFoundError:
+                    pass
             if self.is_unlinkable_check(type_id) == None:
                 return
             self.dump_debug_into_stdout(type_id, "assert_linkability failed")
