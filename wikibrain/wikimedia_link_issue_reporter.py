@@ -85,6 +85,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q3565868")
         wikidata_bugs.append("Q17232491")
         wikidata_bugs.append("Q28241")
+        wikidata_bugs.append("Q2125658")
 
         # only in fresh version, my cached version is not affected
         wikidata_bugs.append("Q123705")
