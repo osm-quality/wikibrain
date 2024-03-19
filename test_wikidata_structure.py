@@ -39,6 +39,11 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class(type_id, 'a human behavior')
 
     def is_not_a_specific_error_class(self, type_id, expected_error_class):
+        wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
+        potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
+        if potential_failure == None:
+            return
+        self.clear_cache_claiming_unexpected_wikidata_structure(type_id)
         potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
         if potential_failure == None:
             return
@@ -85,20 +90,23 @@ class WikidataTests(unittest.TestCase):
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable != None:
-            show_only_banned = True
-            listed = self.detector().get_list_describing_unexpected_wikidata_structure(type_id, show_only_banned)
-            os.remove(wikimedia_connection.get_filename_with_wikidata_entity_by_id(type_id))
-            for entry in listed:
-                print("should clear cache for", entry)
-                filename = wikimedia_connection.get_filename_with_wikidata_entity_by_id(entry["category_id"])
-                try:
-                    os.remove(filename)
-                except FileNotFoundError:
-                    pass
             if self.is_unlinkable_check(type_id) == None:
                 return
+            self.clear_cache_claiming_unexpected_wikidata_structure(type_id)
             self.dump_debug_into_stdout(type_id, "assert_linkability failed")
         self.assertEqual(None, is_unlinkable)
+
+    def clear_cache_claiming_unexpected_wikidata_structure(self, type_id):
+        show_only_banned = True
+        listed = self.detector().get_list_describing_unexpected_wikidata_structure(type_id, show_only_banned)
+        os.remove(wikimedia_connection.get_filename_with_wikidata_entity_by_id(type_id))
+        for entry in listed:
+            print("should clear cache for", entry)
+            filename = wikimedia_connection.get_filename_with_wikidata_entity_by_id(entry["category_id"])
+            try:
+                os.remove(filename)
+            except FileNotFoundError:
+                pass
 
     def assert_unlinkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
