@@ -77,7 +77,24 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q1324355")
         wikidata_bugs.append("Q4922295")
         wikidata_bugs.append("Q864840")
+        wikidata_bugs.append("Q876852")
+        wikidata_bugs.append("Q4350791")
+        wikidata_bugs.append("Q1156696")
+        wikidata_bugs.append("Q37038")
+        wikidata_bugs.append("Q1580444")
+        wikidata_bugs.append("Q3565868")
+        wikidata_bugs.append("Q17232491")
+        wikidata_bugs.append("Q28241")
 
+        # only in fresh version, my cached version is not affected
+        wikidata_bugs.append("Q123705")
+        wikidata_bugs.append("Q111415237")
+        wikidata_bugs.append("Q15206795")
+        wikidata_bugs.append("Q27627826")
+        wikidata_bugs.append("Q64732764")
+        wikidata_bugs.append("Q449111")
+        wikidata_bugs.append("Q1701967")
+        wikidata_bugs.append("Q449111")
         return wikidata_bugs
 
     @staticmethod
@@ -206,6 +223,7 @@ class WikimediaLinkIssueDetector:
         # what about train routes?
         skipped.append("Q67454740")
         skipped.append("Q91908084")
+        skipped.append("Q15141321")
 
         skipped.append("Q1567542") # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
         return skipped
@@ -1545,7 +1563,8 @@ class WikimediaLinkIssueDetector:
             'Q161726': {'what': 'a multinational corporation', 'replacement': 'brand:'},
             'Q507619': {'what': 'a chain store', 'replacement': 'brand:'},
             'Q202444': {'what': 'a given name', 'replacement': 'name:'},
-            'Q34394': {'what': 'a belief', 'replacement': 'name:'},
+            'Q34394': {'what': 'a belief', 'replacement': 'brand:', 'extremely_broad_and_unspecific': True},
+            'Q879146': {'what': 'a Christian denomination', 'replacement': 'brand:', 'extremely_broad_and_unspecific': True},
             'Q60075825': {'what': 'a Christian holy day', 'replacement': None},
             'Q2915444': {'what': 'a fireworks event', 'replacement': None},
             'Q650711': {'what': 'a military operation', 'replacement': None},
@@ -1594,6 +1613,8 @@ class WikimediaLinkIssueDetector:
             # for example religious denominations
             'Q82821': {'what': 'a tradition', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q474191': {'what': 'a diet', 'replacement':  None},
+            'Q814610': {'what': 'an emergency service', 'replacement':  'brand:'},
+            'Q3241045': {'what': 'a disease outbreak', 'replacement': 'subject:'},
             'Q22222786': {'what': 'a government program', 'replacement': None},
             'Q24634210': {'what': 'a podcast', 'replacement': None},
             'Q273120': {'what': 'a protest', 'replacement': None},

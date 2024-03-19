@@ -339,6 +339,9 @@ class WikidataTests(unittest.TestCase):
     def test_farm_as_valid_primary_link(self):
         self.assert_linkability('Q99902190')
 
+    def test_rooftop_farm_as_valid_primary_link(self):
+        self.assert_linkability('Q17026902')
+
     def test_hollywood_sign_as_valid_primary_link(self):
         self.assert_linkability('Q180376')  # not an event (hollywood sign is not an instance of signage)
 
@@ -369,6 +372,10 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q877800')
         self.assert_linkability('Q7079933')
         self.assert_passing_all_tests({'wikidata': 'Q877800', 'wikipedia': 'de:Bahnstrecke Hochstadt-Marktzeuln–Probstzella'})
+
+    def test_railway_line_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q5658559')
+        self.assert_linkability('Q7294577')
 
     def test_railway_line_redirect_as_valid_primary_link(self):
         # https://www.openstreetmap.org/way/436798487
@@ -424,6 +431,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_megaproject_as_valid_primary_link(self):
         self.assert_linkability('Q782093')  # some megaprojects are already existing, project ( https://www.wikidata.org/wiki/Q170584 ) may be already complete
+
+    def test_railway_route_as_valid_primary_link(self):
+        self.assert_linkability('Q1193928')
 
     def test_pilgrim_route_as_valid_primary_link(self):
         self.assert_linkability('Q829469')
@@ -1381,6 +1391,10 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q188508', 'a profession')
         #self.assert_unlinkability('Q188508') TODO
 
+    def test_that_spaceplane_company_is_not_a_profession_but_is_unlinkable_anyway(self):
+        self.is_not_a_specific_error_class('Q110639966', 'an event')
+        #self.assert_unlinkability('Q188508') TODO
+
     def test_that_flight_school_is_not_a_human_activity(self):
         self.is_not_a_specific_error_class('Q4654871', 'a human activity')
 
@@ -1724,6 +1738,9 @@ class WikidataTests(unittest.TestCase):
     def test_tunnel_as_valid_primary_link(self):
         self.assert_linkability('Q927797')
 
+    def test_tunnel_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q125753')
+
     def test_pedestrian_tunnel_as_valid_primary_link(self):
         self.assert_linkability('Q2346336')
 
@@ -1959,6 +1976,10 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q445256')
         self.assert_linkability('Q108343850')
 
+    def test_ad_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q28916452')
+        # BTW, Polish "translation" is highly amusing
+
     def test_telescope_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q1632481')
 
@@ -2120,6 +2141,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_summer_camp_as_valid_primary_link(self):
         self.assert_linkability('Q5027247')
+
+    def test_scout_camp_as_valid_primary_link(self):
+        self.assert_linkability('Q12329373')
 
     def test_refugee_transit_camp_now_museum_as_valid_primary_link(self):
         self.assert_linkability('Q882022')
