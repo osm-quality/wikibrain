@@ -43,13 +43,27 @@ class WikidataTests(unittest.TestCase):
         potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
         if potential_failure == None:
             return
-        self.clear_cache_claiming_unexpected_wikidata_structure(type_id)
+        if self.is_error_reporting_that_this_is_specific_error_class(potential_failure, expected_error_class):
+            self.clear_cache_claiming_unexpected_wikidata_structure(type_id)
+            potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
+            if potential_failure == None:
+                return
+            if self.is_error_reporting_that_this_is_specific_error_class(potential_failure, expected_error_class):
+                return
+            self.dump_debug_into_stdout(type_id, "is_not_a_specific_error_class failed")
+            self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class)
+
+    def is_a_specific_error_class(self, type_id, expected_error_class):
         potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
         if potential_failure == None:
             return
-        if potential_failure.data()['error_id'] == 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class:
-            self.dump_debug_into_stdout(type_id, "is_not_a_specific_error_class failed")
-            self.assertNotEqual(potential_failure.data()['error_id'], 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class)
+        if self.is_error_reporting_that_this_is_specific_error_class(potential_failure, expected_error_class):
+            return
+        # TODO clear cache somehow
+        raise Exception("failed is_a_specific_error_class")
+
+    def is_error_reporting_that_this_is_specific_error_class(self, potential_failure, expected_error_class):
+        return potential_failure.data()['error_id'] == 'should use a secondary wikipedia tag - linking from wikidata tag to ' + expected_error_class
 
     def dump_debug_into_stdout(self, type_id, why, show_only_banned=True):
         print()
