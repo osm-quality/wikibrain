@@ -66,36 +66,13 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append("Q320599")
-        wikidata_bugs.append("Q9089593")
-        wikidata_bugs.append("Q6566301")
-        wikidata_bugs.append("Q346575")
-        wikidata_bugs.append("Q148836")
-        wikidata_bugs.append("Q2326815")
-        wikidata_bugs.append("Q417633")
-        wikidata_bugs.append("Q867393")
-        wikidata_bugs.append("Q1324355")
-        wikidata_bugs.append("Q4922295")
-        wikidata_bugs.append("Q864840")
-        wikidata_bugs.append("Q876852")
-        wikidata_bugs.append("Q4350791")
-        wikidata_bugs.append("Q1156696")
-        wikidata_bugs.append("Q37038")
-        wikidata_bugs.append("Q1580444")
         wikidata_bugs.append("Q3565868")
-        wikidata_bugs.append("Q17232491")
         wikidata_bugs.append("Q28241")
         wikidata_bugs.append("Q2125658")
+        wikidata_bugs.append("Q23056934")
+        wikidata_bugs.append("Q9089593")
+        wikidata_bugs.append("Q1363599")
 
-        # only in fresh version, my cached version is not affected
-        wikidata_bugs.append("Q123705")
-        wikidata_bugs.append("Q111415237")
-        wikidata_bugs.append("Q15206795")
-        wikidata_bugs.append("Q27627826")
-        wikidata_bugs.append("Q64732764")
-        wikidata_bugs.append("Q449111")
-        wikidata_bugs.append("Q1701967")
-        wikidata_bugs.append("Q449111")
         return wikidata_bugs
 
     @staticmethod
