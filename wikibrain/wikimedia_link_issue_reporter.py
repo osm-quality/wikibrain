@@ -72,6 +72,8 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q23056934")
         wikidata_bugs.append("Q9089593")
         wikidata_bugs.append("Q1363599")
+        wikidata_bugs.append("Q138775")
+        wikidata_bugs.append("Q1067164")
 
         return wikidata_bugs
 
@@ -1596,6 +1598,10 @@ class WikimediaLinkIssueDetector:
             'Q22222786': {'what': 'a government program', 'replacement': None},
             'Q24634210': {'what': 'a podcast', 'replacement': None},
             'Q273120': {'what': 'a protest', 'replacement': None},
+            'Q24716636': {'what': 'a volunteer', 'replacement': None},
+            'Q7406919': {'what': 'a service', 'replacement': None},
+            'Q908620': {'what': 'a certification mark', 'replacement': None},
+            'Q622772': {'what': 'an incineration', 'replacement': None}, # used instead 'incinerator', see https://www.wikidata.org/wiki/Q13416228
             'Q49773': {'what': 'a social movement', 'replacement': None},
             'Q110401282': {'what': 'a type of world view', 'replacement': None},
             'Q1456832': {'what': 'a violation of law', 'replacement': None},
