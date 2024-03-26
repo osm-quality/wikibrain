@@ -716,6 +716,16 @@ class Tests(unittest.TestCase):
         self.assertNotEqual(None, problem)
         self.assertEqual("something is wrong with wikipedia tag - fixme:wikipedia is present", problem.data()['error_id'])
 
+
+    def test_handle_note_prefixed_wikipedia_tags(self):
+        tags = {"note:wikipedia": "something something"}
+        location = None
+        object_description = "fake test object"
+        object_type = 'way'
+        problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
+        self.assertNotEqual(None, problem)
+        self.assertEqual("something is wrong with wikipedia tag - fixme:wikipedia is present", problem.data()['error_id'])
+
     def test_that_cebwiki_complaints_work_well(self):
         object_description = "test"
         tags = {"wikipedia": "ceb:Bot generated article"}

@@ -604,8 +604,9 @@ class WikimediaLinkIssueDetector:
             )
 
     def not_an_actual_wikidata_or_wikipedia_keys(self):
-        return [
-            'fixme:wikipedia', # note "something is wrong with wikipedia tag - fixme:wikipedia is present" report
+        returned = []
+        for entry in [
+            'fixme:wikidata', # note "something is wrong with wikipedia tag - fixme:wikipedia is present" report
 
             # have freeform format
             "note:wikidata", "wikidata:note", "source:wikidata", "source:species:wikidata",
@@ -616,7 +617,13 @@ class WikimediaLinkIssueDetector:
 
             #per lane
             'destination:ref:wikidata:lanes',
-        ]
+            'destination:ref:wikidata:lanes:forward',
+            'destination:ref:wikidata:lanes:backward',
+            'destination:ref:to:wikidata:lanes',
+        ]:
+            returned.append(entry)
+            returned.append(entry.replace("wikidata", "wikipedia"))
+        return returned
 
     def check_is_wikidata_tag_is_misssing(self, wikipedia, present_wikidata_id, wikidata_id):
         if present_wikidata_id == None and wikidata_id != None:
