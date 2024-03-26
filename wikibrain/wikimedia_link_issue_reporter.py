@@ -74,7 +74,11 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q1363599")
         wikidata_bugs.append("Q138775")
         wikidata_bugs.append("Q1067164")
-
+        wikidata_bugs.append("Q4677918")
+        wikidata_bugs.append("Q7586778") # https://www.wikidata.org/wiki/Q7586778 is it linkable TODO
+        wikidata_bugs.append("Q180846")
+        wikidata_bugs.append("Q69883")
+        wikidata_bugs.append("Q459297")
         return wikidata_bugs
 
     @staticmethod
