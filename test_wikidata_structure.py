@@ -109,9 +109,9 @@ class WikidataTests(unittest.TestCase):
     def assert_linkability(self, type_id):
         is_unlinkable = self.is_unlinkable_check(type_id)
         if is_unlinkable != None:
+            self.clear_cache_claiming_unexpected_wikidata_structure(type_id)
             if self.is_unlinkable_check(type_id) == None:
                 return
-            self.clear_cache_claiming_unexpected_wikidata_structure(type_id)
             self.dump_debug_into_stdout(type_id, "assert_linkability failed")
         self.assertEqual(None, is_unlinkable)
 
