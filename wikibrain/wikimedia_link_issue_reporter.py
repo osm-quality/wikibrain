@@ -66,19 +66,15 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append("Q3565868")
-        wikidata_bugs.append("Q28241")
-        wikidata_bugs.append("Q2125658")
-        wikidata_bugs.append("Q23056934")
-        wikidata_bugs.append("Q9089593")
-        wikidata_bugs.append("Q1363599")
-        wikidata_bugs.append("Q138775")
         wikidata_bugs.append("Q1067164")
-        wikidata_bugs.append("Q4677918")
-        wikidata_bugs.append("Q7586778") # https://www.wikidata.org/wiki/Q7586778 is it linkable TODO
-        wikidata_bugs.append("Q180846")
-        wikidata_bugs.append("Q69883")
-        wikidata_bugs.append("Q459297")
+        wikidata_bugs.append("Q4354683")
+        wikidata_bugs.append("Q786004")
+        wikidata_bugs.append("Q113603")
+        wikidata_bugs.append("Q27997185")
+        
+        
+        
+
         return wikidata_bugs
 
     @staticmethod
@@ -1579,6 +1575,7 @@ class WikimediaLinkIssueDetector:
             'Q13414953': {'what': 'a religious denomination', 'replacement': None},
             'Q5608878': {'what': 'a dry stone walling (construction technique)', 'replacement': None},  # very often it should be https://www.wikidata.org/wiki/Q544504
             'Q16675884': {'what': 'a religious sculpture (genre)', 'replacement': None},  # very often it should be https://www.wikidata.org/wiki/Q544504
+            'Q29584743': {'what': 'a postal and courier activity', 'replacement':  None},
             'Q451967': {'what': 'an intentional human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q61788060': {'what': 'a human activity', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q3769299': {'what': 'a human behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},

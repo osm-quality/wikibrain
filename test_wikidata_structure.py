@@ -1035,6 +1035,10 @@ class WikidataTests(unittest.TestCase):
     def test_specific_shop_as_valid_primary_link(self):
         self.assert_linkability('Q104698108')
 
+    def test_specific_give_away_shop_as_valid_primary_link(self):
+        self.assert_linkability('Q98637468')
+        self.assert_linkability('Q120798439')
+
     def test_specific_supermarket_as_valid_primary_link(self):
         self.assert_linkability('Q96279892')
         self.assert_linkability('Q50737571') # also described as hypermarket
@@ -1427,6 +1431,11 @@ class WikidataTests(unittest.TestCase):
     def test_that_hardened_shelter_is_not_aspect_of_geographic_region(self):
         self.is_not_a_specific_error_class('Q91939', 'an aspect in a geographic region')
 
+    def test_that_squatted_location_is_not_a_conflict_though_it_likely_likely_involves_conflict(self):
+        self.is_not_a_specific_error_class('Q114981782', 'a conflict')
+        self.is_not_a_specific_error_class('Q1503456', 'a conflict')
+        self.is_not_a_specific_error_class('Q74928147', 'a conflict')
+
     def test_that_training_ship_is_not_a_mental_process(self):
         self.is_not_a_specific_error_class('Q315820', 'a mental process')
 
@@ -1504,6 +1513,10 @@ class WikidataTests(unittest.TestCase):
     def test_that_distillery_is_not_a_food(self):
         self.is_not_a_specific_error_class('Q7225874', 'a food')
         self.assert_linkability('Q7225874')
+
+    def test_that_food_bank_is_linkable(self):
+        self.assert_linkability('Q65057557')
+
 
     def test_that_insurance_company_is_not_insurance_but_is_unlinkable_anyway_testcase_a(self):
         #self.assert_unlinkability('Q5708804') # TODO
@@ -1972,6 +1985,11 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q516134', 'an intentional human activity')
         self.assert_linkability('Q516134')
         self.is_not_a_specific_error_class('Q380843', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q895611', 'an intentional human activity')
+        self.assert_linkability('Q895611')
+
+    def test_combined_busway_tramway_is_valid_link(self):
+        self.assert_linkability('Q293832')
 
     def test_police_department_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q3024788', 'an intentional human activity')
@@ -1990,6 +2008,12 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q32414703', 'an intentional human activity')
         self.is_not_a_specific_error_class('Q7979152', 'an intentional human activity')
         self.is_not_a_specific_error_class('Q6701894', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q113115878', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q124052118', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q98637468', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q124432748', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q49537862', 'an intentional human activity')
+        self.is_not_a_specific_error_class('Q121811504', 'an intentional human activity')
 
     def test_another_site_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q16467716', 'an intentional human activity')
