@@ -48,7 +48,7 @@ class WikidataTests(unittest.TestCase):
             potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
             if potential_failure == None:
                 return
-            if self.is_error_reporting_that_this_is_specific_error_class(potential_failure, expected_error_class):
+            if self.is_error_reporting_that_this_is_specific_error_class(potential_failure, expected_error_class) == False:
                 return
             self.dump_debug_into_stdout(type_id, "is_not_a_specific_error_class failed")
             self.assert_is_not_specific_error_class(potential_failure, expected_error_class)
