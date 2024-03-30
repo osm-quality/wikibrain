@@ -14,6 +14,8 @@ def skipped_cases():
         "Q2511457", # recurring show bound to a specific location - https://en.wikipedia.org/wiki/Love_(Cirque_du_Soleil)
 
         "Q1604442", # event article with strong traces of location info https://en.wikipedia.org/wiki/en:Ruby%20Ridge
+
+        "Q12001477", # recurring event with strong specific loction https://www.wikidata.org/wiki/Q12001477
     ]
 
 

@@ -252,6 +252,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_fast_tram_network_as_invalid_primary_link(self):
         self.assert_unlinkability('Q1814872')
 
+    def test_detecting_grandstand_as_valid_primary_link(self):
+        self.assert_linkability('Q7671983')
+
     def test_detecting_school_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q5060518')
 
@@ -655,6 +658,11 @@ class WikidataTests(unittest.TestCase):
 
     def test_nude_statue_as_valid_primary_link(self):
         self.assert_linkability('Q37878723')
+
+    def test_sacred_heart_of_jesus_statue_as_valid_primary_link(self):
+        self.assert_linkability('Q19353387')
+        self.assert_linkability('Q19353372')
+        self.assert_linkability('Q19353380')
 
     def test_statue_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q87720384')
@@ -1990,6 +1998,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_combined_busway_tramway_is_valid_link(self):
         self.assert_linkability('Q293832')
+
+    def test_horse_tramway_is_valid_link(self):
+        self.assert_linkability('Q1252047')
 
     def test_police_department_is_not_an_intentional_human_activity_but_result_of_it(self):
         self.is_not_a_specific_error_class('Q3024788', 'an intentional human activity')
