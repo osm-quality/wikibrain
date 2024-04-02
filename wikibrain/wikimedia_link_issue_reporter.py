@@ -135,6 +135,9 @@ class WikimediaLinkIssueDetector:
         # "may or may not be" blocks it from being useful
         wikidata_bugs.append('Q1046088')
 
+        # wikidata mixes describing reality and internal project issues
+        wikidata_bugs.append('Q1263068')
+        
         return wikidata_bugs
 
     @staticmethod
