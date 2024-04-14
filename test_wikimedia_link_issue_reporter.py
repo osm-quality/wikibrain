@@ -251,36 +251,6 @@ class Tests(unittest.TestCase):
                 print(blacklist[key], "test_presence_of_fields_in_blacklist_of_unlinkable_entries")
                 assert False
 
-    def test_that_relinkable_as_animals_target_species(self):
-        self.ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary('Q42569')
-        blacklist = wikibrain.wikidata_knowledge.blacklist_of_unlinkable_entries()
-        count = 0
-        for wikidata_id in blacklist:
-            if blacklist[wikidata_id]['prefix'] != "species:":
-                continue
-            count += 1
-            is_animal = False
-            for type_id in self.detector().wikidata_entries_classifying_entry(wikidata_id):
-                potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
-                if potential_failure == None:
-                    continue
-                expected_error = 'an animal or plant (and not an individual one)'
-                if potential_failure['what'] != expected_error:
-                    self.detector().output_debug_about_wikidata_item(wikidata_id)
-                    self.assertEqual(potential_failure['what'], expected_error)
-                is_animal = True
-                break
-            if is_animal != True:
-                print()
-                print("18888888888888888888888")
-                print(wikidata_id, " not recognized as an animal!")
-                print("fix wikimedia_link_issue_reporter or fix wikidata and flush cache (wikimedia-connection-cache/wikidata_by_id/<wikidata_id>.wikidata_entity.txt)")
-                print("58888888888888888888888")
-                for type_id in self.detector().wikidata_entries_classifying_entry(wikidata_id):
-                    potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
-                    print(type_id, potential_failure)
-                assert False
-        self.assertNotEqual(count, 0)
 
     def ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary(self, wikidata_id):
         passed_tags = {'wikipedia': 'dummy_filler'}

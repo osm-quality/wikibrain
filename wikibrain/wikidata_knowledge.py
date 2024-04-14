@@ -2007,7 +2007,6 @@ def blacklist_of_unlinkable_entries():
         'Q780': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Chicken'}},
         'Q848706': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Domesticated turkey'}},
         'Q149017': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Domestic rabbit'}},
-        'Q188828': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Pony'}},
         'Q69581': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q11338316': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q869140': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},

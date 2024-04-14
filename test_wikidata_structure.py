@@ -1,5 +1,6 @@
 import unittest
 from wikibrain import wikimedia_link_issue_reporter
+import wikibrain
 from wikimedia_connection import wikimedia_connection, wikidata_processing
 import osm_handling_config.global_config as osm_handling_config
 import os
@@ -149,6 +150,42 @@ class WikidataTests(unittest.TestCase):
             print(reference)
         self.assertEqual(None, status)
 
+    def test_that_relinkable_as_animals_target_species(self):
+        self.assert_unlinkability('Q42569')
+        blacklist = wikibrain.wikidata_knowledge.blacklist_of_unlinkable_entries()
+        count = 0
+        for wikidata_id in blacklist:
+            if blacklist[wikidata_id]['prefix'] != "species:":
+                continue
+            count += 1
+            is_animal = False
+            for type_id in self.detector().wikidata_entries_classifying_entry(wikidata_id):
+                potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
+                if potential_failure == None:
+                    continue
+                expected_error = 'an animal or plant (and not an individual one)'
+                if potential_failure['what'] != expected_error:
+                    self.detector().output_debug_about_wikidata_item(wikidata_id)
+                    self.assertEqual(potential_failure['what'], expected_error)
+                is_animal = True
+                break
+            if is_animal == True:
+                continue
+            print()
+            print("18888888888888888888888")
+            print(wikidata_id, " not recognized as an animal!")
+            print("fix wikimedia_link_issue_reporter or fix wikidata and flush cache (wikimedia-connection-cache/wikidata_by_id/<wikidata_id>.wikidata_entity.txt)")
+            print("58888888888888888888888")
+            for type_id in self.detector().wikidata_entries_classifying_entry(wikidata_id):
+                potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
+                print(type_id, potential_failure)
+            self.dump_debug_into_stdout(type_id, "is_not_a_specific_error_class failed")
+            for bad_wikidata, info in self.detector().invalid_types().items():
+                if 'animal' in info['what']:
+                    print(bad_wikidata, info)
+            assert False
+        self.assertNotEqual(count, 0)
+
     def test_this_ussr_massacre_is_a_crime(self):
         # admittedly - 'a massacre' also would work and so on
         # this tests are more fragile and having just few of them is a good idea
@@ -170,6 +207,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_reject_links_to_humans(self):
         self.assert_unlinkability('Q561127')
+
+    def test_reject_links_to_ponies(self):
+        self.assert_unlinkability('Q188828')
 
     def test_reject_links_to_term_shopping(self):
         # https://www.openstreetmap.org/way/452123938
