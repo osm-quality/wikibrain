@@ -74,6 +74,21 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q55640")
         wikidata_bugs.append("Q921773")
         wikidata_bugs.append("Q2208234")
+        wikidata_bugs.append("Q83478")
+        wikidata_bugs.append("Q15640053")
+        wikidata_bugs.append("Q992253")
+        wikidata_bugs.append("Q4358873")
+        wikidata_bugs.append("Q80638")
+        wikidata_bugs.append("Q193886")
+        wikidata_bugs.append("Q213156")
+        wikidata_bugs.append("Q11914069")
+        wikidata_bugs.append("Q192781")
+        wikidata_bugs.append("Q2463705")
+        wikidata_bugs.append("Q10364299")
+        wikidata_bugs.append("Q3476515")
+        wikidata_bugs.append("Q7884789")
+        wikidata_bugs.append("Q105213328")
+        wikidata_bugs.append("Q1945600")
         return wikidata_bugs
 
     @staticmethod
