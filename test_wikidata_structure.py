@@ -1185,6 +1185,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_abandoned_village_as_valid_primary_link(self):
         self.assert_linkability('Q105643919')
+        self.assert_linkability('Q11727083')
 
     def test_village_as_valid_primary_link(self):
         self.assert_linkability('Q43583')
