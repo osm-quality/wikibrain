@@ -911,6 +911,8 @@ class WikimediaLinkIssueDetector:
             )
 
     def get_wikipedia_from_wikidata_assume_no_old_style_wikipedia_tags(self, present_wikidata_id, tags):
+        # present_wikidata_id is string with, well, wikidata id (such as "Q42")
+        # tags is dictionary represeting OSM tags of the object
         location = (None, None)
         description = "object with wikidata=" + present_wikidata_id
         problem_indicated_by_wikidata = self.get_problem_based_on_wikidata(present_wikidata_id, tags, description, location)
@@ -1679,6 +1681,7 @@ class WikimediaLinkIssueDetector:
 
     def get_error_report_if_wikipedia_target_is_of_unusable_type(self, location, wikidata_id):
         # target_location is (latititude, longitude) tuple
+        # wikidata id is string with, well, wikidata id (such as "Q42")
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object(wikidata_id, self.ignored_entries_in_wikidata_ontology()):
             if type_id == self.disambig_type_id():
                 # TODO note that pageprops may be a better source that should be used
@@ -1701,6 +1704,10 @@ class WikimediaLinkIssueDetector:
                 )
 
     def get_problem_based_on_wikidata_and_osm_element(self, object_description, location, effective_wikidata_id, tags):
+        # object_description is
+        # location is (latititude, longitude) tuple
+        # effective_wikidata_id is string with, well, wikidata id (such as "Q42")
+        # tags is dictionary represeting OSM tags of the object
         if effective_wikidata_id != None:
             error = self.get_problem_based_on_wikidata(effective_wikidata_id, tags, object_description, location)
             if error != None:
@@ -1768,14 +1775,25 @@ class WikimediaLinkIssueDetector:
         )
 
     def get_problem_based_on_wikidata(self, effective_wikidata_id, tags, description, location):
+        # effective_wikidata_id is string with, well, wikidata id (such as "Q42")
+        # tags is dictionary represeting OSM tags of the object
+        # description is
+        # location is (latititude, longitude) tuple
         return self.get_problem_based_on_base_types(effective_wikidata_id, tags, description, location)
 
     def get_problem_based_on_base_types(self, effective_wikidata_id, tags, description, location):
+        # effective_wikidata_id is string with, well, wikidata id (such as "Q42")
+        # tags is dictionary represeting OSM tags of the object
+        # description is
+        # location is (latititude, longitude) tuple
         base_type_problem = self.get_problem_based_on_wikidata_base_types(location, effective_wikidata_id, tags)
         if base_type_problem != None:
             return base_type_problem
 
     def get_problem_based_on_wikidata_base_types(self, location, effective_wikidata_id, tags):
+        # location is (latititude, longitude) tuple
+        # effective_wikidata_id is string with, well, wikidata id (such as "Q42")
+        # tags is dictionary represeting OSM tags of the object
         unusable_wikipedia_article = self.get_error_report_if_wikipedia_target_is_of_unusable_type(location, effective_wikidata_id)
         if unusable_wikipedia_article != None:
             return unusable_wikipedia_article
