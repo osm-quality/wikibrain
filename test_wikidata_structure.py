@@ -1573,6 +1573,12 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q1503456', 'a conflict')
         self.is_not_a_specific_error_class('Q74928147', 'a conflict')
 
+    def test_specific_housing_cooperative_as_valid_primary_link(self):
+        self.assert_linkability('Q74928147')
+
+    def test_specific_squatted_building_as_valid_primary_link(self):
+        self.assert_linkability('Q1503456')
+
     def test_that_training_ship_is_not_a_mental_process(self):
         self.is_not_a_specific_error_class('Q315820', 'a mental process')
 
