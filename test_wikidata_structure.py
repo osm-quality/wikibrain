@@ -786,6 +786,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q111975892')
         self.assert_linkability('Q48927879')
 
+    def test_named_location_as_valid_primary_link(self):
+        self.assert_linkability('Q30946171')
+
     def test_tennis_court_as_valid_primary_link(self):
         self.assert_linkability('Q52454')
 
@@ -1046,6 +1049,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_fountain_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q41174576')
+
+    def test_fountain_with_drinking_water_as_valid_primary_link(self):
+        self.assert_linkability('Q108761333')
 
     def test_modern_artwork_as_valid_primary_link(self):
         self.assert_linkability('Q64435838')
@@ -1672,9 +1678,17 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q5129551')
         self.is_not_a_specific_error_class('Q5129551', 'a food')
 
+    def test_that_branded_diet_is_not_a_food_but_is_unlinkable_anyway_testcase_c(self):
+        self.assert_unlinkability('Q84763014')
+        self.is_not_a_specific_error_class('Q84763014', 'a food')
+
     def test_that_distillery_is_not_a_food(self):
         self.is_not_a_specific_error_class('Q7225874', 'a food')
         self.assert_linkability('Q7225874')
+
+    def test_that_food_producing_tree_is_not_a_food(self):
+        self.is_not_a_specific_error_class('Q22699', 'a food')
+        self.assert_unlinkability('Q22699')
 
     def test_that_food_bank_is_linkable(self):
         self.assert_linkability('Q65057557')
@@ -2586,6 +2600,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_restaurant_where_shooting_took_place_as_valid_primary_link(self):
         self.assert_linkability('Q6649212')
+
+    def test_fast_food_eatery_as_valid_primary_link_testcase_a(self):
+        self.assert_linkability('Q1211914')
+
+    def test_fast_food_eatery_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q18889101')
 
     def test_oil_refinery_as_valid_primary_link(self):
         self.assert_linkability('Q1260981')
