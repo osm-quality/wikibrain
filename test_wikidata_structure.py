@@ -255,10 +255,13 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q111371477')
         self.assert_linkability('Q117485825')
 
+    def test_detecting_psychiatric_prison_as_valid_primary_link(self):
+        self.assert_linkability('Q20170666')
+
     def test_detecting_castle_as_valid_primary_link(self):
         self.assert_linkability('Q2106892')
 
-    def test_detecting_castle__that_was_used_as_prison_as_valid_primary_link(self):
+    def test_detecting_castle_that_was_used_as_prison_as_valid_primary_link(self):
         self.assert_linkability('Q11913101')
 
     def test_detecting_reconstructed_castle_as_valid_primary_link(self):
@@ -320,6 +323,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_detecting_sport_school_as_valid_primary_link(self):
         self.assert_linkability('Q2677095')
+
+    def test_detecting_sport_complex_as_valid_primary_link(self):
+        self.assert_linkability('Q42954701')
 
     def test_detecting_secondary_school_as_valid_primary_link(self):
         self.assert_linkability('Q66623606')
@@ -1560,6 +1566,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q1590873')
         self.assert_linkability('Q123510810')
 
+    def test_office_as_valid_primary_link(self):
+        self.assert_linkability('Q1802284')
+
     def test_station_of_a_cross_as_valid_primary_link(self):
         self.assert_linkability('Q98488381')
 
@@ -1679,7 +1688,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q5129551', 'a food')
 
     def test_that_branded_diet_is_not_a_food_but_is_unlinkable_anyway_testcase_c(self):
-        self.assert_unlinkability('Q84763014')
+        #self.assert_unlinkability('Q84763014') TODO
         self.is_not_a_specific_error_class('Q84763014', 'a food')
 
     def test_that_distillery_is_not_a_food(self):

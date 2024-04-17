@@ -97,7 +97,9 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q506946")
         wikidata_bugs.append("Q1316209")
         wikidata_bugs.append("Q154383")
-        wikidata_bugs.append("Q26869695")        
+        wikidata_bugs.append("Q26869695")
+        wikidata_bugs.append("Q1407263")
+        wikidata_bugs.append("Q5283295")
         return wikidata_bugs
 
     @staticmethod
