@@ -163,10 +163,10 @@ class WikidataTests(unittest.TestCase):
                 potential_failure = self.detector().get_reason_why_type_makes_object_invalid_primary_link(type_id)
                 if potential_failure == None:
                     continue
-                expected_error = 'an animal or plant (and not an individual one)'
-                if potential_failure['what'] != expected_error:
+                expected_errors = ['an animal or plant (and not an individual one)', 'a horse']
+                if potential_failure['what'] not in expected_errors:
                     self.detector().output_debug_about_wikidata_item(wikidata_id)
-                    self.assertEqual(potential_failure['what'], expected_error)
+                    self.assertEqual(potential_failure['what'], expected_errors[0])
                 is_animal = True
                 break
             if is_animal == True:
@@ -192,8 +192,16 @@ class WikidataTests(unittest.TestCase):
         # but testing that some failures are detected and data structure is as expected makes sense
         self.is_a_specific_error_class('Q134301', 'a crime')
 
+    def test_this_bombing_is_an_event(self):
+        # well, bombing IS a violation of law
+        # again, unstable test is more or less fine here
+        self.is_a_specific_error_class('Q876206', 'a violation of law')
+
     def test_rejects_links_to_events(self):
         self.assert_unlinkability('Q134301')
+
+    def test_rejects_links_to_horse_types(self):
+        self.assert_unlinkability('Q2169710')
 
     def test_rejects_links_to_events_case_of_hinderburg_disaster(self):
         self.assert_unlinkability('Q3182723')

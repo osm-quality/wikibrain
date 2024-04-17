@@ -1553,6 +1553,7 @@ class WikimediaLinkIssueDetector:
             'Q38829': taxon,
             'Q34740': taxon,
             'Q7432': taxon,
+            'Q726': {'what': 'a horse', 'replacement': None},
             'Q26883973': {'what': 'a lost sculpture', 'replacement': 'subject:'},
             'Q4140840': {'what': 'a lost artwork', 'replacement': 'subject:'},
             'Q21752591': {'what': 'a lost work', 'replacement': 'subject:'},
@@ -1857,7 +1858,7 @@ class WikimediaLinkIssueDetector:
         to_show_in_log_file = ""
         for entry in structure:
             to_show_in_log_file += ":"*entry["depth"] + "{{Q|" + entry["category_id"] + "}}" + "\n"
-            if entry["ban_reason"] != None:
+            if entry.get("ban_reason") != None:
                 header = "== {{Q|" + type_id + "}} classified as " + entry["ban_reason"]['what'] + " ==\n"
                 with open("wikidata_report.txt", "a") as myfile:
                     myfile.write(header + to_show_in_log_file + "\n\n")

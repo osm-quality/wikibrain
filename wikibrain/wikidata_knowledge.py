@@ -2012,7 +2012,6 @@ def blacklist_of_unlinkable_entries():
         'Q869140': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q80952': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
         'Q516612': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # horse breed
-        'Q2169710': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}, 'allowed_tags': {'name:en': 'Miniature horse'}},  # horse type
         'Q1988192': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # subspecies
         'Q729713': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},  # subspecies of leopard
         'Q192967': {'prefix': 'species:', 'expected_tags': {'attraction': 'animal'}},
