@@ -89,6 +89,10 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q7884789")
         wikidata_bugs.append("Q105213328")
         wikidata_bugs.append("Q1945600")
+        wikidata_bugs.append("Q1266782")
+        wikidata_bugs.append("Q1618728")
+        wikidata_bugs.append("Q44497")
+        wikidata_bugs.append("Q1417728")
         return wikidata_bugs
 
     @staticmethod
@@ -1549,6 +1553,7 @@ class WikimediaLinkIssueDetector:
             'Q34740': taxon,
             'Q7432': taxon,
             'Q726': {'what': 'a horse', 'replacement': None},
+            'Q44497': {'what': 'a mining (activity - likely mine/quarry etc should be set instead)', 'replacement': None},
             'Q26883973': {'what': 'a lost sculpture', 'replacement': 'subject:'},
             'Q4140840': {'what': 'a lost artwork', 'replacement': 'subject:'},
             'Q21752591': {'what': 'a lost work', 'replacement': 'subject:'},

@@ -563,6 +563,9 @@ class WikidataTests(unittest.TestCase):
     def test_public_aquarium_as_valid_primary_link(self):
         self.assert_linkability('Q4782760')
 
+    def test_quarry_as_valid_primary_link(self):
+        self.assert_linkability('Q21876578')
+
     def test_grave_as_valid_primary_link(self):
         self.assert_linkability('Q11789060')
 
@@ -633,6 +636,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_protected_area_as_valid_primary_link(self):
         self.assert_linkability('Q61040191')
+
+    def test_protected_area_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q61959238')
 
     def test_headquarters_landscape_area_as_valid_primary_link(self):
         self.assert_linkability('Q5578587')
@@ -765,9 +771,14 @@ class WikidataTests(unittest.TestCase):
     def test_comedy_club_as_valid_primary_link(self):
         self.assert_linkability('Q1791352')
 
+
     def test_fandom_club_as_valid_primary_link(self):
         self.is_not_a_specific_error_class('Q7514814', 'an object that exists outside physical reality') # fully sure
         self.assert_linkability('Q7514814') # not fully sure about this
+
+    def test_publisher_is_within_reality(self):
+        self.is_not_a_specific_error_class('Q873700', 'an object that exists outside physical reality')
+        #self.assert_unlinkability('Q873700') # TODO
 
     def test_toponym_location_as_valid_primary_link(self):
         self.assert_linkability('Q1440823')
@@ -2088,6 +2099,11 @@ class WikidataTests(unittest.TestCase):
         # not a mental process
         self.assert_linkability('Q6534878')
         
+    def test_mountain_ridge_is_linkable(self):
+        self.assert_linkability('Q21881813')
+
+    def test_events_venue_is_linkable(self):
+        self.assert_linkability('Q108311514')
 
     def test_drinking_water_fountain_style_is_not_an_intentional_human_activity(self):
         self.is_not_a_specific_error_class('Q1062192', 'an intentional human activity')
