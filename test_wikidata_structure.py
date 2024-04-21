@@ -309,6 +309,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_grandstand_as_valid_primary_link(self):
         self.assert_linkability('Q7671983')
 
+    def test_detecting_badlands_as_valid_primary_link(self):
+        self.assert_linkability('Q123399000')
+
     def test_detecting_school_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q5060518')
 
@@ -538,6 +541,9 @@ class WikidataTests(unittest.TestCase):
     def test_cholera_cemetery_as_valid_primary_link(self):
         self.assert_linkability('Q18147583')
 
+    def test_former_cemetery_now_garden_memorial_as_valid_primary_link(self):
+        self.assert_linkability('Q121636353')
+
     def test_megaproject_as_valid_primary_link(self):
         self.assert_linkability('Q782093')  # some megaprojects are already existing, project ( https://www.wikidata.org/wiki/Q170584 ) may be already complete
 
@@ -591,6 +597,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q101440995')
         self.assert_linkability('Q102046335')
         self.assert_linkability('Q102032154')
+
+    def test_monument_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q112102215')
 
     def test_holocaust_memorial_monument_as_valid_primary_link(self):
         self.assert_linkability('Q570442')
@@ -777,6 +786,16 @@ class WikidataTests(unittest.TestCase):
     def test_comedy_club_as_valid_primary_link(self):
         self.assert_linkability('Q1791352')
 
+    def test_house_marker_art_as_valid_primary_link(self):
+        self.assert_linkability('Q60458676')
+
+    def test_that_community_center_is_in_physical_reality(self):
+        self.is_not_a_specific_error_class('Q98113446', 'an object that exists outside physical reality') # fully sure
+        self.assert_linkability('Q98113446') # not fully sure about this
+
+    def test_that_fraternity_is_in_physical_reality(self):
+        self.is_not_a_specific_error_class('Q6367049', 'an object that exists outside physical reality') # fully sure
+        #self.assert_linkability('Q6367049') # not fully sure about this TODO
 
     def test_fandom_club_as_valid_primary_link(self):
         self.is_not_a_specific_error_class('Q7514814', 'an object that exists outside physical reality') # fully sure
@@ -785,6 +804,14 @@ class WikidataTests(unittest.TestCase):
     def test_publisher_is_within_reality(self):
         self.is_not_a_specific_error_class('Q873700', 'an object that exists outside physical reality')
         #self.assert_unlinkability('Q873700') # TODO
+
+    def test_publisher_is_within_reality_testcase_b(self):
+        self.is_not_a_specific_error_class('Q1298441', 'an object that exists outside physical reality')
+        #self.assert_unlinkability('Q1298441') # TODO
+
+    def test_business_is_within_reality(self):
+        self.is_not_a_specific_error_class('Q692179', 'an object that exists outside physical reality')
+        #self.assert_unlinkability('Q692179') # TODO
 
     def test_toponym_location_as_valid_primary_link(self):
         self.assert_linkability('Q1440823')
@@ -806,6 +833,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_building_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q107339923')
+
+    def test_building_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q2402725')
 
     def test_cooling_tower_used_now_as_parking_garage_as_valid_primary_link(self):
         self.assert_linkability('Q57903543')
@@ -874,6 +904,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_sculpture_as_valid_primary_link_testcase_e(self):
         self.assert_linkability('Q24036911')
+
+    def test_sculpture_as_valid_primary_link_testcase_f(self):
+        self.assert_linkability('Q111582772')
 
     def test_animal_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q108421050')
@@ -1064,6 +1097,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_river_source_as_valid_primary_link(self):
         self.assert_linkability('Q47037286')
+
+    def test_river_branch_as_valid_primary_link(self):
+        self.assert_linkability('Q436065')
 
     def test_old_house_as_valid_primary_link(self):
         self.assert_linkability('Q31147655')
@@ -1575,6 +1611,9 @@ class WikidataTests(unittest.TestCase):
     def test_garden_as_valid_primary_link(self):
         self.assert_linkability('Q19575149')
 
+    def test_garden_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q41015695')
+
     def test_that_defunct_monastery_is_not_an_event(self):
         self.is_not_an_event('Q28976876')
 
@@ -1991,6 +2030,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_archeological_site_as_valid_primary_link(self):
         self.assert_linkability('Q17372554')
+
+    def test_archeological_site_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q66815081')
+
+    def test_archeological_site_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q29522166')
 
     def test_wetland_as_valid_primary_link(self):
         self.assert_linkability('Q53953145')
@@ -2511,9 +2556,6 @@ class WikidataTests(unittest.TestCase):
     def test_geotope_as_valid_primary_link(self):
         self.assert_linkability('Q48261221')
 
-    def test_archeological_site_as_valid_primary_link_testcase_b(self):
-        self.assert_linkability('Q66815081')
-
     def test_arty_pedestrian_bridge_as_valid_primary_link(self):
         self.assert_linkability('Q65594284')
 
@@ -2544,6 +2586,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_heretical_sect_is_not_a_conflict(self):
         self.is_not_a_specific_error_class('Q958306', 'a conflict')
+
+    def test_solar_system_model_as_valid_primary_link(self):
+        self.assert_linkability('Q12331941')
 
     def test_holocaust_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q2763', 'a physical process')
