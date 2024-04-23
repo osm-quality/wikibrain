@@ -1654,6 +1654,7 @@ class WikimediaLinkIssueDetector:
             'Q1456832': {'what': 'a violation of law', 'replacement': None},
             'Q21502408': {'what': 'a wikidata mandatory constraint', 'replacement': None},
             'Q14659': {'what': 'a coat of arms', 'replacement': None},
+            'Q101352': {'what': 'a family name', 'replacement': None},
             'Q7048977': {'what': 'an object that exists outside physical reality', 'replacement': None, 'extremely_broad_and_unspecific': True},
             'Q11038979': {'what': 'a cult', 'replacement': None},
             'Q8434': {'what': 'an education (transmission of knowledge and skills)', 'replacement': None},
