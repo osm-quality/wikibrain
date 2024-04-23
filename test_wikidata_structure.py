@@ -774,6 +774,9 @@ class WikidataTests(unittest.TestCase):
     def test_air_force_academy_as_valid_primary_link(self):
         self.assert_linkability('Q2015914')
 
+    def test_historic_discrimination_announcement_siren_as_valid_primary_link(self):
+        self.assert_linkability('Q119526919')
+
     def test_pipeline_as_valid_primary_link(self):
         self.assert_linkability('Q7700085')
 
@@ -788,6 +791,11 @@ class WikidataTests(unittest.TestCase):
 
     def test_house_marker_art_as_valid_primary_link(self):
         self.assert_linkability('Q60458676')
+
+    def test_physiographic_province_as_valid_primary_link(self):
+        # I am dubious should be appear in OSM, but "an object that exists outside physical reality" is not true
+        self.is_not_a_specific_error_class('Q59773603', 'an object that exists outside physical reality') # fully sure
+        self.assert_linkability('Q59773603') # not fully sure about this
 
     def test_that_community_center_is_in_physical_reality(self):
         self.is_not_a_specific_error_class('Q98113446', 'an object that exists outside physical reality') # fully sure
@@ -1321,6 +1329,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_hospital_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q64555514')
+
+    def test_hospital_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q1170136')
 
     def test_hospice_as_valid_primary_link(self):
         self.assert_linkability('Q177545')
@@ -2283,6 +2294,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_roman_fort_is_not_a_research(self):
         self.is_not_a_specific_error_class('Q1243550', 'a research')
+
+    def test_real_place_appearing_in_myth_is_valid_link(self):
+        self.is_not_a_specific_error_class('Q152854', 'an object that exists outside physical reality') # fully sure
+        self.assert_linkability('Q152854') # yes, mappability in OSM is dubious at best as south one is underdefined        
 
     def test_apostle_is_not_fictional_but_still_invalid(self):
         self.is_not_a_specific_error_class('Q51672', 'a fictional entity')
