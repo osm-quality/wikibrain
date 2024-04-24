@@ -651,11 +651,13 @@ class WikimediaLinkIssueDetector:
             # have freeform format
             "note:wikidata", "wikidata:note", "source:wikidata", "source:species:wikidata",
             "name:etymology:wikidata:fixme",
+            'name:etymology:wikidata:note',
 
             # not worth a special support
             "image:license:wikidata",
 
             #per lane
+            'destination:ref:to:wikidata:lanes',
             'destination:ref:wikidata:lanes',
             'destination:ref:wikidata:lanes:forward',
             'destination:ref:wikidata:lanes:backward',
