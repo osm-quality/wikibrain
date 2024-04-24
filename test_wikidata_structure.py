@@ -811,6 +811,10 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q6367049', 'an object that exists outside physical reality') # fully sure
         #self.assert_linkability('Q6367049') # not fully sure about this TODO
 
+    def test_that_sorority_is_in_physical_reality(self):
+        self.is_not_a_specific_error_class('Q3308284', 'an object that exists outside physical reality') # fully sure
+        #self.assert_linkability('Q3308284') # not fully sure about this TODO
+
     def test_fandom_club_as_valid_primary_link(self):
         self.is_not_a_specific_error_class('Q7514814', 'an object that exists outside physical reality') # fully sure
         self.assert_linkability('Q7514814') # not fully sure about this
@@ -823,13 +827,31 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q1298441', 'an object that exists outside physical reality')
         #self.assert_unlinkability('Q1298441') # TODO
 
+    def test_publisher_is_within_reality_testcase_c(self):
+        self.is_not_a_specific_error_class('Q5158981', 'an object that exists outside physical reality')
+        #self.assert_unlinkability('Q1298441') # TODO
+
     def test_business_is_within_reality(self):
         self.is_not_a_specific_error_class('Q692179', 'an object that exists outside physical reality')
         #self.assert_unlinkability('Q692179') # TODO
 
+    def test_business_is_within_reality_testcase_b(self):
+        self.is_not_a_specific_error_class('Q17509290', 'an object that exists outside physical reality')
+
+    def test_educational_platform_business_is_within_reality(self):
+        self.is_not_a_specific_error_class('Q22909519', 'an object that exists outside physical reality')
+
     def test_locomotive_factory_is_within_reality(self):
         self.is_not_a_specific_error_class('Q1128687', 'an object that exists outside physical reality')
         #self.assert_unlinkability('Q1128687') # TODO
+
+    def test_lead_smelting_works_is_within_reality(self):
+        self.is_not_a_specific_error_class('Q883632', 'an object that exists outside physical reality')
+        self.assert_linkability('Q883632')
+
+    def test_another_factory_is_within_reality(self):
+        self.is_not_a_specific_error_class('Q12717387', 'an object that exists outside physical reality')
+        self.assert_linkability('Q12717387')
 
     def test_toponym_location_as_valid_primary_link(self):
         self.assert_linkability('Q1440823')
@@ -2440,6 +2462,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q4059246')
         self.assert_linkability('Q5038462')
         self.assert_linkability('Q7743365')
+
+    def test_school_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q19018824')
 
     def test_state_school_as_valid_primary_link(self):
         self.assert_linkability('Q1201799')
