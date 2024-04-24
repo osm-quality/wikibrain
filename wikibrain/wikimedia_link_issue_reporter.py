@@ -1551,6 +1551,7 @@ class WikimediaLinkIssueDetector:
 
             'Q3958441': {'what': 'an economic sector', 'replacement': None},
             'Q5': {'what': 'a human', 'replacement': 'name:'},
+            'Q178885': {'what': 'a deity', 'replacement': 'subject:'},
             'Q14897293': {'what': 'a fictional entity', 'replacement': 'name:etymology:'},
             'Q16858238': {'what': 'a train category', 'replacement': None},
             'Q28747937': {'what': 'a history of a city', 'replacement': None},
