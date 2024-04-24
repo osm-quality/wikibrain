@@ -1577,6 +1577,8 @@ class WikimediaLinkIssueDetector:
             'Q34740': taxon,
             'Q7432': taxon,
             'Q726': {'what': 'a horse', 'replacement': None},
+            'Q336': {'what': 'a science', 'replacement': None},
+            'Q115372263': {'what': 'a word or phrase', 'replacement': None},
             'Q44497': {'what': 'a mining (activity - likely mine/quarry etc should be set instead)', 'replacement': None},
             'Q26883973': {'what': 'a lost sculpture', 'replacement': 'subject:'},
             'Q4140840': {'what': 'a lost artwork', 'replacement': 'subject:'},
