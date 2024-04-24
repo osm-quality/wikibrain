@@ -510,6 +510,12 @@ class WikidataTests(unittest.TestCase):
     def test_country_as_valid_primary_link(self):
         self.assert_linkability('Q30')
 
+    def test_andorra_country_as_valid_primary_link(self):
+        self.assert_linkability('Q228')
+
+    def test_country_as_valid_primary_link_testcase_australia(self):
+        self.assert_linkability('Q408')
+
     def test_aqueduct_as_valid_primary_link(self):
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=prev&oldid=1674919371
         self.assert_linkability('Q2859225')
@@ -821,6 +827,10 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q692179', 'an object that exists outside physical reality')
         #self.assert_unlinkability('Q692179') # TODO
 
+    def test_locomotive_factory_is_within_reality(self):
+        self.is_not_a_specific_error_class('Q1128687', 'an object that exists outside physical reality')
+        #self.assert_unlinkability('Q1128687') # TODO
+
     def test_toponym_location_as_valid_primary_link(self):
         self.assert_linkability('Q1440823')
         self.assert_linkability('Q243766')
@@ -829,6 +839,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_named_location_as_valid_primary_link(self):
         self.assert_linkability('Q30946171')
+
+    def test_named_location_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q15929166')
+
+    def test_named_location_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q7741025')
 
     def test_tennis_court_as_valid_primary_link(self):
         self.assert_linkability('Q52454')
@@ -2393,9 +2409,6 @@ class WikidataTests(unittest.TestCase):
 
     def test_industrial_region_as_valid_primary_link(self):
         self.assert_linkability('Q7303912')
-
-    def test_andorra_country_as_valid_primary_link(self):
-        self.assert_linkability('Q228')
 
     def test_educational_company_is_not_an_event(self):
         self.is_not_an_event('Q661869')
