@@ -399,6 +399,9 @@ class WikidataTests(unittest.TestCase):
     def test_specific_event_center_as_valid_primary_link(self):
         self.assert_linkability('Q7414066')
 
+    def test_heritage_site_as_valid_primary_link(self):
+        self.assert_linkability('Q65648486')
+
     def test_park_as_valid_primary_link(self):
         self.assert_linkability('Q1535460')  # cultural heritage ( https://www.wikidata.org/w/index.php?title=Q210272&action=history ) is not a subclass of heritage designation, heritage (https://www.wikidata.org/w/index.php?title=Q2434238&offset=&limit=500&action=history) is not subclass of preservation
 
@@ -515,6 +518,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_country_as_valid_primary_link_testcase_australia(self):
         self.assert_linkability('Q408')
+
+    def test_country_as_valid_primary_link_testcase_uk(self):
+        self.assert_linkability('Q145')
+
+    def test_country_as_valid_primary_link_testcase_denmark(self):
+        self.assert_linkability('Q756617')
 
     def test_aqueduct_as_valid_primary_link(self):
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&diff=prev&oldid=1674919371
@@ -808,8 +817,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q98113446') # not fully sure about this
 
     def test_that_fraternity_is_in_physical_reality(self):
-        self.is_not_a_specific_error_class('Q6367049', 'an object that exists outside physical reality') # fully sure
-        #self.assert_linkability('Q6367049') # not fully sure about this TODO
+        for entry in ['Q4735093', 'Q6367049', 'Q8069727']:
+            self.is_not_a_specific_error_class(entry, 'an object that exists outside physical reality') # fully sure
+            #self.assert_linkability(entry) # not fully sure about this TODO
 
     def test_that_sorority_is_in_physical_reality(self):
         self.is_not_a_specific_error_class('Q3308284', 'an object that exists outside physical reality') # fully sure
@@ -1277,6 +1287,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q32653671')
         self.assert_linkability('Q114809870')
         self.assert_linkability('Q15908205')
+        self.assert_linkability('Q1540792')
 
     def test_general_article_about_cycling_in_belarus_as_invalid_primary_link(self):
         self.assert_unlinkability('Q97007609')
@@ -1611,6 +1622,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_hydro_power_plant_as_valid_primary_link(self):
         self.assert_linkability('Q15900609')
+
+    def test_geothermal_power_plant_as_valid_primary_link(self):
+        self.assert_linkability('Q3109025')
 
     def test_power_plant_under_construction_as_valid_primary_link(self):
         self.assert_linkability('Q1630042')
@@ -2215,9 +2229,20 @@ class WikidataTests(unittest.TestCase):
     def test_settlement_is_linkable(self):
         # not a mental process
         self.assert_linkability('Q6534878')
-        
+
+
+    def test_todal_barrier_is_linkable(self):
+        self.assert_linkability('Q2309286')
+
+    def test_peninsula_is_linkable(self):
+        self.assert_linkability('Q7835')
+        self.assert_linkability('Q60064')
+
     def test_mountain_ridge_is_linkable(self):
         self.assert_linkability('Q21881813')
+
+    def test_mountain_range_is_linkable(self):
+        self.assert_linkability('Q41507')
 
     def test_events_venue_is_linkable(self):
         self.assert_linkability('Q108311514')
@@ -2277,6 +2302,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_undeground_factory_with_codename_as_valid_link(self):
         self.assert_linkability('Q2252824')
+
+    def test_facade_is_valid_link(self):
+        self.assert_linkability('Q63616414')
 
     def test_busway_is_valid_link(self):
         self.assert_linkability('Q5654686')
@@ -2744,6 +2772,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_real_island_as_valid_primary_link(self):
         self.assert_linkability('Q15726597')
+
+    def test_real_island_and_administartive_unit_as_valid_primary_link(self):
+        self.assert_linkability('Q8828')
 
     def test_features_of_firefox_as_invalid_primary_link(self):
         self.assert_unlinkability('Q459708')
