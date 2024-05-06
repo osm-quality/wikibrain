@@ -494,6 +494,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q802652')
         self.assert_passing_all_tests({'wikipedia': 'de:Württembergische Allgäubahn'})
 
+    def food_sharing_coordination_website_provides_service_and_is_not_a_service_and_is_not_linkable(self):
+        self.is_not_a_specific_error_class('Q15809935', 'a service')
+
     def test_train_line_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q3720557')  # train service is not a service (Q15141321) defined as "transcation..."
 
