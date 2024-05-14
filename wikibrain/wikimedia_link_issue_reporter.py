@@ -521,7 +521,7 @@ class WikimediaLinkIssueDetector:
         )
 
     def check_is_wikidata_page_existing(self, key, present_wikidata_id):
-        if key in self.not_an_actual_wikidata_or_wikipedia_keys():
+        if not self.is_an_actual_wikidata_or_wikipedia_key(key):
             # not an actual wikidata link, see https://www.openstreetmap.org/way/139505589
             return None
         if present_wikidata_id == None:
@@ -585,7 +585,7 @@ class WikimediaLinkIssueDetector:
                 error_message="malformed value in " + key + " tag (" + link + ")",
                 prerequisite={key: link},
             )
-        if key in self.not_an_actual_wikidata_or_wikipedia_keys():
+        if not self.is_an_actual_wikidata_or_wikipedia_key(key):
             return None
         if key.endswith(":" + wikidata_or_wikipedia):
             prefix = key[:-len(":" + wikidata_or_wikipedia)]
@@ -601,8 +601,7 @@ class WikimediaLinkIssueDetector:
                 prerequisite={key: link},
             )
 
-    def not_an_actual_wikidata_or_wikipedia_keys(self):
-        returned = []
+    def is_an_actual_wikidata_or_wikipedia_key(self, key):
         for entry in [
             'fixme:wikidata', # note "something is wrong with wikipedia tag - fixme:wikipedia is present" report
 
@@ -619,11 +618,19 @@ class WikimediaLinkIssueDetector:
             'destination:ref:wikidata:lanes',
             'destination:ref:wikidata:lanes:forward',
             'destination:ref:wikidata:lanes:backward',
+            'destination:ref:to:wikidata:lanes:backward',
             'destination:ref:to:wikidata:lanes',
         ]:
-            returned.append(entry)
-            returned.append(entry.replace("wikidata", "wikipedia"))
-        return returned
+            if key == entry:
+                return False
+            if key == entry.replace("wikidata", "wikipedia"):
+                return False
+        for warn_part in ["lanes", "note", "fixme"]:
+            if ":" + warn_part in key:
+                return False
+            if warn_part + ":" in key:
+                return False
+        return True
 
     def check_is_wikidata_tag_is_misssing(self, wikipedia, present_wikidata_id, wikidata_id):
         if present_wikidata_id == None and wikidata_id != None:
