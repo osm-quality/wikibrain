@@ -592,6 +592,7 @@ class WikidataTests(unittest.TestCase):
     def test_botanical_garden_as_valid_primary_link(self):
         self.assert_linkability('Q589884')
         self.assert_linkability('Q677516')
+        self.assert_linkability('Q1852803')
 
     def test_alley_as_valid_primary_link(self):
         self.assert_linkability('Q3413299')
@@ -1013,6 +1014,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_light_rail_circle_route_as_valid_primary_link(self):
         self.assert_linkability('Q4121246')
+
+    def test_light_rail_route_as_valid_primary_link(self):
+        self.assert_linkability('Q7261432')
 
     def test_tram_route_as_valid_primary_link(self):
         self.assert_linkability('Q23308659')
@@ -1449,6 +1453,8 @@ class WikidataTests(unittest.TestCase):
     def test_building_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q4583211')
         self.assert_linkability('Q22675345')
+        self.assert_linkability('Q125361729')
+        self.assert_linkability('Q125487023')
 
     def test_place_of_worship_as_valid_primary_link(self):
         self.assert_linkability('Q2466534')
