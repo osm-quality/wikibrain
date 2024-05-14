@@ -496,6 +496,11 @@ class WikidataTests(unittest.TestCase):
 
     def food_sharing_coordination_website_provides_service_and_is_not_a_service_and_is_not_linkable(self):
         self.is_not_a_specific_error_class('Q15809935', 'a service')
+        # TODO linkability
+
+    def hosting_company_provides_service_and_is_not_a_service_and_is_not_linkable(self):
+        self.is_not_a_specific_error_class('Q568183', 'a service')
+        # TODO linkability
 
     def test_train_line_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q3720557')  # train service is not a service (Q15141321) defined as "transcation..."
@@ -1114,6 +1119,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q2450901')
 
     def test_mine_shaft_as_valid_primary_link(self):
+        self.assert_linkability('Q19296792')
+
+    def test_mine_shaft_as_valid_primary_link(self):
         self.assert_linkability('Q27132839')
 
     def test_underground_mine_as_valid_primary_link(self):
@@ -1729,6 +1737,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_business_is_not_a_social_issue(self):
         self.is_not_a_specific_error_class('Q110699468', 'a social issue')
+
+    def test_that_public_radio_is_not_a_science(self):
+        self.is_not_a_specific_error_class('Q6701894', 'a science')
 
     def test_that_business_involved_in_software_is_not_a_software_but_is_unlinkable_anyway(self):
         self.is_not_a_specific_error_class('Q18349346', 'a software')
