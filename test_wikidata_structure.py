@@ -496,11 +496,15 @@ class WikidataTests(unittest.TestCase):
 
     def food_sharing_coordination_website_provides_service_and_is_not_a_service_and_is_not_linkable(self):
         self.is_not_a_specific_error_class('Q15809935', 'a service')
-        # TODO linkability
+        self.assert_unlinkability('Q15809935')
 
     def hosting_company_provides_service_and_is_not_a_service_and_is_not_linkable(self):
         self.is_not_a_specific_error_class('Q568183', 'a service')
-        # TODO linkability
+        self.assert_unlinkability('Q568183')
+
+    def travel_website_provides_service_and_is_not_a_service_and_is_not_linkable(self):
+        self.is_not_a_specific_error_class('Q1770710', 'a service')
+        self.assert_unlinkability('Q1770710')
 
     def test_train_line_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q3720557')  # train service is not a service (Q15141321) defined as "transcation..."
