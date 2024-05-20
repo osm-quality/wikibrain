@@ -837,7 +837,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q98113446') # not fully sure about this
 
     def test_that_fraternity_is_in_physical_reality(self):
-        for entry in ['Q4735093', 'Q6367049', 'Q8069727']:
+        for entry in ['Q4735093', 'Q6367049', 'Q8069727', 'Q1046799']:
             self.is_not_a_specific_error_class(entry, 'an object that exists outside physical reality') # fully sure
             #self.assert_linkability(entry) # not fully sure about this TODO
 
@@ -916,6 +916,7 @@ class WikidataTests(unittest.TestCase):
     def test_building_as_valid_primary_link_problems_with_individual_items(self):
         self.assert_linkability('Q121602929')
         self.assert_linkability('Q121603336')
+        self.assert_linkability('Q121157412')
 
     def test_rammed_earth_building_is_construction_as_in_object_not_as_in_economical_activity(self):
         self.assert_linkability('Q124429211')
