@@ -66,23 +66,15 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append("Q18811582")
-        wikidata_bugs.append("Q18811583")
-        wikidata_bugs.append("Q82799")
-        wikidata_bugs.append("Q113382977")
-        wikidata_bugs.append("Q115488")
-        wikidata_bugs.append("Q992253")
-        wikidata_bugs.append("Q683111")
-        wikidata_bugs.append("Q127993")
-        wikidata_bugs.append("Q3476515")
-        wikidata_bugs.append("Q17516")
-        wikidata_bugs.append("Q3476508")
-        wikidata_bugs.append("Q7094076")
-        wikidata_bugs.append("Q123154102")
-        wikidata_bugs.append("Q12019766")
-        wikidata_bugs.append("Q42232686")
-        wikidata_bugs.append("Q2003221")
+
+        # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
+        # escalate? add to pernament ones?
+        wikidata_bugs.append("Q18811583") # sorority
+        wikidata_bugs.append("Q18811582") # faternity
+        wikidata_bugs.append("Q992253") # confraternity
+
         wikidata_bugs.append("Q65805058")
+        wikidata_bugs.append("Q7553219")
         return wikidata_bugs
 
     @staticmethod
