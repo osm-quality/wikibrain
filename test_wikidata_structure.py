@@ -352,6 +352,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_detecting_neighborhood_as_valid_primary_link(self):
         self.assert_linkability('Q9073948')
+        self.assert_linkability('Q97579154')
 
     def test_detecting_fountain_as_valid_primary_link(self):
         self.assert_linkability('Q992764')
@@ -505,6 +506,14 @@ class WikidataTests(unittest.TestCase):
     def travel_website_provides_service_and_is_not_a_service_and_is_not_linkable(self):
         self.is_not_a_specific_error_class('Q1770710', 'a service')
         self.assert_unlinkability('Q1770710')
+
+    def newspaper_provides_service_and_is_not_a_service_and_is_not_linkable(self):
+        self.is_not_a_specific_error_class('Q9684', 'a service')
+        self.assert_unlinkability('Q9684')
+
+    def online_archive_provides_service_and_is_not_a_service_and_is_not_linkable(self):
+        self.is_not_a_specific_error_class('Q461', 'a service')
+        self.assert_unlinkability('Q461')
 
     def test_train_line_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q3720557')  # train service is not a service (Q15141321) defined as "transcation..."
@@ -831,6 +840,11 @@ class WikidataTests(unittest.TestCase):
         # I am dubious should be appear in OSM, but "an object that exists outside physical reality" is not true
         self.is_not_a_specific_error_class('Q59773603', 'an object that exists outside physical reality') # fully sure
         self.assert_linkability('Q59773603') # not fully sure about this
+
+    def test_pottery_production_methods_exists_in_reality_is_invalid_link_for_other_reasons(self):
+        self.is_not_a_specific_error_class('Q48863054', 'an object that exists outside physical reality')
+        self.assert_unlinkability('Q48863054')
+
 
     def test_that_community_center_is_in_physical_reality(self):
         self.is_not_a_specific_error_class('Q98113446', 'an object that exists outside physical reality') # fully sure
@@ -1780,6 +1794,10 @@ class WikidataTests(unittest.TestCase):
     def test_that_public_radio_is_not_a_science(self):
         self.is_not_a_specific_error_class('Q6701894', 'a science')
 
+    def test_that_organisation_is_not_a_science(self):
+        self.is_not_a_specific_error_class('Q94887', 'a science')
+        self.is_not_a_specific_error_class('Q19296792', 'a science')
+
     def test_that_business_involved_in_software_is_not_a_software_but_is_unlinkable_anyway(self):
         self.is_not_a_specific_error_class('Q18349346', 'a software')
         # self.assert_unlinkability('Q18349346') TODO
@@ -1979,6 +1997,16 @@ class WikidataTests(unittest.TestCase):
         self.assert_unlinkability('Q37156')  # IBM
         self.is_not_an_event('Q37156')
         self.is_not_a_behavior('Q37156')
+
+        self.assert_unlinkability('Q4887077')  # Bendigo Bank
+        self.is_not_an_event('Q4887077')
+        self.is_not_a_behavior('Q4887077')
+
+
+    def test_that_pension_program_is_not_an_event_but_is_unlinkable_anyway(self):
+        self.is_not_an_event('Q14681677')
+        self.is_not_a_behavior('Q14681677')
+        self.assert_unlinkability('Q14681677')
 
     def test_that_railway_operator_is_not_behavior_but_is_unlinkable_anyway(self):
         #self.assert_unlinkability('Q1814208') TODO - enable once mass exceptions in workarounds_for_wikidata_bugs_breakage_and_mistakes are gone
@@ -2616,6 +2644,8 @@ class WikidataTests(unittest.TestCase):
 
     def test_library_as_valid_primary_link(self):
         self.assert_linkability('Q11551945')
+        self.assert_linkability('Q4756546')
+        
 
     def test_municipal_library_as_valid_primary_link(self):
         self.assert_linkability('Q28682094')
@@ -2730,6 +2760,13 @@ class WikidataTests(unittest.TestCase):
     def test_holocaust_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q2763', 'a physical process')
         self.assert_unlinkability('Q2763')
+
+    def test_company_is_not_a_physical_process_but_is_not_linkable_anyway(self):
+        self.is_not_a_specific_error_class('Q110639966', 'a physical process')
+        self.assert_unlinkability('Q110639966')
+
+    def test_slider_or_slide_meme_is_not_a_physical_process(self):
+        self.is_not_a_specific_error_class('Q123944405', 'a physical process')
 
     def test_aircraft_model_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q1390439', 'a physical process')

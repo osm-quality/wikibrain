@@ -73,8 +73,6 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q18811582") # faternity
         wikidata_bugs.append("Q992253") # confraternity
 
-        wikidata_bugs.append("Q65805058")
-        wikidata_bugs.append("Q7553219")
         return wikidata_bugs
 
     @staticmethod
