@@ -1124,6 +1124,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_cliff_as_valid_primary_link(self):
         self.assert_linkability('Q924900')
+        self.assert_linkability('Q125805647')
 
     def test_company_is_not_human(self):
         for type_id in wikidata_processing.get_all_types_describing_wikidata_object("Q15832619", wikimedia_link_issue_reporter.WikimediaLinkIssueDetector.ignored_entries_in_wikidata_ontology()):
@@ -1773,6 +1774,9 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q1503456', 'a conflict')
         self.is_not_a_specific_error_class('Q74928147', 'a conflict')
 
+    def test_that_missile_is_not_a_conflict_though_it_likely_likely_used_during_armed_conflict(self):
+        self.is_not_a_specific_error_class('Q1990116', 'a conflict')
+
     def test_specific_housing_cooperative_as_valid_primary_link(self):
         self.assert_linkability('Q74928147')
 
@@ -1816,6 +1820,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_specific_position_is_not_a_profession_testcase_d(self):
         self.is_not_a_specific_error_class('Q3882136', 'a profession')
+
+    def test_that_specific_position_is_not_a_profession_testcase_e(self):
+        self.is_not_a_specific_error_class('Q5166910', 'a profession')
 
     def test_that_russian_war_company_is_not_a_profession_but_is_unlinkable_anyway(self):
         self.is_not_a_specific_error_class('Q188508', 'a profession')
