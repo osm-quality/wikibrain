@@ -128,6 +128,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q3368517')
         wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
+        wikidata_bugs.append('Q10726370') # other legal official position
 
         # hall of fame (list of outstanding individuals in a particular group,
         # which may or may not be embodied in a literal physical structure)
