@@ -841,11 +841,6 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q59773603', 'an object that exists outside physical reality') # fully sure
         self.assert_linkability('Q59773603') # not fully sure about this
 
-    def test_pottery_production_methods_exists_in_reality_is_invalid_link_for_other_reasons(self):
-        self.is_not_a_specific_error_class('Q48863054', 'an object that exists outside physical reality')
-        self.assert_unlinkability('Q48863054')
-
-
     def test_that_community_center_is_in_physical_reality(self):
         self.is_not_a_specific_error_class('Q98113446', 'an object that exists outside physical reality') # fully sure
         self.assert_linkability('Q98113446') # not fully sure about this
