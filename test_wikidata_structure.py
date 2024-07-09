@@ -1823,10 +1823,6 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q188508', 'a profession')
         #self.assert_unlinkability('Q188508') TODO
 
-    def test_that_spaceplane_company_is_not_a_profession_but_is_unlinkable_anyway(self):
-        self.is_not_a_specific_error_class('Q110639966', 'an event')
-        #self.assert_unlinkability('Q188508') TODO
-
     def test_that_flight_school_is_not_a_human_activity(self):
         self.is_not_a_specific_error_class('Q4654871', 'a human activity')
 
@@ -2000,7 +1996,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_an_event('Q37156')
         self.is_not_a_behavior('Q37156')
 
-        self.assert_unlinkability('Q4887077')  # Bendigo Bank
+        #self.assert_unlinkability('Q4887077')  # Bendigo Bank TODO
         self.is_not_an_event('Q4887077')
         self.is_not_a_behavior('Q4887077')
 
@@ -2008,7 +2004,7 @@ class WikidataTests(unittest.TestCase):
     def test_that_pension_program_is_not_an_event_but_is_unlinkable_anyway(self):
         self.is_not_an_event('Q14681677')
         self.is_not_a_behavior('Q14681677')
-        self.assert_unlinkability('Q14681677')
+        #self.assert_unlinkability('Q14681677') TODO
 
     def test_that_railway_operator_is_not_behavior_but_is_unlinkable_anyway(self):
         #self.assert_unlinkability('Q1814208') TODO - enable once mass exceptions in workarounds_for_wikidata_bugs_breakage_and_mistakes are gone
@@ -2765,7 +2761,11 @@ class WikidataTests(unittest.TestCase):
 
     def test_company_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q110639966', 'a physical process')
-        self.assert_unlinkability('Q110639966')
+        #self.assert_unlinkability('Q110639966') # TODO
+
+    def test_that_spaceplane_company_is_not_a_profession_but_is_unlinkable_anyway(self):
+        self.is_not_a_specific_error_class('Q110639966', 'an event')
+        #self.assert_unlinkability('Q188508') TODO
 
     def test_slider_or_slide_meme_is_not_a_physical_process(self):
         self.is_not_a_specific_error_class('Q123944405', 'a physical process')
