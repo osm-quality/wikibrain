@@ -39,9 +39,22 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class(type_id, 'a behavior')
         self.is_not_a_specific_error_class(type_id, 'a human behavior')
 
-    def is_not_a_specific_error_class(self, type_id, expected_error_class):
+    def is_not_a_specific_error_class(self, type_id, expected_error_class, debug=False, category_known_to_be_missing=False):
+        if category_known_to_be_missing != True:
+            match = False
+            for key, value in self.detector().invalid_types().items():
+                if expected_error_class == value["what"]:
+                    match = True
+                    break
+            if match == False:
+                print()
+                print()
+                print()
+                for key, value in self.detector().invalid_types().items():
+                    print(value["what"], expected_error_class)
+                raise Exception("nothing matches to", expected_error_class)
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
-        potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id})
+        potential_failure = self.detector().get_error_report_if_type_unlinkable_as_primary(type_id, {'wikidata': type_id}, debug=debug)
         if potential_failure == None:
             return
         if self.is_error_reporting_that_this_is_specific_error_class(potential_failure, expected_error_class):
@@ -1761,6 +1774,9 @@ class WikidataTests(unittest.TestCase):
     def test_that_defunct_school_is_not_an_event(self):
         self.is_not_an_event('Q113019862')
 
+    def test_that_publisher_is_not_a_phrase(self):
+        self.is_not_a_specific_error_class('Q5158981', 'a word or phrase')
+
     def test_that_hardened_shelter_is_not_aspect_of_geographic_region(self):
         self.is_not_a_specific_error_class('Q91939', 'an aspect in a geographic region')
 
@@ -1973,12 +1989,12 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q4657754', 'an academic discipline')
 
     def test_that_organisation_is_not_an_award(self):
-        self.is_not_a_specific_error_class('Q856355', 'an award')
-        self.is_not_a_specific_error_class('Q5324438', 'an award')
+        self.is_not_a_specific_error_class('Q856355', 'an award', category_known_to_be_missing=True)
+        self.is_not_a_specific_error_class('Q5324438', 'an award', category_known_to_be_missing=True)
 
     def test_that_minister_or_other_administator_is_not_an_award(self):
-        self.is_not_a_specific_error_class('Q107919654', 'an award')
-        self.is_not_a_specific_error_class('Q11739165', 'an award')
+        self.is_not_a_specific_error_class('Q107919654', 'an award', category_known_to_be_missing=True)
+        self.is_not_a_specific_error_class('Q11739165', 'an award', category_known_to_be_missing=True)
 
     def test_that_cofee_variety_is_not_a_academic_discipline_but_is_invalid_to_link_anyway(self):
         self.assert_unlinkability('Q97160325')
@@ -2301,7 +2317,7 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q22814370')
 
     def test_settlement_is_linkable(self):
-        self.is_not_a_specific_error_class('Q1012502', 'an award')
+        self.is_not_a_specific_error_class('Q1012502', 'an award', category_known_to_be_missing=True)
         self.assert_linkability('Q1012502')
         self.assert_linkability('Q160642')
         self.assert_linkability('Q204720')

@@ -1437,26 +1437,37 @@ class WikimediaLinkIssueDetector:
                 returned.append(base_type_id_entry)
         return returned
 
-    def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags):
+    def get_error_report_if_type_unlinkable_as_primary(self, effective_wikidata_id, tags, debug=False):
         # https://en.wikipedia.org/wiki/Edith_Macefield
         # this pretends to be about human while it is about building
         # see https://osmus.slack.com/archives/C1FKE1NCA/p1668339647063239
         # see https://www.openstreetmap.org/way/217502987
         # for search: [biography][person]
         if effective_wikidata_id == 'Q5338613':
+            if debug:
+                print("skipped Q5338613")
             return None
         # event entry about hoax/delusion that is actually strongly about location
         if effective_wikidata_id == 'Q5371519':
+            if debug:
+                print("skipped Q5371519")
             return None
         if effective_wikidata_id in self.ignored_entries_in_wikidata_ontology():
+            if debug:
+                print(effective_wikidata_id, "is in self.ignored_entries_in_wikidata_ontology()")
             return None
         remembered_potential_failure = None
         for type_id in self.wikidata_entries_classifying_entry(effective_wikidata_id):
+            if debug:
+                print(type_id)
             if type_id in [
                 "Q122754124", # ambiguous Wikidata item - so known to be broken
             ]:
                 return None # maybe can be reported as worth handling on Wikidata?
             potential_failure = self.get_reason_why_type_makes_object_invalid_primary_link(type_id)
+            if debug:
+                print(potential_failure, "potential failure")
+                print()
             if potential_failure != None:
                 if potential_failure['what'] == "a human" and tags.get('boundary') == 'aboriginal_lands':
                     continue # cases like https://www.openstreetmap.org/way/758139284 where Wikipedia article bundles ethicity group and reservation land in one article
