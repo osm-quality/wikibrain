@@ -7,6 +7,7 @@ import yaml
 from wikibrain import wikipedia_knowledge
 from wikibrain import wikidata_knowledge
 
+
 class ErrorReport:
     def __init__(self, error_message=None, error_general_intructions=None, debug_log=None, error_id=None, prerequisite=None, extra_data=None, proposed_tagging_changes=None):
         # to include something in serialization - modify data function
@@ -69,9 +70,9 @@ class WikimediaLinkIssueDetector:
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # escalate? add to pernament ones?
-        wikidata_bugs.append("Q18811583") # sorority
-        wikidata_bugs.append("Q18811582") # faternity
-        wikidata_bugs.append("Q992253") # confraternity
+        wikidata_bugs.append("Q18811583")  # sorority
+        wikidata_bugs.append("Q18811582")  # faternity
+        wikidata_bugs.append("Q992253")  # confraternity
 
         return wikidata_bugs
 
@@ -128,7 +129,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q3368517')
         wikidata_bugs.append('Q169180')
         wikidata_bugs.append('Q83307')  # see https://www.wikidata.org/wiki/Q107919654 - minister vs ministry
-        wikidata_bugs.append('Q10726370') # other legal official position
+        wikidata_bugs.append('Q10726370')  # other legal official position
 
         # hall of fame (list of outstanding individuals in a particular group,
         # which may or may not be embodied in a literal physical structure)
@@ -137,7 +138,7 @@ class WikimediaLinkIssueDetector:
 
         # wikidata mixes describing reality and internal project issues
         wikidata_bugs.append('Q1263068')
-        
+
         return wikidata_bugs
 
     @staticmethod
@@ -207,7 +208,7 @@ class WikimediaLinkIssueDetector:
         skipped.append("Q91908084")
         skipped.append("Q15141321")
 
-        skipped.append("Q1567542") # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
+        skipped.append("Q1567542")  # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
         return skipped
 
     @staticmethod
@@ -331,12 +332,11 @@ class WikimediaLinkIssueDetector:
                     if something_reportable != None:
                         return something_reportable
                 else:
-                    pass # TODO, make check_is_wikipedia_page_existing support also secondary wikipedia tags
+                    pass  # TODO, make check_is_wikipedia_page_existing support also secondary wikipedia tags
 
         if tags.get("wikipedia") != None:
             language_code = wikimedia_connection.get_language_code_from_link(tags.get("wikipedia"))
             article_name = wikimedia_connection.get_article_name_from_link(tags.get("wikipedia"))
-
 
             # early to ensure that passing later wikidata_id of article is not going to be confusing
             if tags.get("wikidata") != None: # in case of completely missing wikidata tag it is not a critical issue and will be solved
@@ -602,7 +602,7 @@ class WikimediaLinkIssueDetector:
 
     def is_an_actual_wikidata_or_wikipedia_key(self, key):
         for entry in [
-            'fixme:wikidata', # note "something is wrong with wikipedia tag - fixme:wikipedia is present" report
+            'fixme:wikidata',  # note "something is wrong with wikipedia tag - fixme:wikipedia is present" report
 
             # have freeform format
             "note:wikidata", "wikidata:note", "source:wikidata", "source:species:wikidata",
@@ -612,7 +612,7 @@ class WikimediaLinkIssueDetector:
             # not worth a special support
             "image:license:wikidata",
 
-            #per lane
+            # per lane
             'destination:ref:to:wikidata:lanes',
             'destination:ref:wikidata:lanes',
             'destination:ref:wikidata:lanes:forward',
@@ -1635,7 +1635,7 @@ class WikimediaLinkIssueDetector:
             'Q24716636': {'what': 'a volunteer', 'replacement': None},
             'Q7406919': {'what': 'a service', 'replacement': None},
             'Q908620': {'what': 'a certification mark', 'replacement': None},
-            'Q622772': {'what': 'an incineration', 'replacement': None}, # used instead 'incinerator', see https://www.wikidata.org/wiki/Q13416228
+            'Q622772': {'what': 'an incineration', 'replacement': None},  # used instead 'incinerator', see https://www.wikidata.org/wiki/Q13416228
             'Q49773': {'what': 'a social movement', 'replacement': None},
             'Q110401282': {'what': 'a type of world view', 'replacement': None},
             'Q1456832': {'what': 'a violation of law', 'replacement': None},

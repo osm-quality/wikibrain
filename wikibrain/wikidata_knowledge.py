@@ -9,13 +9,13 @@ def skipped_cases():
 
         "Q1415790",  # confusing religious term
 
-        "Q19870965", # https://en.wikipedia.org/wiki/Australian_Outback_Spectacular - is it a recurring event or place? Or even bound to specific place? Neither OSM nor Wikidata seems clearly broken, so disabling it.
+        "Q19870965",  # https://en.wikipedia.org/wiki/Australian_Outback_Spectacular - is it a recurring event or place? Or even bound to specific place? Neither OSM nor Wikidata seems clearly broken, so disabling it.
 
-        "Q2511457", # recurring show bound to a specific location - https://en.wikipedia.org/wiki/Love_(Cirque_du_Soleil)
+        "Q2511457",  # recurring show bound to a specific location - https://en.wikipedia.org/wiki/Love_(Cirque_du_Soleil)
 
-        "Q1604442", # event article with strong traces of location info https://en.wikipedia.org/wiki/en:Ruby%20Ridge
+        "Q1604442",  # event article with strong traces of location info https://en.wikipedia.org/wiki/en:Ruby%20Ridge
 
-        "Q12001477", # recurring event with strong specific loction https://www.wikidata.org/wiki/Q12001477
+        "Q12001477",  # recurring event with strong specific loction https://www.wikidata.org/wiki/Q12001477
     ]
 
 

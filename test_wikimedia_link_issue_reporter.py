@@ -251,7 +251,6 @@ class Tests(unittest.TestCase):
                 print(blacklist[key], "test_presence_of_fields_in_blacklist_of_unlinkable_entries")
                 assert False
 
-
     def ensure_that_wikidata_id_is_recognized_as_not_linkable_as_primary(self, wikidata_id):
         passed_tags = {'wikipedia': 'dummy_filler'}
         wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
@@ -490,7 +489,7 @@ class Tests(unittest.TestCase):
         )
         self.assertEqual(
             [],
-            self.detector().get_dissolved_brands(['Q53268','Q6746']),
+            self.detector().get_dissolved_brands(['Q53268', 'Q6746']),
             'Q53268 and Q6746 is marked as dissolved but expected to be valid'
         )
 
@@ -501,12 +500,12 @@ class Tests(unittest.TestCase):
         )
         self.assertEqual(
             ['Q7501155'],
-            self.detector().get_dissolved_brands(['Q7501155','Q6746']),
+            self.detector().get_dissolved_brands(['Q7501155', 'Q6746']),
             'Q7501155 is marked as valid but expected to be dissolved'
         )
         self.assertEqual(
             ['Q7501155'],
-            self.detector().get_dissolved_brands(['Q6746','Q7501155']),
+            self.detector().get_dissolved_brands(['Q6746', 'Q7501155']),
             'Q7501155 is marked as valid but expected to be dissolved'
         )
 
@@ -517,6 +516,7 @@ class Tests(unittest.TestCase):
             self.detector().get_dissolved_brands(['Q465952']),
             'Q6746 is marked as dissolved but expected to be valid'
         )
+
     def test_that_not_prefixes_are_respected(self):
         # https://www.openstreetmap.org/way/165659335
         tags = {"not:brand:wikidata": "Q177054", "brand:wikidata": "Q177054"}
@@ -685,7 +685,6 @@ class Tests(unittest.TestCase):
         problem = self.detector().get_the_most_important_problem_generic(tags, location, object_type, object_description)
         self.assertNotEqual(None, problem)
         self.assertEqual("something is wrong with wikipedia tag - fixme:wikipedia is present", problem.data()['error_id'])
-
 
     def test_handle_note_prefixed_wikipedia_tags(self):
         tags = {"note:wikipedia": "something something"}

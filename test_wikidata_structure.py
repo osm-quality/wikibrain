@@ -5,6 +5,7 @@ from wikimedia_connection import wikimedia_connection, wikidata_processing
 import osm_handling_config.global_config as osm_handling_config
 import os
 
+
 class WikidataTests(unittest.TestCase):
     def detector(self):
         return wikimedia_link_issue_reporter.WikimediaLinkIssueDetector()
@@ -536,7 +537,6 @@ class WikidataTests(unittest.TestCase):
         # railway_line
         self.assert_linkability('Q756538')
         self.assert_linkability('Q770386')
-       
 
     def test_privilidged_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q259992')
@@ -851,12 +851,12 @@ class WikidataTests(unittest.TestCase):
 
     def test_physiographic_province_as_valid_primary_link(self):
         # I am dubious should be appear in OSM, but "an object that exists outside physical reality" is not true
-        self.is_not_a_specific_error_class('Q59773603', 'an object that exists outside physical reality') # fully sure
-        self.assert_linkability('Q59773603') # not fully sure about this
+        self.is_not_a_specific_error_class('Q59773603', 'an object that exists outside physical reality')  # fully sure
+        self.assert_linkability('Q59773603')  # not fully sure about this
 
     def test_that_community_center_is_in_physical_reality(self):
-        self.is_not_a_specific_error_class('Q98113446', 'an object that exists outside physical reality') # fully sure
-        self.assert_linkability('Q98113446') # not fully sure about this
+        self.is_not_a_specific_error_class('Q98113446', 'an object that exists outside physical reality')  # fully sure
+        self.assert_linkability('Q98113446')  # not fully sure about this
 
     def test_that_fraternity_is_in_physical_reality(self):
         for entry in ['Q4735093', 'Q6367049', 'Q8069727', 'Q1046799']:
@@ -868,8 +868,8 @@ class WikidataTests(unittest.TestCase):
         #self.assert_linkability('Q3308284') # not fully sure about this TODO
 
     def test_fandom_club_as_valid_primary_link(self):
-        self.is_not_a_specific_error_class('Q7514814', 'an object that exists outside physical reality') # fully sure
-        self.assert_linkability('Q7514814') # not fully sure about this
+        self.is_not_a_specific_error_class('Q7514814', 'an object that exists outside physical reality')  # fully sure
+        self.assert_linkability('Q7514814')  # not fully sure about this
 
     def test_publisher_is_within_reality(self):
         self.is_not_a_specific_error_class('Q873700', 'an object that exists outside physical reality')
@@ -950,7 +950,6 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q124459716')
         self.assert_linkability('Q124432219')
         self.assert_linkability('Q124424207')
-        
 
     def test_cooling_tower_used_now_as_parking_garage_as_valid_primary_link(self):
         self.assert_linkability('Q57903543')
@@ -1320,7 +1319,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_specific_supermarket_as_valid_primary_link(self):
         self.assert_linkability('Q96279892')
-        self.assert_linkability('Q50737571') # also described as hypermarket
+        self.assert_linkability('Q50737571')  # also described as hypermarket
 
     def test_specific_christmas_shop_as_valid_primary_link(self):
         self.assert_linkability('Q1752539')
@@ -1359,7 +1358,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_general_article_about_cycling_in_belarus_as_invalid_primary_link(self):
         self.assert_unlinkability('Q97007609')
-    
+
     def test_cycling_route_as_valid_primary_link(self):
         # bicycle route
         # bicycle_route
@@ -2331,7 +2330,6 @@ class WikidataTests(unittest.TestCase):
         # not a mental process
         self.assert_linkability('Q6534878')
 
-
     def test_todal_barrier_is_linkable(self):
         self.assert_linkability('Q2309286')
 
@@ -2464,8 +2462,8 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q1243550', 'a research')
 
     def test_real_place_appearing_in_myth_is_valid_link(self):
-        self.is_not_a_specific_error_class('Q152854', 'an object that exists outside physical reality') # fully sure
-        self.assert_linkability('Q152854') # yes, mappability in OSM is dubious at best as south one is underdefined        
+        self.is_not_a_specific_error_class('Q152854', 'an object that exists outside physical reality')  # fully sure
+        self.assert_linkability('Q152854')  # yes, mappability in OSM is dubious at best as south one is underdefined
 
     def test_apostle_is_not_fictional_but_still_invalid(self):
         self.is_not_a_specific_error_class('Q51672', 'a fictional entity')
@@ -2663,7 +2661,6 @@ class WikidataTests(unittest.TestCase):
     def test_library_as_valid_primary_link(self):
         self.assert_linkability('Q11551945')
         self.assert_linkability('Q4756546')
-        
 
     def test_municipal_library_as_valid_primary_link(self):
         self.assert_linkability('Q28682094')
