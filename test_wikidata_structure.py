@@ -1650,6 +1650,9 @@ class WikidataTests(unittest.TestCase):
     def test_specific_institution_as_valid_primary_link(self):
         self.assert_linkability('Q11713051')
 
+    def test_specific_archive_institution_as_valid_primary_link(self):
+        self.assert_linkability('Q1205813')
+
     def test_coastal_defense_fort_as_valid_primary_link(self):
         self.assert_linkability('Q5472138')
 
@@ -2397,6 +2400,7 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q380843', 'an intentional human activity')
         self.is_not_a_specific_error_class('Q895611', 'an intentional human activity')
         self.assert_linkability('Q895611')
+        self.assert_linkability('Q268878')        
 
     def test_undeground_factory_with_codename_as_valid_link(self):
         self.assert_linkability('Q2252824')
@@ -2704,6 +2708,9 @@ class WikidataTests(unittest.TestCase):
     def test_summer_camp_as_valid_primary_link(self):
         self.assert_linkability('Q5027247')
 
+    def test_jewish_summer_camp_as_valid_primary_link(self):
+        self.assert_linkability('Q5027064')
+
     def test_scout_camp_as_valid_primary_link(self):
         self.assert_linkability('Q12329373')
 
@@ -2758,6 +2765,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_social_facility_as_valid_primary_link(self):
         self.assert_linkability('Q105564991')
+        self.assert_linkability('Q3824913')
 
     def test_icon_painting_as_valid_primary_link(self):
         self.assert_linkability('Q3918454')
@@ -2774,6 +2782,9 @@ class WikidataTests(unittest.TestCase):
     def test_holocaust_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q2763', 'a physical process')
         self.assert_unlinkability('Q2763')
+
+    def test_this_tourims_attraction_is_not_a_physical_process(self):
+        self.is_not_a_specific_error_class('Q9697780', 'a physical process')
 
     def test_company_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q110639966', 'a physical process')
