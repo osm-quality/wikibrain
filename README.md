@@ -1,5 +1,7 @@
 Stores knowledge and data necessary to properly use links from OpenStreetMap to Wikipedia, Wikidata and Wikimedia Commons.
 
+used by [https://github.com/osm-quality/OSM-wikipedia-tag-validator](https://github.com/osm-quality/OSM-wikipedia-tag-validator)
+
 # Installation
 
 It has a very unfortunate dependecies - sorry for that, pull requests improving this situation are welcome.
