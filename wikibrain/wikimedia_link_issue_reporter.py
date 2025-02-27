@@ -1502,6 +1502,9 @@ class WikimediaLinkIssueDetector:
         vehicle = {'what': 'a vehicle model or class', 'replacement': 'model:'}
         generic_event = {'what': 'an event', 'replacement': None, 'extremely_broad_and_unspecific': True}
         return {
+            # metapages
+            "Q17379835": {'what': 'a wikimedia page', 'replacement': None},  # 'instance of this class should only describe a Wikimedia page, not the outside world concept described in the page'
+
             # may be silenced to stop reports that are almost entirely about fixing Wikidata
             "Q756944": {'what': 'a surface mining', 'replacement': None},  # often mistakenly applied to open pit mines on Wikidata
             "Q5138347": {'what': 'a coastal defence and fortification', 'replacement': None},  # often mistakenly added to forts, see https://www.wikidata.org/w/index.php?title=Q5472172&action=history
