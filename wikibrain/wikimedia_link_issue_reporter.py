@@ -67,12 +67,31 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
+        wikidata_bugs.append("Q117859862")
+        wikidata_bugs.append("Q17362920")
+        wikidata_bugs.append("Q1434274")
+        wikidata_bugs.append("Q30022")
+        wikidata_bugs.append("Q20437094")
+        wikidata_bugs.append("Q16675884")
+        wikidata_bugs.append("Q2973801")
+        wikidata_bugs.append("Q2352616")
+        wikidata_bugs.append("Q148571")
+        wikidata_bugs.append("Q5307737")
+        wikidata_bugs.append("Q60533375")
+        wikidata_bugs.append("Q245188")
+        wikidata_bugs.append("Q123585930")
+        wikidata_bugs.append("Q350783")
+        wikidata_bugs.append("Q97145897")
+        wikidata_bugs.append("Q217102")
+        wikidata_bugs.append("Q3456301")
+        wikidata_bugs.append("Q1077064")
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # escalate? add to pernament ones?
         wikidata_bugs.append("Q18811583")  # sorority
         wikidata_bugs.append("Q18811582")  # faternity
         wikidata_bugs.append("Q992253")  # confraternity
+        wikidata_bugs.append('Q69502391') # bus transit route
 
         return wikidata_bugs
 
