@@ -196,7 +196,6 @@ class WikimediaLinkIssueDetector:
         skipped.append("Q1415790")  # also in skipped_cases() to ensure full removal
 
         # awards are often closely linked to physical manifestations
-        # see https://www.wikidata.org/wiki/Q1364556
         skipped.append("Q618779")
 
         # are ferry routes instances of intentional human activity?
