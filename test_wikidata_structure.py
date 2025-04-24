@@ -1292,6 +1292,9 @@ class WikidataTests(unittest.TestCase):
     def test_one_more_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q65029693')
 
+    def test_bus_transit_route_as_valid_primary_link(self):
+        self.assert_linkability('Q52391196')
+
     def test_gene_as_invalid_primary_link(self):
         self.assert_unlinkability('Q425264')
 
@@ -2255,6 +2258,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_border_guard_station_as_valid_primary_link(self):
         self.assert_linkability('Q20034060')
+
+    def test_india_pakistan_border_as_valid_primary_link(self):
+        self.assert_linkability('Q2635466')
 
     def test_france_italy_border_as_valid_primary_link(self):
         self.assert_linkability('Q1991288')
