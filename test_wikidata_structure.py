@@ -702,6 +702,9 @@ class WikidataTests(unittest.TestCase):
     def test_protected_area_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q61959238')
 
+    def test_protected_area_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q1349430')
+
     def test_headquarters_landscape_area_as_valid_primary_link(self):
         self.assert_linkability('Q5578587')
 
@@ -716,6 +719,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_museum_as_valid_primary_link_testcase_b(self):
         self.assert_linkability('Q76632276')
+
+    def test_museum_as_valid_primary_link_testcase_c(self):
+        self.assert_linkability('Q2270713')
 
     def test_museum_as_valid_primary_link_testcase_with_mission_site(self):
         self.assert_linkability('Q3316762')
@@ -1203,6 +1209,9 @@ class WikidataTests(unittest.TestCase):
     def test_pilgrimage_route_as_valid_primary_link(self):
         self.assert_linkability('Q41150')
 
+    def test_orphanage_as_valid_primary_link(self):
+        self.assert_linkability('Q11789892')
+
     def test_fountain_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q822122')
 
@@ -1214,6 +1223,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_modern_artwork_as_valid_primary_link(self):
         self.assert_linkability('Q64435838')
+
+    def test_modern_artwork_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q2374346')
 
     def test_river_source_as_valid_primary_link(self):
         self.assert_linkability('Q47037286')
@@ -1432,6 +1444,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_horsecar_tourism_attraction_as_valid_primary_link(self):
         self.assert_linkability('Q9360797')
+
+    def test_construction_as_valid_primary_link(self):
+        self.assert_linkability('Q15915555')
 
     def test_lighthouse_as_valid_primary_link(self):
         self.assert_linkability('Q28376122')

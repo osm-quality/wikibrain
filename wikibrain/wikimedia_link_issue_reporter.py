@@ -92,6 +92,10 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q1292279')
         wikidata_bugs.append('Q676211')
         wikidata_bugs.append('Q30014735')
+        wikidata_bugs.append('Q1441983')
+        wikidata_bugs.append('Q854550')
+        wikidata_bugs.append('Q2750030')
+        wikidata_bugs.append('Q9311671')
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # escalate? add to pernament ones?
@@ -234,6 +238,9 @@ class WikimediaLinkIssueDetector:
         skipped.append("Q15141321")
 
         skipped.append("Q1567542")  # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
+
+        # we are not mapping services in OSM
+        # except train/bus/etc routes
         return skipped
 
     @staticmethod
@@ -1585,7 +1592,8 @@ class WikimediaLinkIssueDetector:
             'Q34740': taxon,
             'Q7432': taxon,
             'Q726': {'what': 'a horse', 'replacement': None},
-            'Q336': {'what': 'a science', 'replacement': None},
+            'Q60680430': {'what': 'a branch of psychology', 'replacement': None},
+            'Q336': {'what': 'a science', 'replacement': None, 'extremely_broad_and_unspecific': True},
             'Q115372263': {'what': 'a word or phrase', 'replacement': None},
             'Q44497': {'what': 'a mining (activity - likely mine/quarry etc should be set instead)', 'replacement': None},
             'Q26883973': {'what': 'a lost sculpture', 'replacement': 'subject:'},
@@ -1635,6 +1643,7 @@ class WikimediaLinkIssueDetector:
             'Q3769299': {'what': 'a human behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             'Q9332': {'what': 'a behavior', 'replacement':  None, 'extremely_broad_and_unspecific': True},
             # for example Holocaust is instance of a physical process - and very, very technically it is true
+            'Q79782': {'what': 'a motion', 'replacement': None, 'extremely_broad_and_unspecific': True},
             'Q17320256': {'what': 'a physical process', 'replacement': None, 'extremely_broad_and_unspecific': True},
 
             'Q179057': {'what': 'an explosion', 'replacement':  None},
