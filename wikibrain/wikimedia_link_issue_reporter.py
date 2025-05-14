@@ -352,6 +352,9 @@ class WikimediaLinkIssueDetector:
                     return something_reportable
 
             if "wikipedia" in key:
+                if tags.get(key) == None:
+                    print(tags)
+                    raise Exception("impossible")
                 something_reportable = self.check_is_wikipedia_link_clearly_malformed(key, tags.get(key))
                 if something_reportable != None:
                     return something_reportable
@@ -577,6 +580,8 @@ class WikimediaLinkIssueDetector:
         )
 
     def check_is_wikipedia_link_clearly_malformed(self, key, link):
+        if link == None:
+            raise Exception("Null pointer exception, unexpected None in link")
         if self.is_wikipedia_tag_clearly_broken(link):
             return self.malformed_secondary_link_error("wikipedia", key, link)
         else:
@@ -1141,6 +1146,8 @@ class WikimediaLinkIssueDetector:
         return id1 + " vs " + id2
 
     def is_wikipedia_tag_clearly_broken(self, link):
+        if link == None:
+            raise Exception("Null pointer exception, unexpected None in link")
         language_code = wikimedia_connection.get_language_code_from_link(link)
         if self.is_language_code_clearly_broken(language_code):
             return True
