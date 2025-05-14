@@ -326,6 +326,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_badlands_as_valid_primary_link(self):
         self.assert_linkability('Q123399000')
 
+    def test_detecting_lawn_as_valid_primary_link(self):
+        self.assert_linkability('Q117314442')
+
     def test_detecting_school_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q5060518')
 
@@ -796,8 +799,16 @@ class WikidataTests(unittest.TestCase):
         # see test_maria_column_as_valid_primary_link for a discussion link
         self.assert_linkability('Q63895140')
 
+    def test_cross_as_valid_primary_link(self):
+        self.assert_linkability('Q32859712')
+
+    def test_cross_group_as_valid_primary_link(self):
+        self.assert_linkability('Q116478748')
+
+    def test_concillation_cross_as_valid_primary_link(self):
+        self.assert_linkability('Q41284645')
+
     def test_submarine_cable_as_valid_primary_link(self):
-        # see test_maria_column_as_valid_primary_link for a discussion link
         self.assert_linkability('Q7197229')
 
     def test_nude_statue_as_valid_primary_link(self):
@@ -851,6 +862,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_house_marker_art_as_valid_primary_link(self):
         self.assert_linkability('Q60458676')
+
+    def test_ski_jump_hill_as_valid_primary_link(self):
+        self.assert_linkability('Q3847948')        
 
     def test_physiographic_province_as_valid_primary_link(self):
         # I am dubious should be appear in OSM, but "an object that exists outside physical reality" is not true
@@ -937,6 +951,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_building_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q2402725')
+
+    def test_building_as_valid_primary_link_testcase_d(self):
+        self.assert_linkability('Q1722748')
 
     def test_building_as_valid_primary_link_problems_with_individual_items(self):
         self.assert_linkability('Q121602929')
@@ -1040,6 +1057,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_administrative_boundary_as_valid_primary_link(self):
         self.assert_linkability('Q912777')
+
+    def test_administrative_boundary_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q879245')
 
     def test_hybrid_lift_as_valid_primary_link(self):
         self.assert_linkability('Q1331434')
@@ -1379,6 +1399,15 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q104897961')
         self.assert_linkability('Q108040368')
 
+    def test_cycling_route_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q131344295')
+
+    def test_hiking_ski_route_as_valid_primary_link(self):
+        self.assert_linkability('Q131542753')
+
+    def test_piste_as_valid_primary_link(self):
+        self.assert_linkability('Q109016919')
+
     def test_forest_as_valid_primary_link(self):
         self.assert_linkability('Q20713832')
 
@@ -1676,6 +1705,9 @@ class WikidataTests(unittest.TestCase):
     def test_coastal_defense_fort_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q5472172')
         # maybe "instance of coastal defence and fortification (Q5138347)" should just be silenced?
+
+    def test_fortified_line_as_valid_primary_link(self):
+        self.assert_linkability('Q109300330')
 
     def test_railing_as_valid_primary_link(self):
         self.assert_linkability('Q37818361')
@@ -2695,9 +2727,18 @@ class WikidataTests(unittest.TestCase):
     def test_specific_muslim_religious_site_as_valid_primary_link(self):
         self.assert_linkability('Q5834042')
 
+    def test_specific_government_office_as_valid_primary_link(self):
+        self.assert_linkability('Q108456070')
+
+    def test_guard_rail_as_valid_primary_link(self):
+        self.assert_linkability('Q37818361')
+
     def test_mountain_summit_as_valid_primary_link(self):
         # it was classified as summit as in "meeting of heads of state or government" :)
         self.assert_linkability('Q21010152')
+
+    def test_mountain_summit_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q30757797')
 
     def test_business_is_not_an_academic_discipline(self):
         self.is_not_a_specific_error_class('Q13604004', 'an academic discipline')

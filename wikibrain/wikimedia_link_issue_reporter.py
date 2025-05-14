@@ -96,6 +96,14 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q854550')
         wikidata_bugs.append('Q2750030')
         wikidata_bugs.append('Q9311671')
+        wikidata_bugs.append('Q1517374')
+        wikidata_bugs.append('Q392371')
+        wikidata_bugs.append('Q4736398')
+        wikidata_bugs.append('Q3783831')
+        wikidata_bugs.append('Q1962728')
+        wikidata_bugs.append('Q745221')
+        wikidata_bugs.append('Q3153117')
+        wikidata_bugs.append('Q44946')
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # escalate? add to pernament ones?
