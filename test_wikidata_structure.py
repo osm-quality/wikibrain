@@ -206,10 +206,9 @@ class WikidataTests(unittest.TestCase):
         # but testing that some failures are detected and data structure is as expected makes sense
         self.is_a_specific_error_class('Q134301', 'a crime')
 
-    def test_this_bombing_is_an_event(self):
-        # well, bombing IS a violation of law
-        # again, unstable test is more or less fine here
-        self.is_a_specific_error_class('Q876206', 'a violation of law')
+    def test_this_bombing_is_an_event_or_its_subcategory(self):
+        # https://www.wikidata.org/wiki/Q876206
+        self.is_a_specific_error_class('Q876206', 'a suicide attack')
 
     def test_rejects_links_to_events(self):
         self.assert_unlinkability('Q134301')
@@ -492,7 +491,8 @@ class WikidataTests(unittest.TestCase):
 
     # whitelisted
     def test_dinner_theater_as_valid_primary_link_despite_wikidata_due_to_being_in_skipped_cases(self):
-        self.assert_passing_all_tests({'wikidata': 'Q19870965', 'wikipedia': 'en:Australian Outback Spectacular'})
+        # https://www.wikidata.org/wiki/Q19870965
+        self.assert_passing_all_tests({'wikidata': 'Q19870965'})
 
     def test_railway_line_as_valid_primary_link(self):
         self.assert_linkability('Q706198')
@@ -1224,7 +1224,7 @@ class WikidataTests(unittest.TestCase):
         report = self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', "wikipedia")
         if report != None:
             self.detector().get_error_report_if_property_indicates_that_it_is_unlinkable_as_primary('Q3179144', "wikipedia", show_debug=True)
-        self.assert_passing_all_tests({'wikidata': 'Q3179144', 'wikipedia': 'en:Unincorporated Far West Region'})
+        self.assert_passing_all_tests({'wikidata': 'Q3179144', 'wikipedia': 'en:Unincorporated Far West Area'})
 
     def test_pilgrimage_route_as_valid_primary_link(self):
         self.assert_linkability('Q41150')

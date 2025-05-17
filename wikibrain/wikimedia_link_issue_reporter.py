@@ -104,6 +104,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q745221')
         wikidata_bugs.append('Q3153117')
         wikidata_bugs.append('Q44946')
+        wikidata_bugs.append('Q464980')
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # escalate? add to pernament ones?
@@ -1691,6 +1692,7 @@ class WikimediaLinkIssueDetector:
             'Q49773': {'what': 'a social movement', 'replacement': None},
             'Q110401282': {'what': 'a type of world view', 'replacement': None},
             'Q1456832': {'what': 'a violation of law', 'replacement': None},
+            'Q217327': {'what': 'a suicide attack', 'replacement': None},
             'Q21502408': {'what': 'a wikidata mandatory constraint', 'replacement': None},
             'Q14659': {'what': 'a coat of arms', 'replacement': None},
             'Q101352': {'what': 'a family name', 'replacement': None},
