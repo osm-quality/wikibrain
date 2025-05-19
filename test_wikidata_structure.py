@@ -398,6 +398,9 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_university_as_valid_primary_link_testcase_c(self):
         self.assert_linkability('Q178848')
 
+    def test_estuary_as_valid_primary_link(self):
+        self.assert_linkability('Q5730981')
+
     def test_bus_line_as_valid_primary_link(self):
         self.assert_linkability('Q108037499')
 
@@ -555,6 +558,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_country_as_valid_primary_link_testcase_uk(self):
         self.assert_linkability('Q145')
+
+    def test_country_as_valid_primary_link_testcase_england(self):
+        self.assert_linkability('Q21')
 
     def test_country_as_valid_primary_link_testcase_denmark(self):
         self.assert_linkability('Q756617')
@@ -864,7 +870,8 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q60458676')
 
     def test_ski_jump_hill_as_valid_primary_link(self):
-        self.assert_linkability('Q3847948')        
+        self.assert_linkability('Q3847948')
+        self.assert_linkability('Q95462')
 
     def test_physiographic_province_as_valid_primary_link(self):
         # I am dubious should be appear in OSM, but "an object that exists outside physical reality" is not true
@@ -1231,6 +1238,7 @@ class WikidataTests(unittest.TestCase):
 
     def test_orphanage_as_valid_primary_link(self):
         self.assert_linkability('Q11789892')
+        self.assert_linkability('Q95462')
 
     def test_fountain_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q822122')
@@ -1857,6 +1865,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_public_radio_is_not_a_science(self):
         self.is_not_a_specific_error_class('Q6701894', 'a science')
+
+    def test_that_planting_driveis_not_science_and_is_not_valid_primary_link(self):
+        self.is_not_a_specific_error_class('Q2213692', 'a science')
+        self.assert_unlinkability('Q2213692')
 
     def test_that_organisation_is_not_a_science(self):
         self.is_not_a_specific_error_class('Q94887', 'a science')
