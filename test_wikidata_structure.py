@@ -495,6 +495,7 @@ class WikidataTests(unittest.TestCase):
     # whitelisted
     def test_dinner_theater_as_valid_primary_link_despite_wikidata_due_to_being_in_skipped_cases(self):
         # https://www.wikidata.org/wiki/Q19870965
+        # https://www.openstreetmap.org/way/542589522
         self.assert_passing_all_tests({'wikidata': 'Q19870965'})
 
     def test_railway_line_as_valid_primary_link(self):
