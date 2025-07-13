@@ -118,6 +118,12 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append('Q17493662')
         wikidata_bugs.append('Q8187769')
         wikidata_bugs.append('Q1341387')
+        wikidata_bugs.append('Q15617994')
+        wikidata_bugs.append('Q255848')
+        wikidata_bugs.append('Q2494008')
+        wikidata_bugs.append('Q47848')
+        wikidata_bugs.append('Q2142845')
+        wikidata_bugs.append('Q848330')
 
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology

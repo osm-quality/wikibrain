@@ -685,6 +685,10 @@ class WikidataTests(unittest.TestCase):
     def test_administrative_area_as_valid_primary_link_testcase_2(self):
         self.assert_linkability('Q266657')
 
+    def test_province_of_turkey_as_valid_primary_link(self):
+        self.assert_linkability('Q131597')
+        self.assert_linkability('Q83102')
+
     def test_japanese_administrative_area_as_valid_primary_link(self):
         self.assert_linkability('Q1207746')
 
@@ -972,6 +976,9 @@ class WikidataTests(unittest.TestCase):
     def test_building_as_valid_primary_link_testcase_d(self):
         self.assert_linkability('Q1722748')
 
+    def test_building_as_valid_primary_link_testcase_e(self):
+        self.assert_linkability('Q130323376')
+
     def test_building_as_valid_primary_link_problems_with_individual_items(self):
         self.assert_linkability('Q121602929')
         self.assert_linkability('Q121603336')
@@ -987,6 +994,9 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q124459716')
         self.assert_linkability('Q124432219')
         self.assert_linkability('Q124424207')
+
+    def test_tondo_group_as_valid_primary_link(self):
+        self.assert_linkability('Q121735159')
 
     def test_cooling_tower_used_now_as_parking_garage_as_valid_primary_link(self):
         self.assert_linkability('Q57903543')
@@ -1570,6 +1580,9 @@ class WikidataTests(unittest.TestCase):
     def test_building_complex_as_valid_primary_link(self):
         self.assert_linkability('Q2319878')
 
+    def test_building_complex_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q131197105')
+
     def test_water_well_as_valid_primary_link(self):
         self.assert_linkability('Q41313620')
 
@@ -1722,6 +1735,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_cowshed_as_valid_primary_link(self):
         self.assert_linkability('Q30555460')
+
+    def test_inscription_as_valid_primary_link(self):
+        self.assert_linkability('Q2471438')
 
     def test_specific_theatre_as_valid_primary_link(self):
         self.assert_linkability('Q7671545')
@@ -2348,6 +2364,9 @@ class WikidataTests(unittest.TestCase):
     def test_historic_site_apparently_technical_one_as_valid_primary_link(self):
         self.assert_linkability('Q98581751')
 
+    def test_historic_building_as_valid_primary_link(self):
+        self.assert_linkability('Q16899288')
+
     def test_generic_bench_entry_as_invalid_primary_link_p279_should_be_used_as_indicator(self):
         # https://www.wikidata.org/wiki/Q204776
         # has P279
@@ -2607,6 +2626,9 @@ class WikidataTests(unittest.TestCase):
         if "fictional" in problem.data()['error_id']:
             print(problem.data()['error_id'])
             self.assertNotEqual(True, "fictional" in problem.data()['error_id'])
+
+    def test_street_as_valid_primary_link(self):
+        self.assert_linkability('Q98110126')
 
     def test_street_with_brothels_as_valid_primary_link(self):
         self.assert_linkability('Q1877599')
