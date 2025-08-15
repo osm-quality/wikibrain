@@ -1752,6 +1752,7 @@ class WikimediaLinkIssueDetector:
             'Q2223653': {'what': 'a terrorist attack', 'replacement': None},
             'Q645883': {'what': 'a military operation', 'replacement': None},
             'Q29023906': {'what': 'a temporary exhibition', 'replacement':  None},
+            'Q3002150': {'what': 'an aircraft crash', 'replacement':  None},
             'Q1656682': generic_event,
             'Q4026292': generic_event,
             'Q3249551': generic_event,
