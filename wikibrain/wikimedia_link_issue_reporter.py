@@ -1567,7 +1567,7 @@ class WikimediaLinkIssueDetector:
         return self.invalid_types().get(type_id, None)
 
     def invalid_types(self):
-        taxon = {'what': 'an animal or plant (and not an individual one)', 'replacement': None}
+        taxon = {'what': 'an animal or plant (and not an individual one)', 'replacement': 'taxon:'}
         weapon = {'what': 'a weapon model or class', 'replacement': 'model:'}
         vehicle = {'what': 'a vehicle model or class', 'replacement': 'model:'}
         generic_event = {'what': 'an event', 'replacement': None, 'extremely_broad_and_unspecific': True}
