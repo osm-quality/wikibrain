@@ -367,6 +367,10 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q9073948')
         self.assert_linkability('Q97579154')
 
+    def test_detecting_forged_inscription_as_valid_primary_link(self):
+        self.assert_linkability('Q100325466')
+
+
     def test_detecting_fountain_as_valid_primary_link(self):
         self.assert_linkability('Q992764')
         self.assert_linkability('Q684661')
@@ -3048,6 +3052,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_artist_colony_as_valid_primary_link(self):
         self.assert_linkability('Q2598870')
+
+    def test_toy_library_as_valid_primary_link(self):
+        self.assert_linkability('Q124004600')
 
     def test_nonexistence_of_defunct_brand(self):
         # https://www.openstreetmap.org/note/3820933 see for potential valid test case
