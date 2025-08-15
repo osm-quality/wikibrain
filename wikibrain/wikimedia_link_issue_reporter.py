@@ -614,7 +614,7 @@ class WikimediaLinkIssueDetector:
         if link == None:
             raise Exception("Null pointer exception, unexpected None in link")
         if self.is_wikipedia_tag_clearly_broken(link):
-            return self.malformed_secondary_link_error("wikipedia", key, link)
+            return self.malformed_link_error("wikipedia", key, link, "expected forma will be like en:Idaho - with language code, colon and article name")
         else:
             language_code = wikimedia_connection.get_language_code_from_link(link)
             if language_code in wikipedia_knowledge.WikipediaKnowledge.wikipedia_language_code_redirects():
@@ -641,15 +641,15 @@ class WikimediaLinkIssueDetector:
                 )
 
         if self.is_wikidata_tag_clearly_broken(link):
-            return self.malformed_secondary_link_error("wikidata", key, link)
+            return self.malformed_link_error("wikidata", key, link, "value is expected to be like Q63736736  with Q at start and then numbers")
         else:
             return None
 
-    def malformed_secondary_link_error(self, wikidata_or_wikipedia, key, link):
+    def malformed_link_error(self, wikidata_or_wikipedia, key, link, hint):
         if key == wikidata_or_wikipedia:
             return ErrorReport(
                 error_id="malformed " + wikidata_or_wikipedia + " tag",
-                error_message="malformed value in " + key + " tag (" + link + ")",
+                error_message="malformed value in " + key + " tag (" + link + ") " + hint,
                 prerequisite={key: link},
             )
         if not self.is_an_actual_wikidata_or_wikipedia_key(key):
