@@ -2371,6 +2371,9 @@ class WikidataTests(unittest.TestCase):
     def test_historic_building_as_valid_primary_link(self):
         self.assert_linkability('Q16899288')
 
+    def test_boat_rental_facility_as_valid_primary_link(self):
+        self.assert_linkability('Q98603304')
+
     def test_generic_bench_entry_as_invalid_primary_link_p279_should_be_used_as_indicator(self):
         # https://www.wikidata.org/wiki/Q204776
         # has P279
