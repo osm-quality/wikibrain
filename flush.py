@@ -5,11 +5,11 @@ import os
 wikimedia_connection.set_cache_location(osm_handling_config.get_wikimedia_connection_cache_location())
 
 forced_refresh = True
-forced_refresh = False
-article = "he:גשר יהודית".split(":")
+#forced_refresh = False
+article = "en:Geraldine Lead Mine".split(":")
 wikimedia_connection.get_data_from_wikidata(article[0], article[1], forced_refresh)
 
-kill = "".split()  # NOT FLUSHED YET!
+kill = "Q126092684".split()  # NOT FLUSHED YET!
 """
 # use like this:
 kill = ["Q45621"]
