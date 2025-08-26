@@ -2833,6 +2833,10 @@ class WikidataTests(unittest.TestCase):
     def test_fad_diet_is_not_an_academic_discipline(self):
         self.is_not_a_specific_error_class('Q3132857', 'an academic discipline')
 
+    def test_religion_is_not_meeting_but_is_not_valid_primary_link_either(self):
+        self.is_not_an_event('Q6377795')
+        self.assert_unlinkability('Q6377795')
+
     def test_dinosaur_trace_as_valid_primary_link(self):
         self.assert_linkability('Q1226704')
 

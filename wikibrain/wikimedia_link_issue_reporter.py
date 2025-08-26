@@ -67,66 +67,13 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append("Q117859862")
-        wikidata_bugs.append("Q17362920")
-        wikidata_bugs.append("Q1434274")
-        wikidata_bugs.append("Q30022")
-        wikidata_bugs.append("Q20437094")
-        wikidata_bugs.append("Q16675884")
-        wikidata_bugs.append("Q2973801")
-        wikidata_bugs.append("Q2352616")
-        wikidata_bugs.append("Q148571")
-        wikidata_bugs.append("Q5307737")
-        wikidata_bugs.append("Q60533375")
-        wikidata_bugs.append("Q245188")
-        wikidata_bugs.append("Q123585930")
-        wikidata_bugs.append("Q350783")
-        wikidata_bugs.append("Q97145897")
-        wikidata_bugs.append("Q217102")
-        wikidata_bugs.append("Q3456301")
-        wikidata_bugs.append("Q1077064")
-        wikidata_bugs.append('Q1067164')
-        wikidata_bugs.append('Q1370468')
-        wikidata_bugs.append('Q7590')
-        wikidata_bugs.append('Q133346')
-        wikidata_bugs.append('Q1292279')
-        wikidata_bugs.append('Q676211')
-        wikidata_bugs.append('Q30014735')
-        wikidata_bugs.append('Q1441983')
-        wikidata_bugs.append('Q854550')
-        wikidata_bugs.append('Q2750030')
-        wikidata_bugs.append('Q9311671')
-        wikidata_bugs.append('Q1517374')
-        wikidata_bugs.append('Q392371')
-        wikidata_bugs.append('Q4736398')
-        wikidata_bugs.append('Q3783831')
-        wikidata_bugs.append('Q1962728')
-        wikidata_bugs.append('Q745221')
-        wikidata_bugs.append('Q3153117')
-        wikidata_bugs.append('Q44946')
-        wikidata_bugs.append('Q464980')
-        wikidata_bugs.append('Q1233637')
-        wikidata_bugs.append('Q3536096')
-        wikidata_bugs.append('Q1193753')
-        wikidata_bugs.append('Q8513')
-        wikidata_bugs.append('Q23392')
-        wikidata_bugs.append('Q1307347')
-        wikidata_bugs.append('Q921099')
-        wikidata_bugs.append('Q386147')
-        wikidata_bugs.append('Q1232589')
-        wikidata_bugs.append('Q8564039')
-        wikidata_bugs.append('Q17493662')
-        wikidata_bugs.append('Q8187769')
-        wikidata_bugs.append('Q1341387')
-        wikidata_bugs.append('Q15617994')
-        wikidata_bugs.append('Q255848')
-        wikidata_bugs.append('Q2494008')
-        wikidata_bugs.append('Q47848')
-        wikidata_bugs.append('Q2142845')
-        wikidata_bugs.append('Q848330')
-        wikidata_bugs.append('Q2918418')
-        wikidata_bugs.append('Q25608610')
-        wikidata_bugs.append('Q1941561')
+        wikidata_bugs.append("Q1941561")
+        wikidata_bugs.append("Q392371")
+        wikidata_bugs.append("Q15617994")
+        wikidata_bugs.append("Q745221")
+        wikidata_bugs.append("Q1143018")
+        wikidata_bugs.append("Q1384862")
+        wikidata_bugs.append("Q464980")
 
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
@@ -135,6 +82,7 @@ class WikimediaLinkIssueDetector:
         wikidata_bugs.append("Q18811582")  # faternity
         wikidata_bugs.append("Q992253")  # confraternity
         wikidata_bugs.append('Q69502391') # bus transit route
+        wikidata_bugs.append('Q3240003') # bus route
 
         return wikidata_bugs
 
@@ -269,7 +217,15 @@ class WikimediaLinkIssueDetector:
         skipped.append("Q91908084")
         skipped.append("Q15141321")
 
+        # OpenStreetMap is mapping country boundaries despite sometimes having zero physical presence
+        skipped.append("Q15104814")
+        skipped.append("Q3089219")
+        skipped.append("Q12413618")
+        skipped.append("Q133346")
+
         skipped.append("Q1567542")  # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
+
+        skipped.append("Q17362920") # "Wikimedia duplicated page" - see https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2396632735#Mid-Way_Regional_Airport_(Q16895081)_is_a_wikimedia_page,_according_to_Wikidata_ontology
 
         # we are not mapping services in OSM
         # except train/bus/etc routes
