@@ -257,6 +257,10 @@ class WikidataTests(unittest.TestCase):
     def test_detecting_crash_as_invalid_primary_link(self):
         self.assert_unlinkability('Q1801568')
 
+    def test_detecting_plant_nursery_as_valid_primary_link(self):
+        self.assert_linkability('Q111779675')
+        self.assert_linkability('Q122603113')
+
     def test_detecting_ship_burial_as_valid_primary_link(self):
         self.assert_linkability('Q1799877')
 
@@ -521,9 +525,17 @@ class WikidataTests(unittest.TestCase):
         self.is_not_a_specific_error_class('Q15809935', 'a service')
         self.assert_unlinkability('Q15809935')
 
+    def food_taxi_company_provides_service_and_is_not_a_service_and_is_not_linkable(self):
+        self.is_not_a_specific_error_class('Q20529164', 'a service')
+        self.assert_unlinkability('Q20529164')
+
     def hosting_company_provides_service_and_is_not_a_service_and_is_not_linkable(self):
         self.is_not_a_specific_error_class('Q568183', 'a service')
         self.assert_unlinkability('Q568183')
+
+    def newspaper_provides_service_and_is_not_a_service_and_is_not_linkable(self):
+        self.is_not_a_specific_error_class('Q9684', 'a service')
+        self.assert_unlinkability('Q9684')
 
     def travel_website_provides_service_and_is_not_a_service_and_is_not_linkable(self):
         self.is_not_a_specific_error_class('Q1770710', 'a service')
@@ -815,6 +827,18 @@ class WikidataTests(unittest.TestCase):
         # see link in test_sign_as_valid_primary_link for related discussion about physical signs
         self.assert_linkability('Q83545869')
 
+    def test_ogham_stone_as_valid_primary_link(self):
+        # see link in test_sign_as_valid_primary_link for related discussion about physical signs
+        self.assert_linkability('Q28232123')
+
+    def test_rune_stone_as_valid_primary_link(self):
+        # see link in test_sign_as_valid_primary_link for related discussion about physical signs
+        self.assert_linkability('Q871905')
+
+    def test_lourdes_grotte_replica_as_valid_primary_link(self):
+        # see link in test_sign_as_valid_primary_link for related discussion about physical signs
+        self.assert_linkability('Q98646576')
+
     def test_maria_column_as_valid_primary_link(self):
         # https://www.wikidata.org/w/index.php?title=Wikidata:Project_chat&oldid=1359739358#How_to_prevent_Maria_column_from_being_classified_as_a_process?
         self.assert_linkability('Q3894014')
@@ -946,6 +970,9 @@ class WikidataTests(unittest.TestCase):
     def test_another_factory_is_within_reality(self):
         self.is_not_a_specific_error_class('Q12717387', 'an object that exists outside physical reality')
         self.assert_linkability('Q12717387')
+
+    def test_cultural_heritage_monument_as_valid_primary_link(self):
+        self.assert_linkability('Q98630073')
 
     def test_toponym_location_as_valid_primary_link(self):
         self.assert_linkability('Q1440823')
@@ -1291,6 +1318,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_river_branch_as_valid_primary_link(self):
         self.assert_linkability('Q436065')
+
+    def test_river_delta_as_valid_primary_link(self):
+        self.assert_linkability('Q184429')
 
     def test_old_house_as_valid_primary_link(self):
         self.assert_linkability('Q31147655')
@@ -1919,7 +1949,11 @@ class WikidataTests(unittest.TestCase):
     def test_that_public_radio_is_not_a_science(self):
         self.is_not_a_specific_error_class('Q6701894', 'a science')
 
-    def test_that_planting_driveis_not_science_and_is_not_valid_primary_link(self):
+    def test_that_government_avalanche_agency_is_not_a_science_and_is_not_valid_primary_link(self):
+        self.is_not_a_specific_error_class('Q60776576', 'a science')
+        self.assert_unlinkability('Q60776576')
+
+    def test_that_planting_drive_is_not_science_and_is_not_valid_primary_link(self):
         self.is_not_a_specific_error_class('Q2213692', 'a science')
         self.assert_unlinkability('Q2213692')
 
@@ -2034,6 +2068,10 @@ class WikidataTests(unittest.TestCase):
 
     def test_that_company_is_not_a_general_industry_testcase_b(self):
         self.is_not_a_specific_error_class('Q114324216', 'a general industry')
+
+    def test_that_company_is_not_a_general_industry_testcase_c(self):
+        self.is_not_a_specific_error_class('Q96181236', 'a general industry')
+        self.assert_unlinkability('Q96181236')
 
     def test_that_organisation_is_not_a_general_industry_testcase_a(self):
         self.is_not_a_specific_error_class('Q1201729', 'a general industry')
@@ -2808,6 +2846,9 @@ class WikidataTests(unittest.TestCase):
     def test_protected_scottish_bay_as_valid_primary_link(self):
         self.assert_linkability('Q1246011')
 
+    def test_bay_as_valid_primary_link(self):
+        self.assert_linkability('Q2576605')
+
     def test_path_with_public_right_of_way_as_valid_primary_link(self):
         self.assert_linkability('Q5142648')
 
@@ -2929,6 +2970,10 @@ class WikidataTests(unittest.TestCase):
     def test_holocaust_is_not_a_physical_process_but_is_not_linkable_anyway(self):
         self.is_not_a_specific_error_class('Q2763', 'a physical process')
         self.assert_unlinkability('Q2763')
+
+    def test_defibrillator_is_not_a_physical_process_but_is_not_linkable_anyway(self):
+        self.is_not_a_specific_error_class('Q787407', 'a physical process')
+        self.assert_unlinkability('Q787407')
 
     def test_this_tourims_attraction_is_not_a_physical_process(self):
         self.is_not_a_specific_error_class('Q9697780', 'a physical process')
