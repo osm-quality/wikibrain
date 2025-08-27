@@ -229,6 +229,9 @@ class WikimediaLinkIssueDetector:
         skipped.append("Q12413618")
         skipped.append("Q133346")
 
+        # borderline - but geographical center is reasonable tourism attraction
+        skipped.append("Q590232")
+
         skipped.append("Q1567542")  # https://www.wikidata.org/wiki/Q27849294 landslide is reasonable to map in OSM and can be treated as event - so lets ignore this specific subclass of events (events are still not mappable)
 
         skipped.append("Q17362920") # "Wikimedia duplicated page" - see https://www.wikidata.org/w/index.php?title=User:Mateusz_Konieczny/failing_testcases&oldid=2396632735#Mid-Way_Regional_Airport_(Q16895081)_is_a_wikimedia_page,_according_to_Wikidata_ontology

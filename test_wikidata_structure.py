@@ -828,12 +828,13 @@ class WikidataTests(unittest.TestCase):
         self.assert_linkability('Q83545869')
 
     def test_ogham_stone_as_valid_primary_link(self):
-        # see link in test_sign_as_valid_primary_link for related discussion about physical signs
         self.assert_linkability('Q28232123')
 
     def test_rune_stone_as_valid_primary_link(self):
-        # see link in test_sign_as_valid_primary_link for related discussion about physical signs
         self.assert_linkability('Q871905')
+
+    def test_stone_row_as_valid_primary_link(self):
+        self.assert_linkability('Q30593926')
 
     def test_lourdes_grotte_replica_as_valid_primary_link(self):
         # see link in test_sign_as_valid_primary_link for related discussion about physical signs
@@ -847,8 +848,11 @@ class WikidataTests(unittest.TestCase):
         # see test_maria_column_as_valid_primary_link for a discussion link
         self.assert_linkability('Q63895140')
 
-    def test_cross_as_valid_primary_link(self):
+    def test_cross_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q32859712')
+
+    def test_cross_as_valid_primary_link_testcase_b(self):
+        self.assert_linkability('Q21037054')
 
     def test_cross_group_as_valid_primary_link(self):
         self.assert_linkability('Q116478748')
@@ -1387,11 +1391,14 @@ class WikidataTests(unittest.TestCase):
     def test_unfinished_stadium_as_valid_primary_link(self):
         self.assert_linkability('Q4315106')
 
+    def test_one_more_sculpture_as_valid_primary_link(self):
+        self.assert_linkability('Q65029693')
+
     def test_skyspace_sculpture_as_valid_primary_link(self):
         self.assert_linkability('Q63066124')
 
-    def test_one_more_sculpture_as_valid_primary_link(self):
-        self.assert_linkability('Q65029693')
+    def test_spa_as_valid_primary_link(self):
+        self.assert_linkability('Q12776389')
 
     def test_bus_transit_route_as_valid_primary_link(self):
         self.assert_linkability('Q52391196')
