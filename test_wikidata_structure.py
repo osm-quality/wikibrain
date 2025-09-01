@@ -622,6 +622,15 @@ class WikidataTests(unittest.TestCase):
     def test_megaproject_as_valid_primary_link(self):
         self.assert_linkability('Q782093')  # some megaprojects are already existing, project ( https://www.wikidata.org/wiki/Q170584 ) may be already complete
 
+    def test_megachurch_site_as_valid_primary_link(self):
+        self.assert_linkability('Q72158')
+
+    def test_building_interior_as_valid_primary_link(self):
+        self.assert_linkability('Q46119675')
+
+    def test_military_installation_as_valid_primary_link(self):
+        self.assert_linkability('Q2015883')
+
     def test_railway_route_as_valid_primary_link_testcase_a(self):
         self.assert_linkability('Q1193928')
 
@@ -789,6 +798,9 @@ class WikidataTests(unittest.TestCase):
 
     def test_historical_marker_as_valid_primary_link(self):
         self.assert_linkability('Q49529009')
+
+    def test_stock_exchange_as_valid_primary_link(self):
+        self.assert_linkability('Q1003245')
 
     def test_trademark_as_valid_primary_link(self):
         # trademark added to ignored_entries_in_wikidata_ontology to solve this
