@@ -1277,13 +1277,13 @@ class WikimediaLinkIssueDetector:
             if current_language_code in bot_wikipedias:
                 # not a real Wikipedia
                 return ErrorReport(
-                    error_id="wikipedia tag links bot wikipedia",
+                    error_id="wikipedia tag links bot wikipedia, good one in expected language found",
                     error_message=botpedia_message + " fortunately, in this case, a potential replacement exists",
                     proposed_tagging_changes=[{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
                     prerequisite=prerequisite,
                 )
             return ErrorReport(
-                error_id="wikipedia tag unexpected language",
+                error_id="wikipedia tag in unexpected language, good one in expected language found",
                 error_message=error_message,
                 proposed_tagging_changes=[{"from": {"wikipedia": wikipedia}, "to": {"wikipedia": good_link}}],
                 prerequisite=prerequisite,
