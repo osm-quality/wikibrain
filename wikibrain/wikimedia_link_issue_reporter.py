@@ -67,24 +67,9 @@ class WikimediaLinkIssueDetector:
         #return wikidata_bugs # count 14 extra errors, I guess (remember to reduce by count of open nonwikidata problems)
 
         # reported at https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases
-        wikidata_bugs.append("Q1941561")
-        wikidata_bugs.append("Q392371")
-        wikidata_bugs.append("Q15617994")
-        wikidata_bugs.append("Q745221")
-        wikidata_bugs.append("Q1143018")
-        wikidata_bugs.append("Q1384862")
-        wikidata_bugs.append("Q464980")
-        wikidata_bugs.append("Q155511")
-        wikidata_bugs.append("Q1450682")
-        wikidata_bugs.append("Q1809062")
-        wikidata_bugs.append("Q96181236")
-        wikidata_bugs.append("Q35127")
-        wikidata_bugs.append("Q559856")
-        wikidata_bugs.append("Q265558")
-        wikidata_bugs.append("Q23540")
-        wikidata_bugs.append("Q787407")
-        wikidata_bugs.append("Q2998430")
+        wikidata_bugs.append("Q2806437")
 
+        wikidata_bugs.append("Q464980") # https://www.wikidata.org/wiki/Talk:Q464980#Counter_example_for_deprecation_%22event%22_class
 
         # see https://www.wikidata.org/wiki/User:Mateusz_Konieczny/failing_testcases#Kappa_Kappa_Kappa_(Q6367049)_is_an_object_that_exists_outside_physical_reality,_according_to_Wikidata_ontology
         # escalate? add to pernament ones?
@@ -1678,7 +1663,7 @@ class WikimediaLinkIssueDetector:
             'Q24634210': {'what': 'a podcast', 'replacement': None},
             'Q273120': {'what': 'a protest', 'replacement': None},
             'Q24716636': {'what': 'a volunteer', 'replacement': None},
-            'Q7406919': {'what': 'a service', 'replacement': None},
+            'Q7406919': {'what': 'a service', 'replacement': None, 'extremely_broad_and_unspecific': True},
             'Q908620': {'what': 'a certification mark', 'replacement': None},
             'Q622772': {'what': 'an incineration', 'replacement': None},  # used instead 'incinerator', see https://www.wikidata.org/wiki/Q13416228
             'Q49773': {'what': 'a social movement', 'replacement': None},
@@ -1694,6 +1679,7 @@ class WikimediaLinkIssueDetector:
             'Q7187': {'what': 'a gene', 'replacement': None},
             'Q17127659': {'what': 'a terrorist organisation', 'replacement': None},
             'Q11822042': {'what': 'a transport accident', 'replacement': None},
+            'Q27493': {'what': 'a working group', 'replacement': None},
             'Q178561': {'what': 'a battle', 'replacement': None},
             'Q53706': {'what': 'a robbery', 'replacement': None},
             'Q83267': {'what': 'a crime', 'replacement': None},
